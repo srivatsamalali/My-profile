@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Srivatsa Malali — QA Engineer</title>
+  <meta name="color-scheme" content="light only">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Fraunces:ital,wght@0,300;0,600;1,300&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:      #F0F4FF;
+      --surface: #FFFFFF;
+      --blue:    #2563EB;
+      --blue-lt: #DBEAFE;
+      --teal:    #0D9488;
+      --teal-lt: #CCFBF1;
+      --ink:     #0F172A;
+      --muted:   #475569;
+      --border:  #CBD5E1;
+      --r:       16px;
+    }
+
+    html { scroll-behavior: smooth; color-scheme: light; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #F0F4FF !important;
+      color: #0F172A !important;
+      overflow-x: hidden;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 32px;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid #E2E8F0;
+    }
+    .nav-logo {
+      font-family: 'Fraunces', serif;
+      font-size: 1.15rem; font-weight: 600; color: #2563EB;
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { font-size: 0.85rem; font-weight: 500; color: #475569; text-decoration: none; transition: color .2s; }
+    .nav-links a:hover { color: #2563EB; }
+    @media (max-width: 600px) { .nav-links { display: none; } }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100svh;
+      background: linear-gradient(160deg, #EEF2FF 0%, #E0F2FE 50%, #CCFBF1 100%);
+      display: flex; align-items: center;
+      padding: 100px 32px 64px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* subtle decorative blobs — behind everything, very low opacity */
+    .blob {
+      position: absolute; border-radius: 50%;
+      pointer-events: none; z-index: 0;
+      filter: blur(60px);
+      opacity: 0.35;
+    }
+    .blob1 { width: 380px; height: 380px; background: #BFDBFE; top: -100px; right: -80px; animation: float 9s ease-in-out infinite; }
+    .blob2 { width: 240px; height: 240px; background: #A7F3D0; bottom: -60px; left: -60px; animation: float 7s 2s ease-in-out infinite; }
+    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-18px)} }
+
+    .hero-inner { position: relative; z-index: 1; max-width: 640px; }
+
+    .badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #FFFFFF; border: 1.5px solid #BFDBFE;
+      color: #2563EB; font-size: 0.78rem; font-weight: 700;
+      letter-spacing: .06em; text-transform: uppercase;
+      padding: 6px 16px; border-radius: 100px; margin-bottom: 24px;
+      animation: up .55s ease both;
+    }
+    .badge-dot {
+      width: 7px; height: 7px; border-radius: 50%; background: #2563EB;
+      animation: blink 1.8s ease infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.3;transform:scale(1.6)} }
+
+    .hero h1 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2.4rem, 8vw, 3.8rem);
+      font-weight: 600; line-height: 1.1; color: #0F172A;
+      animation: up .55s .08s ease both;
+    }
+    .hero h1 em { font-style: italic; color: #2563EB; }
+
+    .hero-sub {
+      margin-top: 18px;
+      font-size: 1rem; color: #475569; line-height: 1.75;
+      animation: up .55s .16s ease both;
+    }
+
+    /* stats row */
+    .stats {
+      display: flex; gap: 28px; flex-wrap: wrap;
+      margin-top: 36px;
+      animation: up .55s .24s ease both;
+    }
+    .stat {
+      background: #FFFFFF;
+      border: 1.5px solid #E2E8F0;
+      border-radius: 14px;
+      padding: 16px 22px;
+      min-width: 110px;
+    }
+    .stat-n {
+      font-family: 'Fraunces', serif;
+      font-size: 2rem; font-weight: 600; color: #2563EB; line-height: 1;
+    }
+    .stat-l { font-size: 0.72rem; font-weight: 600; color: #64748B; margin-top: 5px; letter-spacing: .04em; }
+
+    .cta-row {
+      display: flex; gap: 12px; flex-wrap: wrap;
+      margin-top: 36px;
+      animation: up .55s .32s ease both;
+    }
+    .btn-p {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #2563EB; color: #FFF;
+      font-size: .875rem; font-weight: 700;
+      padding: 13px 26px; border-radius: 100px;
+      text-decoration: none;
+      box-shadow: 0 4px 18px rgba(37,99,235,.3);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .btn-p:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(37,99,235,.4); }
+    .btn-s {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #FFF; color: #0F172A;
+      font-size: .875rem; font-weight: 700;
+      padding: 13px 26px; border-radius: 100px;
+      text-decoration: none; border: 1.5px solid #CBD5E1;
+      transition: transform .2s, border-color .2s, color .2s;
+    }
+    .btn-s:hover { transform: translateY(-2px); border-color: #2563EB; color: #2563EB; }
+
+    @keyframes up {
+      from { opacity:0; transform:translateY(20px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+
+    /* ── SECTION SHELL ── */
+    section { padding: 80px 32px; }
+    .container { max-width: 1040px; margin: 0 auto; }
+    .sec-label {
+      font-size: .72rem; font-weight: 800; letter-spacing: .1em;
+      text-transform: uppercase; color: #0D9488; margin-bottom: 8px;
+    }
+    .sec-title {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 600; color: #0F172A; margin-bottom: 40px;
+    }
+
+    /* ── SKILLS ── */
+    #skills { background: #FFFFFF; }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 18px;
+    }
+    .sk {
+      background: #F8FAFF;
+      border: 1.5px solid #E2E8F0;
+      border-radius: var(--r); padding: 22px;
+      transition: transform .25s, box-shadow .25s, border-color .25s;
+    }
+    .sk:hover { transform: translateY(-4px); box-shadow: 0 10px 28px rgba(0,0,0,.07); border-color: #93C5FD; }
+    .sk-icon {
+      width: 42px; height: 42px; border-radius: 10px;
+      background: #DBEAFE; font-size: 1.3rem;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 14px;
+    }
+    .sk h3 { font-size: .9rem; font-weight: 700; color: #0F172A; margin-bottom: 6px; }
+    .sk p  { font-size: .8rem; color: #64748B; line-height: 1.65; }
+
+    /* ── EXPERIENCE ── */
+    #experience { background: #F0F4FF; }
+    .timeline { padding-left: 28px; position: relative; }
+    .timeline::before {
+      content: '';
+      position: absolute; left: 5px; top: 6px; bottom: 6px; width: 2px;
+      background: linear-gradient(to bottom, #2563EB, #0D9488);
+      border-radius: 2px;
+    }
+    .tl {
+      position: relative; margin-bottom: 44px;
+      opacity: 0; transform: translateX(-14px);
+      transition: opacity .45s, transform .45s;
+    }
+    .tl.show { opacity: 1; transform: translateX(0); }
+    .tl-dot {
+      position: absolute; left: -33px; top: 5px;
+      width: 14px; height: 14px; border-radius: 50%;
+      background: #2563EB; border: 3px solid #F0F4FF;
+      box-shadow: 0 0 0 2px #2563EB;
+    }
+    .tl-head { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 6px; margin-bottom: 4px; }
+    .tl-co { font-size: .95rem; font-weight: 800; color: #2563EB; }
+    .tl-role { font-size: .85rem; font-weight: 600; color: #0F172A; margin-bottom: 4px; }
+    .tl-period {
+      font-size: .75rem; font-weight: 700;
+      background: #DBEAFE; color: #1D4ED8;
+      padding: 3px 12px; border-radius: 100px;
+    }
+    .tl ul { margin-top: 10px; padding-left: 18px; }
+    .tl ul li { font-size: .83rem; color: #475569; line-height: 1.7; margin-bottom: 5px; }
+
+    /* ── METRICS ── */
+    #metrics { background: #FFFFFF; }
+    .m-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 18px;
+    }
+    .m-card {
+      background: linear-gradient(135deg, #EFF6FF, #F0FAFA);
+      border: 1.5px solid #BFDBFE;
+      border-radius: var(--r); padding: 28px 20px; text-align: center;
+      opacity: 0; transform: scale(.92);
+      transition: opacity .4s, transform .4s;
+    }
+    .m-card.show { opacity: 1; transform: scale(1); }
+    .m-n { font-family: 'Fraunces', serif; font-size: 2.4rem; font-weight: 600; color: #2563EB; line-height: 1; }
+    .m-l { font-size: .75rem; font-weight: 700; color: #64748B; margin-top: 8px; letter-spacing: .04em; }
+
+    /* ── CERTS ── */
+    #certs { background: #F0F4FF; }
+    .pills { display: flex; flex-wrap: wrap; gap: 12px; }
+    .pill {
+      display: flex; align-items: center; gap: 10px;
+      background: #FFFFFF; border: 1.5px solid #E2E8F0;
+      border-radius: 100px; padding: 10px 20px;
+      font-size: .85rem; font-weight: 600; color: #0F172A;
+      transition: border-color .2s, color .2s;
+    }
+    .pill:hover { border-color: #0D9488; color: #0D9488; }
+
+    /* ── CONTACT ── */
+    #contact {
+      background: linear-gradient(135deg, #EFF6FF, #F0FAFA);
+      text-align: center;
+    }
+    #contact .sec-title { margin-bottom: 12px; }
+    #contact p { color: #64748B; font-size: .95rem; margin-bottom: 32px; }
+    .c-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 14px; }
+    .c-link {
+      display: inline-flex; align-items: center; gap: 9px;
+      background: #FFF; border: 1.5px solid #E2E8F0;
+      padding: 12px 22px; border-radius: 100px;
+      font-size: .85rem; font-weight: 700; color: #0F172A;
+      text-decoration: none;
+      transition: transform .2s, border-color .2s, color .2s;
+    }
+    .c-link:hover { transform: translateY(-3px); border-color: #2563EB; color: #2563EB; }
+
+    footer {
+      text-align: center; padding: 24px 32px;
+      font-size: .75rem; color: #94A3B8;
+      background: #FFF; border-top: 1px solid #E2E8F0;
+    }
+
+    @media (max-width: 500px) {
+      section { padding: 60px 20px; }
+      .hero { padding: 90px 20px 52px; }
+      .stats { gap: 12px; }
+      .stat { padding: 12px 16px; min-width: 90px; }
+      .stat-n { font-size: 1.7rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">SM</a>
+  <ul class="nav-links">
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#metrics">Metrics</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="blob blob1"></div>
+  <div class="blob blob2"></div>
+  <div class="hero-inner">
+    <div class="badge"><div class="badge-dot"></div>Open to Opportunities · Bangalore</div>
+    <h1>Srivatsa Malali<br><em>QA Engineer</em></h1>
+    <p class="hero-sub">
+      5.5 years building bulletproof automation frameworks across banking,
+      e-commerce &amp; aviation. ISTQB Foundation &amp; Agile certified.
+    </p>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-n">688</div>
+        <div class="stat-l">Tests Automated</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">100%</div>
+        <div class="stat-l">Automation Coverage</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">243</div>
+        <div class="stat-l">Bugs Raised</div>
+      </div>
+    </div>
+
+    <div class="cta-row">
+      <a href="#contact" class="btn-p">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92V19a2 2 0 01-2.18 2A19.79 19.79 0 013 4.18 2 2 0 015 2h2.09a2 2 0 012 1.72c.13 1 .37 1.98.72 2.91a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.17-1.17a2 2 0 012.11-.45c.93.35 1.91.59 2.91.72A2 2 0 0122 16.92z"/></svg>
+        Get in Touch
+      </a>
+      <a href="#experience" class="btn-s">View Experience →</a>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <div class="sec-label">What I Bring</div>
+    <h2 class="sec-title">Technical Skills</h2>
+    <div class="skills-grid">
+      <div class="sk"><div class="sk-icon">☕</div><h3>Java — Core & Selenium</h3><p>Robust reusable automation scripts built with Core Java and Selenium WebDriver across enterprise platforms.</p></div>
+      <div class="sk"><div class="sk-icon">🥒</div><h3>Cucumber BDD</h3><p>Human-readable test scenarios bridging business requirements and engineering execution.</p></div>
+      <div class="sk"><div class="sk-icon">🔬</div><h3>TestNG</h3><p>Structured test execution, parallel runs, and detailed reporting in complex regression suites.</p></div>
+      <div class="sk"><div class="sk-icon">🔗</div><h3>API Testing</h3><p>REST API validation via Rest Assured and Postman, plus MySQL back-end verifications for core banking.</p></div>
+      <div class="sk"><div class="sk-icon">📄</div><h3>ICD & Handoff Docs</h3><p>Preparation and validation of Interface Control Documents ensuring seamless system integration.</p></div>
+      <div class="sk"><div class="sk-icon">🔀</div><h3>Git, GitHub & Bitbucket</h3><p>Version control and collaborative code management across distributed agile teams.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <div class="sec-label">Career Journey</div>
+    <h2 class="sec-title">Work Experience</h2>
+    <div class="timeline">
+
+      <div class="tl">
+        <div class="tl-dot"></div>
+        <div class="tl-head">
+          <div>
+            <div class="tl-co">Wipro</div>
+            <div class="tl-role">Senior Test Automation Engineer</div>
+          </div>
+          <span class="tl-period">2025 – Current</span>
+        </div>
+      </div>
+
+      <div class="tl">
+        <div class="tl-dot"></div>
+        <div class="tl-head">
+          <div>
+            <div class="tl-co">Tata Consultancy Services — Citi Bank</div>
+            <div class="tl-role">System Engineer</div>
+          </div>
+          <span class="tl-period">2022 – 2025</span>
+        </div>
+        <ul>
+          <li>End-to-end automation testing using Selenium/Java for multiple banking modules.</li>
+          <li>Regression testing of payment flows and ACH transactions.</li>
+          <li>Prepared and validated ICDs ensuring seamless system integration.</li>
+          <li>Validated Flexcube core banking via Rest Assured, Postman, and MySQL.</li>
+          <li>AML/KYC coverage — onboarding checks, transaction monitoring, sanctions screening.</li>
+        </ul>
+      </div>
+
+      <div class="tl">
+        <div class="tl-dot"></div>
+        <div class="tl-head">
+          <div>
+            <div class="tl-co">Tata Consultancy Services — Apple</div>
+            <div class="tl-role">System Engineer</div>
+          </div>
+          <span class="tl-period">2022 – 2025</span>
+        </div>
+        <ul>
+          <li>Automated tests using Selenium/Java across five international regions.</li>
+          <li>Validated country-specific logic and UI for Apple's e-commerce platforms.</li>
+          <li>Maintained regression suites for frequent device launches and updates.</li>
+        </ul>
+      </div>
+
+      <div class="tl">
+        <div class="tl-dot"></div>
+        <div class="tl-head">
+          <div>
+            <div class="tl-co">Hexaware Technologies — Air Canada</div>
+            <div class="tl-role">Automation Test Engineer</div>
+          </div>
+          <span class="tl-period">2020 – 2022</span>
+        </div>
+        <ul>
+          <li>Automation testing for airline booking and customer management systems.</li>
+          <li>Designed and maintained suites for regression and functional testing.</li>
+          <li>🏆 Best Debutant Award for exceptional performance.</li>
+          <li>🏆 Best Performer of the Month — three consecutive months.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- METRICS -->
+<section id="metrics">
+  <div class="container">
+    <div class="sec-label">By the Numbers</div>
+    <h2 class="sec-title">Impact Metrics</h2>
+    <div class="m-grid">
+      <div class="m-card"><div class="m-n">688</div><div class="m-l">Test Cases Automated</div></div>
+      <div class="m-card"><div class="m-n">100%</div><div class="m-l">Functional Automation Coverage</div></div>
+      <div class="m-card"><div class="m-n">243</div><div class="m-l">Defects Identified</div></div>
+      <div class="m-card"><div class="m-n">5.5</div><div class="m-l">Years of Experience</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTS -->
+<section id="certs">
+  <div class="container">
+    <div class="sec-label">Credentials</div>
+    <h2 class="sec-title">Certifications &amp; Education</h2>
+    <div class="pills">
+      <div class="pill">🎓 ISTQB Foundation Certified</div>
+      <div class="pill">⚡ ISTQB Agile Certified</div>
+      <div class="pill">🏫 BE – ECE, Dr Ambedkar Institute of Technology (2016–2020)</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="sec-label">Say Hello</div>
+    <h2 class="sec-title">Let's Connect</h2>
+    <p>Open to Senior QA / Automation Engineer roles. Drop a message anytime.</p>
+    <div class="c-links">
+      <a href="tel:+917019885349" class="c-link">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92V19a2 2 0 01-2.18 2A19.79 19.79 0 013 4.18 2 2 0 015 2h2.09a2 2 0 012 1.72c.13 1 .37 1.98.72 2.91a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.17-1.17a2 2 0 012.11-.45c.93.35 1.91.59 2.91.72A2 2 0 0122 16.92z"/></svg>
+        +91 70198 85349
+      </a>
+      <a href="mailto:srivatsa.a.malali@zohomail.in" class="c-link">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        srivatsa.a.malali@zohomail.in
+      </a>
+      <a href="https://www.linkedin.com/in/srivatsamalali" target="_blank" class="c-link">
+        <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>© 2025 Srivatsa Malali · Hosted on GitHub Pages</footer>
+
+<script>
+  const io = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('show'), (e.target.dataset.i || 0) * 90);
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.tl, .m-card').forEach((el, i) => {
+    el.dataset.i = i % 4;
+    io.observe(el);
+  });
+</script>
+</body>
+</html>
