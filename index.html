@@ -1851,6 +1851,14 @@
               else statusLine.textContent = `DETONATING CORE MATRIX...`;
             }
 
+            // Dynamic Ball Radius & Sizing
+            const isMobile = width < 650;
+            const maxBallSize = isMobile ? Math.min(width, height) * 0.12 : Math.min(width, height) * 0.15;
+            const baseRadius = (isMobile ? 18 : 30) + easeProgress * maxBallSize;
+            const pulseScale = 1 + 0.04 * Math.sin(elapsed * 0.008);
+            const currentRadius = Math.max(5, baseRadius * pulseScale);
+            lastBallRadius = currentRadius;
+
             // 1. Draw Subtle Monochrome Radiation Lines
             radiationRays.forEach(ray => {
               const currentAngle = ray.angle + (elapsed * 0.00015);
@@ -1922,13 +1930,6 @@
             });
 
             // 3. THE HUGE GEOMETRIC BALL (Monochrome Shaded Sphere & 3D Rotating Blueprint Wireframe)
-            const isMobile = width < 650;
-            const maxBallSize = isMobile ? Math.min(width, height) * 0.12 : Math.min(width, height) * 0.15;
-            const baseRadius = (isMobile ? 18 : 30) + easeProgress * maxBallSize;
-            const pulseScale = 1 + 0.04 * Math.sin(elapsed * 0.008);
-            const currentRadius = Math.max(5, baseRadius * pulseScale);
-            lastBallRadius = currentRadius;
-
             // Concentric Subtle Radiating Rings
             const ringCount = 3;
             for (let r = 0; r < ringCount; r++) {
