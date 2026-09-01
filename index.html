@@ -277,6 +277,75 @@
       position: relative;
     }
 
+    .hero-profile-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .hero-avatar-frame {
+      position: relative;
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      padding: 2.5px;
+      background: linear-gradient(135deg, var(--accent), rgba(15, 23, 42, 0.25));
+      flex-shrink: 0;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    }
+    .hero-avatar-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      border: 2px solid var(--bg);
+    }
+    .hero-avatar-badge {
+      position: absolute;
+      bottom: -3px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #0f172a;
+      color: #ffffff;
+      font-family: var(--font-mono);
+      font-size: 0.52rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      padding: 2px 6px;
+      border-radius: 10px;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    [data-theme="dark"] .hero-avatar-badge {
+      background: #1e293b;
+    }
+    .status-pulse-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 6px #22c55e;
+      display: inline-block;
+    }
+
+    @media (max-width: 600px) {
+      .hero-profile-header {
+        flex-direction: row;
+        gap: 14px;
+      }
+      .hero-avatar-frame {
+        width: 58px;
+        height: 58px;
+      }
+      .hero-info-card {
+        padding: 24px 16px;
+      }
+    }
+
     .hero-label {
       font-family: var(--font-mono);
       font-size: 0.75rem;
@@ -729,28 +798,53 @@
     }
     @media (max-width: 900px) {
       .creds-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 600px) {
+      .creds-grid {
         grid-template-columns: 1fr;
       }
     }
 
     .cred-card {
-      padding: 30px;
+      padding: 26px 22px;
       display: flex;
-      align-items: center;
-      gap: 20px;
+      align-items: flex-start;
+      gap: 16px;
     }
     .cred-icon {
-      font-size: 2rem;
+      font-size: 1.8rem;
+      line-height: 1;
+      flex-shrink: 0;
     }
     .cred-name {
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       font-weight: 700;
       text-transform: uppercase;
       margin-bottom: 4px;
+      color: var(--color);
     }
     .cred-detail {
       font-size: 0.8rem;
       color: var(--text-muted);
+      margin-bottom: 6px;
+      line-height: 1.4;
+    }
+    .cred-link {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: opacity 0.2s;
+    }
+    .cred-link:hover {
+      text-decoration: underline;
+      opacity: 0.85;
     }
 
     /* Contact Block */
@@ -1117,10 +1211,22 @@
       <div class="hero-grid">
         <!-- Hero text info block -->
         <div class="hero-info-card blueprint-card bounce-target bounce-slide-left d-2" data-locator="css=.hero-info-card">
-          <div class="hero-label">01. Senior QA Automation Engineer</div>
+          <div class="hero-profile-header">
+            <div class="hero-avatar-frame">
+              <img src="images/IMG_2084.jpg" alt="Srivatsa Malali" class="hero-avatar-img" />
+              <div class="hero-avatar-badge" title="Senior QA Automation Engineer">
+                <span class="status-pulse-dot"></span>
+                <span>QA LEAD</span>
+              </div>
+            </div>
+            <div>
+              <div class="hero-label" style="margin-bottom:2px;">01. Senior QA Automation Engineer</div>
+              <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted);">Srivatsa Malali · Bangalore, India</div>
+            </div>
+          </div>
           <h1 class="hero-title">Shaping <strong>Quality</strong> Building <strong>Reliability</strong></h1>
           <p class="hero-desc">
-            Based in Bangalore, India. Yoga National Champion. Over 5.5 years of expertise engineering test frameworks (Java, Selenium, Cucumber BDD) across Apple, Citi Bank, and Air Canada ecosystems.
+            Yoga National Champion. Over 5.5 years of expertise engineering test frameworks (Java, Selenium, Cucumber BDD, Rest Assured) across Apple, Citi Bank, and Air Canada ecosystems.
           </p>
           <div class="hero-actions">
             <a href="#contact" class="btn btn-primary">Let's Connect</a>
@@ -1160,11 +1266,11 @@
         <!-- Project 1 -->
         <div class="project-card blueprint-card bounce-target bounce-pop d-4" data-locator="css=.project-card:nth-of-type(1)">
           <div>
-            <div class="project-meta">Aston Recruitment · Leisure Venture</div>
+            <div class="project-meta">Aston Recruitment · Production Web Solution</div>
             <h3 class="project-title">Full Recruitment Platform</h3>
-            <p class="project-desc">Led technical design, repository workflows, and execution to construct a high-performance web solution for our client matching workflows.</p>
+            <p class="project-desc">Led technical design, repository workflows, and execution to construct a high-performance web recruitment platform for client matching and candidate management.</p>
           </div>
-          <a href="#" class="project-link">View project case study →</a>
+          <a href="https://astonrecruitment.in/" target="_blank" rel="noopener noreferrer" class="project-link">Visit astonrecruitment.in ↗</a>
         </div>
 
         <!-- Project 2 -->
@@ -1275,6 +1381,7 @@
             <ul class="exp-bullets">
               <li>Architecting cross-platform automation suites using Page Object Models and Selenium.</li>
               <li>Implementing CI/CD pipeline quality gates and daily test execution schedules.</li>
+              <li>Recognized for outstanding contributions and excellence in engineering delivery (<a href="https://lnkd.in/p/gU_8CW2w" target="_blank" rel="noopener noreferrer" style="color:var(--accent); font-weight:600; text-decoration:underline;">View LinkedIn Recognition Post ↗</a>).</li>
             </ul>
           </div>
         </div>
@@ -1367,28 +1474,55 @@
   <section id="certs">
     <div class="container">
       <div class="section-header bounce-target bounce-pop d-8">
-        <span class="section-num">06. Credentials</span>
-        <h2 class="section-title">Certifications <strong>&amp; Education</strong></h2>
+        <span class="section-num">06. Credentials &amp; Honors</span>
+        <h2 class="section-title">Certifications <strong>&amp; Recognition</strong></h2>
       </div>
 
       <div class="creds-grid">
+        <!-- Microsoft Certified Professional -->
         <div class="cred-card blueprint-card bounce-target bounce-pop d-8" data-locator="css=#certs .cred-card:nth-of-type(1)">
+          <span class="cred-icon">📜</span>
+          <div>
+            <div class="cred-name">Microsoft Certified Professional</div>
+            <div class="cred-detail">Official Technical Credential</div>
+            <a href="images/Microsoft_Certified_Professional_Certificate_0.pdf" target="_blank" rel="noopener noreferrer" class="cred-link">View Certificate (PDF) ↗</a>
+          </div>
+        </div>
+
+        <!-- Best Debutant & Recognition Award -->
+        <div class="cred-card blueprint-card bounce-target bounce-pop d-9" data-locator="css=#certs .cred-card:nth-of-type(2)">
+          <span class="cred-icon">🏆</span>
+          <div>
+            <div class="cred-name">Best Debutant Award</div>
+            <div class="cred-detail">Wipro &amp; Hexaware Delivery Honors</div>
+            <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:2px;">
+              <a href="images/Best Debutant Award.png" target="_blank" rel="noopener noreferrer" class="cred-link">View Award ↗</a>
+              <span style="color:var(--border);">·</span>
+              <a href="https://lnkd.in/p/gU_8CW2w" target="_blank" rel="noopener noreferrer" class="cred-link">LinkedIn Post ↗</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ISTQB Foundation -->
+        <div class="cred-card blueprint-card bounce-target bounce-pop d-10" data-locator="css=#certs .cred-card:nth-of-type(3)">
           <span class="cred-icon">🎓</span>
           <div>
             <div class="cred-name">ISTQB Foundation</div>
-            <div class="cred-detail">Certified Professional</div>
+            <div class="cred-detail">Certified QA Professional</div>
           </div>
         </div>
 
-        <div class="cred-card blueprint-card bounce-target bounce-pop d-9" data-locator="css=#certs .cred-card:nth-of-type(2)">
+        <!-- ISTQB Agile -->
+        <div class="cred-card blueprint-card bounce-target bounce-pop d-11" data-locator="css=#certs .cred-card:nth-of-type(4)">
           <span class="cred-icon">⚡</span>
           <div>
             <div class="cred-name">ISTQB Agile Extension</div>
-            <div class="cred-detail">Certified Professional</div>
+            <div class="cred-detail">Certified Agile Tester</div>
           </div>
         </div>
 
-        <div class="cred-card blueprint-card bounce-target bounce-pop d-10" data-locator="css=#certs .cred-card:nth-of-type(3)">
+        <!-- B.E. Degree -->
+        <div class="cred-card blueprint-card bounce-target bounce-pop d-12" data-locator="css=#certs .cred-card:nth-of-type(5)">
           <span class="cred-icon">🏫</span>
           <div>
             <div class="cred-name">B.E. in Electronics</div>
