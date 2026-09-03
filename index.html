@@ -1499,12 +1499,12 @@
     }
     .code-textarea {
       width: 100%;
-      height: 420px;
+      height: 440px;
       background: #09090b;
-      color: #f8fafc;
-      font-family: var(--font-mono);
-      font-size: 0.82rem;
-      line-height: 1.6;
+      color: #f1f5f9;
+      font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace;
+      font-size: 0.81rem;
+      line-height: 1.65;
       padding: 20px;
       border: none;
       border-right: 1px solid #1e293b;
@@ -1512,12 +1512,15 @@
       resize: none;
       white-space: pre;
       tab-size: 4;
+      -moz-tab-size: 4;
+      -webkit-tab-size: 4;
+      font-feature-settings: "liga" 0;
     }
     @media (max-width: 960px) {
       .code-textarea {
         border-right: none;
         border-bottom: 1px solid #1e293b;
-        height: 320px;
+        height: 340px;
       }
     }
     .code-output-panel {
@@ -4067,8 +4070,13 @@ public class AutomationTest extends BaseTest {
         System.out.println("Action Button: " + connectBtn.getText());
         Assert.assertEquals(connectBtn.getText(), "LET'S CONNECT");
 
-        // 3. You or your candidate can type any sout statement or Selenium code here:
-        System.out.println("Hello Interviewer! Portfolio DOM test completed successfully.");
+        // 3. Write your custom logic or sout statements below:
+        int s = 1;
+        if (s == 1) {
+            System.out.println("True");
+        } else {
+            System.out.println("False");
+        }
     }
 }`
         },
@@ -4079,16 +4087,16 @@ public class AutomationTest extends BaseTest {
           cmd: 'mvn test -Dcucumber.filter.tags=@Portfolio',
           code: `@Portfolio @LiveTest
 Feature: Srivatsa Malali Portfolio Verification
-  As a technical recruiter or engineering lead
-  I want to verify Srivatsa's portfolio content, skills, and contact channels
-  So that I can evaluate his test automation engineering background
+    As a technical recruiter or engineering lead
+    I want to verify Srivatsa's portfolio content, skills, and contact channels
+    So that I can evaluate his test automation engineering background
 
-  Scenario: Verify portfolio brand heading and credentials
-    Given user launches the portfolio page "https://srivatsamalali.github.io"
-    When user inspects the hero section heading
-    Then the title should contain "Shaping Quality Building Reliability"
-    And the navigation should display the "Let's Connect" action button
-    And the credentials section should show "Microsoft Certified Professional"`
+    Scenario: Verify portfolio brand heading and credentials
+        Given user launches the portfolio page "https://srivatsamalali.github.io"
+        When user inspects the hero section heading
+        Then the title should contain "Shaping Quality Building Reliability"
+        And the navigation should display the "Let's Connect" action button
+        And the credentials section should show "Microsoft Certified Professional"`
         }
       };
 
@@ -4228,7 +4236,6 @@ Feature: Srivatsa Malali Portfolio Verification
           appendLog('[INFO] Parsing ProfileVerification.feature tags: [@Portfolio, @LiveTest]', 'info');
 
           const featureLines = rawCode.split('\n');
-          let stepIndex = 0;
           let stepsPassed = 0;
           let totalSteps = 0;
 
@@ -4301,264 +4308,181 @@ Feature: Srivatsa Malali Portfolio Verification
           }, 300);
 
         } else {
-          // --- REAL-TIME JAVA & SOUT & SELENIUM INTERPRETER ---
+          // --- TRUE REAL-TIME JAVA RUNTIME EXECUTION ENGINE ---
           appendLog('[INFO] -------------------------------------------------------', 'dim');
           appendLog('[INFO]  T E S T S   E X E C U T I O N', 'cmd');
           appendLog('[INFO] -------------------------------------------------------', 'dim');
           appendLog('[INFO] Running com.srivatsa.tests.AutomationTest', 'info');
           appendLog('[INFO] [ChromeDriver] Attached to active DOM session (Chrome v128)', 'dim');
 
-          const variables = {};
-          let assertionsCount = 0;
-          const lines = rawCode.split('\n');
-
           setTimeout(() => {
-            try {
-              for (let i = 0; i < lines.length; i++) {
-                let line = lines[i].trim();
-                const lineNum = i + 1;
+            let assertionsPassed = 0;
 
-                if (!line || line.startsWith('//') || line.startsWith('/*') || line.startsWith('*') || 
-                    line.startsWith('package ') || line.startsWith('import ') || line.startsWith('public class') || 
-                    line.startsWith('@Test') || line.startsWith('public void') || line === '{' || line === '}') {
-                  continue;
-                }
-
-                if (line.endsWith(';')) line = line.slice(0, -1).trim();
-
-                // 1. driver.get(...)
-                const getMatch = line.match(/driver\.get\s*\(\s*["']([^"']+)["']\s*\)/);
-                if (getMatch) {
-                  const url = getMatch[1];
-                  appendLog(`[NAVIGATE] driver.get("${url}")`, 'info');
-                  continue;
-                }
-
-                // 2. driver.findElement(...) or WebElement var = driver.findElement(...)
-                const findMatch = line.match(/(?:WebElement\s+(\w+)\s*=\s*)?driver\.findElement\s*\(\s*By\.(id|className|cssSelector|xpath|tagName|name|linkText)\s*\(\s*["']([^"']+)["']\s*\)\s*\)/);
-                if (findMatch) {
-                  const varName = findMatch[1];
-                  const byType = findMatch[2];
-                  let selector = findMatch[3];
-
-                  let domEl = null;
-                  try {
-                    if (byType === 'id') domEl = document.getElementById(selector);
-                    else if (byType === 'className') domEl = document.getElementsByClassName(selector)[0];
-                    else if (byType === 'tagName') domEl = document.getElementsByTagName(selector)[0];
-                    else if (byType === 'name') domEl = document.querySelector(`[name="${selector}"]`);
-                    else if (byType === 'linkText') {
-                      domEl = Array.from(document.querySelectorAll('a')).find(a => a.textContent.trim() === selector);
-                    } else if (byType === 'cssSelector') {
-                      domEl = document.querySelector(selector);
-                    } else if (byType === 'xpath') {
-                      const res = document.evaluate(selector, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null);
-                      domEl = res.singleNodeValue;
-                    }
-                  } catch (err) {
-                    domEl = null;
-                  }
-
-                  if (!domEl) {
-                    throw new Error(`org.openqa.selenium.NoSuchElementException: Unable to locate element with locator: By.${byType}("${selector}") at line ${lineNum}`);
-                  }
-
-                  domEl.classList.add('pulse-once');
-                  setTimeout(() => domEl.classList.remove('pulse-once'), 1500);
-
-                  const elementObj = {
-                    dom: domEl,
-                    getText: () => domEl.innerText ? domEl.innerText.trim() : (domEl.textContent ? domEl.textContent.trim() : ''),
-                    getAttribute: (attr) => domEl.getAttribute(attr) || '',
-                    isDisplayed: () => domEl.offsetParent !== null,
-                    isEnabled: () => !domEl.disabled,
-                    click: () => {
-                      domEl.click();
-                      appendLog(`[ACTION] Clicked element <${domEl.tagName.toLowerCase()}>`, 'info');
-                    },
-                    sendKeys: (val) => {
-                      if ('value' in domEl) domEl.value = val;
-                      appendLog(`[ACTION] Typed '${val}' into <${domEl.tagName.toLowerCase()}>`, 'info');
-                    }
-                  };
-
-                  if (varName) {
-                    variables[varName] = elementObj;
-                  }
-                  appendLog(`[FIND] Located <${domEl.tagName.toLowerCase()}> with By.${byType}("${selector}")`, 'dim');
-                  continue;
-                }
-
-                // 3. System.out.println(...) or sout(...)
-                const sysoutMatch = line.match(/(?:System\.out\.println|sout)\s*\((.*)\)/);
-                if (sysoutMatch) {
-                  const printExpr = sysoutMatch[1].trim();
-                  if (!printExpr) {
-                    appendLog('[STDOUT] ', 'stdout');
-                    continue;
-                  }
-
-                  // Tokenize by '+' outside quotes and parentheses
-                  const tokens = [];
-                  let current = '';
-                  let inQuotes = false;
-                  let quoteChar = '';
-                  let parenDepth = 0;
-
-                  for (let c = 0; c < printExpr.length; c++) {
-                    const char = printExpr[c];
-                    if (!inQuotes && (char === '"' || char === "'")) {
-                      inQuotes = true;
-                      quoteChar = char;
-                      current += char;
-                    } else if (inQuotes && char === quoteChar) {
-                      inQuotes = false;
-                      current += char;
-                    } else if (!inQuotes && char === '(') {
-                      parenDepth++;
-                      current += char;
-                    } else if (!inQuotes && char === ')') {
-                      parenDepth--;
-                      current += char;
-                    } else if (!inQuotes && parenDepth === 0 && char === '+') {
-                      tokens.push(current.trim());
-                      current = '';
-                    } else {
-                      current += char;
-                    }
-                  }
-                  if (current.trim()) tokens.push(current.trim());
-
-                  let outputStr = '';
-                  for (const t of tokens) {
-                    if ((t.startsWith('"') && t.endsWith('"')) || (t.startsWith("'") && t.endsWith("'"))) {
-                      outputStr += t.slice(1, -1);
-                    } else if (t.endsWith('.getText()')) {
-                      const v = t.replace('.getText()', '').trim();
-                      outputStr += variables[v] && typeof variables[v].getText === 'function' ? variables[v].getText() : (variables[v] !== undefined ? variables[v] : '[null]');
-                    } else if (t.endsWith('.isDisplayed()')) {
-                      const v = t.replace('.isDisplayed()', '').trim();
-                      outputStr += String(variables[v] && typeof variables[v].isDisplayed === 'function' ? variables[v].isDisplayed() : false);
-                    } else if (variables[t] !== undefined) {
-                      outputStr += String(variables[t]);
-                    } else {
-                      try {
-                        const varKeys = Object.keys(variables);
-                        const varVals = Object.values(variables).map(v => (v && typeof v.getText === 'function') ? v.getText() : v);
-                        const fn = new Function(...varKeys, `'use strict'; try { return (${t}); } catch(e) { return "${t.replace(/"/g, '\\"')}"; }`);
-                        outputStr += String(fn(...varVals));
-                      } catch(e) {
-                        outputStr += t;
-                      }
-                    }
-                  }
-                  appendLog(`[STDOUT] ${outputStr}`, 'stdout');
-                  continue;
-                }
-
-                // 4. Variables declaration: String, int, double, boolean
-                const varAssignMatch = line.match(/(?:String|int|double|boolean|var)\s+(\w+)\s*=\s*(.+)/);
-                if (varAssignMatch) {
-                  const vName = varAssignMatch[1];
-                  let expr = varAssignMatch[2].trim();
-
-                  if (expr.endsWith('.getText()')) {
-                    const elName = expr.replace('.getText()', '').trim();
-                    variables[vName] = variables[elName] ? variables[elName].getText() : '';
-                    continue;
-                  }
-                  if ((expr.startsWith('"') && expr.endsWith('"')) || (expr.startsWith("'") && expr.endsWith("'"))) {
-                    variables[vName] = expr.slice(1, -1);
-                    continue;
-                  }
-                  if (!isNaN(expr)) {
-                    variables[vName] = Number(expr);
-                    continue;
-                  }
-                  variables[vName] = expr;
-                  continue;
-                }
-
-                // 5. Assert.assertTrue(...)
-                const assertBoolMatch = line.match(/Assert\.assertTrue\s*\((.+?)(?:,\s*["']([^"']+)["'])?\)/);
-                if (assertBoolMatch) {
-                  assertionsCount++;
-                  const conditionStr = assertBoolMatch[1].trim();
-                  const customMsg = assertBoolMatch[2] || "expected [true] but found [false]";
-
-                  let evalResult = false;
-                  if (conditionStr.endsWith('.isDisplayed()')) {
-                    const elName = conditionStr.replace('.isDisplayed()', '').trim();
-                    evalResult = variables[elName] && variables[elName].isDisplayed();
-                  } else if (conditionStr.endsWith('.isEnabled()')) {
-                    const elName = conditionStr.replace('.isEnabled()', '').trim();
-                    evalResult = variables[elName] && variables[elName].isEnabled();
-                  } else if (variables[conditionStr] !== undefined) {
-                    evalResult = Boolean(variables[conditionStr]);
-                  } else {
-                    evalResult = true;
-                  }
-
-                  if (!evalResult) {
-                    throw new Error(`java.lang.AssertionError: ${customMsg} at line ${lineNum}`);
-                  }
-                  appendLog(`[ASSERT] Assert.assertTrue(${conditionStr}) -> PASS`, 'pass');
-                  continue;
-                }
-
-                // 6. Assert.assertEquals(actual, expected, [msg])
-                const assertEqMatch = line.match(/Assert\.assertEquals\s*\((.+?),\s*(.+?)(?:,\s*["']([^"']+)["'])?\)/);
-                if (assertEqMatch) {
-                  assertionsCount++;
-                  let actualExpr = assertEqMatch[1].trim();
-                  let expectedExpr = assertEqMatch[2].trim();
-                  const customMsg = assertEqMatch[3] || "";
-
-                  let actualVal = actualExpr;
-                  if (actualExpr.endsWith('.getText()')) {
-                    const elName = actualExpr.replace('.getText()', '').trim();
-                    actualVal = variables[elName] ? variables[elName].getText() : '';
-                  } else if (variables[actualExpr] !== undefined) {
-                    actualVal = variables[actualExpr];
-                  } else if ((actualExpr.startsWith('"') && actualExpr.endsWith('"')) || (actualExpr.startsWith("'") && actualExpr.endsWith("'"))) {
-                    actualVal = actualExpr.slice(1, -1);
-                  }
-
-                  let expectedVal = expectedExpr;
-                  if ((expectedExpr.startsWith('"') && expectedExpr.endsWith('"')) || (expectedExpr.startsWith("'") && expectedExpr.endsWith("'"))) {
-                    expectedVal = expectedExpr.slice(1, -1);
-                  } else if (variables[expectedExpr] !== undefined) {
-                    expectedVal = variables[expectedExpr];
-                  }
-
-                  if (String(actualVal).trim().toLowerCase() !== String(expectedVal).trim().toLowerCase()) {
-                    throw new Error(`java.lang.AssertionError: ${customMsg ? customMsg + ' - ' : ''}expected [${expectedVal}] but found [${actualVal}] at line ${lineNum}`);
-                  }
-                  appendLog(`[ASSERT] Assert.assertEquals("${actualVal}", "${expectedVal}") -> PASS`, 'pass');
-                  continue;
-                }
-
-                // 7. Element actions like element.click()
-                const actionMatch = line.match(/(\w+)\.(click|sendKeys)\s*\((.*)\)/);
-                if (actionMatch && variables[actionMatch[1]]) {
-                  const el = variables[actionMatch[1]];
-                  const act = actionMatch[2];
-                  if (act === 'click') {
-                    el.click();
-                  } else if (act === 'sendKeys') {
-                    const arg = actionMatch[3].replace(/["']/g, '');
-                    el.sendKeys(arg);
-                  }
-                  continue;
+            // 1. Extract test method body or full code
+            let code = rawCode;
+            const testIdx = code.indexOf('@Test');
+            if (testIdx !== -1) {
+              const firstBrace = code.indexOf('{', testIdx);
+              const lastBrace = code.lastIndexOf('}');
+              if (firstBrace !== -1 && lastBrace > firstBrace) {
+                const beforeLastBrace = code.lastIndexOf('}', lastBrace - 1);
+                if (beforeLastBrace > firstBrace) {
+                  code = code.slice(firstBrace + 1, beforeLastBrace);
+                } else {
+                  code = code.slice(firstBrace + 1, lastBrace);
                 }
               }
+            } else {
+              code = code
+                .replace(/package\s+[^;]+;/g, '')
+                .replace(/import\s+[^;]+;/g, '')
+                .replace(/public\s+class\s+\w+[^{]*\{/g, '')
+                .replace(/public\s+void\s+\w+[^{]*\{/g, '');
+            }
 
-              // Test execution finished successfully
+            // 2. Transpile Java constructs to JavaScript with proper replacer functions
+            const js = code
+              // sout & System.out.println
+              .replace(/\bSystem\.out\.println\s*\(/g, '__stdout(')
+              .replace(/\bSystem\.out\.print\s*\(/g, '__stdout(')
+              .replace(/\bsout\s*\(/g, '__stdout(')
+              // Java types -> let
+              .replace(/\b(?:String|int|double|float|long|boolean|char|var|WebElement|List<WebElement>)\s+([a-zA-Z_$][a-zA-Z0-9_$]*)/g, (m, v) => 'let ' + v)
+              // for-each loop: for (WebElement el : list)
+              .replace(/for\s*\(\s*let\s+([a-zA-Z0-9_$]+)\s*:\s*([^)]+)\)/g, 'for (let $1 of $2)')
+              .replace(/for\s*\(\s*([a-zA-Z0-9_$]+)\s*:\s*([^)]+)\)/g, 'for (let $1 of $2)')
+              // Java string methods
+              .replace(/\.equals\s*\(([^)]+)\)/g, ' === ($1)')
+              .replace(/\.equalsIgnoreCase\s*\(([^)]+)\)/g, '.toLowerCase() === String($1).toLowerCase()')
+              .replace(/\.contains\s*\(([^)]+)\)/g, '.includes($1)')
+              .replace(/\.length\(\)/g, '.length');
+
+            // 3. Runtime Scope
+            const __stdout = (...args) => {
+              appendLog('[STDOUT] ' + args.map(a => String(a)).join(' '), 'stdout');
+            };
+
+            const By = {
+              id: (val) => ({ type: 'id', val }),
+              className: (val) => ({ type: 'className', val }),
+              cssSelector: (val) => ({ type: 'cssSelector', val }),
+              xpath: (val) => ({ type: 'xpath', val }),
+              tagName: (val) => ({ type: 'tagName', val }),
+              name: (val) => ({ type: 'name', val }),
+              linkText: (val) => ({ type: 'linkText', val })
+            };
+
+            const createWebElement = (domEl, byType, selector) => {
+              if (!domEl) {
+                throw new Error(`org.openqa.selenium.NoSuchElementException: Unable to locate element with locator: By.${byType}("${selector}")`);
+              }
+              domEl.classList.add('pulse-once');
+              setTimeout(() => domEl.classList.remove('pulse-once'), 1500);
+
+              return {
+                dom: domEl,
+                getText: () => domEl.innerText ? domEl.innerText.trim() : (domEl.textContent ? domEl.textContent.trim() : ''),
+                getAttribute: (attr) => domEl.getAttribute(attr) || '',
+                isDisplayed: () => domEl.offsetParent !== null,
+                isEnabled: () => !domEl.disabled,
+                isSelected: () => !!domEl.checked,
+                click: () => {
+                  domEl.click();
+                  appendLog(`[ACTION] Clicked element <${domEl.tagName.toLowerCase()}>`, 'info');
+                },
+                sendKeys: (val) => {
+                  if ('value' in domEl) domEl.value = val;
+                  appendLog(`[ACTION] Typed '${val}' into <${domEl.tagName.toLowerCase()}>`, 'info');
+                },
+                clear: () => {
+                  if ('value' in domEl) domEl.value = '';
+                }
+              };
+            };
+
+            const driver = {
+              get: (url) => appendLog(`[NAVIGATE] driver.get("${url}")`, 'info'),
+              getTitle: () => document.title || 'Srivatsa Malali | Senior QA Automation Lead',
+              getCurrentUrl: () => window.location.href,
+              findElement: (by) => {
+                let domEl = null;
+                try {
+                  if (by.type === 'id') domEl = document.getElementById(by.val);
+                  else if (by.type === 'className') domEl = document.getElementsByClassName(by.val)[0];
+                  else if (by.type === 'tagName') domEl = document.getElementsByTagName(by.val)[0];
+                  else if (by.type === 'name') domEl = document.querySelector(`[name="${by.val}"]`);
+                  else if (by.type === 'linkText') {
+                    domEl = Array.from(document.querySelectorAll('a')).find(a => a.textContent.trim() === by.val);
+                  } else if (by.type === 'cssSelector') {
+                    domEl = document.querySelector(by.val);
+                  } else if (by.type === 'xpath') {
+                    const res = document.evaluate(by.val, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null);
+                    domEl = res.singleNodeValue;
+                  }
+                } catch(e) {
+                  domEl = null;
+                }
+                const el = createWebElement(domEl, by.type, by.val);
+                appendLog(`[FIND] Located <${domEl.tagName.toLowerCase()}> with By.${by.type}("${by.val}")`, 'dim');
+                return el;
+              },
+              findElements: (by) => {
+                let domEls = [];
+                try {
+                  if (by.type === 'cssSelector') domEls = Array.from(document.querySelectorAll(by.val));
+                  else if (by.type === 'className') domEls = Array.from(document.getElementsByClassName(by.val));
+                  else if (by.type === 'tagName') domEls = Array.from(document.getElementsByTagName(by.val));
+                } catch(e) {
+                  domEls = [];
+                }
+                appendLog(`[FIND] Located ${domEls.length} elements with By.${by.type}("${by.val}")`, 'dim');
+                return domEls.map(el => createWebElement(el, by.type, by.val));
+              }
+            };
+
+            const Assert = {
+              assertEquals: (actual, expected, msg = '') => {
+                assertionsPassed++;
+                if (String(actual).trim().toLowerCase() !== String(expected).trim().toLowerCase()) {
+                  throw new Error(`java.lang.AssertionError: ${msg ? msg + ' - ' : ''}expected [${expected}] but found [${actual}]`);
+                }
+                appendLog(`[ASSERT] Assert.assertEquals("${actual}", "${expected}") -> PASS`, 'pass');
+              },
+              assertTrue: (cond, msg = '') => {
+                assertionsPassed++;
+                if (!cond) {
+                  throw new Error(`java.lang.AssertionError: ${msg || 'expected [true] but found [false]'}`);
+                }
+                appendLog(`[ASSERT] Assert.assertTrue(${cond}) -> PASS`, 'pass');
+              },
+              assertFalse: (cond, msg = '') => {
+                assertionsPassed++;
+                if (cond) {
+                  throw new Error(`java.lang.AssertionError: ${msg || 'expected [false] but found [true]'}`);
+                }
+                appendLog(`[ASSERT] Assert.assertFalse() -> PASS`, 'pass');
+              },
+              assertNotNull: (obj, msg = '') => {
+                assertionsPassed++;
+                if (obj === null || obj === undefined) {
+                  throw new Error(`java.lang.AssertionError: ${msg || 'object is null'}`);
+                }
+                appendLog(`[ASSERT] Assert.assertNotNull() -> PASS`, 'pass');
+              },
+              fail: (msg = 'Test forced failure') => {
+                throw new Error(`java.lang.AssertionError: ${msg}`);
+              }
+            };
+
+            try {
+              const executeFn = new Function('__stdout', 'By', 'driver', 'Assert', `'use strict';\n${js}`);
+              executeFn(__stdout, By, driver, Assert);
+
               appendLog('[INFO] -------------------------------------------------------', 'dim');
-              appendLog(`[INFO] Results: Tests run: 1, Failures: 0, Errors: 0, Skipped: 0 (${assertionsCount} assertions passed)`, 'pass');
+              appendLog(`[INFO] Results: Tests run: 1, Failures: 0, Errors: 0, Skipped: 0 (${assertionsPassed} assertions passed)`, 'pass');
               appendLog('[INFO] -------------------------------------------------------', 'dim');
-              appendLog('[INFO] BUILD SUCCESS (Total time: 0.174 s)', 'pass');
-              showToast('BUILD SUCCESS: Execution completed with 0 errors!', '🏆');
+              appendLog('[INFO] BUILD SUCCESS (Total time: 0.168 s)', 'pass');
+              showToast('BUILD SUCCESS: Candidate code executed in real time!', '🏆');
 
             } catch (err) {
               appendLog(`[ERROR] ${err.message}`, 'error');
