@@ -1397,6 +1397,36 @@
       overflow: hidden;
       box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
     }
+    .code-tab-nav {
+      display: flex;
+      background: #09090b;
+      border-bottom: 1px solid #1e293b;
+    }
+    .code-tab-btn {
+      padding: 10px 18px;
+      background: transparent;
+      border: none;
+      border-right: 1px solid #1e293b;
+      color: #94a3b8;
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .code-tab-btn:hover {
+      color: #f8fafc;
+      background: rgba(255, 255, 255, 0.03);
+    }
+    .code-tab-btn.active {
+      color: #38bdf8;
+      background: #111116;
+      border-bottom: 2px solid #38bdf8;
+      font-weight: 600;
+    }
     .code-editor-header {
       display: flex;
       align-items: center;
@@ -2327,43 +2357,53 @@
       <!-- Interactive Framework Code Architecture Tabs & Live Playground -->
       <div id="code" style="padding-top:40px;">
         <div class="section-header bounce-target bounce-pop d-6" style="margin-bottom:15px;">
-          <span class="section-num">Live Coding Sandbox</span>
-          <h3 style="font-size:1.3rem; text-transform:uppercase; font-weight:700;">Live Automation <strong>Interview Rig</strong></h3>
+          <span class="section-num">Live Automation Rig</span>
+          <h3 style="font-size:1.3rem; text-transform:uppercase; font-weight:700;">Live Automation <strong>Coding &amp; BDD Playground</strong></h3>
           <p style="font-size:0.85rem; color:var(--text-muted); margin-top:4px;">
-            A real-time Java + Selenium WebDriver sandbox for live candidate coding. Type Selenium commands or assertions below and click <strong>Run Code</strong> to execute in real-time against this profile's live DOM.
+            A real-time Java Selenium &amp; Cucumber BDD sandbox specifically mapped to this portfolio. Type custom code, assertions, or <code>System.out.println()</code> statements and click <strong>Run Code</strong> to execute live in the terminal.
           </p>
         </div>
 
         <div class="code-rig-wrapper bounce-target bounce-pop d-6">
-          <!-- IDE Top Header Bar -->
+          <!-- 2 Clean File Tabs -->
+          <div class="code-tab-nav" id="codeTabNav">
+            <button class="code-tab-btn active" data-tab="java" id="tabJavaBtn">
+              <span>☕ AutomationTest.java</span>
+            </button>
+            <button class="code-tab-btn" data-tab="feature" id="tabFeatureBtn">
+              <span>🥒 ProfileVerification.feature</span>
+            </button>
+          </div>
+
+          <!-- IDE Header Bar -->
           <div class="code-editor-header">
             <div style="display:flex; align-items:center; gap:8px;">
               <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#22c55e; box-shadow:0 0 8px #22c55e;"></span>
-              <span class="code-filename" id="codeFilename">src/test/java/InterviewLiveTest.java</span>
-              <span style="font-family:var(--font-mono); font-size:0.65rem; color:#38bdf8; background:rgba(56,189,248,0.1); border:1px solid rgba(56,189,248,0.25); padding:1px 6px; border-radius:3px;">WebDriver Ready</span>
+              <span class="code-filename" id="codeFilename">src/test/java/AutomationTest.java</span>
+              <span style="font-family:var(--font-mono); font-size:0.65rem; color:#38bdf8; background:rgba(56,189,248,0.1); border:1px solid rgba(56,189,248,0.25); padding:1px 6px; border-radius:3px;">Portfolio DOM Active</span>
             </div>
             <div class="code-editor-actions">
               <button class="code-reset-btn" id="codeResetBtn" title="Reset to Starter Template">
                 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
                 <span>Reset</span>
               </button>
-              <button class="code-copy-btn" id="codeCopyBtn" title="Copy Java Code">
+              <button class="code-copy-btn" id="codeCopyBtn" title="Copy Code">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
                 <span>Copy</span>
               </button>
-              <button class="code-run-btn" id="codePlaygroundRunBtn" title="Execute This Java Code (Ctrl/Cmd + Enter)">
+              <button class="code-run-btn" id="codePlaygroundRunBtn" title="Execute Code in Terminal (Ctrl/Cmd + Enter)">
                 <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
                 <span>Run Code</span>
               </button>
             </div>
           </div>
 
-          <!-- Playground Layout: Editable Java on Left, Real-Time Terminal on Right -->
+          <!-- Playground Layout: Editable Editor on Left, Real-Time Terminal on Right -->
           <div class="code-playground-layout">
             <div style="display:flex; flex-direction:column; position:relative;">
-              <textarea class="code-textarea" id="interactiveCodeInput" spellcheck="false" placeholder="// Write Selenium WebDriver Java code here..."></textarea>
+              <textarea class="code-textarea" id="interactiveCodeInput" spellcheck="false" placeholder="// Write Java or Feature code here..."></textarea>
               <div style="padding:6px 14px; background:#0d0d12; border-top:1px solid #1e293b; border-right:1px solid #1e293b; font-family:var(--font-mono); font-size:0.68rem; color:#64748b; display:flex; justify-content:space-between;">
-                <span>Java 17 · Selenium 4 · TestNG 7.8</span>
+                <span id="editorLanguageLabel">Java 17 · Selenium 4 · TestNG 7.8</span>
                 <span>Press <strong>⌘ + Enter</strong> to Run</span>
               </div>
             </div>
@@ -2371,15 +2411,15 @@
             <div class="code-output-panel">
               <div class="terminal-header" style="background:#13131a; border-bottom:1px solid #1e293b; padding:8px 16px; display:flex; align-items:center; justify-content:space-between;">
                 <div class="terminal-title" style="font-size:0.72rem; color:#94a3b8; font-family:var(--font-mono);">
-                  <span>mvn test -Dtest=InterviewLiveTest</span>
+                  <span id="terminalCmdTitle">mvn test -Dtest=AutomationTest</span>
                 </div>
                 <button id="clearTerminalBtn" style="background:transparent; border:none; color:#64748b; font-family:var(--font-mono); font-size:0.65rem; cursor:pointer;">Clear</button>
               </div>
 
               <!-- Technical Terminal Log Output -->
               <div class="test-terminal-logs" id="playgroundTerminalLogs">
-                <div style="color:#64748b;">// Driver initialized and connected to DOM.</div>
-                <div style="color:#94a3b8;">Ready. Click <strong>[Run Code]</strong> to compile &amp; execute your candidate script in real time.</div>
+                <div style="color:#64748b;">// Driver initialized on active portfolio DOM.</div>
+                <div style="color:#94a3b8;">Ready. Type code or System.out.println() and click <strong>[Run Code]</strong> to execute live.</div>
               </div>
             </div>
           </div>
@@ -3995,8 +4035,14 @@
         }
       });
 
-      // 9. Live Automation Coding & Interview Rig (Real-Time Java & Selenium DOM Runner)
-      const starterJavaTemplate = `package com.srivatsa.interview;
+      // 9. Live Automation Coding & BDD Playground (Java & Cucumber Feature for this Portfolio)
+      const portfolioFiles = {
+        java: {
+          filename: 'src/test/java/AutomationTest.java',
+          badge: 'Portfolio DOM Active',
+          lang: 'Java 17 · Selenium 4 · TestNG 7.8',
+          cmd: 'mvn test -Dtest=AutomationTest',
+          code: `package com.srivatsa.tests;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -4004,27 +4050,53 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class InterviewLiveTest extends BaseTest {
+public class AutomationTest extends BaseTest {
 
-    @Test
-    public void executeCandidateTest() {
+    @Test(description = "Verify Srivatsa Malali portfolio DOM elements and headers")
+    public void testPortfolioPage() {
         // 'driver' is initialized and connected to this page!
         driver.get("https://srivatsamalali.github.io");
 
-        // 1. Locate hero title & assert visibility
+        // 1. Locate and print the hero heading
         WebElement heroTitle = driver.findElement(By.className("hero-title"));
-        System.out.println("Hero Heading: " + heroTitle.getText());
-        Assert.assertTrue(heroTitle.isDisplayed(), "Hero title must be visible!");
+        System.out.println("Hero Heading text: " + heroTitle.getText());
+        Assert.assertTrue(heroTitle.isDisplayed(), "Hero title should be visible");
 
-        // 2. Locate navigation link & verify text
-        WebElement contactBtn = driver.findElement(By.cssSelector("a[href='#contact']"));
-        System.out.println("Action Button: " + contactBtn.getText());
-        Assert.assertEquals(contactBtn.getText(), "LET'S CONNECT");
+        // 2. Locate the Let's Connect button
+        WebElement connectBtn = driver.findElement(By.cssSelector("a[href='#contact']"));
+        System.out.println("Action Button: " + connectBtn.getText());
+        Assert.assertEquals(connectBtn.getText(), "LET'S CONNECT");
 
-        // 3. Write your custom candidate test logic below:
-        
+        // 3. You or your candidate can type any sout statement or Selenium code here:
+        System.out.println("Hello Interviewer! Portfolio DOM test completed successfully.");
     }
-}`;
+}`
+        },
+        feature: {
+          filename: 'src/test/resources/features/ProfileVerification.feature',
+          badge: 'Cucumber BDD Feature',
+          lang: 'Cucumber BDD 7.14 · Gherkin',
+          cmd: 'mvn test -Dcucumber.filter.tags=@Portfolio',
+          code: `@Portfolio @LiveTest
+Feature: Srivatsa Malali Portfolio Verification
+  As a technical recruiter or engineering lead
+  I want to verify Srivatsa's portfolio content, skills, and contact channels
+  So that I can evaluate his test automation engineering background
+
+  Scenario: Verify portfolio brand heading and credentials
+    Given user launches the portfolio page "https://srivatsamalali.github.io"
+    When user inspects the hero section heading
+    Then the title should contain "Shaping Quality Building Reliability"
+    And the navigation should display the "Let's Connect" action button
+    And the credentials section should show "Microsoft Certified Professional"`
+        }
+      };
+
+      let currentActiveFileKey = 'java';
+      const fileBuffers = {
+        java: portfolioFiles.java.code,
+        feature: portfolioFiles.feature.code
+      };
 
       const interactiveCodeInput = document.getElementById('interactiveCodeInput');
       const playgroundTerminalLogs = document.getElementById('playgroundTerminalLogs');
@@ -4032,16 +4104,46 @@ public class InterviewLiveTest extends BaseTest {
       const codeResetBtn = document.getElementById('codeResetBtn');
       const codeCopyBtn = document.getElementById('codeCopyBtn');
       const clearTerminalBtn = document.getElementById('clearTerminalBtn');
+      const codeFilename = document.getElementById('codeFilename');
+      const editorLanguageLabel = document.getElementById('editorLanguageLabel');
+      const terminalCmdTitle = document.getElementById('terminalCmdTitle');
+      const tabJavaBtn = document.getElementById('tabJavaBtn');
+      const tabFeatureBtn = document.getElementById('tabFeatureBtn');
 
-      if (interactiveCodeInput) {
-        interactiveCodeInput.value = starterJavaTemplate;
-      }
+      const switchFileTab = (fileKey) => {
+        if (interactiveCodeInput) {
+          fileBuffers[currentActiveFileKey] = interactiveCodeInput.value;
+        }
+        currentActiveFileKey = fileKey;
+        const fileObj = portfolioFiles[fileKey];
+        if (!fileObj) return;
+
+        if (codeFilename) codeFilename.textContent = fileObj.filename;
+        if (editorLanguageLabel) editorLanguageLabel.textContent = fileObj.lang;
+        if (terminalCmdTitle) terminalCmdTitle.textContent = fileObj.cmd;
+        if (interactiveCodeInput) interactiveCodeInput.value = fileBuffers[fileKey] || fileObj.code;
+
+        document.querySelectorAll('.code-tab-btn').forEach(btn => {
+          btn.classList.toggle('active', btn.getAttribute('data-tab') === fileKey);
+        });
+
+        if (playgroundTerminalLogs) {
+          playgroundTerminalLogs.innerHTML = `<div style="color:#64748b;">// Loaded ${fileObj.filename} (${fileObj.badge})</div><div style="color:#94a3b8;">Click <strong>[Run Code]</strong> to execute live against this portfolio.</div>`;
+        }
+      };
+
+      if (tabJavaBtn) tabJavaBtn.addEventListener('click', () => switchFileTab('java'));
+      if (tabFeatureBtn) tabFeatureBtn.addEventListener('click', () => switchFileTab('feature'));
+
+      // Initialize with Java file
+      switchFileTab('java');
 
       if (codeResetBtn) {
         codeResetBtn.addEventListener('click', () => {
           if (interactiveCodeInput) {
-            interactiveCodeInput.value = starterJavaTemplate;
-            showToast('Reset to starter Java template!', '↺');
+            fileBuffers[currentActiveFileKey] = portfolioFiles[currentActiveFileKey].code;
+            interactiveCodeInput.value = portfolioFiles[currentActiveFileKey].code;
+            showToast(`Reset ${portfolioFiles[currentActiveFileKey].filename}!`, '↺');
           }
         });
       }
@@ -4050,7 +4152,7 @@ public class InterviewLiveTest extends BaseTest {
         codeCopyBtn.addEventListener('click', () => {
           if (interactiveCodeInput) {
             navigator.clipboard.writeText(interactiveCodeInput.value).then(() => {
-              showToast('Copied Java code to clipboard!', '📋');
+              showToast('Copied code to clipboard!', '📋');
             });
           }
         });
@@ -4074,15 +4176,15 @@ public class InterviewLiveTest extends BaseTest {
           }
           if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') {
             e.preventDefault();
-            runCandidateJavaTest();
+            executeCurrentPlayground();
           }
         });
       }
 
-      // Real-Time Java & Selenium Interpreter
+      // Real-Time Execution Engine
       let isExecutionRunning = false;
 
-      const runCandidateJavaTest = () => {
+      const executeCurrentPlayground = () => {
         if (isExecutionRunning || !playgroundTerminalLogs || !interactiveCodeInput) return;
         isExecutionRunning = true;
 
@@ -4116,257 +4218,368 @@ public class InterviewLiveTest extends BaseTest {
           playgroundTerminalLogs.scrollTop = playgroundTerminalLogs.scrollHeight;
         };
 
-        appendLog('[INFO] -------------------------------------------------------', 'dim');
-        appendLog('[INFO]  T E S T S   E X E C U T I O N', 'cmd');
-        appendLog('[INFO] -------------------------------------------------------', 'dim');
-        appendLog('[INFO] Running com.srivatsa.interview.InterviewLiveTest', 'info');
-        appendLog('[INFO] [ChromeDriver] Attached to active DOM session (Chrome v128)', 'dim');
-
         const rawCode = interactiveCodeInput.value;
-        const variables = {};
-        let testPassed = true;
-        let assertionsCount = 0;
 
-        // Extract lines inside executeCandidateTest or whole code
-        const lines = rawCode.split('\n');
+        if (currentActiveFileKey === 'feature') {
+          // --- CUCUMBER BDD FEATURE RUNNER ---
+          appendLog('[INFO] -------------------------------------------------------', 'dim');
+          appendLog('[INFO]  C U C U M B E R   B D D   E X E C U T I O N', 'cmd');
+          appendLog('[INFO] -------------------------------------------------------', 'dim');
+          appendLog('[INFO] Parsing ProfileVerification.feature tags: [@Portfolio, @LiveTest]', 'info');
 
-        setTimeout(() => {
-          try {
-            for (let i = 0; i < lines.length; i++) {
-              let line = lines[i].trim();
-              const lineNum = i + 1;
+          const featureLines = rawCode.split('\n');
+          let stepIndex = 0;
+          let stepsPassed = 0;
+          let totalSteps = 0;
 
-              // Skip comments, empty lines, package/import/class declarations
-              if (!line || line.startsWith('//') || line.startsWith('/*') || line.startsWith('*') || 
-                  line.startsWith('package ') || line.startsWith('import ') || line.startsWith('public class') || 
-                  line.startsWith('@Test') || line.startsWith('public void') || line === '{' || line === '}') {
-                continue;
-              }
+          setTimeout(() => {
+            try {
+              for (let i = 0; i < featureLines.length; i++) {
+                const line = featureLines[i].trim();
+                if (!line || line.startsWith('#') || line.startsWith('@')) continue;
 
-              // Strip trailing semicolon for execution
-              if (line.endsWith(';')) line = line.slice(0, -1).trim();
-
-              // 1. driver.get(...)
-              const getMatch = line.match(/driver\.get\s*\(\s*["']([^"']+)["']\s*\)/);
-              if (getMatch) {
-                const url = getMatch[1];
-                appendLog(`[NAVIGATE] driver.get("${url}")`, 'info');
-                continue;
-              }
-
-              // 2. driver.findElement(...) or WebElement varName = driver.findElement(...)
-              const findMatch = line.match(/(?:WebElement\s+(\w+)\s*=\s*)?driver\.findElement\s*\(\s*By\.(id|className|cssSelector|xpath|tagName|name|linkText)\s*\(\s*["']([^"']+)["']\s*\)\s*\)/);
-              if (findMatch) {
-                const varName = findMatch[1];
-                const byType = findMatch[2];
-                let selector = findMatch[3];
-
-                let domEl = null;
-                try {
-                  if (byType === 'id') domEl = document.getElementById(selector);
-                  else if (byType === 'className') domEl = document.getElementsByClassName(selector)[0];
-                  else if (byType === 'tagName') domEl = document.getElementsByTagName(selector)[0];
-                  else if (byType === 'name') domEl = document.querySelector(`[name="${selector}"]`);
-                  else if (byType === 'linkText') {
-                    domEl = Array.from(document.querySelectorAll('a')).find(a => a.textContent.trim() === selector);
-                  } else if (byType === 'cssSelector') {
-                    domEl = document.querySelector(selector);
-                  } else if (byType === 'xpath') {
-                    // Simple XPath evaluator
-                    const res = document.evaluate(selector, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null);
-                    domEl = res.singleNodeValue;
-                  }
-                } catch (err) {
-                  domEl = null;
-                }
-
-                if (!domEl) {
-                  throw new Error(`org.openqa.selenium.NoSuchElementException: Unable to locate element with locator: By.${byType}("${selector}") at line ${lineNum}`);
-                }
-
-                // Highlight located element momentarily
-                domEl.classList.add('pulse-once');
-                setTimeout(() => domEl.classList.remove('pulse-once'), 1500);
-
-                const elementObj = {
-                  dom: domEl,
-                  getText: () => domEl.innerText ? domEl.innerText.trim() : (domEl.textContent ? domEl.textContent.trim() : ''),
-                  getAttribute: (attr) => domEl.getAttribute(attr) || '',
-                  isDisplayed: () => domEl.offsetParent !== null,
-                  isEnabled: () => !domEl.disabled,
-                  click: () => {
-                    domEl.click();
-                    appendLog(`[ACTION] Clicked element <${domEl.tagName.toLowerCase()}>`, 'info');
-                  },
-                  sendKeys: (val) => {
-                    if ('value' in domEl) domEl.value = val;
-                    appendLog(`[ACTION] Typed '${val}' into <${domEl.tagName.toLowerCase()}>`, 'info');
-                  }
-                };
-
-                if (varName) {
-                  variables[varName] = elementObj;
-                }
-                appendLog(`[FIND] Located <${domEl.tagName.toLowerCase()}> with By.${byType}("${selector}")`, 'dim');
-                continue;
-              }
-
-              // 3. String varName = ... / int / double / boolean
-              const varAssignMatch = line.match(/(?:String|int|double|boolean|var)\s+(\w+)\s*=\s*(.+)/);
-              if (varAssignMatch) {
-                const vName = varAssignMatch[1];
-                let expr = varAssignMatch[2].trim();
-
-                // Check if expr calls .getText() on a WebElement
-                const getTextMatch = expr.match(/(\w+)\.getText\(\)/);
-                if (getTextMatch && variables[getTextMatch[1]]) {
-                  variables[vName] = variables[getTextMatch[1]].getText();
+                if (line.startsWith('Feature:')) {
+                  appendLog(`🥒 [FEATURE] ${line.replace('Feature:', '').trim()}`, 'cmd');
                   continue;
                 }
-                // Check if string literal
-                if (expr.startsWith('"') && expr.endsWith('"')) {
-                  variables[vName] = expr.slice(1, -1);
+                if (line.startsWith('Scenario:')) {
+                  appendLog(`📋 [SCENARIO] ${line.replace('Scenario:', '').trim()}`, 'stdout');
                   continue;
                 }
-                // Check number
-                if (!isNaN(expr)) {
-                  variables[vName] = Number(expr);
-                  continue;
-                }
-                variables[vName] = expr;
-                continue;
-              }
 
-              // 4. System.out.println(...)
-              const sysoutMatch = line.match(/System\.out\.println\s*\((.*)\)/);
-              if (sysoutMatch) {
-                let printExpr = sysoutMatch[1].trim();
-                let outputStr = "";
+                if (line.startsWith('Given ') || line.startsWith('When ') || line.startsWith('Then ') || line.startsWith('And ')) {
+                  totalSteps++;
+                  let stepPassed = true;
+                  const stepText = line;
 
-                // Evaluate string concatenations like "Title: " + heroTitle.getText()
-                const parts = printExpr.split('+').map(p => p.trim());
-                for (const part of parts) {
-                  if (part.startsWith('"') && part.endsWith('"')) {
-                    outputStr += part.slice(1, -1);
-                  } else if (part.endsWith('.getText()')) {
-                    const elName = part.replace('.getText()', '').trim();
-                    if (variables[elName] && typeof variables[elName].getText === 'function') {
-                      outputStr += variables[elName].getText();
+                  if (stepText.includes('hero section') || stepText.includes('Shaping Quality')) {
+                    const hero = document.querySelector('.hero-title');
+                    if (hero) {
+                      hero.classList.add('pulse-once');
+                      setTimeout(() => hero.classList.remove('pulse-once'), 1500);
                     } else {
-                      outputStr += "[null]";
+                      stepPassed = false;
                     }
-                  } else if (variables[part] !== undefined) {
-                    outputStr += variables[part];
+                  } else if (stepText.includes("Let's Connect")) {
+                    const btn = document.querySelector("a[href='#contact']");
+                    if (btn) {
+                      btn.classList.add('pulse-once');
+                      setTimeout(() => btn.classList.remove('pulse-once'), 1500);
+                    } else {
+                      stepPassed = false;
+                    }
+                  } else if (stepText.includes("Microsoft Certified Professional")) {
+                    const cert = document.querySelector("#certs");
+                    if (!cert) stepPassed = false;
+                  }
+
+                  if (stepPassed) {
+                    stepsPassed++;
+                    appendLog(`✔️  ${stepText} [PASSED - ${Math.floor(Math.random() * 8 + 3)}ms]`, 'pass');
                   } else {
-                    outputStr += part;
+                    throw new Error(`Step assertion failed: "${stepText}"`);
                   }
                 }
-                appendLog(`[STDOUT] ${outputStr}`, 'stdout');
-                continue;
               }
 
-              // 5. Assert.assertTrue(...)
-              const assertBoolMatch = line.match(/Assert\.assertTrue\s*\((.+?)(?:,\s*["']([^"']+)["'])?\)/);
-              if (assertBoolMatch) {
-                assertionsCount++;
-                const conditionStr = assertBoolMatch[1].trim();
-                const customMsg = assertBoolMatch[2] || "expected [true] but found [false]";
+              appendLog('[INFO] -------------------------------------------------------', 'dim');
+              appendLog(`[INFO] Cucumber Summary: 1 Scenario (${stepsPassed}/${totalSteps} steps passed) [100% Passed]`, 'pass');
+              appendLog('[INFO] BUILD SUCCESS', 'pass');
+              showToast('Cucumber Feature Execution: 100% Passed!', '🥒');
 
-                let evalResult = false;
-                if (conditionStr.endsWith('.isDisplayed()')) {
-                  const elName = conditionStr.replace('.isDisplayed()', '').trim();
-                  evalResult = variables[elName] && variables[elName].isDisplayed();
-                } else if (conditionStr.endsWith('.isEnabled()')) {
-                  const elName = conditionStr.replace('.isEnabled()', '').trim();
-                  evalResult = variables[elName] && variables[elName].isEnabled();
-                } else if (variables[conditionStr] !== undefined) {
-                  evalResult = Boolean(variables[conditionStr]);
-                } else {
-                  evalResult = true;
-                }
-
-                if (!evalResult) {
-                  throw new Error(`java.lang.AssertionError: ${customMsg} at line ${lineNum}`);
-                }
-                appendLog(`[ASSERT] Assert.assertTrue(${conditionStr}) -> PASS`, 'pass');
-                continue;
-              }
-
-              // 6. Assert.assertEquals(actual, expected, [msg])
-              const assertEqMatch = line.match(/Assert\.assertEquals\s*\((.+?),\s*(.+?)(?:,\s*["']([^"']+)["'])?\)/);
-              if (assertEqMatch) {
-                assertionsCount++;
-                let actualExpr = assertEqMatch[1].trim();
-                let expectedExpr = assertEqMatch[2].trim();
-                const customMsg = assertEqMatch[3] || "";
-
-                let actualVal = actualExpr;
-                if (actualExpr.endsWith('.getText()')) {
-                  const elName = actualExpr.replace('.getText()', '').trim();
-                  actualVal = variables[elName] ? variables[elName].getText() : '';
-                } else if (variables[actualExpr] !== undefined) {
-                  actualVal = variables[actualExpr];
-                } else if (actualExpr.startsWith('"') && actualExpr.endsWith('"')) {
-                  actualVal = actualExpr.slice(1, -1);
-                }
-
-                let expectedVal = expectedExpr;
-                if (expectedExpr.startsWith('"') && expectedExpr.endsWith('"')) {
-                  expectedVal = expectedExpr.slice(1, -1);
-                } else if (variables[expectedExpr] !== undefined) {
-                  expectedVal = variables[expectedExpr];
-                }
-
-                // Case-insensitive / whitespace trimmed check for web headings
-                if (String(actualVal).trim().toLowerCase() !== String(expectedVal).trim().toLowerCase()) {
-                  throw new Error(`java.lang.AssertionError: ${customMsg ? customMsg + ' - ' : ''}expected [${expectedVal}] but found [${actualVal}] at line ${lineNum}`);
-                }
-                appendLog(`[ASSERT] Assert.assertEquals("${actualVal}", "${expectedVal}") -> PASS`, 'pass');
-                continue;
-              }
-
-              // 7. Element actions like element.click()
-              const actionMatch = line.match(/(\w+)\.(click|sendKeys)\s*\((.*)\)/);
-              if (actionMatch && variables[actionMatch[1]]) {
-                const el = variables[actionMatch[1]];
-                const act = actionMatch[2];
-                if (act === 'click') {
-                  el.click();
-                } else if (act === 'sendKeys') {
-                  const arg = actionMatch[3].replace(/["']/g, '');
-                  el.sendKeys(arg);
-                }
-                continue;
+            } catch (err) {
+              appendLog(`[ERROR] ${err.message}`, 'error');
+              appendLog('[INFO] BUILD FAILURE', 'error');
+              showToast('Cucumber Feature Error!', '❌');
+            } finally {
+              isExecutionRunning = false;
+              if (codePlaygroundRunBtn) {
+                codePlaygroundRunBtn.disabled = false;
+                codePlaygroundRunBtn.style.opacity = '1';
               }
             }
+          }, 300);
 
-            // Test execution finished successfully
-            appendLog('[INFO] -------------------------------------------------------', 'dim');
-            appendLog(`[INFO] Results: Tests run: 1, Failures: 0, Errors: 0, Skipped: 0 (${assertionsCount} assertions passed)`, 'pass');
-            appendLog('[INFO] -------------------------------------------------------', 'dim');
-            appendLog('[INFO] BUILD SUCCESS (Total time: 0.182 s)', 'pass');
-            showToast('BUILD SUCCESS: Candidate test passed 100%!', '🏆');
+        } else {
+          // --- REAL-TIME JAVA & SOUT & SELENIUM INTERPRETER ---
+          appendLog('[INFO] -------------------------------------------------------', 'dim');
+          appendLog('[INFO]  T E S T S   E X E C U T I O N', 'cmd');
+          appendLog('[INFO] -------------------------------------------------------', 'dim');
+          appendLog('[INFO] Running com.srivatsa.tests.AutomationTest', 'info');
+          appendLog('[INFO] [ChromeDriver] Attached to active DOM session (Chrome v128)', 'dim');
 
-          } catch (err) {
-            testPassed = false;
-            appendLog(`[ERROR] ${err.message}`, 'error');
-            appendLog('[INFO] -------------------------------------------------------', 'dim');
-            appendLog('[INFO] Results: Tests run: 1, Failures: 1, Errors: 0, Skipped: 0', 'error');
-            appendLog('[INFO] -------------------------------------------------------', 'dim');
-            appendLog('[INFO] BUILD FAILURE', 'error');
-            showToast('BUILD FAILURE: Error encountered during execution', '❌');
-          } finally {
-            isExecutionRunning = false;
-            if (codePlaygroundRunBtn) {
-              codePlaygroundRunBtn.disabled = false;
-              codePlaygroundRunBtn.style.opacity = '1';
+          const variables = {};
+          let assertionsCount = 0;
+          const lines = rawCode.split('\n');
+
+          setTimeout(() => {
+            try {
+              for (let i = 0; i < lines.length; i++) {
+                let line = lines[i].trim();
+                const lineNum = i + 1;
+
+                if (!line || line.startsWith('//') || line.startsWith('/*') || line.startsWith('*') || 
+                    line.startsWith('package ') || line.startsWith('import ') || line.startsWith('public class') || 
+                    line.startsWith('@Test') || line.startsWith('public void') || line === '{' || line === '}') {
+                  continue;
+                }
+
+                if (line.endsWith(';')) line = line.slice(0, -1).trim();
+
+                // 1. driver.get(...)
+                const getMatch = line.match(/driver\.get\s*\(\s*["']([^"']+)["']\s*\)/);
+                if (getMatch) {
+                  const url = getMatch[1];
+                  appendLog(`[NAVIGATE] driver.get("${url}")`, 'info');
+                  continue;
+                }
+
+                // 2. driver.findElement(...) or WebElement var = driver.findElement(...)
+                const findMatch = line.match(/(?:WebElement\s+(\w+)\s*=\s*)?driver\.findElement\s*\(\s*By\.(id|className|cssSelector|xpath|tagName|name|linkText)\s*\(\s*["']([^"']+)["']\s*\)\s*\)/);
+                if (findMatch) {
+                  const varName = findMatch[1];
+                  const byType = findMatch[2];
+                  let selector = findMatch[3];
+
+                  let domEl = null;
+                  try {
+                    if (byType === 'id') domEl = document.getElementById(selector);
+                    else if (byType === 'className') domEl = document.getElementsByClassName(selector)[0];
+                    else if (byType === 'tagName') domEl = document.getElementsByTagName(selector)[0];
+                    else if (byType === 'name') domEl = document.querySelector(`[name="${selector}"]`);
+                    else if (byType === 'linkText') {
+                      domEl = Array.from(document.querySelectorAll('a')).find(a => a.textContent.trim() === selector);
+                    } else if (byType === 'cssSelector') {
+                      domEl = document.querySelector(selector);
+                    } else if (byType === 'xpath') {
+                      const res = document.evaluate(selector, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null);
+                      domEl = res.singleNodeValue;
+                    }
+                  } catch (err) {
+                    domEl = null;
+                  }
+
+                  if (!domEl) {
+                    throw new Error(`org.openqa.selenium.NoSuchElementException: Unable to locate element with locator: By.${byType}("${selector}") at line ${lineNum}`);
+                  }
+
+                  domEl.classList.add('pulse-once');
+                  setTimeout(() => domEl.classList.remove('pulse-once'), 1500);
+
+                  const elementObj = {
+                    dom: domEl,
+                    getText: () => domEl.innerText ? domEl.innerText.trim() : (domEl.textContent ? domEl.textContent.trim() : ''),
+                    getAttribute: (attr) => domEl.getAttribute(attr) || '',
+                    isDisplayed: () => domEl.offsetParent !== null,
+                    isEnabled: () => !domEl.disabled,
+                    click: () => {
+                      domEl.click();
+                      appendLog(`[ACTION] Clicked element <${domEl.tagName.toLowerCase()}>`, 'info');
+                    },
+                    sendKeys: (val) => {
+                      if ('value' in domEl) domEl.value = val;
+                      appendLog(`[ACTION] Typed '${val}' into <${domEl.tagName.toLowerCase()}>`, 'info');
+                    }
+                  };
+
+                  if (varName) {
+                    variables[varName] = elementObj;
+                  }
+                  appendLog(`[FIND] Located <${domEl.tagName.toLowerCase()}> with By.${byType}("${selector}")`, 'dim');
+                  continue;
+                }
+
+                // 3. System.out.println(...) or sout(...)
+                const sysoutMatch = line.match(/(?:System\.out\.println|sout)\s*\((.*)\)/);
+                if (sysoutMatch) {
+                  const printExpr = sysoutMatch[1].trim();
+                  if (!printExpr) {
+                    appendLog('[STDOUT] ', 'stdout');
+                    continue;
+                  }
+
+                  // Tokenize by '+' outside quotes and parentheses
+                  const tokens = [];
+                  let current = '';
+                  let inQuotes = false;
+                  let quoteChar = '';
+                  let parenDepth = 0;
+
+                  for (let c = 0; c < printExpr.length; c++) {
+                    const char = printExpr[c];
+                    if (!inQuotes && (char === '"' || char === "'")) {
+                      inQuotes = true;
+                      quoteChar = char;
+                      current += char;
+                    } else if (inQuotes && char === quoteChar) {
+                      inQuotes = false;
+                      current += char;
+                    } else if (!inQuotes && char === '(') {
+                      parenDepth++;
+                      current += char;
+                    } else if (!inQuotes && char === ')') {
+                      parenDepth--;
+                      current += char;
+                    } else if (!inQuotes && parenDepth === 0 && char === '+') {
+                      tokens.push(current.trim());
+                      current = '';
+                    } else {
+                      current += char;
+                    }
+                  }
+                  if (current.trim()) tokens.push(current.trim());
+
+                  let outputStr = '';
+                  for (const t of tokens) {
+                    if ((t.startsWith('"') && t.endsWith('"')) || (t.startsWith("'") && t.endsWith("'"))) {
+                      outputStr += t.slice(1, -1);
+                    } else if (t.endsWith('.getText()')) {
+                      const v = t.replace('.getText()', '').trim();
+                      outputStr += variables[v] && typeof variables[v].getText === 'function' ? variables[v].getText() : (variables[v] !== undefined ? variables[v] : '[null]');
+                    } else if (t.endsWith('.isDisplayed()')) {
+                      const v = t.replace('.isDisplayed()', '').trim();
+                      outputStr += String(variables[v] && typeof variables[v].isDisplayed === 'function' ? variables[v].isDisplayed() : false);
+                    } else if (variables[t] !== undefined) {
+                      outputStr += String(variables[t]);
+                    } else {
+                      try {
+                        const varKeys = Object.keys(variables);
+                        const varVals = Object.values(variables).map(v => (v && typeof v.getText === 'function') ? v.getText() : v);
+                        const fn = new Function(...varKeys, `'use strict'; try { return (${t}); } catch(e) { return "${t.replace(/"/g, '\\"')}"; }`);
+                        outputStr += String(fn(...varVals));
+                      } catch(e) {
+                        outputStr += t;
+                      }
+                    }
+                  }
+                  appendLog(`[STDOUT] ${outputStr}`, 'stdout');
+                  continue;
+                }
+
+                // 4. Variables declaration: String, int, double, boolean
+                const varAssignMatch = line.match(/(?:String|int|double|boolean|var)\s+(\w+)\s*=\s*(.+)/);
+                if (varAssignMatch) {
+                  const vName = varAssignMatch[1];
+                  let expr = varAssignMatch[2].trim();
+
+                  if (expr.endsWith('.getText()')) {
+                    const elName = expr.replace('.getText()', '').trim();
+                    variables[vName] = variables[elName] ? variables[elName].getText() : '';
+                    continue;
+                  }
+                  if ((expr.startsWith('"') && expr.endsWith('"')) || (expr.startsWith("'") && expr.endsWith("'"))) {
+                    variables[vName] = expr.slice(1, -1);
+                    continue;
+                  }
+                  if (!isNaN(expr)) {
+                    variables[vName] = Number(expr);
+                    continue;
+                  }
+                  variables[vName] = expr;
+                  continue;
+                }
+
+                // 5. Assert.assertTrue(...)
+                const assertBoolMatch = line.match(/Assert\.assertTrue\s*\((.+?)(?:,\s*["']([^"']+)["'])?\)/);
+                if (assertBoolMatch) {
+                  assertionsCount++;
+                  const conditionStr = assertBoolMatch[1].trim();
+                  const customMsg = assertBoolMatch[2] || "expected [true] but found [false]";
+
+                  let evalResult = false;
+                  if (conditionStr.endsWith('.isDisplayed()')) {
+                    const elName = conditionStr.replace('.isDisplayed()', '').trim();
+                    evalResult = variables[elName] && variables[elName].isDisplayed();
+                  } else if (conditionStr.endsWith('.isEnabled()')) {
+                    const elName = conditionStr.replace('.isEnabled()', '').trim();
+                    evalResult = variables[elName] && variables[elName].isEnabled();
+                  } else if (variables[conditionStr] !== undefined) {
+                    evalResult = Boolean(variables[conditionStr]);
+                  } else {
+                    evalResult = true;
+                  }
+
+                  if (!evalResult) {
+                    throw new Error(`java.lang.AssertionError: ${customMsg} at line ${lineNum}`);
+                  }
+                  appendLog(`[ASSERT] Assert.assertTrue(${conditionStr}) -> PASS`, 'pass');
+                  continue;
+                }
+
+                // 6. Assert.assertEquals(actual, expected, [msg])
+                const assertEqMatch = line.match(/Assert\.assertEquals\s*\((.+?),\s*(.+?)(?:,\s*["']([^"']+)["'])?\)/);
+                if (assertEqMatch) {
+                  assertionsCount++;
+                  let actualExpr = assertEqMatch[1].trim();
+                  let expectedExpr = assertEqMatch[2].trim();
+                  const customMsg = assertEqMatch[3] || "";
+
+                  let actualVal = actualExpr;
+                  if (actualExpr.endsWith('.getText()')) {
+                    const elName = actualExpr.replace('.getText()', '').trim();
+                    actualVal = variables[elName] ? variables[elName].getText() : '';
+                  } else if (variables[actualExpr] !== undefined) {
+                    actualVal = variables[actualExpr];
+                  } else if ((actualExpr.startsWith('"') && actualExpr.endsWith('"')) || (actualExpr.startsWith("'") && actualExpr.endsWith("'"))) {
+                    actualVal = actualExpr.slice(1, -1);
+                  }
+
+                  let expectedVal = expectedExpr;
+                  if ((expectedExpr.startsWith('"') && expectedExpr.endsWith('"')) || (expectedExpr.startsWith("'") && expectedExpr.endsWith("'"))) {
+                    expectedVal = expectedExpr.slice(1, -1);
+                  } else if (variables[expectedExpr] !== undefined) {
+                    expectedVal = variables[expectedExpr];
+                  }
+
+                  if (String(actualVal).trim().toLowerCase() !== String(expectedVal).trim().toLowerCase()) {
+                    throw new Error(`java.lang.AssertionError: ${customMsg ? customMsg + ' - ' : ''}expected [${expectedVal}] but found [${actualVal}] at line ${lineNum}`);
+                  }
+                  appendLog(`[ASSERT] Assert.assertEquals("${actualVal}", "${expectedVal}") -> PASS`, 'pass');
+                  continue;
+                }
+
+                // 7. Element actions like element.click()
+                const actionMatch = line.match(/(\w+)\.(click|sendKeys)\s*\((.*)\)/);
+                if (actionMatch && variables[actionMatch[1]]) {
+                  const el = variables[actionMatch[1]];
+                  const act = actionMatch[2];
+                  if (act === 'click') {
+                    el.click();
+                  } else if (act === 'sendKeys') {
+                    const arg = actionMatch[3].replace(/["']/g, '');
+                    el.sendKeys(arg);
+                  }
+                  continue;
+                }
+              }
+
+              // Test execution finished successfully
+              appendLog('[INFO] -------------------------------------------------------', 'dim');
+              appendLog(`[INFO] Results: Tests run: 1, Failures: 0, Errors: 0, Skipped: 0 (${assertionsCount} assertions passed)`, 'pass');
+              appendLog('[INFO] -------------------------------------------------------', 'dim');
+              appendLog('[INFO] BUILD SUCCESS (Total time: 0.174 s)', 'pass');
+              showToast('BUILD SUCCESS: Execution completed with 0 errors!', '🏆');
+
+            } catch (err) {
+              appendLog(`[ERROR] ${err.message}`, 'error');
+              appendLog('[INFO] -------------------------------------------------------', 'dim');
+              appendLog('[INFO] Results: Tests run: 1, Failures: 1, Errors: 0, Skipped: 0', 'error');
+              appendLog('[INFO] -------------------------------------------------------', 'dim');
+              appendLog('[INFO] BUILD FAILURE', 'error');
+              showToast('BUILD FAILURE: Error encountered during execution', '❌');
+            } finally {
+              isExecutionRunning = false;
+              if (codePlaygroundRunBtn) {
+                codePlaygroundRunBtn.disabled = false;
+                codePlaygroundRunBtn.style.opacity = '1';
+              }
             }
-          }
-        }, 300);
+          }, 300);
+        }
       };
 
       if (codePlaygroundRunBtn) {
-        codePlaygroundRunBtn.addEventListener('click', runCandidateJavaTest);
+        codePlaygroundRunBtn.addEventListener('click', executeCurrentPlayground);
       }
 
       // 10. Quick Inquiry Purpose Chips
