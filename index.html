@@ -1065,18 +1065,112 @@
       margin-bottom: 25px;
     }
 
-    .project-link {
-      font-family: var(--font-mono);
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      color: var(--color);
-      text-decoration: none;
-      font-weight: 600;
-      transition: color 0.2s;
+    /* Project Card Actions & Buttons */
+    .project-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-top: auto;
+      padding-top: 18px;
     }
 
-    .project-link:hover {
+    .project-drawer-btn,
+    .project-link-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      padding: 10px 18px;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      outline: none;
+      white-space: nowrap;
+      box-sizing: border-box;
+    }
+
+    /* Specs Drawer Button */
+    .project-drawer-btn {
+      background: var(--accent-muted);
+      color: var(--color);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .project-drawer-btn .btn-arrow {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
       color: var(--accent);
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      display: inline-block;
+    }
+
+    .project-drawer-btn:hover {
+      background: rgba(37, 99, 235, 0.08);
+      color: var(--accent);
+      border-color: var(--accent);
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.15);
+      transform: translateY(-2px);
+    }
+
+    [data-theme="dark"] .project-drawer-btn {
+      background: rgba(56, 189, 248, 0.06);
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    [data-theme="dark"] .project-drawer-btn:hover {
+      background: rgba(56, 189, 248, 0.14);
+      border-color: #38bdf8;
+      box-shadow: 0 4px 16px rgba(56, 189, 248, 0.25);
+    }
+
+    .project-drawer-btn:hover .btn-arrow {
+      transform: translateX(4px);
+    }
+
+    .project-drawer-btn:active,
+    .project-link-btn:active {
+      transform: translateY(0);
+    }
+
+    /* Primary Link Button (Visit Platform) */
+    .project-link-btn {
+      background: var(--color);
+      color: var(--bg);
+      border: 1px solid var(--color);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .project-link-btn:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.28);
+      transform: translateY(-2px);
+    }
+
+    [data-theme="dark"] .project-link-btn:hover {
+      background: #38bdf8;
+      border-color: #38bdf8;
+      color: #0b1120;
+      box-shadow: 0 4px 16px rgba(56, 189, 248, 0.35);
+    }
+
+    .project-link-btn svg {
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .project-link-btn:hover svg {
+      transform: translate(2px, -2px);
     }
 
     /* Skills Grid */
@@ -4010,10 +4104,15 @@
             <p class="project-desc">Led technical design, repository workflows, and execution to construct a
               high-performance web recruitment platform for client matching and candidate management.</p>
           </div>
-          <div style="display:flex; gap:16px; align-items:center; flex-wrap:wrap;">
-            <a href="https://astonrecruitment.in/" target="_blank" rel="noopener noreferrer" class="project-link">Visit
-              Platform ↗</a>
-            <button class="project-drawer-btn" data-drawer="aston">Case Study Specs →</button>
+          <div class="project-actions">
+            <a href="https://astonrecruitment.in/" target="_blank" rel="noopener noreferrer" class="project-link-btn">
+              <span>Visit Platform</span>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+            </a>
+            <button class="project-drawer-btn" data-drawer="aston">
+              <span>Case Study Specs</span>
+              <span class="btn-arrow">→</span>
+            </button>
           </div>
         </div>
 
@@ -4026,7 +4125,12 @@
             <p class="project-desc">Engineered robust Selenium Webdriver tests mapping across 5 geographic regions,
               validating localized purchase structures for international launch events.</p>
           </div>
-          <button class="project-drawer-btn" data-drawer="apple">View Architecture Specs →</button>
+          <div class="project-actions">
+            <button class="project-drawer-btn" data-drawer="apple">
+              <span>View Architecture Specs</span>
+              <span class="btn-arrow">→</span>
+            </button>
+          </div>
         </div>
 
         <!-- Project 3 -->
@@ -4038,7 +4142,12 @@
             <p class="project-desc">Developed contract API integrations (Rest Assured) and database assertions for
               Flexcube ACH networks, ensuring safe and verified payment states.</p>
           </div>
-          <button class="project-drawer-btn" data-drawer="citi">View Automation Specs →</button>
+          <div class="project-actions">
+            <button class="project-drawer-btn" data-drawer="citi">
+              <span>View Automation Specs</span>
+              <span class="btn-arrow">→</span>
+            </button>
+          </div>
         </div>
 
         <!-- Project 4 -->
@@ -4050,7 +4159,12 @@
             <p class="project-desc">Automated reservation system routines. Recognized with the "Best Debutant" and three
               consecutive "Best Performer" accolades for high defect capture ratios.</p>
           </div>
-          <button class="project-drawer-btn" data-drawer="aircanada">View Test Specs →</button>
+          <div class="project-actions">
+            <button class="project-drawer-btn" data-drawer="aircanada">
+              <span>View Test Specs</span>
+              <span class="btn-arrow">→</span>
+            </button>
+          </div>
         </div>
       </div>
     </div>
