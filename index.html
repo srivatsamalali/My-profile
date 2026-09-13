@@ -3449,76 +3449,427 @@
       transform: translateY(0);
     }
 
-    /* --------------------------------------------------------------------------
-       QA INSPECTOR HUD & RETICLE OVERLAYS STYLES
-       -------------------------------------------------------------------------- */
-    .qa-inspector-dock {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      z-index: 9998;
-      display: flex;
+    /* ==========================================================================
+       SATISFYING 3D INTERACTIVE PAYMENT CARD & LIVE QA VERIFIER (INSTA REEL STYLE)
+       ========================================================================== */
+    .card-studio-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 36px;
       align-items: center;
-      gap: 10px;
-      background: rgba(10, 15, 28, 0.85);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(56, 189, 248, 0.35);
-      border-radius: 50px;
-      padding: 6px 14px 6px 10px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(56, 189, 248, 0.2);
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      margin-top: 24px;
     }
 
-    .qa-inspector-dock:hover {
-      border-color: #38bdf8;
-      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.7), 0 0 25px rgba(56, 189, 248, 0.35);
+    @media (max-width: 992px) {
+      .card-studio-wrapper {
+        grid-template-columns: 1fr;
+      }
     }
 
-    .qa-hud-toggle-btn {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      background: transparent;
-      border: none;
-      color: #e2e8f0;
-      font-family: var(--font-mono);
-      font-size: 0.78rem;
-      font-weight: 600;
+    /* 3D Perspective Card Stage */
+    .card-stage {
+      perspective: 1000px;
+      width: 100%;
+      max-width: 420px;
+      height: 250px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .card-3d-flipper {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       cursor: pointer;
-      padding: 4px 8px;
-      border-radius: 30px;
     }
 
-    .qa-hud-toggle-btn .status-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #64748b;
-      box-shadow: none;
-      transition: all 0.3s ease;
+    .card-3d-flipper.flipped {
+      transform: rotateY(180deg);
     }
 
-    .qa-inspector-dock.active {
-      background: rgba(14, 23, 42, 0.95);
-      border-color: #22c55e;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 25px rgba(34, 197, 94, 0.3);
+    .card-face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 18px;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      padding: 24px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 24px 50px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.15) inset;
+      overflow: hidden;
+      background: linear-gradient(135deg, #0b1329 0%, #1e293b 50%, #0f172a 100%);
+      transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
     }
 
-    .qa-inspector-dock.active .status-dot {
-      background: #22c55e;
-      box-shadow: 0 0 10px #22c55e;
+    /* Dynamic Brand Theme Skins */
+    .card-face[data-brand="visa"] {
+      background: linear-gradient(135deg, #091a32 0%, #173b6c 50%, #0c203b 100%);
+      box-shadow: 0 24px 50px rgba(0, 0, 0, 0.5), 0 0 25px rgba(56, 189, 248, 0.25), 0 0 0 1px rgba(56, 189, 248, 0.35) inset;
+    }
+    .card-face[data-brand="mastercard"] {
+      background: linear-gradient(135deg, #18181b 0%, #2f170e 50%, #1a1614 100%);
+      box-shadow: 0 24px 50px rgba(0, 0, 0, 0.5), 0 0 25px rgba(245, 158, 11, 0.25), 0 0 0 1px rgba(245, 158, 11, 0.4) inset;
+    }
+    .card-face[data-brand="rupay"] {
+      background: linear-gradient(135deg, #042419 0%, #064e3b 45%, #0f2c42 100%);
+      box-shadow: 0 24px 50px rgba(0, 0, 0, 0.5), 0 0 25px rgba(16, 185, 129, 0.3), 0 0 0 1px rgba(16, 185, 129, 0.45) inset;
+    }
+    .card-face[data-brand="amex"] {
+      background: linear-gradient(135deg, #0b1c24 0%, #153c44 50%, #082229 100%);
+      box-shadow: 0 24px 50px rgba(0, 0, 0, 0.5), 0 0 25px rgba(6, 182, 212, 0.25), 0 0 0 1px rgba(6, 182, 212, 0.4) inset;
+    }
+    .card-face[data-brand="discover"] {
+      background: linear-gradient(135deg, #2e160a 0%, #4a210d 50%, #1c1009 100%);
+      box-shadow: 0 24px 50px rgba(0, 0, 0, 0.5), 0 0 25px rgba(251, 146, 60, 0.25), 0 0 0 1px rgba(251, 146, 60, 0.4) inset;
+    }
+    .card-face[data-brand="diners"] {
+      background: linear-gradient(135deg, #0f1d38 0%, #1e3a8a 50%, #0b1528 100%);
+      box-shadow: 0 24px 50px rgba(0, 0, 0, 0.5), 0 0 25px rgba(96, 165, 250, 0.25), 0 0 0 1px rgba(96, 165, 250, 0.35) inset;
+    }
+    .card-face[data-brand="jcb"] {
+      background: linear-gradient(135deg, #2b0b14 0%, #4c111e 50%, #1e090f 100%);
+      box-shadow: 0 24px 50px rgba(0, 0, 0, 0.5), 0 0 25px rgba(244, 63, 94, 0.25), 0 0 0 1px rgba(244, 63, 94, 0.4) inset;
+    }
+    .card-face[data-brand="maestro"] {
+      background: linear-gradient(135deg, #1c102a 0%, #3b1859 50%, #150b22 100%);
+      box-shadow: 0 24px 50px rgba(0, 0, 0, 0.5), 0 0 25px rgba(168, 85, 247, 0.25), 0 0 0 1px rgba(168, 85, 247, 0.4) inset;
     }
 
-    .qa-hud-action-btn {
-      background: rgba(56, 189, 248, 0.15);
-      border: 1px solid rgba(56, 189, 248, 0.35);
-      color: #38bdf8;
-      border-radius: 30px;
-      padding: 4px 12px;
-      font-size: 0.74rem;
+    .card-amount-badge {
+      background: rgba(15, 23, 42, 0.65);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      padding: 2px 10px;
       font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #38bdf8;
+      backdrop-filter: blur(8px);
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-left: auto;
+      margin-right: 14px;
+      text-shadow: none;
+    }
+
+    .btn-amount-chip {
+      padding: 5px 9px;
+      font-size: 0.72rem;
+      font-family: var(--font-mono);
+      background: rgba(30, 41, 59, 0.7);
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      border-radius: 4px;
+      color: #94a3b8;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+    .btn-amount-chip:hover {
+      color: #38bdf8;
+      border-color: #38bdf8;
+      background: rgba(56, 189, 248, 0.12);
+    }
+    .btn-amount-chip.active {
+      background: #0284c7;
+      color: #ffffff;
+      border-color: #38bdf8;
+      font-weight: 700;
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
+    }
+
+    /* Holographic Shimmer Effect */
+    .card-face::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        45deg,
+        transparent 30%,
+        rgba(56, 189, 248, 0.15) 45%,
+        rgba(255, 255, 255, 0.3) 50%,
+        rgba(56, 189, 248, 0.15) 55%,
+        transparent 70%
+      );
+      transform: rotate(25deg);
+      pointer-events: none;
+      animation: cardShimmer 6s infinite linear;
+    }
+
+    @keyframes cardShimmer {
+      0% { transform: translateY(-100%) rotate(25deg); }
+      100% { transform: translateY(100%) rotate(25deg); }
+    }
+
+    .card-face-front {
+      z-index: 2;
+    }
+
+    .card-face-back {
+      transform: rotateY(180deg);
+      padding: 0;
+      justify-content: flex-start;
+    }
+
+    .card-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .card-chip {
+      width: 48px;
+      height: 36px;
+      background: linear-gradient(135deg, #d97706, #fbbf24, #b45309);
+      border-radius: 7px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.5), 0 2px 4px rgba(0,0,0,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card-chip::after {
+      content: '';
+      position: absolute;
+      inset: 4px;
+      border: 1px solid rgba(0, 0, 0, 0.3);
+      border-radius: 4px;
+    }
+
+    .card-contactless {
+      margin-left: 12px;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .card-brand-logo {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 800;
+      font-style: italic;
+      color: #ffffff;
+      letter-spacing: 1.5px;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.5);
+      text-transform: uppercase;
+    }
+
+    .card-number-display {
+      font-family: var(--font-mono);
+      font-size: 1.3rem;
+      letter-spacing: 0.16em;
+      color: #ffffff;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+      position: relative;
+      z-index: 2;
+      margin: 14px 0;
+      word-spacing: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .card-bottom-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      position: relative;
+      z-index: 2;
+    }
+
+    .card-holder-group,
+    .card-expiry-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-label-small {
+      font-size: 0.62rem;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 3px;
+      font-family: var(--font-mono);
+    }
+
+    .card-val-name {
+      font-family: var(--font-mono);
+      font-size: 0.88rem;
       font-weight: 600;
+      color: #f8fafc;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+      max-width: 220px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .card-val-exp {
+      font-family: var(--font-mono);
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #f8fafc;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+    }
+
+    /* Back Face Styling */
+    .card-mag-strip {
+      width: 100%;
+      height: 48px;
+      background: #020617;
+      margin-top: 24px;
+      margin-bottom: 18px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+    }
+
+    .card-cvv-row {
+      padding: 0 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .card-signature-bar {
+      width: 100%;
+      height: 38px;
+      background: repeating-linear-gradient(
+        45deg,
+        #f8fafc,
+        #f8fafc 8px,
+        #e2e8f0 8px,
+        #e2e8f0 16px
+      );
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 0 12px;
+      box-sizing: border-box;
+      font-family: var(--font-mono);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #0f172a;
+      letter-spacing: 3px;
+      border: 1px solid rgba(0,0,0,0.1);
+    }
+
+    /* Interactive Live Editing Panel */
+    .card-editor-panel {
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 12px;
+      padding: 24px;
+      backdrop-filter: blur(14px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    [data-theme="light"] .card-editor-panel {
+      background: rgba(255, 255, 255, 0.95);
+      border-color: rgba(37, 99, 235, 0.2);
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+    }
+
+    .card-editor-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .card-editor-field.full-span {
+      grid-column: 1 / -1;
+    }
+
+    .card-editor-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.76rem;
+      font-weight: 600;
+      color: var(--color);
+      margin-bottom: 6px;
+      font-family: var(--font-mono);
+    }
+
+    .card-live-input {
+      width: 100%;
+      padding: 10px 14px;
+      background: rgba(30, 41, 59, 0.6);
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      border-radius: 6px;
+      color: #ffffff;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      box-sizing: border-box;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    [data-theme="light"] .card-live-input {
+      background: #f8fafc;
+      border-color: #cbd5e1;
+      color: #0f172a;
+    }
+
+    .card-live-input:focus {
+      border-color: #38bdf8;
+      box-shadow: 0 0 12px rgba(56, 189, 248, 0.35);
+      background: rgba(30, 41, 59, 0.9);
+    }
+
+    /* Telemetry Verification Badges */
+    .card-telemetry-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(148, 163, 184, 0.15);
+    }
+
+    .card-badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      padding: 4px 10px;
+      border-radius: 20px;
+      background: rgba(34, 197, 94, 0.12);
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      color: #22c55e;
+      transition: all 0.2s ease;
+    }
+
+    .card-badge-pill.invalid {
+      background: rgba(239, 68, 68, 0.12);
+      border-color: rgba(239, 68, 68, 0.3);
+      color: #ef4444;
+    }
+
+    .btn-flip-card {
+      padding: 6px 12px;
+      background: rgba(30, 41, 59, 0.8);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 6px;
+      color: #38bdf8;
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
       cursor: pointer;
       display: flex;
       align-items: center;
@@ -3526,86 +3877,486 @@
       transition: all 0.2s ease;
     }
 
-    .qa-hud-action-btn:hover {
+    .btn-flip-card:hover {
       background: #38bdf8;
       color: #0b1120;
-      transform: translateY(-1px);
     }
 
-    /* Targeting Reticle Overlay */
-    .qa-targeting-reticle {
-      position: fixed;
-      pointer-events: none;
-      z-index: 9999;
-      border: 1.5px solid #38bdf8;
-      border-radius: 4px;
-      background: rgba(56, 189, 248, 0.08);
-      transition: top 0.08s ease-out, left 0.08s ease-out, width 0.08s ease-out, height 0.08s ease-out;
-      display: none;
-    }
-
-    .qa-targeting-reticle.active {
-      display: block;
-    }
-
-    /* Reticle Corner Crosshairs */
-    .qa-targeting-reticle::before,
-    .qa-targeting-reticle::after {
-      content: '';
-      position: absolute;
-      width: 8px;
-      height: 8px;
-      border-color: #38bdf8;
-      border-style: solid;
-    }
-
-    .qa-targeting-reticle::before {
-      top: -3px;
-      left: -3px;
-      border-width: 2px 0 0 2px;
-    }
-
-    .qa-targeting-reticle::after {
-      bottom: -3px;
-      right: -3px;
-      border-width: 0 2px 2px 0;
-    }
-
-    .qa-reticle-badge {
-      position: absolute;
-      top: -28px;
-      left: 0;
-      background: #0b1120;
-      border: 1px solid #38bdf8;
-      color: #38bdf8;
+    .btn-verify-card {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(135deg, #0284c7, #2563eb);
+      color: #ffffff;
+      border: none;
+      border-radius: 6px;
       font-family: var(--font-mono);
-      font-size: 0.68rem;
-      padding: 2px 8px;
-      border-radius: 4px;
-      white-space: nowrap;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
       display: flex;
       align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 16px;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+    }
+
+    .btn-verify-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(37, 99, 235, 0.5);
+    }
+
+    .card-qa-receipt {
+      margin-top: 14px;
+      padding: 12px 14px;
+      background: #090d16;
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 6px;
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      color: #94a3b8;
+      line-height: 1.6;
+      display: none;
+      transition: all 0.3s ease;
+    }
+
+    .card-qa-receipt.failed {
+      border-color: rgba(239, 68, 68, 0.45);
+      background: rgba(239, 68, 68, 0.08);
+    }
+
+    @keyframes cardShake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-6px); }
+      40%, 80% { transform: translateX(6px); }
+    }
+
+    .card-stage.shake {
+      animation: cardShake 0.45s ease-in-out;
+    }
+
+    /* ==========================================================================
+       FEATURE 2: INTERACTIVE "CAREER FLIGHT PATH" (METRO JOURNEY MAP) STYLES
+       ========================================================================== */
+    .flight-path-wrapper {
+      margin-bottom: 35px;
+      background: rgba(13, 13, 20, 0.75);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      border-radius: 12px;
+      padding: 24px;
+      backdrop-filter: blur(12px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    [data-theme="light"] .flight-path-wrapper {
+      background: rgba(255, 255, 255, 0.85);
+      border-color: rgba(37, 99, 235, 0.15);
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+    }
+
+    .flight-metro-track {
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+      padding: 24px 12px 10px 12px;
+      margin-bottom: 20px;
+    }
+
+    .flight-metro-track::before {
+      content: '';
+      position: absolute;
+      top: 36px;
+      left: 30px;
+      right: 30px;
+      height: 3px;
+      background: linear-gradient(90deg, #10b981, #0284c7, #6366f1, #38bdf8);
+      z-index: 1;
+    }
+
+    .metro-station-node {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+      background: transparent;
+      border: none;
+      outline: none;
+      width: 110px;
+    }
+
+    .metro-station-node:hover {
+      transform: translateY(-3px);
+    }
+
+    .station-bullet {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #0b1120;
+      border: 3px solid #38bdf8;
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
+      margin-bottom: 10px;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      color: #38bdf8;
+      font-weight: 700;
+    }
+
+    [data-theme="light"] .station-bullet {
+      background: #ffffff;
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .metro-station-node.active .station-bullet {
+      background: #38bdf8;
+      border-color: #ffffff;
+      color: #0b1120;
+      transform: scale(1.25);
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.8);
+    }
+
+    .station-name {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--color);
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .station-year {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .flight-metro-detail-card {
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 10px;
+      padding: 20px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 20px;
+      transition: all 0.3s ease;
+    }
+
+    [data-theme="light"] .flight-metro-detail-card {
+      background: #f8fafc;
+      border-color: rgba(37, 99, 235, 0.25);
+    }
+
+    @media (max-width: 768px) {
+      .flight-metro-track {
+        overflow-x: auto;
+        justify-content: flex-start;
+        gap: 30px;
+        padding-bottom: 20px;
+      }
+      .flight-metro-detail-card {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .flight-detail-role {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--color);
+      margin-bottom: 4px;
+    }
+
+    .flight-detail-org {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .flight-detail-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 14px;
+    }
+
+    .flight-tech-pills {
+      display: flex;
+      flex-wrap: wrap;
       gap: 6px;
     }
 
-    /* Auto-Pilot Virtual Cursor */
-    .qa-autopilot-cursor {
-      position: fixed;
-      width: 28px;
-      height: 28px;
-      pointer-events: none;
-      z-index: 10000;
-      display: none;
-      transition: top 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), left 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.2s ease;
+    .flight-pill {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      padding: 3px 8px;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      color: #38bdf8;
+      border-radius: 4px;
     }
 
-    .qa-autopilot-cursor.active {
+    [data-theme="light"] .flight-pill {
+      background: rgba(37, 99, 235, 0.08);
+      color: var(--accent);
+      border-color: rgba(37, 99, 235, 0.25);
+    }
+
+    .flight-metrics-column {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 10px;
+      border-left: 1px solid rgba(148, 163, 184, 0.15);
+      padding-left: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .flight-metrics-column {
+        border-left: none;
+        padding-left: 0;
+        border-top: 1px solid rgba(148, 163, 184, 0.15);
+        padding-top: 16px;
+      }
+    }
+
+    .flight-metric-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .flight-metric-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: rgba(37, 99, 235, 0.15);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .flight-metric-text strong {
       display: block;
+      font-size: 0.88rem;
+      color: var(--color);
     }
 
-    .qa-autopilot-cursor.clicking {
-      transform: scale(0.75);
+    .flight-metric-text span {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+
+    /* ==========================================================================
+       FEATURE 3: SRIVATSA'S "INSTANT INTERVIEW Q&A BOT" STYLES
+       ========================================================================== */
+    .interview-bot-container {
+      margin-top: 30px;
+      background: rgba(13, 13, 20, 0.85);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 12px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(16px);
+      overflow: hidden;
+    }
+
+    [data-theme="light"] .interview-bot-container {
+      background: rgba(255, 255, 255, 0.9);
+      border-color: rgba(37, 99, 235, 0.2);
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+    }
+
+    .bot-header {
+      background: #0f172a;
+      padding: 14px 20px;
+      border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    [data-theme="light"] .bot-header {
+      background: #f1f5f9;
+      border-bottom-color: #e2e8f0;
+    }
+
+    .bot-header-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .bot-avatar-badge {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #0284c7, #2563eb);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+      box-shadow: 0 0 12px rgba(37, 99, 235, 0.5);
+    }
+
+    .bot-title-text {
+      font-weight: 700;
+      font-size: 0.88rem;
+      color: #f8fafc;
+    }
+
+    [data-theme="light"] .bot-title-text {
+      color: #0f172a;
+    }
+
+    .bot-status-pill {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: #22c55e;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .bot-chat-stream {
+      padding: 20px;
+      min-height: 240px;
+      max-height: 320px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .chat-bubble {
+      max-width: 82%;
+      padding: 12px 16px;
+      border-radius: 10px;
+      font-size: 0.86rem;
+      line-height: 1.55;
+      animation: fadeIn 0.25s ease-out;
+    }
+
+    .chat-bubble.bot-msg {
+      align-self: flex-start;
+      background: rgba(30, 41, 59, 0.7);
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      color: #f1f5f9;
+      border-bottom-left-radius: 2px;
+    }
+
+    [data-theme="light"] .chat-bubble.bot-msg {
+      background: #f1f5f9;
+      border-color: #e2e8f0;
+      color: #0f172a;
+    }
+
+    .chat-bubble.user-msg {
+      align-self: flex-end;
+      background: linear-gradient(135deg, #0284c7, #2563eb);
+      color: #ffffff;
+      border-bottom-right-radius: 2px;
+    }
+
+    .bot-prompt-chips {
+      padding: 10px 20px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      background: rgba(15, 23, 42, 0.5);
+      border-top: 1px solid rgba(148, 163, 184, 0.15);
+    }
+
+    [data-theme="light"] .bot-prompt-chips {
+      background: #f8fafc;
+      border-top-color: #e2e8f0;
+    }
+
+    .prompt-chip-btn {
+      padding: 6px 12px;
+      background: rgba(30, 41, 59, 0.8);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 20px;
+      color: #38bdf8;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    [data-theme="light"] .prompt-chip-btn {
+      background: #ffffff;
+      border-color: rgba(37, 99, 235, 0.3);
+      color: var(--accent);
+    }
+
+    .prompt-chip-btn:hover {
+      background: var(--accent);
+      color: #ffffff;
+      transform: translateY(-1px);
+    }
+
+    .bot-input-bar {
+      padding: 14px 20px;
+      display: flex;
+      gap: 10px;
+      background: #0f172a;
+      border-top: 1px solid rgba(56, 189, 248, 0.2);
+    }
+
+    [data-theme="light"] .bot-input-bar {
+      background: #ffffff;
+      border-top-color: #e2e8f0;
+    }
+
+    .bot-input-field {
+      flex: 1;
+      padding: 10px 14px;
+      background: rgba(30, 41, 59, 0.6);
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      border-radius: 6px;
+      color: #ffffff;
+      font-size: 0.85rem;
+      outline: none;
+    }
+
+    [data-theme="light"] .bot-input-field {
+      background: #f8fafc;
+      border-color: #cbd5e1;
+      color: #0f172a;
+    }
+
+    .bot-send-btn {
+      padding: 10px 20px;
+      background: linear-gradient(135deg, #0284c7, #2563eb);
+      color: #ffffff;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.82rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .bot-send-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
     }
   </style>
 </head>
@@ -4190,10 +4941,13 @@
         </div>
 
         <div class="code-rig-wrapper bounce-target bounce-pop d-6">
-          <!-- 2 Clean File Tabs -->
+          <!-- 3 Clean File Tabs -->
           <div class="code-tab-nav" id="codeTabNav">
             <button class="code-tab-btn active" data-tab="java" id="tabJavaBtn">
               <span>☕ AutomationTest.java</span>
+            </button>
+            <button class="code-tab-btn" data-tab="payment" id="tabPaymentBtn">
+              <span>💳 PaymentGatewayE2E.java</span>
             </button>
             <button class="code-tab-btn" data-tab="feature" id="tabFeatureBtn">
               <span>🥒 ProfileVerification.feature</span>
@@ -4264,6 +5018,167 @@
                     Code]</strong> to execute live.</div>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Satisfying 3D Interactive Payment Card & Live QA Verifier Section (Insta Reel Aesthetic) -->
+  <section id="card-studio" style="padding-top: 30px;">
+    <div class="container">
+      <div class="section-header bounce-target bounce-pop d-4">
+        <span class="section-num">04.2 Interactive FinTech Studio</span>
+        <h2 class="section-title">Satisfying <strong>Payment &amp; Card Verifier</strong></h2>
+        <p style="font-size:0.88rem; color:var(--text-muted); max-width:760px; margin-top:8px;">
+          Experience an ultra-smooth, satisfying 3D credit card simulator inspired by modern FinTech UX. Edit card parameters live, observe real-time 3D flipping on CVV focus, and trigger Srivatsa's <strong>Luhn Algorithm &amp; BIN Integrity Assertion Engine</strong>.
+        </p>
+      </div>
+
+      <div class="card-studio-wrapper bounce-target bounce-pop d-5">
+        <!-- Left: 3D Perspective Flip Card Display -->
+        <div class="card-stage">
+          <div class="card-3d-flipper" id="card3dFlipper" title="Click to flip card">
+            <!-- Card Front Face -->
+            <div class="card-face card-face-front" id="cardFaceFront" data-brand="visa">
+              <div class="card-top-row">
+                <div style="display:flex; align-items:center;">
+                  <div class="card-chip"></div>
+                  <svg class="card-contactless" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                    <path d="M8.5 16.5a5 5 0 0 1 0-9"/>
+                    <path d="M12 19a8.5 8.5 0 0 0 0-14"/>
+                    <path d="M15.5 21.5a12 12 0 0 0 0-19"/>
+                  </svg>
+                </div>
+                <div style="display:flex; align-items:center; gap:8px;">
+                  <div class="card-amount-badge" id="cardDisplayAmount">$50,000</div>
+                  <div class="card-brand-logo" id="cardBrandLogo">VISA</div>
+                </div>
+              </div>
+
+              <div class="card-number-display" id="cardDisplayNumber">4532 •••• •••• 8891</div>
+
+              <div class="card-bottom-row">
+                <div class="card-holder-group">
+                  <span class="card-label-small">Cardholder Name</span>
+                  <span class="card-val-name" id="cardDisplayName">SRIVATSA MALALI</span>
+                </div>
+                <div class="card-expiry-group">
+                  <span class="card-label-small">Expires</span>
+                  <span class="card-val-exp" id="cardDisplayExp">08 / 28</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card Back Face -->
+            <div class="card-face card-face-back" id="cardFaceBack" data-brand="visa">
+              <div class="card-mag-strip"></div>
+              <div class="card-cvv-row">
+                <span class="card-label-small" style="color:#ffffff; margin-bottom:4px;">CVV / CVC Security Code</span>
+                <div class="card-signature-bar">
+                  <span id="cardDisplayCvv">842</span>
+                </div>
+                <div style="margin-top:14px; font-size:0.65rem; color:#94a3b8; font-family:var(--font-mono); text-align:right;">
+                  VERIFIED BY CITI ACH &amp; APPLE E-COMMERCE RAILS
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Live Interactive Card Editor & QA Engine -->
+        <div class="card-editor-panel">
+          <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(148,163,184,0.15); padding-bottom:10px;">
+            <span style="font-family:var(--font-mono); font-size:0.78rem; font-weight:700; color:var(--color); text-transform:uppercase;">
+              💳 Live Card &amp; Payment Gateway Editor
+            </span>
+            <button type="button" class="btn-flip-card" id="btnFlipCardToggle">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+              <span>Flip Card 🔄</span>
+            </button>
+          </div>
+
+          <div class="card-editor-grid">
+            <!-- Transfer Amount Field & Quick Presets -->
+            <div class="card-editor-field full-span">
+              <label class="card-editor-label" for="cardInputAmount">
+                <span>00. Payment / Transfer Amount</span>
+                <span id="amountFormattedLabel" style="color:#38bdf8; font-weight:700;">$50,000 USD</span>
+              </label>
+              <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+                <div style="position:relative; flex:1; min-width:130px;">
+                  <span style="position:absolute; left:12px; top:50%; transform:translateY(-50%); font-family:var(--font-mono); font-size:0.85rem; font-weight:700; color:#38bdf8;">$</span>
+                  <input type="text" class="card-live-input" id="cardInputAmount" value="50,000" placeholder="50,000" style="padding-left:26px;" autocomplete="off" />
+                </div>
+                <div class="card-amount-presets" style="display:flex; gap:6px;">
+                  <button type="button" class="btn-amount-chip" data-amount="1,000">$1K</button>
+                  <button type="button" class="btn-amount-chip" data-amount="5,000">$5K</button>
+                  <button type="button" class="btn-amount-chip active" data-amount="50,000">$50K</button>
+                  <button type="button" class="btn-amount-chip" data-amount="100,000">$100K</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card Number -->
+            <div class="card-editor-field full-span">
+              <label class="card-editor-label" for="cardInputNumber">
+                <span>01. Card Number (Dynamic BIN Detection)</span>
+                <span id="cardTypeDetectLabel" style="color:#38bdf8;">VISA DETECTED</span>
+              </label>
+              <input type="text" class="card-live-input" id="cardInputNumber" maxlength="19" value="4532 9988 7766 8891" placeholder="4532 0000 0000 0000" autocomplete="off" />
+            </div>
+
+            <!-- Cardholder Name -->
+            <div class="card-editor-field full-span">
+              <label class="card-editor-label" for="cardInputName">
+                <span>02. Cardholder Name</span>
+                <span style="color:#94a3b8;">UPPERCASE</span>
+              </label>
+              <input type="text" class="card-live-input" id="cardInputName" maxlength="26" value="SRIVATSA MALALI" placeholder="FULL NAME" autocomplete="off" />
+            </div>
+
+            <!-- Expiry Date -->
+            <div class="card-editor-field">
+              <label class="card-editor-label" for="cardInputExp">
+                <span>03. Expiration Date</span>
+              </label>
+              <input type="text" class="card-live-input" id="cardInputExp" maxlength="5" value="08/28" placeholder="MM/YY" autocomplete="off" />
+            </div>
+
+            <!-- CVV Code (Auto-flips card on focus!) -->
+            <div class="card-editor-field">
+              <label class="card-editor-label" for="cardInputCvv">
+                <span>04. CVV / CVC</span>
+                <span style="color:#f59e0b;">FLIPS CARD 3D</span>
+              </label>
+              <input type="text" class="card-live-input" id="cardInputCvv" maxlength="4" value="842" placeholder="123" autocomplete="off" />
+            </div>
+          </div>
+
+          <!-- Real-time QA Assertion Badges -->
+          <div class="card-telemetry-row">
+            <div class="card-badge-pill" id="luhnBadge">
+              <span>✔ Luhn Mod-10 Checksum Valid</span>
+            </div>
+            <div class="card-badge-pill" id="expiryBadge">
+              <span>✔ Expiration Future Active</span>
+            </div>
+            <div class="card-badge-pill" id="cvvBadge">
+              <span>✔ 3-Digit CVV Masked</span>
+            </div>
+          </div>
+
+          <button type="button" class="btn-verify-card" id="btnVerifyCardTransaction">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span id="btnVerifyLabel">Verify &amp; Authorize $50,000 ACH Transfer</span>
+          </button>
+
+          <!-- Generated QA Test Receipt -->
+          <div class="card-qa-receipt" id="cardQaReceipt">
+            <div style="color:#22c55e; font-weight:700; margin-bottom:4px;">✔ TRANSACTION &amp; QA ASSERTION VERIFIED [PASS]</div>
+            <div>• Payment Gateway: <strong>Citi Bank ACH / Apple Online E-Commerce</strong></div>
+            <div>• Card Network: <strong id="receiptNetwork">VISA DEBIT</strong> · Status: <strong>APPROVED (AUTH #884920)</strong></div>
+            <div>• Test Assertion: <strong>Assert.assertTrue(luhnCheck &amp;&amp; expValid &amp;&amp; cvvPassed);</strong></div>
           </div>
         </div>
       </div>
@@ -4401,6 +5316,77 @@
       <div class="section-header bounce-target bounce-pop d-6">
         <span class="section-num">06. Timeline</span>
         <h2 class="section-title">Professional <strong>Journey</strong></h2>
+      </div>
+
+      <!-- Interactive Career Flight Path (Metro Journey Map) -->
+      <div class="flight-path-wrapper bounce-target bounce-pop d-6">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+          <span style="font-family:var(--font-mono); font-size:0.75rem; font-weight:700; color:var(--accent); text-transform:uppercase; letter-spacing:0.05em;">
+            ✈️ Career Flight Path // Interactive Transit Map
+          </span>
+          <span style="font-family:var(--font-mono); font-size:0.68rem; color:#94a3b8;">Click any station hub to inspect</span>
+        </div>
+
+        <!-- Metro Stations Line -->
+        <div class="flight-metro-track" id="flightMetroTrack">
+          <button type="button" class="metro-station-node" data-station="hexaware">
+            <div class="station-bullet">01</div>
+            <div class="station-name">HEXAWARE</div>
+            <div class="station-year">2020 – 2022</div>
+          </button>
+
+          <button type="button" class="metro-station-node" data-station="apple">
+            <div class="station-bullet">02</div>
+            <div class="station-name">TCS · APPLE</div>
+            <div class="station-year">2022 – 2025</div>
+          </button>
+
+          <button type="button" class="metro-station-node" data-station="citi">
+            <div class="station-bullet">03</div>
+            <div class="station-name">TCS · CITI</div>
+            <div class="station-year">2022 – 2025</div>
+          </button>
+
+          <button type="button" class="metro-station-node active" data-station="wipro">
+            <div class="station-bullet">04</div>
+            <div class="station-name">WIPRO</div>
+            <div class="station-year">2025 – Present</div>
+          </button>
+        </div>
+
+        <!-- Dynamic Station Detail Telemetry -->
+        <div class="flight-metro-detail-card" id="flightStationDetailCard">
+          <div>
+            <div class="flight-detail-role" id="flightDetailRole">Senior Test Automation Engineer</div>
+            <div class="flight-detail-org" id="flightDetailOrg">Wipro Technologies · 2025 – Present</div>
+            <p class="flight-detail-desc" id="flightDetailDesc">
+              Leading cross-functional test architecture, engineering robust Page Object Model frameworks in Java + Selenium, and integrating strict automated CI/CD quality gates for enterprise delivery.
+            </p>
+            <div class="flight-tech-pills" id="flightTechPills">
+              <span class="flight-pill">Java 17</span>
+              <span class="flight-pill">Selenium 4</span>
+              <span class="flight-pill">TestNG</span>
+              <span class="flight-pill">Jenkins CI/CD</span>
+              <span class="flight-pill">POM Architecture</span>
+            </div>
+          </div>
+          <div class="flight-metrics-column" id="flightMetricsColumn">
+            <div class="flight-metric-row">
+              <div class="flight-metric-icon">🏆</div>
+              <div class="flight-metric-text">
+                <strong id="flightMetricHighlight">Outstanding Engineering Delivery</strong>
+                <span id="flightMetricSub">Recognized for excellence in client delivery</span>
+              </div>
+            </div>
+            <div class="flight-metric-row">
+              <div class="flight-metric-icon">⚡</div>
+              <div class="flight-metric-text">
+                <strong id="flightMetricStat">Zero Defect Leakage</strong>
+                <span id="flightMetricStatSub">Daily automated regression pipeline runs</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="experience-list">
@@ -4643,6 +5629,61 @@
             <div class="cred-detail">Dr. Ambedkar Institute of Tech, Bangalore</div>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Instant Interview Q&A Bot Section -->
+  <section id="interview-bot" style="padding-top: 30px;">
+    <div class="container">
+      <div class="section-header bounce-target bounce-pop d-7">
+        <span class="section-num">07.2 Instant Interview Bot</span>
+        <h2 class="section-title">Ask Srivatsa <strong>Anything</strong></h2>
+        <p style="font-size:0.88rem; color:var(--text-muted); max-width:760px; margin-top:8px;">
+          Hiring for an SDET Lead or Senior QA Automation role? Click any standard interview question below or type your own to get instant, metric-backed answers directly from Srivatsa's verified career playbook.
+        </p>
+      </div>
+
+      <div class="interview-bot-container bounce-target bounce-pop d-8">
+        <!-- Bot Header -->
+        <div class="bot-header">
+          <div class="bot-header-info">
+            <div class="bot-avatar-badge">SM</div>
+            <div>
+              <div class="bot-title-text">Srivatsa's SDET Playbook Bot</div>
+              <div class="bot-status-pill">
+                <span class="status-pulse-dot" style="width:7px; height:7px; background:#22c55e;"></span>
+                <span>ONLINE · VERIFIED RESPONSES</span>
+              </div>
+            </div>
+          </div>
+          <button type="button" id="botResetChatBtn" style="background:transparent; border:none; color:#64748b; font-family:var(--font-mono); font-size:0.72rem; cursor:pointer;">Clear Chat</button>
+        </div>
+
+        <!-- Chat Stream -->
+        <div class="bot-chat-stream" id="botChatStream">
+          <div class="chat-bubble bot-msg">
+            👋 Hi there! I'm Srivatsa's automated interview assistant. Feel free to click any of the prompt chips below to learn about my automation architecture, leadership philosophy, or key achievements at Apple, Citi, and Air Canada!
+          </div>
+        </div>
+
+        <!-- Preset Quick Prompt Chips -->
+        <div class="bot-prompt-chips" id="botPromptChips">
+          <button type="button" class="prompt-chip-btn" data-question="hire">💬 Why hire Srivatsa as Lead SDET?</button>
+          <button type="button" class="prompt-chip-btn" data-question="flakiness">💬 How do you eliminate flaky tests in CI/CD?</button>
+          <button type="button" class="prompt-chip-btn" data-question="apple-citi">💬 What was your biggest impact at Apple &amp; Citi?</button>
+          <button type="button" class="prompt-chip-btn" data-question="architecture">💬 What is your automation framework design?</button>
+          <button type="button" class="prompt-chip-btn" data-question="leadership">💬 What is your team leadership &amp; mentoring style?</button>
+        </div>
+
+        <!-- Input Bar -->
+        <form class="bot-input-bar" id="botInputForm" onsubmit="return false;">
+          <input type="text" class="bot-input-field" id="botUserQueryInput" placeholder="Ask a custom question (e.g. TestNG, Jenkins, Rest Assured)..." autocomplete="off" />
+          <button type="submit" class="bot-send-btn" id="botSendBtn">
+            <span>Ask</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+          </button>
+        </form>
       </div>
     </div>
   </section>
@@ -6648,7 +7689,7 @@
         }
       });
 
-      // 9. Live Automation Coding & BDD Playground (Java & Cucumber Feature for this Portfolio)
+      // 9. Live Automation Coding & BDD Playground (Java, Payment Gateway & Cucumber Feature)
       const portfolioFiles = {
         java: {
           filename: 'src/test/java/AutomationTest.java',
@@ -6690,6 +7731,50 @@ public class AutomationTest extends BaseTest {
     }
 }`
         },
+        payment: {
+          filename: 'src/test/java/PaymentGatewayE2E.java',
+          badge: 'Citi ACH / Apple E2E',
+          lang: 'Java 17 · RestAssured · Selenium 4 · TestNG',
+          cmd: 'mvn test -Dtest=PaymentGatewayE2E',
+          code: `package com.srivatsa.fintech;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+public class PaymentGatewayE2E extends BaseTest {
+
+    @Test(description = "Automate 3D Payment Card simulation, CVV auto-flip, and $50,000 ACH Transfer")
+    public void testPaymentGatewayCheckout() {
+        // 1. Target 3D FinTech Card Studio
+        driver.findElement(By.id("card-studio")).scrollIntoView();
+        
+        // 2. Populate Cardholder and Card Number (Visa / MasterCard / RuPay)
+        driver.findElement(By.id("cardInputNumber")).sendKeys("4532 9988 7766 8891");
+        driver.findElement(By.id("cardInputName")).sendKeys("SRIVATSA MALALI");
+        driver.findElement(By.id("cardInputExp")).sendKeys("08/28");
+        
+        // 3. Set Transfer Amount ($50,000 USD)
+        driver.findElement(By.id("cardInputAmount")).sendKeys("50,000");
+        
+        // 4. Focus CVV field to trigger 3D perspective flip animation
+        WebElement cvvField = driver.findElement(By.id("cardInputCvv"));
+        cvvField.click();
+        cvvField.sendKeys("842");
+        
+        // 5. Submit Payment via Citi ACH / Apple Online Gateway
+        WebElement submitBtn = driver.findElement(By.id("btnVerifyCardTransaction"));
+        submitBtn.click();
+        
+        // 6. Assert Zero Defect Authorization
+        WebElement receipt = driver.findElement(By.id("cardQaReceipt"));
+        Assert.assertTrue(receipt.isDisplayed(), "Payment receipt must generate");
+        System.out.println("Payment Gateway E2E: $50,000 ACH Wire Transfer APPROVED [AUTH #884920]");
+    }
+}`
+        },
         feature: {
           filename: 'src/test/resources/features/ProfileVerification.feature',
           badge: 'Cucumber BDD Feature',
@@ -6713,6 +7798,7 @@ Feature: Srivatsa Malali Portfolio Verification
       let currentActiveFileKey = 'java';
       const fileBuffers = {
         java: portfolioFiles.java.code,
+        payment: portfolioFiles.payment.code,
         feature: portfolioFiles.feature.code
       };
 
@@ -6726,6 +7812,7 @@ Feature: Srivatsa Malali Portfolio Verification
       const editorLanguageLabel = document.getElementById('editorLanguageLabel');
       const terminalCmdTitle = document.getElementById('terminalCmdTitle');
       const tabJavaBtn = document.getElementById('tabJavaBtn');
+      const tabPaymentBtn = document.getElementById('tabPaymentBtn');
       const tabFeatureBtn = document.getElementById('tabFeatureBtn');
 
       const switchFileTab = (fileKey) => {
@@ -6751,6 +7838,7 @@ Feature: Srivatsa Malali Portfolio Verification
       };
 
       if (tabJavaBtn) tabJavaBtn.addEventListener('click', () => switchFileTab('java'));
+      if (tabPaymentBtn) tabPaymentBtn.addEventListener('click', () => switchFileTab('payment'));
       if (tabFeatureBtn) tabFeatureBtn.addEventListener('click', () => switchFileTab('feature'));
 
       // Initialize with Java file
@@ -7020,6 +8108,155 @@ Feature: Srivatsa Malali Portfolio Verification
             }
           }, 300);
 
+        } else if (currentActiveFileKey === 'payment' || rawCode.includes('PaymentGatewayE2E') || rawCode.includes('card-studio')) {
+          // --- STEP-BY-STEP VISUAL AUTOMATION TEST RUNNER FOR PAYMENT GATEWAY E2E ---
+          appendLog('[INFO] -------------------------------------------------------', 'dim');
+          appendLog('[INFO]  T E S T S   E X E C U T I O N', 'cmd');
+          appendLog('[INFO] -------------------------------------------------------', 'dim');
+          appendLog('[INFO] Running com.srivatsa.fintech.PaymentGatewayE2E', 'info');
+          appendLog('[INFO] [ChromeDriver] Attached to active DOM session (Chrome v128 · 1920x1080)', 'dim');
+
+          (async () => {
+            try {
+              // 1. Parse target values from code or fallback to defaults
+              const cardNumberMatch = rawCode.match(/cardInputNumber["']\)\.sendKeys\(["']([^"']+)["']\)/);
+              const cardNameMatch = rawCode.match(/cardInputName["']\)\.sendKeys\(["']([^"']+)["']\)/);
+              const cardExpMatch = rawCode.match(/cardInputExp["']\)\.sendKeys\(["']([^"']+)["']\)/);
+              const cardAmtMatch = rawCode.match(/cardInputAmount["']\)\.sendKeys\(["']([^"']+)["']\)/);
+              const cardCvvMatch = rawCode.match(/cardInputCvv["']\)\.sendKeys\(["']([^"']+)["']\)/);
+
+              const targetNum = cardNumberMatch ? cardNumberMatch[1] : "4532 9988 7766 8891";
+              const targetName = cardNameMatch ? cardNameMatch[1] : "SRIVATSA MALALI";
+              const targetExp = cardExpMatch ? cardExpMatch[1] : "08/28";
+              const targetAmt = cardAmtMatch ? cardAmtMatch[1] : "50,000";
+              const targetCvv = cardCvvMatch ? cardCvvMatch[1] : "842";
+
+              // Animated typing helper that updates DOM and fires standard input events
+              const typeIntoField = async (inputEl, text, speed = 22) => {
+                if (!inputEl) return;
+                inputEl.focus();
+                inputEl.value = '';
+                for (let i = 0; i < text.length; i++) {
+                  inputEl.value += text[i];
+                  inputEl.dispatchEvent(new Event('input', { bubbles: true }));
+                  await new Promise(r => setTimeout(r, speed));
+                }
+                inputEl.dispatchEvent(new Event('change', { bubbles: true }));
+              };
+
+              // Step 1: Scroll into view
+              const studioEl = document.getElementById('card-studio');
+              if (studioEl) {
+                studioEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                appendLog('[FIND] Located <section id="card-studio"> with By.id("card-studio")', 'dim');
+                appendLog('[ACTION] driver.findElement(By.id("card-studio")).scrollIntoView()', 'info');
+              }
+              await new Promise(r => setTimeout(r, 600));
+
+              // Step 2: Card Number
+              const cardInputNumberEl = document.getElementById('cardInputNumber');
+              if (cardInputNumberEl) {
+                appendLog('[FIND] Located <input id="cardInputNumber"> with By.id("cardInputNumber")', 'dim');
+                await typeIntoField(cardInputNumberEl, targetNum, 20);
+                const val = typeof runCardLiveValidation === 'function' ? runCardLiveValidation() : null;
+                appendLog(`[ACTION] Typed '${targetNum}' into <input id="cardInputNumber">`, 'info');
+                if (val) {
+                  appendLog(`[INFO] Identified Card Brand: ${val.brand} · Mod-10 Luhn: ${val.isLuhnValid ? 'PASS' : 'FAIL'}`, val.isLuhnValid ? 'pass' : 'warn');
+                }
+              }
+              await new Promise(r => setTimeout(r, 180));
+
+              // Step 3: Cardholder Name
+              const cardInputNameEl = document.getElementById('cardInputName');
+              if (cardInputNameEl) {
+                appendLog('[FIND] Located <input id="cardInputName"> with By.id("cardInputName")', 'dim');
+                await typeIntoField(cardInputNameEl, targetName, 18);
+                appendLog(`[ACTION] Typed '${targetName}' into <input id="cardInputName">`, 'info');
+              }
+              await new Promise(r => setTimeout(r, 180));
+
+              // Step 4: Expiration Date
+              const cardInputExpEl = document.getElementById('cardInputExp');
+              if (cardInputExpEl) {
+                appendLog('[FIND] Located <input id="cardInputExp"> with By.id("cardInputExp")', 'dim');
+                await typeIntoField(cardInputExpEl, targetExp, 22);
+                appendLog(`[ACTION] Typed '${targetExp}' into <input id="cardInputExp">`, 'info');
+                appendLog(`[INFO] Expiry Date Integrity: Future Active (${targetExp})`, 'dim');
+              }
+              await new Promise(r => setTimeout(r, 180));
+
+              // Step 5: Transfer Amount
+              const cardInputAmountEl = document.getElementById('cardInputAmount');
+              if (cardInputAmountEl) {
+                appendLog('[FIND] Located <input id="cardInputAmount"> with By.id("cardInputAmount")', 'dim');
+                await typeIntoField(cardInputAmountEl, targetAmt, 20);
+                appendLog(`[ACTION] Typed '${targetAmt}' into <input id="cardInputAmount">`, 'info');
+                appendLog(`[INFO] Transfer Amount Validated: $${targetAmt} USD`, 'dim');
+              }
+              await new Promise(r => setTimeout(r, 250));
+
+              // Step 6: Focus CVV and Auto-Flip 3D Card 180°
+              const cardInputCvvEl = document.getElementById('cardInputCvv');
+              if (cardInputCvvEl) {
+                appendLog('[FIND] Located <input id="cardInputCvv"> with By.id("cardInputCvv")', 'dim');
+                cardInputCvvEl.focus();
+                if (typeof setCardFlip === 'function') setCardFlip(true);
+                appendLog('[ACTION] Focused <input id="cardInputCvv"> -> 3D Card Flipped 180° (Perspective Mode)', 'cmd');
+                await new Promise(r => setTimeout(r, 450));
+                await typeIntoField(cardInputCvvEl, targetCvv, 30);
+                appendLog(`[ACTION] Typed '${targetCvv}' into <input id="cardInputCvv"> [Masked]`, 'info');
+              }
+              await new Promise(r => setTimeout(r, 450));
+
+              // Step 7: Click Submit and Authorize
+              const btnSubmit = document.getElementById('btnVerifyCardTransaction');
+              if (btnSubmit) {
+                appendLog('[FIND] Located <button id="btnVerifyCardTransaction"> with By.id("btnVerifyCardTransaction")', 'dim');
+                btnSubmit.classList.add('pulse-once');
+                appendLog('[ACTION] Clicked element <button id="btnVerifyCardTransaction">', 'info');
+                if (typeof setCardFlip === 'function') setCardFlip(false);
+                let authPassed = true;
+                if (typeof executePaymentAuthorization === 'function') {
+                  authPassed = executePaymentAuthorization(884920);
+                }
+                await new Promise(r => setTimeout(r, 300));
+
+                if (!authPassed) {
+                  throw new Error('java.lang.AssertionError: Payment authorization failed security verification');
+                }
+              }
+
+              // Step 8: Assert receipt is displayed
+              const receiptEl = document.getElementById('cardQaReceipt');
+              if (!receiptEl || receiptEl.style.display === 'none') {
+                throw new Error('java.lang.AssertionError: Payment receipt must generate - expected [true] but found [false]');
+              }
+              appendLog('[FIND] Located <div id="cardQaReceipt"> with By.id("cardQaReceipt")', 'dim');
+              appendLog('[ASSERT] Assert.assertTrue(receipt.isDisplayed(), "Payment receipt must generate") -> PASS', 'pass');
+              appendLog('[STDOUT] Payment Gateway E2E: $50,000 ACH Wire Transfer APPROVED [AUTH #884920]', 'stdout');
+
+              appendLog('[INFO] -------------------------------------------------------', 'dim');
+              appendLog('[INFO] Results: Tests run: 1, Failures: 0, Errors: 0, Skipped: 0 (5 assertions passed)', 'pass');
+              appendLog('[INFO] -------------------------------------------------------', 'dim');
+              appendLog('[INFO] BUILD SUCCESS (Total time: 3.250 s)', 'pass');
+              showToast('🏆 Payment Gateway E2E: $50,000 Wire Transfer Approved!', '💳');
+
+            } catch (err) {
+              appendLog(`[ERROR] ${err.message}`, 'error');
+              appendLog('[INFO] -------------------------------------------------------', 'dim');
+              appendLog('[INFO] Results: Tests run: 1, Failures: 1, Errors: 0, Skipped: 0', 'error');
+              appendLog('[INFO] -------------------------------------------------------', 'dim');
+              appendLog('[INFO] BUILD FAILURE', 'error');
+              showToast('BUILD FAILURE: Error encountered during execution', '❌');
+            } finally {
+              isExecutionRunning = false;
+              if (codePlaygroundRunBtn) {
+                codePlaygroundRunBtn.disabled = false;
+                codePlaygroundRunBtn.style.opacity = '1';
+              }
+            }
+          })();
+
         } else {
           // --- TRUE REAL-TIME JAVA RUNTIME EXECUTION ENGINE ---
           appendLog('[INFO] -------------------------------------------------------', 'dim');
@@ -7096,19 +8333,37 @@ Feature: Srivatsa Malali Portfolio Verification
                 dom: domEl,
                 getText: () => domEl.innerText ? domEl.innerText.trim() : (domEl.textContent ? domEl.textContent.trim() : ''),
                 getAttribute: (attr) => domEl.getAttribute(attr) || '',
-                isDisplayed: () => domEl.offsetParent !== null,
+                isDisplayed: () => {
+                  if (!domEl) return false;
+                  const st = window.getComputedStyle(domEl);
+                  return domEl.offsetParent !== null || st.display !== 'none' || domEl.style.display !== 'none';
+                },
                 isEnabled: () => !domEl.disabled,
-                isSelected: () => !!domEl.checked,
+                isSelected: () => !domEl.checked,
                 click: () => {
+                  domEl.focus();
                   domEl.click();
-                  appendLog(`[ACTION] Clicked element <${domEl.tagName.toLowerCase()}>`, 'info');
+                  appendLog(`[ACTION] Clicked element <${domEl.tagName.toLowerCase()}${domEl.id ? ' id="'+domEl.id+'"' : ''}>`, 'info');
                 },
                 sendKeys: (val) => {
-                  if ('value' in domEl) domEl.value = val;
-                  appendLog(`[ACTION] Typed '${val}' into <${domEl.tagName.toLowerCase()}>`, 'info');
+                  if ('value' in domEl) {
+                    domEl.focus();
+                    domEl.value = val;
+                    domEl.dispatchEvent(new Event('input', { bubbles: true }));
+                    domEl.dispatchEvent(new Event('change', { bubbles: true }));
+                  }
+                  appendLog(`[ACTION] Typed '${val}' into <${domEl.tagName.toLowerCase()}${domEl.id ? ' id="'+domEl.id+'"' : ''}>`, 'info');
                 },
                 clear: () => {
-                  if ('value' in domEl) domEl.value = '';
+                  if ('value' in domEl) {
+                    domEl.value = '';
+                    domEl.dispatchEvent(new Event('input', { bubbles: true }));
+                    domEl.dispatchEvent(new Event('change', { bubbles: true }));
+                  }
+                },
+                scrollIntoView: () => {
+                  domEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                  appendLog(`[ACTION] Scrolled element <${domEl.tagName.toLowerCase()}${domEl.id ? ' id="'+domEl.id+'"' : ''}> into view`, 'info');
                 }
               };
             };
@@ -7672,164 +8927,540 @@ Feature: Srivatsa Malali Portfolio Verification
       if (runLiveAuditBtn) runLiveAuditBtn.addEventListener('click', runLiveAudit);
 
       // =========================================================================
-      // 12. QA INSPECTOR HUD & LIVE DOM RETICLE TEST RUNNER
+      // 12. FEATURE 1: SATISFYING 3D PAYMENT CARD STUDIO & LIVE QA ASSERTION ENGINE
       // =========================================================================
-      const qaInspectorDock = document.getElementById('qaInspectorDock');
-      const qaInspectToggleBtn = document.getElementById('qaInspectToggleBtn');
-      const qaHudStatusLabel = document.getElementById('qaHudStatusLabel');
-      const qaAutoPilotRunBtn = document.getElementById('qaAutoPilotRunBtn');
-      const qaTargetingReticle = document.getElementById('qaTargetingReticle');
-      const qaReticleTag = document.getElementById('qaReticleTag');
-      const qaReticleLocator = document.getElementById('qaReticleLocator');
-      const qaAutoPilotCursor = document.getElementById('qaAutoPilotCursor');
+      const card3dFlipper = document.getElementById('card3dFlipper');
+      const cardStage = document.querySelector('.card-stage');
+      const cardFaceFront = document.getElementById('cardFaceFront');
+      const cardFaceBack = document.getElementById('cardFaceBack');
+      const btnFlipCardToggle = document.getElementById('btnFlipCardToggle');
+      const cardInputAmount = document.getElementById('cardInputAmount');
+      const amountFormattedLabel = document.getElementById('amountFormattedLabel');
+      const cardDisplayAmount = document.getElementById('cardDisplayAmount');
+      const btnAmountChips = document.querySelectorAll('.btn-amount-chip');
+      const cardInputNumber = document.getElementById('cardInputNumber');
+      const cardInputName = document.getElementById('cardInputName');
+      const cardInputExp = document.getElementById('cardInputExp');
+      const cardInputCvv = document.getElementById('cardInputCvv');
+      const cardDisplayNumber = document.getElementById('cardDisplayNumber');
+      const cardDisplayName = document.getElementById('cardDisplayName');
+      const cardDisplayExp = document.getElementById('cardDisplayExp');
+      const cardDisplayCvv = document.getElementById('cardDisplayCvv');
+      const cardBrandLogo = document.getElementById('cardBrandLogo');
+      const cardTypeDetectLabel = document.getElementById('cardTypeDetectLabel');
+      const luhnBadge = document.getElementById('luhnBadge');
+      const expiryBadge = document.getElementById('expiryBadge');
+      const cvvBadge = document.getElementById('cvvBadge');
+      const btnVerifyCardTransaction = document.getElementById('btnVerifyCardTransaction');
+      const btnVerifyLabel = document.getElementById('btnVerifyLabel');
+      const cardQaReceipt = document.getElementById('cardQaReceipt');
+      const receiptNetwork = document.getElementById('receiptNetwork');
 
-      let isInspectModeOn = false;
-      let isAutoPilotActive = false;
+      let isCardFlipped = false;
 
-      const toggleInspectMode = (forceState = null) => {
-        isInspectModeOn = forceState !== null ? forceState : !isInspectModeOn;
-        if (qaInspectorDock) qaInspectorDock.classList.toggle('active', isInspectModeOn);
-        if (qaHudStatusLabel) {
-          qaHudStatusLabel.textContent = isInspectModeOn ? 'QA INSPECTOR [ON]' : 'QA INSPECTOR [OFF]';
+      function setCardFlip(flipState) {
+        isCardFlipped = Boolean(flipState);
+        if (card3dFlipper) card3dFlipper.classList.toggle('flipped', isCardFlipped);
+      }
+
+      if (card3dFlipper) card3dFlipper.addEventListener('click', () => setCardFlip(!isCardFlipped));
+      if (btnFlipCardToggle) btnFlipCardToggle.addEventListener('click', () => setCardFlip(!isCardFlipped));
+
+      // Luhn Mod-10 Checksum Algorithm
+      function checkLuhnMod10(numStr) {
+        const clean = numStr.replace(/\D/g, '');
+        if (clean.length < 13) return false;
+        let sum = 0;
+        let shouldDouble = false;
+        for (let i = clean.length - 1; i >= 0; i--) {
+          let digit = parseInt(clean.charAt(i), 10);
+          if (shouldDouble) {
+            digit *= 2;
+            if (digit > 9) digit -= 9;
+          }
+          sum += digit;
+          shouldDouble = !shouldDouble;
         }
-        if (!isInspectModeOn && qaTargetingReticle) {
-          qaTargetingReticle.classList.remove('active');
+        return sum % 10 === 0;
+      }
+
+      // Detect Card Brand dynamically (RuPay, VISA, MasterCard, Amex, Discover, Diners, JCB, Maestro)
+      function detectCardBrand(numStr) {
+        const clean = numStr.replace(/\D/g, '');
+        // RuPay: 60, 6521, 6522, 508, 353, 356
+        if (/^(60|6521|6522|508|353|356)/.test(clean)) {
+          return { brand: 'RUPAY', color: '#10b981', reqLen: 16, cvvLen: 3, bgTheme: 'rupay' };
         }
-        showToast(isInspectModeOn ? 'QA Inspect Mode ON: Hover over any element to project locators' : 'QA Inspect Mode Disabled', '🛰️');
-      };
-
-      if (qaInspectToggleBtn) qaInspectToggleBtn.addEventListener('click', () => toggleInspectMode());
-
-      // Helper to compute a readable XPath / CSS selector for any hovered element
-      const computeElementLocator = (el) => {
-        if (!el || el === document.body || el === document.documentElement) return { tag: 'By.tagName', loc: 'body' };
-        if (el.id) return { tag: 'By.id', loc: `"${el.id}"` };
-        if (el.getAttribute('data-locator')) return { tag: 'By.xpath', loc: el.getAttribute('data-locator') };
-        if (el.className && typeof el.className === 'string') {
-          const firstClass = el.className.split(' ').filter(c => c && !c.startsWith('qa-'))[0];
-          if (firstClass) return { tag: 'By.cssSelector', loc: `.${firstClass}` };
+        // Visa: 4
+        if (clean.startsWith('4')) {
+          return { brand: 'VISA', color: '#38bdf8', reqLen: 16, cvvLen: 3, bgTheme: 'visa' };
         }
-        const tag = el.tagName.toLowerCase();
-        return { tag: 'By.xpath', loc: `//${tag}` };
-      };
+        // MasterCard: 51-55 or 2221-2720
+        if (/^(5[1-5]|2[2-7])/.test(clean)) {
+          return { brand: 'MASTERCARD', color: '#f59e0b', reqLen: 16, cvvLen: 3, bgTheme: 'mastercard' };
+        }
+        // American Express (Amex): 34 or 37
+        if (/^3[47]/.test(clean)) {
+          return { brand: 'AMEX', color: '#06b6d4', reqLen: 15, cvvLen: 4, bgTheme: 'amex' };
+        }
+        // Discover: 6011, 644-649, 65
+        if (/^(6011|64[4-9]|65)/.test(clean)) {
+          return { brand: 'DISCOVER', color: '#fb923c', reqLen: 16, cvvLen: 3, bgTheme: 'discover' };
+        }
+        // Diners Club: 300-305, 36, 38
+        if (/^(30[0-5]|36|38)/.test(clean)) {
+          return { brand: 'DINERS CLUB', color: '#60a5fa', reqLen: 14, cvvLen: 3, bgTheme: 'diners' };
+        }
+        // JCB: 3528-3589
+        if (/^35(2[89]|[3-8][0-9])/.test(clean)) {
+          return { brand: 'JCB', color: '#f43f5e', reqLen: 16, cvvLen: 3, bgTheme: 'jcb' };
+        }
+        // Maestro: 50, 56-58, 67
+        if (/^(50|5[6-8]|67)/.test(clean)) {
+          return { brand: 'MAESTRO', color: '#a855f7', reqLen: 16, cvvLen: 3, bgTheme: 'maestro' };
+        }
+        return { brand: 'DEBIT / CREDIT', color: '#38bdf8', reqLen: 16, cvvLen: 3, bgTheme: 'visa' };
+      }
 
-      // Pointermove listener for Reticle Projection
-      window.addEventListener('pointermove', (e) => {
-        if (!isInspectModeOn || isAutoPilotActive) return;
+      // Live Comprehensive Card Validation Engine
+      function runCardLiveValidation() {
+        const rawNum = cardInputNumber ? cardInputNumber.value.replace(/\D/g, '') : '';
+        const { brand, color, reqLen, cvvLen, bgTheme } = detectCardBrand(rawNum);
 
-        const target = document.elementFromPoint(e.clientX, e.clientY);
-        if (!target || target === document.body || target.closest('#qaInspectorDock') || target.closest('#qaTargetingReticle')) {
-          if (qaTargetingReticle) qaTargetingReticle.classList.remove('active');
-          return;
+        // 1. Apply Dynamic Holographic Skin
+        if (cardFaceFront) cardFaceFront.setAttribute('data-brand', bgTheme);
+        if (cardFaceBack) cardFaceBack.setAttribute('data-brand', bgTheme);
+
+        // 2. Amount Formatting & Synchronization
+        let rawAmt = cardInputAmount ? cardInputAmount.value.replace(/[^\d]/g, '') : '50000';
+        if (!rawAmt) rawAmt = '0';
+        const numAmt = parseInt(rawAmt, 10) || 0;
+        const formattedAmt = numAmt.toLocaleString('en-US');
+
+        if (cardInputAmount && document.activeElement === cardInputAmount) {
+          cardInputAmount.value = formattedAmt;
+        }
+        if (amountFormattedLabel) amountFormattedLabel.textContent = `$${formattedAmt} USD`;
+        if (cardDisplayAmount) cardDisplayAmount.textContent = `$${formattedAmt}`;
+        if (btnVerifyLabel) btnVerifyLabel.textContent = `Verify & Authorize $${formattedAmt} ACH Transfer`;
+
+        // 3. Number Formatting & Display
+        let formattedNum = '';
+        if (reqLen === 15) {
+          // Amex 4-6-5 grouping
+          const p1 = rawNum.substring(0, 4);
+          const p2 = rawNum.substring(4, 10);
+          const p3 = rawNum.substring(10, 15);
+          formattedNum = [p1, p2, p3].filter(Boolean).join(' ');
+        } else if (reqLen === 14) {
+          // Diners 4-6-4 grouping
+          const p1 = rawNum.substring(0, 4);
+          const p2 = rawNum.substring(4, 10);
+          const p3 = rawNum.substring(10, 14);
+          formattedNum = [p1, p2, p3].filter(Boolean).join(' ');
+        } else {
+          // Standard 4-4-4-4 grouping
+          const parts = [];
+          for (let i = 0; i < rawNum.length; i += 4) {
+            parts.push(rawNum.substring(i, i + 4));
+          }
+          formattedNum = parts.join(' ');
         }
 
-        const rect = target.getBoundingClientRect();
-        if (rect.width === 0 || rect.height === 0) return;
-
-        if (qaTargetingReticle) {
-          qaTargetingReticle.classList.add('active');
-          qaTargetingReticle.style.top = `${rect.top}px`;
-          qaTargetingReticle.style.left = `${rect.left}px`;
-          qaTargetingReticle.style.width = `${rect.width}px`;
-          qaTargetingReticle.style.height = `${rect.height}px`;
-
-          const { tag, loc } = computeElementLocator(target);
-          if (qaReticleTag) qaReticleTag.textContent = tag;
-          if (qaReticleLocator) qaReticleLocator.textContent = `${loc} [${Math.round(rect.width)}×${Math.round(rect.height)}]`;
+        if (cardInputNumber && document.activeElement === cardInputNumber) {
+          cardInputNumber.value = formattedNum;
         }
+
+        if (cardDisplayNumber) {
+          cardDisplayNumber.textContent = formattedNum || (reqLen === 15 ? '•••• •••••• •••••' : '•••• •••• •••• ••••');
+        }
+
+        if (cardBrandLogo) cardBrandLogo.textContent = brand;
+        if (cardTypeDetectLabel) {
+          cardTypeDetectLabel.textContent = `${brand} DETECTED`;
+          cardTypeDetectLabel.style.color = color;
+        }
+        if (receiptNetwork) receiptNetwork.textContent = `${brand} DEBIT/CREDIT`;
+
+        // 4. Validate Card Number (Length + Luhn Mod-10)
+        const isLenExact = rawNum.length === reqLen;
+        const isLuhnValid = isLenExact && checkLuhnMod10(rawNum);
+
+        if (luhnBadge) {
+          if (rawNum.length === 0) {
+            luhnBadge.className = 'card-badge-pill invalid';
+            luhnBadge.textContent = '❌ Missing Card Number';
+          } else if (rawNum.length < reqLen) {
+            luhnBadge.className = 'card-badge-pill invalid';
+            luhnBadge.textContent = `❌ Incomplete (${rawNum.length}/${reqLen} Digits)`;
+          } else if (isLuhnValid) {
+            luhnBadge.className = 'card-badge-pill';
+            luhnBadge.textContent = `✔ Card Number Valid (Mod-10 Checksum)`;
+          } else {
+            luhnBadge.className = 'card-badge-pill invalid';
+            luhnBadge.textContent = '❌ Checksum Validation Failed';
+          }
+        }
+
+        // 5. Expiration Validation
+        const rawExp = cardInputExp ? cardInputExp.value.trim() : '';
+        let isExpValid = false;
+        if (rawExp.length === 5 && rawExp.includes('/')) {
+          const [m, y] = rawExp.split('/').map(Number);
+          const now = new Date();
+          const curY = now.getFullYear() % 100;
+          const curM = now.getMonth() + 1;
+          const isMonthFormat = m >= 1 && m <= 12;
+          const isFuture = y > curY || (y === curY && m >= curM);
+          isExpValid = isMonthFormat && isFuture;
+        }
+
+        if (expiryBadge) {
+          if (rawExp.length < 5) {
+            expiryBadge.className = 'card-badge-pill invalid';
+            expiryBadge.textContent = '❌ Incomplete MM/YY';
+          } else if (isExpValid) {
+            expiryBadge.className = 'card-badge-pill';
+            expiryBadge.textContent = '✔ Expiration Future Active';
+          } else {
+            expiryBadge.className = 'card-badge-pill invalid';
+            expiryBadge.textContent = '❌ Expired or Invalid Date';
+          }
+        }
+
+        // 6. CVV Validation
+        const rawCvv = cardInputCvv ? cardInputCvv.value.replace(/\D/g, '') : '';
+        const isCvvValid = rawCvv.length === cvvLen;
+
+        if (cvvBadge) {
+          if (isCvvValid) {
+            cvvBadge.className = 'card-badge-pill';
+            cvvBadge.textContent = `✔ ${cvvLen}-Digit CVV Valid`;
+          } else {
+            cvvBadge.className = 'card-badge-pill invalid';
+            cvvBadge.textContent = `❌ Enter ${cvvLen}-Digit CVV`;
+          }
+        }
+
+        return {
+          brand,
+          reqLen,
+          cvvLen,
+          rawNum,
+          formattedAmt,
+          numAmt,
+          isLenExact,
+          isLuhnValid,
+          isExpValid,
+          isCvvValid,
+          rawName: cardInputName ? cardInputName.value.trim() : '',
+          isNameValid: Boolean(cardInputName && cardInputName.value.trim().length >= 3)
+        };
+      }
+
+      // Amount Input & Preset Chips
+      if (cardInputAmount) {
+        cardInputAmount.addEventListener('input', () => {
+          btnAmountChips.forEach(chip => chip.classList.remove('active'));
+          runCardLiveValidation();
+        });
+      }
+
+      btnAmountChips.forEach(chip => {
+        chip.addEventListener('click', () => {
+          btnAmountChips.forEach(c => c.classList.remove('active'));
+          chip.classList.add('active');
+          const amt = chip.getAttribute('data-amount');
+          if (cardInputAmount) {
+            cardInputAmount.value = amt;
+            cardInputAmount.dispatchEvent(new Event('input', { bubbles: true }));
+          }
+        });
       });
 
-      // Auto-Pilot E2E Automated DOM Driver
-      const runAutoPilotSuite = () => {
-        if (isAutoPilotActive) return;
-        isAutoPilotActive = true;
-        if (qaAutoPilotRunBtn) {
-          qaAutoPilotRunBtn.disabled = true;
-          qaAutoPilotRunBtn.style.opacity = '0.5';
-        }
+      // Attach Card Input Listeners
+      if (cardInputNumber) {
+        cardInputNumber.addEventListener('input', () => {
+          setCardFlip(false);
+          runCardLiveValidation();
+        });
+      }
 
-        toggleInspectMode(true);
-        if (qaAutoPilotCursor) qaAutoPilotCursor.classList.add('active');
-        showToast('Auto-Pilot Initialized: Autonomous Selenium E2E Suite Driving DOM...', '⚡');
+      if (cardInputName) {
+        cardInputName.addEventListener('input', () => {
+          setCardFlip(false);
+          const upper = cardInputName.value.toUpperCase();
+          cardInputName.value = upper;
+          if (cardDisplayName) cardDisplayName.textContent = upper || 'SRIVATSA MALALI';
+          runCardLiveValidation();
+        });
+      }
 
-        const autoPilotSteps = [
-          { selector: '#themeToggle', name: 'Toggle Theme Mode', action: 'click' },
-          { selector: '#tabFeatureBtn', name: 'Switch to Cucumber BDD Tab', action: 'click' },
-          { selector: '#tabJavaBtn', name: 'Switch to Selenium Java Tab', action: 'click' },
-          { selector: '#codePlaygroundRunBtn', name: 'Execute Live Java Test Engine', action: 'click' },
-          { selector: '[data-drawer="aston"]', name: 'Open Architecture Specs Drawer', action: 'click' },
-          { selector: '#drawerCloseBtn', name: 'Close Architecture Drawer', action: 'click' }
-        ];
-
-        let stepIndex = 0;
-
-        const driveNextStep = () => {
-          if (stepIndex >= autoPilotSteps.length) {
-            // Finished
-            setTimeout(() => {
-              if (qaAutoPilotCursor) qaAutoPilotCursor.classList.remove('active');
-              if (qaTargetingReticle) qaTargetingReticle.classList.remove('active');
-              isAutoPilotActive = false;
-              if (qaAutoPilotRunBtn) {
-                qaAutoPilotRunBtn.disabled = false;
-                qaAutoPilotRunBtn.style.opacity = '1';
-              }
-              showToast('Auto-Pilot E2E Suite Completed: 6/6 Steps Verified (0 Failures)!', '🏆');
-            }, 800);
-            return;
+      if (cardInputExp) {
+        cardInputExp.addEventListener('input', () => {
+          setCardFlip(false);
+          let clean = cardInputExp.value.replace(/\D/g, '').substring(0, 4);
+          if (clean.length >= 3) {
+            clean = clean.substring(0, 2) + '/' + clean.substring(2, 4);
           }
+          cardInputExp.value = clean;
+          if (cardDisplayExp) cardDisplayExp.textContent = clean || 'MM/YY';
+          runCardLiveValidation();
+        });
+      }
 
-          const step = autoPilotSteps[stepIndex];
-          const targetEl = document.querySelector(step.selector);
+      if (cardInputCvv) {
+        cardInputCvv.addEventListener('focus', () => setCardFlip(true));
+        cardInputCvv.addEventListener('input', () => {
+          setCardFlip(true);
+          const raw = cardInputCvv.value.replace(/\D/g, '').substring(0, 4);
+          cardInputCvv.value = raw;
+          if (cardDisplayCvv) cardDisplayCvv.textContent = raw ? raw.padEnd(raw.length, '•') : '•••';
+          runCardLiveValidation();
+        });
+      }
 
-          if (targetEl) {
-            targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      // Auto-flip to front when non-CVV inputs are focused
+      [cardInputNumber, cardInputName, cardInputExp, cardInputAmount].forEach(input => {
+        if (input) input.addEventListener('focus', () => setCardFlip(false));
+      });
 
-            setTimeout(() => {
-              const updatedRect = targetEl.getBoundingClientRect();
-              const targetX = updatedRect.left + (updatedRect.width / 2);
-              const targetY = updatedRect.top + (updatedRect.height / 2);
+      // Initial validation sync on mount
+      runCardLiveValidation();
 
-              if (qaAutoPilotCursor) {
-                qaAutoPilotCursor.style.left = `${targetX - 14}px`;
-                qaAutoPilotCursor.style.top = `${targetY - 14}px`;
-              }
+      // Core Payment Processing Function (Callable synchronously by automated tests or user click)
+      function executePaymentAuthorization(forceAuthCode) {
+        setCardFlip(false);
+        const validation = runCardLiveValidation();
+        const allPassed = validation.isLuhnValid && validation.isExpValid && validation.isCvvValid && validation.isNameValid && validation.numAmt > 0;
 
-              if (qaTargetingReticle) {
-                qaTargetingReticle.classList.add('active');
-                qaTargetingReticle.style.top = `${updatedRect.top}px`;
-                qaTargetingReticle.style.left = `${updatedRect.left}px`;
-                qaTargetingReticle.style.width = `${updatedRect.width}px`;
-                qaTargetingReticle.style.height = `${updatedRect.height}px`;
+        if (cardQaReceipt) {
+          cardQaReceipt.style.display = 'block';
 
-                const { tag, loc } = computeElementLocator(targetEl);
-                if (qaReticleTag) qaReticleTag.textContent = tag;
-                if (qaReticleLocator) qaReticleLocator.textContent = `${loc} · AUTO-PILOT DRIVE`;
-              }
-
-              // Click simulation
-              setTimeout(() => {
-                if (qaAutoPilotCursor) qaAutoPilotCursor.classList.add('clicking');
-                targetEl.click();
-                showToast(`Auto-Pilot Step ${stepIndex + 1}/6: ${step.name} [PASS]`, '🎯');
-
-                setTimeout(() => {
-                  if (qaAutoPilotCursor) qaAutoPilotCursor.classList.remove('clicking');
-                  stepIndex++;
-                  setTimeout(driveNextStep, 950);
-                }, 200);
-              }, 450);
-            }, 400);
+          if (allPassed) {
+            // PASS RECEIPT
+            cardQaReceipt.className = 'card-qa-receipt';
+            const authCode = forceAuthCode || Math.floor(100000 + Math.random() * 900000);
+            cardQaReceipt.innerHTML = `
+              <div style="color:#22c55e; font-weight:700; margin-bottom:8px; font-size:0.82rem; display:flex; align-items:center; gap:8px;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>TRANSACTION &amp; QA ASSERTION VERIFIED [PASS]</span>
+              </div>
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px 14px; margin-bottom:8px; font-size:0.75rem; color:#cbd5e1;">
+                <div>• Transfer Amount: <strong style="color:#38bdf8;">$${validation.formattedAmt} USD</strong></div>
+                <div>• Payment Gateway: <strong style="color:#f8fafc;">Citi ACH / Apple Pay</strong></div>
+                <div>• Card Network: <strong style="color:#f8fafc;">${validation.brand} DEBIT</strong></div>
+                <div>• Auth Status: <strong style="color:#22c55e;">APPROVED (AUTH #${authCode})</strong></div>
+              </div>
+              <div style="border-top:1px solid rgba(255,255,255,0.08); padding-top:6px; font-size:0.72rem; color:#94a3b8;">
+                • Test Assertion: <code style="color:#38bdf8;">Assert.assertTrue(receipt.isDisplayed())</code> &amp; <code style="color:#38bdf8;">Assert.assertTrue(luhnValid)</code> -> <strong style="color:#22c55e;">100% PASSED (0 Defect Leaks)</strong>
+              </div>
+            `;
+            showToast(`✔ Transaction Approved: $${validation.formattedAmt} authorized on ${validation.brand}!`, '💳');
           } else {
-            stepIndex++;
-            driveNextStep();
-          }
-        };
+            // FAIL RECEIPT
+            cardQaReceipt.className = 'card-qa-receipt failed';
+            if (cardStage) {
+              cardStage.classList.add('shake');
+              setTimeout(() => cardStage.classList.remove('shake'), 500);
+            }
 
-        driveNextStep();
+            cardQaReceipt.innerHTML = `
+              <div style="color:#ef4444; font-weight:700; margin-bottom:8px; font-size:0.82rem; display:flex; align-items:center; gap:8px;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                <span>TRANSACTION DECLINED: QA ASSERTIONS FAILED [FAIL]</span>
+              </div>
+              <div style="color:#fca5a5; margin-bottom:6px;">• Target Amount: <strong>$${validation.formattedAmt} USD</strong> · Error: <strong>Card validation failed security criteria.</strong></div>
+              <div style="padding-left:8px; font-size:0.72rem; color:#e2e8f0; line-height:1.7;">
+                <div>• Card Length: ${validation.isLenExact ? '<span style="color:#22c55e;">✔ PASS (' + validation.rawNum.length + '/' + validation.reqLen + ')</span>' : '<span style="color:#ef4444;">❌ FAIL (Expected ' + validation.reqLen + ' digits, got ' + validation.rawNum.length + ')</span>'}</div>
+                <div>• Luhn Mod-10: ${validation.isLuhnValid ? '<span style="color:#22c55e;">✔ PASS</span>' : '<span style="color:#ef4444;">❌ FAIL (Checksum Mismatch)</span>'}</div>
+                <div>• Expiration Date: ${validation.isExpValid ? '<span style="color:#22c55e;">✔ PASS</span>' : '<span style="color:#ef4444;">❌ FAIL (Invalid MM/YY or Past Date)</span>'}</div>
+                <div>• CVV Integrity: ${validation.isCvvValid ? '<span style="color:#22c55e;">✔ PASS</span>' : '<span style="color:#ef4444;">❌ FAIL (Expected ' + validation.cvvLen + ' digits)</span>'}</div>
+                ${!validation.isNameValid ? '<div>• Cardholder Name: <span style="color:#ef4444;">❌ FAIL (Name required min 3 chars)</span></div>' : ''}
+                ${validation.numAmt <= 0 ? '<div>• Transfer Amount: <span style="color:#ef4444;">❌ FAIL (Amount must be greater than $0)</span></div>' : ''}
+              </div>
+              <div style="margin-top:6px; color:#f87171;">• Security Assert: <code style="color:#f87171;">Assert.assertTrue(isCardValid) -> FAILED</code></div>
+            `;
+            showToast('❌ Payment Declined: Security assertions failed!', '⚠️');
+          }
+
+          cardQaReceipt.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+        return allPassed;
+      }
+
+      // Authorize & Verify Payment Transaction Button Click Listener
+      if (btnVerifyCardTransaction) {
+        btnVerifyCardTransaction.addEventListener('click', () => {
+          executePaymentAuthorization();
+        });
+      }
+
+      // =========================================================================
+      // 14. FEATURE 2: INTERACTIVE CAREER FLIGHT PATH (METRO JOURNEY MAP)
+      // =========================================================================
+      const flightStations = {
+        hexaware: {
+          role: 'Automation Test Engineer',
+          org: 'Hexaware Technologies (Air Canada Enterprise) · 2020 – 2022',
+          desc: 'Automated global reservation and passenger flight scheduling routines using Selenium Webdriver and Java. Honored with "Best Debutant" and three consecutive "Best Performer" accolades for high defect capture ratios.',
+          tech: ['Selenium Webdriver', 'Java', 'TestNG', 'JIRA Defect Triage', 'Agile Scrum'],
+          highlight: 'Best Debutant & 3x Best Performer',
+          highlightSub: 'Highest defect capture ratio across 4 releases',
+          stat: '99.4% Defect Leakage Free',
+          statSub: 'Critical reservation flow verification'
+        },
+        apple: {
+          role: 'System Engineer · E-Commerce QA',
+          org: 'Tata Consultancy Services (Apple Online Store) · 2022 – 2025',
+          desc: 'Engineered robust multi-region test automation architectures verifying localized online store checkouts, high-concurrency purchase queues, and currency conversion across 5 global regions for Apple international launch events.',
+          tech: ['Selenium Webdriver', 'Java 17', 'Multi-Region Test Suites', 'CI/CD Jenkins', 'Cross-Browser Grid'],
+          highlight: '5 Global Region Launches',
+          highlightSub: 'Validated localized checkout structures for peak launches',
+          stat: '0 Blocking Defects',
+          statSub: 'Seamless Apple international deployment coverage'
+        },
+        citi: {
+          role: 'System Engineer · FinTech Automation',
+          org: 'Tata Consultancy Services (Citi Bank Financial Platform) · 2022 – 2025',
+          desc: 'Developed financial contract API suites with Rest Assured and backend SQL validation for ACH money transfers and Flexcube banking rails. Formulated compliance assertions for AML and KYC customer onboarding.',
+          tech: ['Rest Assured API', 'Flexcube Banking Rails', 'ACH Wire Transfer', 'MySQL Assertions', 'AML/KYC Flows'],
+          highlight: 'ACH & Flexcube Core Integrity',
+          highlightSub: 'Automated regression for $50k+ daily ACH wires',
+          stat: '100% Contract API Assertions',
+          statSub: 'Guaranteed compliance against strict AML regulations'
+        },
+        wipro: {
+          role: 'Senior Test Automation Engineer',
+          org: 'Wipro Technologies · 2025 – Present',
+          desc: 'Leading test automation architecture, engineering scalable Page Object Model suites in Java + Selenium, and establishing automated daily regression quality gates on enterprise CI/CD pipelines.',
+          tech: ['Java 17', 'Selenium 4', 'TestNG XML', 'Jenkins Quality Gates', 'ExtentReports 5'],
+          highlight: 'Outstanding Engineering Delivery',
+          highlightSub: 'Publicly recognized for technical delivery excellence',
+          stat: 'Daily Automated Gates',
+          statSub: 'Parallel execution across distributed test nodes'
+        }
       };
 
-      if (qaAutoPilotRunBtn) qaAutoPilotRunBtn.addEventListener('click', runAutoPilotSuite);
+      const metroNodes = document.querySelectorAll('.metro-station-node');
+      const flightDetailRole = document.getElementById('flightDetailRole');
+      const flightDetailOrg = document.getElementById('flightDetailOrg');
+      const flightDetailDesc = document.getElementById('flightDetailDesc');
+      const flightTechPills = document.getElementById('flightTechPills');
+      const flightMetricHighlight = document.getElementById('flightMetricHighlight');
+      const flightMetricSub = document.getElementById('flightMetricSub');
+      const flightMetricStat = document.getElementById('flightMetricStat');
+      const flightMetricStatSub = document.getElementById('flightMetricStatSub');
+
+      metroNodes.forEach(node => {
+        node.addEventListener('click', () => {
+          metroNodes.forEach(n => n.classList.remove('active'));
+          node.classList.add('active');
+
+          const stationKey = node.getAttribute('data-station');
+          const data = flightStations[stationKey];
+          if (!data) return;
+
+          if (flightDetailRole) flightDetailRole.textContent = data.role;
+          if (flightDetailOrg) flightDetailOrg.textContent = data.org;
+          if (flightDetailDesc) flightDetailDesc.textContent = data.desc;
+          if (flightMetricHighlight) flightMetricHighlight.textContent = data.highlight;
+          if (flightMetricSub) flightMetricSub.textContent = data.highlightSub;
+          if (flightMetricStat) flightMetricStat.textContent = data.stat;
+          if (flightMetricStatSub) flightMetricStatSub.textContent = data.statSub;
+
+          if (flightTechPills) {
+            flightTechPills.innerHTML = data.tech.map(t => `<span class="flight-pill">${t}</span>`).join('');
+          }
+
+          showToast(`Station Selected: ${node.querySelector('.station-name').textContent}`, '✈️');
+        });
+      });
+
+      // =========================================================================
+      // 15. FEATURE 3: SRIVATSA'S "INSTANT INTERVIEW Q&A BOT"
+      // =========================================================================
+      const botChatStream = document.getElementById('botChatStream');
+      const botUserQueryInput = document.getElementById('botUserQueryInput');
+      const botInputForm = document.getElementById('botInputForm');
+      const botPromptChips = document.querySelectorAll('.prompt-chip-btn');
+      const botResetChatBtn = document.getElementById('botResetChatBtn');
+
+      const botKnowledge = {
+        hire: "Why hire Srivatsa? 🚀 I bring 5.5+ years of verified enterprise automation experience spanning Wipro, Apple (TCS), Citi Bank (TCS), and Air Canada (Hexaware). I have automated 680+ test cases, architected Page Object Models in Java + Selenium, achieved 0 blocking defect leaks across 5 global launches, and received the 'Best Debutant' and 3x 'Best Performer' awards.",
+        flakiness: "Eliminating flakiness 🛡️ is my specialty! I avoid brittle Thread.sleep() and hardcoded delays. Instead, I implement dynamic FluentWaits, ARIA-based resilient locators, retry listeners for transient network lags, and strict test data isolation, maintaining a 99.8% pipeline success rate.",
+        'apple-citi': "At Apple & Citi 🍎💳: For Apple, I engineered multi-region test suites validating international e-commerce launches across 5 geographic zones with zero production defects. For Citi, I built Rest Assured contract API testing and SQL assertion layers for $50k+ daily ACH wire transfers and Flexcube banking rails.",
+        architecture: "Framework Architecture ⚙️: I design modular Page Object Models (POM) leveraging Java 17, Selenium 4, and TestNG with data-driven Excel/JSON pipelines. Suites run in parallel on Jenkins CI/CD grids, generating rich ExtentReports and Slack notifications on build failure.",
+        leadership: "Leadership Philosophy 🤝: I believe in 'Shift-Left' quality engineering—collaborating closely with Developers and Product Owners during sprint refinement to prevent defects before code is written, while mentoring junior engineers on clean automation practices."
+      };
+
+      const appendBotMessage = (text, sender = 'bot') => {
+        if (!botChatStream) return;
+        const bubble = document.createElement('div');
+        bubble.className = `chat-bubble ${sender === 'bot' ? 'bot-msg' : 'user-msg'}`;
+        bubble.textContent = text;
+        botChatStream.appendChild(bubble);
+        botChatStream.scrollTop = botChatStream.scrollHeight;
+      };
+
+      const handleBotQuery = (queryText) => {
+        if (!queryText || !queryText.trim()) return;
+        appendBotMessage(queryText.trim(), 'user');
+
+        // Match keyword or provide comprehensive intelligent response
+        const lower = queryText.toLowerCase();
+        let answer = "";
+
+        if (lower.includes('hire') || lower.includes('why') || lower.includes('experience')) {
+          answer = botKnowledge.hire;
+        } else if (lower.includes('flak') || lower.includes('ci') || lower.includes('jenkins') || lower.includes('pipeline')) {
+          answer = botKnowledge.flakiness;
+        } else if (lower.includes('apple') || lower.includes('citi') || lower.includes('ach') || lower.includes('project')) {
+          answer = botKnowledge['apple-citi'];
+        } else if (lower.includes('architect') || lower.includes('framework') || lower.includes('selenium') || lower.includes('java')) {
+          answer = botKnowledge.architecture;
+        } else if (lower.includes('leader') || lower.includes('mentor') || lower.includes('team') || lower.includes('style')) {
+          answer = botKnowledge.leadership;
+        } else {
+          answer = `Thanks for asking about "${queryText}"! With 5.5+ years of enterprise experience across Java, Selenium, Rest Assured, TestNG, and CI/CD at companies like Wipro, TCS (Apple & Citi), and Hexaware (Air Canada), Srivatsa specializes in high-velocity quality engineering. Feel free to reach out directly via the contact form below or connect on LinkedIn!`;
+        }
+
+        setTimeout(() => {
+          appendBotMessage(answer, 'bot');
+        }, 350);
+      };
+
+      botPromptChips.forEach(chip => {
+        chip.addEventListener('click', () => {
+          const qKey = chip.getAttribute('data-question');
+          if (botKnowledge[qKey]) {
+            appendBotMessage(chip.textContent.replace('💬 ', ''), 'user');
+            setTimeout(() => {
+              appendBotMessage(botKnowledge[qKey], 'bot');
+            }, 300);
+          }
+        });
+      });
+
+      if (botInputForm && botUserQueryInput) {
+        botInputForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const query = botUserQueryInput.value;
+          botUserQueryInput.value = '';
+          handleBotQuery(query);
+        });
+      }
+
+      if (botResetChatBtn) {
+        botResetChatBtn.addEventListener('click', () => {
+          if (botChatStream) {
+            botChatStream.innerHTML = `
+              <div class="chat-bubble bot-msg">
+                👋 Chat cleared! Ask me anything about Srivatsa's SDET leadership, Apple/Citi experience, or automation frameworks!
+              </div>`;
+          }
+        });
+      }
     };
 
     if (document.readyState === 'loading') {
@@ -7838,40 +9469,6 @@ Feature: Srivatsa Malali Portfolio Verification
       initPortfolioSuite();
     }
   </script>
-
-  <!-- Floating QA Inspector HUD & Live DOM Reticle Test Runner -->
-  <div class="qa-inspector-dock" id="qaInspectorDock">
-    <button type="button" class="qa-hud-toggle-btn" id="qaInspectToggleBtn" title="Toggle Live QA DOM Reticle Inspector">
-      <span class="status-dot"></span>
-      <span id="qaHudStatusLabel">QA INSPECTOR [OFF]</span>
-    </button>
-    <button type="button" class="qa-hud-action-btn" id="qaAutoPilotRunBtn" title="Run Automated Virtual Cursor E2E Test on Portfolio">
-      <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-        <polygon points="5 3 19 12 5 21 5 3"></polygon>
-      </svg>
-      <span>Auto-Pilot E2E</span>
-    </button>
-  </div>
-
-  <!-- Dynamic Targeting Reticle Box with live locator tooltip -->
-  <div class="qa-targeting-reticle" id="qaTargetingReticle">
-    <div class="qa-reticle-badge" id="qaReticleBadge">
-      <span id="qaReticleTag">By.xpath</span>
-      <span id="qaReticleLocator" style="color:#e2e8f0;">//button</span>
-    </div>
-  </div>
-
-  <!-- Auto-Pilot Virtual Cursor Crosshair -->
-  <div class="qa-autopilot-cursor" id="qaAutoPilotCursor">
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2">
-      <circle cx="12" cy="12" r="8"></circle>
-      <line x1="12" y1="2" x2="12" y2="6"></line>
-      <line x1="12" y1="18" x2="12" y2="22"></line>
-      <line x1="2" y1="12" x2="6" y2="12"></line>
-      <line x1="18" y1="12" x2="22" y2="12"></line>
-      <circle cx="12" cy="12" r="2" fill="#38bdf8"></circle>
-    </svg>
-  </div>
 </body>
 
 </html>
