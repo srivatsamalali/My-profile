@@ -88,6 +88,52 @@
       --text-muted: #a1a1aa;
     }
 
+    /* Studio Accent Palette Variants */
+    [data-accent="cyan"] {
+      --accent: #0284c7;
+      --accent-glow: #38bdf8;
+      --accent-muted: rgba(56, 189, 248, 0.12);
+    }
+    [data-theme="dark"][data-accent="cyan"],
+    [data-theme="dark"]:not([data-accent]) {
+      --accent: #38bdf8;
+      --accent-glow: #0284c7;
+      --accent-muted: rgba(56, 189, 248, 0.14);
+    }
+
+    [data-accent="gold"] {
+      --accent: #d97706;
+      --accent-glow: #fbbf24;
+      --accent-muted: rgba(251, 191, 36, 0.12);
+    }
+    [data-theme="dark"][data-accent="gold"] {
+      --accent: #fbbf24;
+      --accent-glow: #d97706;
+      --accent-muted: rgba(251, 191, 36, 0.14);
+    }
+
+    [data-accent="emerald"] {
+      --accent: #059669;
+      --accent-glow: #34d399;
+      --accent-muted: rgba(52, 211, 153, 0.12);
+    }
+    [data-theme="dark"][data-accent="emerald"] {
+      --accent: #10b981;
+      --accent-glow: #059669;
+      --accent-muted: rgba(16, 185, 129, 0.14);
+    }
+
+    [data-accent="violet"] {
+      --accent: #7c3aed;
+      --accent-glow: #c084fc;
+      --accent-muted: rgba(192, 132, 252, 0.12);
+    }
+    [data-theme="dark"][data-accent="violet"] {
+      --accent: #a855f7;
+      --accent-glow: #7c3aed;
+      --accent-muted: rgba(168, 85, 247, 0.14);
+    }
+
     *,
     *::before,
     *::after {
@@ -847,6 +893,7 @@
         min-height: 320px;
         max-height: 320px;
       }
+
       .qa-terminal {
         padding: 16px 14px;
         height: 320px;
@@ -2648,6 +2695,297 @@
       gap: 6px;
     }
 
+    /* ==========================================================================
+       INTERACTIVE QA & FINTECH LABS HUB (HOMEPAGE LAUNCHER)
+       ========================================================================== */
+    .labs-launcher-hub {
+      margin-top: 36px;
+      padding: 28px 32px;
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.75) 0%, rgba(9, 14, 26, 0.9) 100%);
+      border-radius: 12px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+      position: relative;
+      overflow: hidden;
+    }
+
+    [data-theme="light"] .labs-launcher-hub {
+      background: linear-gradient(135deg, #f8fafc 0%, #edf2f7 100%);
+      border: 1px solid rgba(37, 99, 235, 0.2);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.06);
+    }
+
+    .labs-hub-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .labs-launcher-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+    }
+
+    .labs-launch-item {
+      background: rgba(13, 17, 23, 0.85);
+      border: 1px solid rgba(148, 163, 184, 0.15);
+      border-radius: 10px;
+      padding: 22px 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+      position: relative;
+    }
+
+    [data-theme="light"] .labs-launch-item {
+      background: #ffffff;
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    }
+
+    .labs-launch-item:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent);
+      box-shadow: 0 12px 30px rgba(56, 189, 248, 0.15);
+    }
+
+    .labs-item-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .labs-status-tag {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      text-transform: uppercase;
+    }
+
+    .labs-item-title {
+      font-size: 1.12rem;
+      font-weight: 700;
+      margin: 0 0 8px 0;
+      color: var(--color);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .labs-item-desc {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+      margin: 0 0 18px 0;
+    }
+
+    .labs-launch-btn {
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      color: var(--accent);
+      padding: 9px 16px;
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      font-weight: 700;
+      border-radius: 6px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      width: 100%;
+      transition: all 0.2s ease;
+    }
+
+    .labs-launch-btn:hover,
+    .labs-launch-item:hover .labs-launch-btn {
+      background: var(--accent);
+      color: #050b14;
+      border-color: var(--accent);
+      box-shadow: 0 0 16px rgba(56, 189, 248, 0.4);
+    }
+
+    /* ==========================================================================
+       INTERACTIVE QA & FINTECH LABS MODAL DIALOG
+       ========================================================================== */
+    .interactive-labs-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(5, 7, 15, 0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      z-index: 100004;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      opacity: 0;
+      transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      overscroll-behavior: contain;
+    }
+
+    .interactive-labs-modal-overlay.active {
+      display: flex;
+      opacity: 1;
+    }
+
+    .interactive-labs-modal-window {
+      max-width: 1200px;
+      width: 100%;
+      max-height: 92vh;
+      background: #0d0f17;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 14px;
+      box-shadow: 0 25px 80px rgba(0, 0, 0, 0.7), 0 0 40px rgba(56, 189, 248, 0.15);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      position: relative;
+    }
+
+    [data-theme="light"] .interactive-labs-modal-window {
+      background: #f8fafc;
+      border: 1px solid rgba(37, 99, 235, 0.3);
+      box-shadow: 0 25px 80px rgba(0, 0, 0, 0.25), 0 0 40px rgba(37, 99, 235, 0.12);
+    }
+
+    .interactive-labs-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 20px;
+      background: #111420;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    [data-theme="light"] .interactive-labs-header {
+      background: #ffffff;
+      border-bottom: 1px solid rgba(226, 232, 240, 0.9);
+    }
+
+    .interactive-labs-title-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .interactive-labs-tag {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: #38bdf8;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      text-transform: uppercase;
+    }
+
+    .interactive-labs-title {
+      font-size: 1.08rem;
+      font-weight: 700;
+      margin: 0;
+      color: var(--color);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .interactive-labs-nav-tabs {
+      display: inline-flex;
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      border-radius: 8px;
+      padding: 3px;
+      gap: 4px;
+    }
+
+    [data-theme="light"] .interactive-labs-nav-tabs {
+      background: #e2e8f0;
+      border-color: #cbd5e1;
+    }
+
+    .interactive-labs-tab-btn {
+      padding: 7px 14px;
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    [data-theme="light"] .interactive-labs-tab-btn {
+      color: #475569;
+    }
+
+    .interactive-labs-tab-btn:hover {
+      color: #f1f5f9;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    [data-theme="light"] .interactive-labs-tab-btn:hover {
+      color: #0f172a;
+      background: rgba(255, 255, 255, 0.6);
+    }
+
+    .interactive-labs-tab-btn.active {
+      background: var(--accent);
+      color: #050b14;
+      font-weight: 700;
+      box-shadow: 0 0 12px rgba(56, 189, 248, 0.35);
+    }
+
+    [data-theme="light"] .interactive-labs-tab-btn.active {
+      background: #2563eb;
+      color: #ffffff;
+      box-shadow: 0 0 12px rgba(37, 99, 235, 0.35);
+    }
+
+    .interactive-labs-ctrls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .interactive-labs-body {
+      padding: 20px;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      flex: 1;
+    }
+
+    .interactive-labs-panel {
+      display: none;
+    }
+
+    .interactive-labs-panel.active {
+      display: block;
+      animation: fadeInLabs 0.25s ease forwards;
+    }
+
+    @keyframes fadeInLabs {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     /* Scroll Reading Progress Bar (Top Laser) */
     .scroll-progress-bar {
       position: fixed;
@@ -3060,6 +3398,182 @@
       color: var(--accent);
       background: var(--accent-muted);
       transform: translateY(-1px);
+    }
+
+    /* Sound FX Toggle Button */
+    .sound-toggle-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--color);
+      padding: 8px 12px;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.25s ease;
+      position: relative;
+    }
+
+    .sound-toggle-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-muted);
+      transform: translateY(-1px);
+    }
+
+    .sound-toggle-btn.muted {
+      color: var(--text-muted);
+      opacity: 0.75;
+    }
+
+    .sound-toggle-btn.muted:hover {
+      opacity: 1;
+      color: var(--color);
+    }
+
+    .sound-indicator-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 6px #22c55e;
+      transition: background 0.2s;
+    }
+
+    .sound-toggle-btn.muted .sound-indicator-dot {
+      background: #94a3b8;
+      box-shadow: none;
+    }
+
+    /* Studio Accent Palette Picker */
+    .theme-palette-picker {
+      position: relative;
+      display: inline-block;
+    }
+
+    .palette-toggle-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--color);
+      padding: 8px 12px;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.25s ease;
+    }
+
+    .palette-toggle-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-muted);
+      transform: translateY(-1px);
+    }
+
+    .palette-active-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 8px var(--accent);
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+
+    .palette-dropdown {
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      width: 170px;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 8px;
+      padding: 10px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 20px rgba(56, 189, 248, 0.1);
+      backdrop-filter: blur(16px);
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-6px);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    [data-theme="light"] .palette-dropdown {
+      background: rgba(255, 255, 255, 0.96);
+      border-color: rgba(37, 99, 235, 0.25);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1), 0 0 20px rgba(37, 99, 235, 0.1);
+    }
+
+    .palette-dropdown.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .palette-dropdown-title {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+      padding-bottom: 4px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .palette-chips {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .palette-chip {
+      background: transparent;
+      border: 1px solid transparent;
+      border-radius: 6px;
+      padding: 6px 8px;
+      color: var(--color);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      width: 100%;
+      text-align: left;
+      transition: all 0.15s ease;
+    }
+
+    .palette-chip:hover {
+      background: var(--accent-muted);
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateX(2px);
+    }
+
+    .palette-chip.active {
+      background: var(--accent-muted);
+      border-color: var(--accent);
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .chip-color {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      box-shadow: 0 0 6px currentColor;
     }
 
     /* Unified Page Bounce Reveal on Burst */
@@ -3530,30 +4044,37 @@
       background: linear-gradient(135deg, #091a32 0%, #173b6c 50%, #0c203b 100%);
       box-shadow: 0 24px 50px rgba(0, 0, 0, 0.5), 0 0 25px rgba(56, 189, 248, 0.25), 0 0 0 1px rgba(56, 189, 248, 0.35) inset;
     }
+
     .card-face[data-brand="mastercard"] {
       background: linear-gradient(135deg, #18181b 0%, #2f170e 50%, #1a1614 100%);
       box-shadow: 0 24px 50px rgba(0, 0, 0, 0.5), 0 0 25px rgba(245, 158, 11, 0.25), 0 0 0 1px rgba(245, 158, 11, 0.4) inset;
     }
+
     .card-face[data-brand="rupay"] {
       background: linear-gradient(135deg, #042419 0%, #064e3b 45%, #0f2c42 100%);
       box-shadow: 0 24px 50px rgba(0, 0, 0, 0.5), 0 0 25px rgba(16, 185, 129, 0.3), 0 0 0 1px rgba(16, 185, 129, 0.45) inset;
     }
+
     .card-face[data-brand="amex"] {
       background: linear-gradient(135deg, #0b1c24 0%, #153c44 50%, #082229 100%);
       box-shadow: 0 24px 50px rgba(0, 0, 0, 0.5), 0 0 25px rgba(6, 182, 212, 0.25), 0 0 0 1px rgba(6, 182, 212, 0.4) inset;
     }
+
     .card-face[data-brand="discover"] {
       background: linear-gradient(135deg, #2e160a 0%, #4a210d 50%, #1c1009 100%);
       box-shadow: 0 24px 50px rgba(0, 0, 0, 0.5), 0 0 25px rgba(251, 146, 60, 0.25), 0 0 0 1px rgba(251, 146, 60, 0.4) inset;
     }
+
     .card-face[data-brand="diners"] {
       background: linear-gradient(135deg, #0f1d38 0%, #1e3a8a 50%, #0b1528 100%);
       box-shadow: 0 24px 50px rgba(0, 0, 0, 0.5), 0 0 25px rgba(96, 165, 250, 0.25), 0 0 0 1px rgba(96, 165, 250, 0.35) inset;
     }
+
     .card-face[data-brand="jcb"] {
       background: linear-gradient(135deg, #2b0b14 0%, #4c111e 50%, #1e090f 100%);
       box-shadow: 0 24px 50px rgba(0, 0, 0, 0.5), 0 0 25px rgba(244, 63, 94, 0.25), 0 0 0 1px rgba(244, 63, 94, 0.4) inset;
     }
+
     .card-face[data-brand="maestro"] {
       background: linear-gradient(135deg, #1c102a 0%, #3b1859 50%, #150b22 100%);
       box-shadow: 0 24px 50px rgba(0, 0, 0, 0.5), 0 0 25px rgba(168, 85, 247, 0.25), 0 0 0 1px rgba(168, 85, 247, 0.4) inset;
@@ -3590,11 +4111,13 @@
       transition: all 0.2s ease;
       white-space: nowrap;
     }
+
     .btn-amount-chip:hover {
       color: #38bdf8;
       border-color: #38bdf8;
       background: rgba(56, 189, 248, 0.12);
     }
+
     .btn-amount-chip.active {
       background: #0284c7;
       color: #ffffff;
@@ -3611,22 +4134,25 @@
       left: -50%;
       width: 200%;
       height: 200%;
-      background: linear-gradient(
-        45deg,
-        transparent 30%,
-        rgba(56, 189, 248, 0.15) 45%,
-        rgba(255, 255, 255, 0.3) 50%,
-        rgba(56, 189, 248, 0.15) 55%,
-        transparent 70%
-      );
+      background: linear-gradient(45deg,
+          transparent 30%,
+          rgba(56, 189, 248, 0.15) 45%,
+          rgba(255, 255, 255, 0.3) 50%,
+          rgba(56, 189, 248, 0.15) 55%,
+          transparent 70%);
       transform: rotate(25deg);
       pointer-events: none;
       animation: cardShimmer 6s infinite linear;
     }
 
     @keyframes cardShimmer {
-      0% { transform: translateY(-100%) rotate(25deg); }
-      100% { transform: translateY(100%) rotate(25deg); }
+      0% {
+        transform: translateY(-100%) rotate(25deg);
+      }
+
+      100% {
+        transform: translateY(100%) rotate(25deg);
+      }
     }
 
     .card-face-front {
@@ -3654,7 +4180,7 @@
       border-radius: 7px;
       position: relative;
       overflow: hidden;
-      box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.5), 0 2px 4px rgba(0,0,0,0.3);
+      box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.5), 0 2px 4px rgba(0, 0, 0, 0.3);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -3680,7 +4206,7 @@
       font-style: italic;
       color: #ffffff;
       letter-spacing: 1.5px;
-      text-shadow: 0 2px 6px rgba(0,0,0,0.5);
+      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
       text-transform: uppercase;
     }
 
@@ -3727,7 +4253,7 @@
       color: #f8fafc;
       text-transform: uppercase;
       letter-spacing: 0.06em;
-      text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
       max-width: 220px;
       white-space: nowrap;
       overflow: hidden;
@@ -3739,7 +4265,7 @@
       font-size: 0.88rem;
       font-weight: 600;
       color: #f8fafc;
-      text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
     }
 
     /* Back Face Styling */
@@ -3749,7 +4275,7 @@
       background: #020617;
       margin-top: 24px;
       margin-bottom: 18px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
     }
 
     .card-cvv-row {
@@ -3764,13 +4290,11 @@
     .card-signature-bar {
       width: 100%;
       height: 38px;
-      background: repeating-linear-gradient(
-        45deg,
-        #f8fafc,
-        #f8fafc 8px,
-        #e2e8f0 8px,
-        #e2e8f0 16px
-      );
+      background: repeating-linear-gradient(45deg,
+          #f8fafc,
+          #f8fafc 8px,
+          #e2e8f0 8px,
+          #e2e8f0 16px);
       border-radius: 4px;
       display: flex;
       align-items: center;
@@ -3782,7 +4306,7 @@
       font-weight: 700;
       color: #0f172a;
       letter-spacing: 3px;
-      border: 1px solid rgba(0,0,0,0.1);
+      border: 1px solid rgba(0, 0, 0, 0.1);
     }
 
     /* Interactive Live Editing Panel */
@@ -3825,27 +4349,54 @@
     .card-live-input {
       width: 100%;
       padding: 10px 14px;
-      background: rgba(30, 41, 59, 0.6);
-      border: 1px solid rgba(148, 163, 184, 0.3);
-      border-radius: 6px;
-      color: #ffffff;
+      background: rgba(15, 23, 42, 0.65);
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      border-radius: 8px;
+      color: #f8fafc;
       font-family: var(--font-mono);
-      font-size: 0.85rem;
+      font-size: 0.88rem;
       box-sizing: border-box;
       outline: none;
-      transition: all 0.2s ease;
-    }
-
-    [data-theme="light"] .card-live-input {
-      background: #f8fafc;
-      border-color: #cbd5e1;
-      color: #0f172a;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .card-live-input:focus {
-      border-color: #38bdf8;
-      box-shadow: 0 0 12px rgba(56, 189, 248, 0.35);
-      background: rgba(30, 41, 59, 0.9);
+      border-color: var(--accent, #38bdf8);
+      box-shadow: 0 0 0 3px var(--accent-subtle, rgba(56, 189, 248, 0.2)), 0 2px 8px rgba(0, 0, 0, 0.2);
+      background: rgba(15, 23, 42, 0.95);
+      color: #ffffff;
+    }
+
+    [data-theme="light"] .card-live-input {
+      background: #ffffff;
+      border-color: #cbd5e1;
+      color: #0f172a;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+    }
+
+    [data-theme="light"] .card-live-input:focus {
+      background: #ffffff !important;
+      border-color: var(--accent, #2563eb);
+      color: #0f172a !important;
+      box-shadow: 0 0 0 3px var(--accent-subtle, rgba(37, 99, 235, 0.15)), 0 2px 8px rgba(37, 99, 235, 0.08);
+    }
+
+    [data-theme="light"] .btn-amount-chip {
+      background: #f1f5f9;
+      border-color: #cbd5e1;
+      color: #334155;
+    }
+
+    [data-theme="light"] .btn-amount-chip:hover {
+      background: rgba(37, 99, 235, 0.1);
+      border-color: var(--accent, #2563eb);
+      color: var(--accent, #2563eb);
+    }
+
+    [data-theme="light"] .btn-amount-chip.active {
+      background: var(--accent, #2563eb);
+      border-color: var(--accent, #2563eb);
+      color: #ffffff;
     }
 
     /* Telemetry Verification Badges */
@@ -3880,49 +4431,98 @@
       color: #ef4444;
     }
 
-    .btn-flip-card {
-      padding: 6px 12px;
-      background: rgba(30, 41, 59, 0.8);
-      border: 1px solid rgba(56, 189, 248, 0.3);
-      border-radius: 6px;
-      color: #38bdf8;
-      font-family: var(--font-mono);
-      font-size: 0.74rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      transition: all 0.2s ease;
-    }
-
-    .btn-flip-card:hover {
-      background: #38bdf8;
-      color: #0b1120;
-    }
-
+    /* Verify & Authorize Button with Satisfying Micro-Animations */
     .btn-verify-card {
+      position: relative;
+      overflow: hidden;
       width: 100%;
-      padding: 12px;
-      background: linear-gradient(135deg, #0284c7, #2563eb);
+      padding: 13px 18px;
+      background: linear-gradient(135deg, var(--accent, #0284c7), #2563eb);
       color: #ffffff;
-      border: none;
-      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
       font-family: var(--font-mono);
-      font-size: 0.85rem;
-      font-weight: 600;
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      gap: 10px;
       margin-top: 16px;
-      transition: all 0.25s ease;
-      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 4px 16px rgba(37, 99, 235, 0.35);
+    }
+
+    .btn-verify-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transform: skewX(-20deg);
+      transition: none;
+    }
+
+    .btn-verify-card:hover::before {
+      left: 150%;
+      transition: all 0.65s ease;
     }
 
     .btn-verify-card:hover {
       transform: translateY(-2px);
-      box-shadow: 0 6px 18px rgba(37, 99, 235, 0.5);
+      box-shadow: 0 8px 24px rgba(37, 99, 235, 0.5), 0 0 16px var(--accent-glow, rgba(56, 189, 248, 0.4));
+    }
+
+    .btn-verify-card:active,
+    .btn-verify-card.processing {
+      transform: scale(0.97);
+      box-shadow: 0 2px 8px rgba(37, 99, 235, 0.4);
+    }
+
+    .btn-verify-card.verified-success {
+      background: rgba(34, 197, 94, 0.15) !important;
+      border-color: #22c55e !important;
+      color: #22c55e !important;
+      box-shadow: 0 0 24px rgba(34, 197, 94, 0.5) !important;
+      animation: verifyBounce 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .btn-verify-card.verified-failed {
+      background: rgba(239, 68, 68, 0.15) !important;
+      border-color: #ef4444 !important;
+      color: #ef4444 !important;
+      box-shadow: 0 0 24px rgba(239, 68, 68, 0.5) !important;
+      animation: verifyShake 0.4s ease;
+    }
+
+    .btn-spinner {
+      width: 16px;
+      height: 16px;
+      border: 2.5px solid rgba(255, 255, 255, 0.3);
+      border-top-color: #ffffff;
+      border-radius: 50%;
+      display: inline-block;
+      animation: btnSpin 0.6s linear infinite;
+    }
+
+    @keyframes btnSpin {
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes verifyBounce {
+      0% { transform: scale(0.92); }
+      50% { transform: scale(1.04); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes verifyShake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-6px); }
+      40%, 80% { transform: translateX(6px); }
     }
 
     .card-qa-receipt {
@@ -3945,9 +4545,21 @@
     }
 
     @keyframes cardShake {
-      0%, 100% { transform: translateX(0); }
-      20%, 60% { transform: translateX(-6px); }
-      40%, 80% { transform: translateX(6px); }
+
+      0%,
+      100% {
+        transform: translateX(0);
+      }
+
+      20%,
+      60% {
+        transform: translateX(-6px);
+      }
+
+      40%,
+      80% {
+        transform: translateX(6px);
+      }
     }
 
     .card-stage.shake {
@@ -4081,6 +4693,7 @@
         gap: 30px;
         padding-bottom: 20px;
       }
+
       .flight-metro-detail-card {
         grid-template-columns: 1fr;
       }
@@ -4179,25 +4792,104 @@
     /* ==========================================================================
        FEATURE 3: SRIVATSA'S "INSTANT INTERVIEW Q&A BOT" STYLES
        ========================================================================== */
-    .interview-bot-container {
-      margin-top: 30px;
-      background: rgba(13, 13, 20, 0.85);
-      border: 1px solid rgba(56, 189, 248, 0.25);
-      border-radius: 12px;
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
-      backdrop-filter: blur(16px);
-      overflow: hidden;
+    .floating-chatbot-btn {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 99997;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 18px 10px 12px;
+      background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 40px;
+      cursor: pointer;
+      box-shadow: 0 10px 30px rgba(37, 99, 235, 0.45), 0 0 20px rgba(56, 189, 248, 0.35);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
     }
 
-    [data-theme="light"] .interview-bot-container {
-      background: rgba(255, 255, 255, 0.9);
-      border-color: rgba(37, 99, 235, 0.2);
-      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+    .floating-chatbot-btn:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 14px 40px rgba(37, 99, 235, 0.6), 0 0 30px rgba(56, 189, 248, 0.55);
+    }
+
+    .chatbot-btn-avatar {
+      position: relative;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .chatbot-pulse-ring {
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      border: 2px solid rgba(56, 189, 248, 0.7);
+      animation: pulseRing 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+    }
+
+    @keyframes pulseRing {
+      0% { transform: scale(0.9); opacity: 0.8; }
+      100% { transform: scale(1.4); opacity: 0; }
+    }
+
+    .chatbot-online-indicator {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 8px #22c55e;
+    }
+
+    .floating-chatbot-window {
+      position: fixed;
+      bottom: 84px;
+      right: 28px;
+      width: 410px;
+      max-width: calc(100vw - 36px);
+      height: 560px;
+      max-height: calc(100vh - 110px);
+      z-index: 99998;
+      background: rgba(13, 17, 26, 0.96);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 16px;
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.7), 0 0 40px rgba(56, 189, 248, 0.15);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(20px) scale(0.95);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    [data-theme="light"] .floating-chatbot-window {
+      background: rgba(255, 255, 255, 0.98);
+      border-color: rgba(37, 99, 235, 0.25);
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.2), 0 0 30px rgba(37, 99, 235, 0.1);
+    }
+
+    .floating-chatbot-window.active {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0) scale(1);
     }
 
     .bot-header {
       background: #0f172a;
-      padding: 14px 20px;
+      padding: 12px 18px;
       border-bottom: 1px solid rgba(56, 189, 248, 0.2);
       display: flex;
       justify-content: space-between;
@@ -4212,26 +4904,24 @@
     .bot-header-info {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
     }
 
     .bot-avatar-badge {
-      width: 34px;
-      height: 34px;
+      width: 32px;
+      height: 32px;
       border-radius: 50%;
       background: linear-gradient(135deg, #0284c7, #2563eb);
       color: #ffffff;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: 700;
-      font-size: 0.85rem;
-      box-shadow: 0 0 12px rgba(37, 99, 235, 0.5);
+      box-shadow: 0 0 10px rgba(37, 99, 235, 0.4);
     }
 
     .bot-title-text {
       font-weight: 700;
-      font-size: 0.88rem;
+      font-size: 0.84rem;
       color: #f8fafc;
     }
 
@@ -4241,38 +4931,63 @@
 
     .bot-status-pill {
       font-family: var(--font-mono);
-      font-size: 0.68rem;
+      font-size: 0.65rem;
       color: #22c55e;
       display: flex;
       align-items: center;
       gap: 5px;
     }
 
+    .bot-header-action-btn {
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      font-size: 0.82rem;
+      cursor: pointer;
+      padding: 4px 6px;
+      border-radius: 4px;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .bot-header-action-btn:hover {
+      color: #f1f5f9;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    [data-theme="light"] .bot-header-action-btn:hover {
+      color: #0f172a;
+      background: rgba(0, 0, 0, 0.05);
+    }
+
     .bot-chat-stream {
-      padding: 20px;
-      min-height: 240px;
-      max-height: 320px;
+      padding: 16px;
+      flex: 1;
       overflow-y: auto;
+      overscroll-behavior: contain;
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 12px;
     }
 
     .chat-bubble {
-      max-width: 82%;
-      padding: 12px 16px;
-      border-radius: 10px;
-      font-size: 0.86rem;
+      max-width: 88%;
+      padding: 12px 14px;
+      border-radius: 12px;
+      font-size: 0.84rem;
       line-height: 1.55;
       animation: fadeIn 0.25s ease-out;
+      word-break: break-word;
     }
 
     .chat-bubble.bot-msg {
       align-self: flex-start;
-      background: rgba(30, 41, 59, 0.7);
+      background: rgba(30, 41, 59, 0.85);
       border: 1px solid rgba(148, 163, 184, 0.2);
       color: #f1f5f9;
-      border-bottom-left-radius: 2px;
+      border-bottom-left-radius: 3px;
     }
 
     [data-theme="light"] .chat-bubble.bot-msg {
@@ -4285,16 +5000,81 @@
       align-self: flex-end;
       background: linear-gradient(135deg, #0284c7, #2563eb);
       color: #ffffff;
-      border-bottom-right-radius: 2px;
+      border-bottom-right-radius: 3px;
+    }
+
+    .ai-typing-indicator {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 14px;
+      background: rgba(30, 41, 59, 0.6);
+      border-radius: 10px;
+      font-size: 0.74rem;
+      color: var(--accent);
+      font-family: var(--font-mono);
+      align-self: flex-start;
+    }
+
+    .ai-typing-dot {
+      width: 5px;
+      height: 5px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: typingBlink 1.4s infinite both;
+    }
+
+    .ai-typing-dot:nth-child(2) { animation-delay: 0.2s; }
+    .ai-typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes typingBlink {
+      0%, 80%, 100% { opacity: 0.2; transform: scale(0.8); }
+      40% { opacity: 1; transform: scale(1.2); }
+    }
+
+    .bot-actions-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 6px;
+      margin-top: 8px;
+      padding-top: 6px;
+      border-top: 1px dashed rgba(148, 163, 184, 0.2);
+    }
+
+    .btn-regenerate-ai {
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      color: var(--accent);
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-regenerate-ai:hover {
+      background: var(--accent);
+      color: #050b14;
     }
 
     .bot-prompt-chips {
-      padding: 10px 20px;
+      padding: 8px 14px;
       display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      background: rgba(15, 23, 42, 0.5);
+      gap: 6px;
+      overflow-x: auto;
+      background: rgba(15, 23, 42, 0.7);
       border-top: 1px solid rgba(148, 163, 184, 0.15);
+      scrollbar-width: none;
+    }
+
+    .bot-prompt-chips::-webkit-scrollbar {
+      display: none;
     }
 
     [data-theme="light"] .bot-prompt-chips {
@@ -4303,16 +5083,17 @@
     }
 
     .prompt-chip-btn {
-      padding: 6px 12px;
+      padding: 5px 10px;
       background: rgba(30, 41, 59, 0.8);
       border: 1px solid rgba(56, 189, 248, 0.3);
-      border-radius: 20px;
+      border-radius: 16px;
       color: #38bdf8;
       font-family: var(--font-mono);
-      font-size: 0.72rem;
+      font-size: 0.68rem;
       cursor: pointer;
       transition: all 0.2s ease;
       white-space: nowrap;
+      flex-shrink: 0;
     }
 
     [data-theme="light"] .prompt-chip-btn {
@@ -4328,9 +5109,9 @@
     }
 
     .bot-input-bar {
-      padding: 14px 20px;
+      padding: 10px 14px;
       display: flex;
-      gap: 10px;
+      gap: 8px;
       background: #0f172a;
       border-top: 1px solid rgba(56, 189, 248, 0.2);
     }
@@ -4342,12 +5123,12 @@
 
     .bot-input-field {
       flex: 1;
-      padding: 10px 14px;
+      padding: 9px 12px;
       background: rgba(30, 41, 59, 0.6);
       border: 1px solid rgba(148, 163, 184, 0.3);
       border-radius: 6px;
       color: #ffffff;
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       outline: none;
     }
 
@@ -4358,23 +5139,23 @@
     }
 
     .bot-send-btn {
-      padding: 10px 20px;
+      padding: 9px 14px;
       background: linear-gradient(135deg, #0284c7, #2563eb);
-      color: #ffffff;
       border: none;
+      color: #ffffff;
       border-radius: 6px;
-      font-weight: 600;
-      font-size: 0.82rem;
+      font-weight: 700;
       cursor: pointer;
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: 6px;
       transition: all 0.2s ease;
     }
 
     .bot-send-btn:hover {
       transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.45);
     }
   </style>
 </head>
@@ -4424,7 +5205,7 @@
         <li><a href="#work">Work</a></li>
         <li><a href="#pipeline">CI/CD</a></li>
         <li><a href="#skills">Skills</a></li>
-        <li><a href="#code">Architecture</a></li>
+        <li><a href="#interactiveLabsHub" class="open-playground-trigger" data-target="playground">Live Labs 🚀</a></li>
         <li><a href="#workflow">Workflow</a></li>
         <li><a href="#experience">Experience</a></li>
         <li><a href="#certs">Credentials</a></li>
@@ -4449,6 +5230,51 @@
           </svg>
           <span>Intro</span>
         </button>
+        <!-- Sound FX Micro-Synthesizer Toggle -->
+        <button class="sound-toggle-btn" id="soundToggleBtn" aria-label="Toggle UI Sound FX" title="Toggle UI Sound FX (Micro-Synthesizer)">
+          <svg class="sound-on-icon" id="soundOnIcon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+          </svg>
+          <svg class="sound-off-icon" id="soundOffIcon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 5"></polygon>
+            <line x1="23" y1="9" x2="17" y2="15"></line>
+            <line x1="17" y1="9" x2="23" y2="15"></line>
+          </svg>
+          <span class="sound-indicator-dot" id="soundIndicatorDot"></span>
+          <span id="soundToggleLabel">SFX</span>
+        </button>
+
+        <!-- Studio Theme Palette Picker -->
+        <div class="theme-palette-picker" id="themePalettePicker">
+          <button class="palette-toggle-btn" id="paletteToggleBtn" title="Customize Studio Accent Theme" aria-label="Customize Studio Theme">
+            <span class="palette-active-dot" id="paletteActiveDot"></span>
+            <span>Theme</span>
+          </button>
+          <div class="palette-dropdown" id="paletteDropdown">
+            <div class="palette-dropdown-title">Studio Accent Palette</div>
+            <div class="palette-chips">
+              <button class="palette-chip active" data-accent="cyan" title="Titanium Cyan">
+                <span class="chip-color" style="background: #38bdf8;"></span>
+                <span>Titanium Cyan</span>
+              </button>
+              <button class="palette-chip" data-accent="gold" title="FinTech Gold">
+                <span class="chip-color" style="background: #fbbf24;"></span>
+                <span>FinTech Gold</span>
+              </button>
+              <button class="palette-chip" data-accent="emerald" title="Matrix Emerald">
+                <span class="chip-color" style="background: #10b981;"></span>
+                <span>Matrix Emerald</span>
+              </button>
+              <button class="palette-chip" data-accent="violet" title="Cyber Violet">
+                <span class="chip-color" style="background: #a855f7;"></span>
+                <span>Cyber Violet</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
         <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle light/dark theme">
           <svg viewBox="0 0 24 24" id="themeIcon">
             <path
@@ -4602,7 +5428,11 @@
           <div class="project-actions">
             <a href="https://astonrecruitment.in/" target="_blank" rel="noopener noreferrer" class="project-link-btn">
               <span>Visit Platform</span>
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
             </a>
             <button class="project-drawer-btn" data-drawer="aston">
               <span>Case Study Specs</span>
@@ -4945,258 +5775,67 @@
         </div>
       </div>
 
-      <!-- Interactive Framework Code Architecture Tabs & Live Playground -->
-      <div id="code" style="padding-top:40px;">
-        <div class="section-header bounce-target bounce-pop d-6" style="margin-bottom:15px;">
-          <span class="section-num">Live Automation Rig</span>
-          <h3 style="font-size:1.3rem; text-transform:uppercase; font-weight:700;">Live Automation <strong>Coding &amp;
-              BDD Playground</strong></h3>
-          <p style="font-size:0.85rem; color:var(--text-muted); margin-top:4px;">
-            A real-time Java Selenium &amp; Cucumber BDD sandbox specifically mapped to this portfolio. Type custom
-            code, assertions, or <code>System.out.println()</code> statements and click <strong>Run Code</strong> to
-            execute live in the terminal.
-          </p>
-        </div>
-
-        <div class="code-rig-wrapper bounce-target bounce-pop d-6">
-          <!-- 3 Clean File Tabs -->
-          <div class="code-tab-nav" id="codeTabNav">
-            <button class="code-tab-btn active" data-tab="java" id="tabJavaBtn">
-              <span>☕ AutomationTest.java</span>
-            </button>
-            <button class="code-tab-btn" data-tab="payment" id="tabPaymentBtn">
-              <span>💳 PaymentGatewayE2E.java</span>
-            </button>
-            <button class="code-tab-btn" data-tab="feature" id="tabFeatureBtn">
-              <span>🥒 ProfileVerification.feature</span>
-            </button>
-          </div>
-
-          <!-- IDE Header Bar -->
-          <div class="code-editor-header">
-            <div style="display:flex; align-items:center; gap:8px;">
-              <span
-                style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#22c55e; box-shadow:0 0 8px #22c55e;"></span>
-              <span class="code-filename" id="codeFilename">src/test/java/AutomationTest.java</span>
-              <span
-                style="font-family:var(--font-mono); font-size:0.65rem; color:#38bdf8; background:rgba(56,189,248,0.1); border:1px solid rgba(56,189,248,0.25); padding:1px 6px; border-radius:3px;">Portfolio
-                DOM Active</span>
+      <!-- Sleek Interactive QA & FinTech Labs Launcher Hub (Opens Interactive Modal) -->
+      <div class="labs-launcher-hub blueprint-card bounce-target bounce-pop d-6" id="interactiveLabsHub">
+        <div class="labs-hub-header">
+          <div>
+            <div style="font-family: var(--font-mono); font-size: 0.68rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; margin-bottom: 4px;">
+              PORTFOLIO QA ENGINE // INTERACTIVE RUNTIMES
             </div>
-            <div class="code-editor-actions">
-              <button class="code-reset-btn" id="codeResetBtn" title="Reset to Starter Template">
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <polyline points="1 4 1 10 7 10"></polyline>
-                  <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
-                </svg>
-                <span>Reset</span>
-              </button>
-              <button class="code-copy-btn" id="codeCopyBtn" title="Copy Code">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                </svg>
-                <span>Copy</span>
-              </button>
-              <button class="code-run-btn" id="codePlaygroundRunBtn"
-                title="Execute Code in Terminal (Ctrl/Cmd + Enter)">
-                <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
-                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                </svg>
-                <span>Run Code</span>
-              </button>
-            </div>
-          </div>
-
-          <!-- Playground Layout: Editable Editor on Left, Real-Time Terminal on Right -->
-          <div class="code-playground-layout">
-            <div style="display:flex; flex-direction:column; position:relative;">
-              <textarea class="code-textarea" id="interactiveCodeInput" spellcheck="false"
-                placeholder="// Write Java or Feature code here..."></textarea>
-              <div
-                style="padding:6px 14px; background:#0d0d12; border-top:1px solid #1e293b; border-right:1px solid #1e293b; font-family:var(--font-mono); font-size:0.68rem; color:#64748b; display:flex; justify-content:space-between;">
-                <span id="editorLanguageLabel">Java 17 · Selenium 4 · TestNG 7.8</span>
-                <span>Press <strong>⌘ + Enter</strong> to Run</span>
-              </div>
-            </div>
-
-            <div class="code-output-panel">
-              <div class="terminal-header"
-                style="background:#13131a; border-bottom:1px solid #1e293b; padding:8px 16px; display:flex; align-items:center; justify-content:space-between;">
-                <div class="terminal-title" style="font-size:0.72rem; color:#94a3b8; font-family:var(--font-mono);">
-                  <span id="terminalCmdTitle">mvn test -Dtest=AutomationTest</span>
-                </div>
-                <button id="clearTerminalBtn"
-                  style="background:transparent; border:none; color:#64748b; font-family:var(--font-mono); font-size:0.65rem; cursor:pointer;">Clear</button>
-              </div>
-
-              <!-- Technical Terminal Log Output -->
-              <div class="test-terminal-logs" id="playgroundTerminalLogs">
-                <div style="color:#64748b;">// Driver initialized on active portfolio DOM.</div>
-                <div style="color:#94a3b8;">Ready. Type code or System.out.println() and click <strong>[Run
-                    Code]</strong> to execute live.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Satisfying 3D Interactive Payment Card & Live QA Verifier Section (Insta Reel Aesthetic) -->
-  <section id="card-studio" style="padding-top: 30px;">
-    <div class="container">
-      <div class="section-header bounce-target bounce-pop d-4">
-        <span class="section-num">04.2 Interactive FinTech Studio</span>
-        <h2 class="section-title">Satisfying <strong>Payment &amp; Card Verifier</strong></h2>
-        <p style="font-size:0.88rem; color:var(--text-muted); max-width:760px; margin-top:8px;">
-          Experience an ultra-smooth, satisfying 3D credit card simulator inspired by modern FinTech UX. Edit card parameters live, observe real-time 3D flipping on CVV focus, and trigger Srivatsa's <strong>Luhn Algorithm &amp; BIN Integrity Assertion Engine</strong>.
-        </p>
-      </div>
-
-      <div class="card-studio-wrapper bounce-target bounce-pop d-5">
-        <!-- Left: 3D Perspective Flip Card Display -->
-        <div class="card-stage">
-          <div class="card-3d-flipper" id="card3dFlipper" title="Click to flip card">
-            <!-- Card Front Face -->
-            <div class="card-face card-face-front" id="cardFaceFront" data-brand="visa">
-              <div class="card-top-row">
-                <div style="display:flex; align-items:center;">
-                  <div class="card-chip"></div>
-                  <svg class="card-contactless" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-                    <path d="M8.5 16.5a5 5 0 0 1 0-9"/>
-                    <path d="M12 19a8.5 8.5 0 0 0 0-14"/>
-                    <path d="M15.5 21.5a12 12 0 0 0 0-19"/>
-                  </svg>
-                </div>
-                <div style="display:flex; align-items:center; gap:8px;">
-                  <div class="card-amount-badge" id="cardDisplayAmount">$50,000</div>
-                  <div class="card-brand-logo" id="cardBrandLogo">VISA</div>
-                </div>
-              </div>
-
-              <div class="card-number-display" id="cardDisplayNumber">4532 •••• •••• 8891</div>
-
-              <div class="card-bottom-row">
-                <div class="card-holder-group">
-                  <span class="card-label-small">Cardholder Name</span>
-                  <span class="card-val-name" id="cardDisplayName">SRIVATSA MALALI</span>
-                </div>
-                <div class="card-expiry-group">
-                  <span class="card-label-small">Expires</span>
-                  <span class="card-val-exp" id="cardDisplayExp">08 / 28</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Card Back Face -->
-            <div class="card-face card-face-back" id="cardFaceBack" data-brand="visa">
-              <div class="card-mag-strip"></div>
-              <div class="card-cvv-row">
-                <span class="card-label-small" style="color:#ffffff; margin-bottom:4px;">CVV / CVC Security Code</span>
-                <div class="card-signature-bar">
-                  <span id="cardDisplayCvv">842</span>
-                </div>
-                <div style="margin-top:14px; font-size:0.65rem; color:#94a3b8; font-family:var(--font-mono); text-align:right;">
-                  VERIFIED BY CITI ACH &amp; APPLE E-COMMERCE RAILS
-                </div>
-              </div>
-            </div>
+            <h3 style="font-size: 1.25rem; text-transform: uppercase; font-weight: 700; margin: 0;">
+              Interactive QA <strong>&amp; FinTech Sandboxes</strong>
+            </h3>
+            <p style="font-size: 0.84rem; color: var(--text-muted); margin: 6px 0 0 0; max-width: 680px;">
+              Launch full-featured interactive test environments in an isolated modal sandbox. Test live Selenium POM scripts on the active DOM or simulate 3D FinTech payment validation with Luhn Mod-10 checksum assertions.
+            </p>
           </div>
         </div>
 
-        <!-- Right: Live Interactive Card Editor & QA Engine -->
-        <div class="card-editor-panel">
-          <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(148,163,184,0.15); padding-bottom:10px;">
-            <span style="font-family:var(--font-mono); font-size:0.78rem; font-weight:700; color:var(--color); text-transform:uppercase;">
-              💳 Live Card &amp; Payment Gateway Editor
-            </span>
-            <button type="button" class="btn-flip-card" id="btnFlipCardToggle">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
-              <span>Flip Card 🔄</span>
+        <div class="labs-launcher-grid">
+          <!-- Card 1: Live Automation Rig -->
+          <div class="labs-launch-item open-playground-trigger" data-target="playground">
+            <div class="labs-item-header">
+              <div class="icon-circle-badge icon-circle-badge-sm" style="color: #38bdf8; background: rgba(56, 189, 248, 0.1);">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="16 18 22 12 16 6"></polyline>
+                  <polyline points="8 6 2 12 8 18"></polyline>
+                </svg>
+              </div>
+              <span class="labs-status-tag">JAVA 17 · SELENIUM 4 · BDD</span>
+            </div>
+            <h4 class="labs-item-title">Live Automation &amp; BDD IDE</h4>
+            <p class="labs-item-desc">
+              Execute live Java Page Object Model scripts and Cucumber BDD features directly against this portfolio's DOM in a real-time terminal sandbox.
+            </p>
+            <button type="button" class="labs-launch-btn open-playground-trigger" data-target="playground">
+              <span>Launch Live Code Sandbox</span>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
             </button>
           </div>
 
-          <div class="card-editor-grid">
-            <!-- Transfer Amount Field & Quick Presets -->
-            <div class="card-editor-field full-span">
-              <label class="card-editor-label" for="cardInputAmount">
-                <span>00. Payment / Transfer Amount</span>
-                <span id="amountFormattedLabel" style="color:#38bdf8; font-weight:700;">$50,000 USD</span>
-              </label>
-              <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
-                <div style="position:relative; flex:1; min-width:130px;">
-                  <span style="position:absolute; left:12px; top:50%; transform:translateY(-50%); font-family:var(--font-mono); font-size:0.85rem; font-weight:700; color:#38bdf8;">$</span>
-                  <input type="text" class="card-live-input" id="cardInputAmount" value="50,000" placeholder="50,000" style="padding-left:26px;" autocomplete="off" />
-                </div>
-                <div class="card-amount-presets" style="display:flex; gap:6px;">
-                  <button type="button" class="btn-amount-chip" data-amount="1,000">$1K</button>
-                  <button type="button" class="btn-amount-chip" data-amount="5,000">$5K</button>
-                  <button type="button" class="btn-amount-chip active" data-amount="50,000">$50K</button>
-                  <button type="button" class="btn-amount-chip" data-amount="100,000">$100K</button>
-                </div>
+          <!-- Card 2: 3D FinTech Card Verifier -->
+          <div class="labs-launch-item open-playground-trigger" data-target="cardStudio">
+            <div class="labs-item-header">
+              <div class="icon-circle-badge icon-circle-badge-sm" style="color: #22c55e; background: rgba(34, 197, 94, 0.1);">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                  <line x1="1" y1="10" x2="23" y2="10"></line>
+                </svg>
               </div>
+              <span class="labs-status-tag" style="color:#22c55e;">FINTECH · 3D PHYSICS · LUHN</span>
             </div>
-
-            <!-- Card Number -->
-            <div class="card-editor-field full-span">
-              <label class="card-editor-label" for="cardInputNumber">
-                <span>01. Card Number (Dynamic BIN Detection)</span>
-                <span id="cardTypeDetectLabel" style="color:#38bdf8;">VISA DETECTED</span>
-              </label>
-              <input type="text" class="card-live-input" id="cardInputNumber" maxlength="19" value="4532 9988 7766 8891" placeholder="4532 0000 0000 0000" autocomplete="off" />
-            </div>
-
-            <!-- Cardholder Name -->
-            <div class="card-editor-field full-span">
-              <label class="card-editor-label" for="cardInputName">
-                <span>02. Cardholder Name</span>
-                <span style="color:#94a3b8;">UPPERCASE</span>
-              </label>
-              <input type="text" class="card-live-input" id="cardInputName" maxlength="26" value="SRIVATSA MALALI" placeholder="FULL NAME" autocomplete="off" />
-            </div>
-
-            <!-- Expiry Date -->
-            <div class="card-editor-field">
-              <label class="card-editor-label" for="cardInputExp">
-                <span>03. Expiration Date</span>
-              </label>
-              <input type="text" class="card-live-input" id="cardInputExp" maxlength="5" value="08/28" placeholder="MM/YY" autocomplete="off" />
-            </div>
-
-            <!-- CVV Code (Auto-flips card on focus!) -->
-            <div class="card-editor-field">
-              <label class="card-editor-label" for="cardInputCvv">
-                <span>04. CVV / CVC</span>
-                <span style="color:#f59e0b;">FLIPS CARD 3D</span>
-              </label>
-              <input type="text" class="card-live-input" id="cardInputCvv" maxlength="4" value="842" placeholder="123" autocomplete="off" />
-            </div>
-          </div>
-
-          <!-- Real-time QA Assertion Badges -->
-          <div class="card-telemetry-row">
-            <div class="card-badge-pill" id="luhnBadge">
-              <span>✔ Luhn Mod-10 Checksum Valid</span>
-            </div>
-            <div class="card-badge-pill" id="expiryBadge">
-              <span>✔ Expiration Future Active</span>
-            </div>
-            <div class="card-badge-pill" id="cvvBadge">
-              <span>✔ 3-Digit CVV Masked</span>
-            </div>
-          </div>
-
-          <button type="button" class="btn-verify-card" id="btnVerifyCardTransaction">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            <span id="btnVerifyLabel">Verify &amp; Authorize $50,000 ACH Transfer</span>
-          </button>
-
-          <!-- Generated QA Test Receipt -->
-          <div class="card-qa-receipt" id="cardQaReceipt">
-            <div style="color:#22c55e; font-weight:700; margin-bottom:4px;">✔ TRANSACTION &amp; QA ASSERTION VERIFIED [PASS]</div>
-            <div>• Payment Gateway: <strong>Citi Bank ACH / Apple Online E-Commerce</strong></div>
-            <div>• Card Network: <strong id="receiptNetwork">VISA DEBIT</strong> · Status: <strong>APPROVED (AUTH #884920)</strong></div>
-            <div>• Test Assertion: <strong>Assert.assertTrue(luhnCheck &amp;&amp; expValid &amp;&amp; cvvPassed);</strong></div>
+            <h4 class="labs-item-title">Satisfying 3D Payment Verifier</h4>
+            <p class="labs-item-desc">
+              Interact with a 3D perspective credit card with dynamic BIN detection, auto-flipping on CVV focus, and live Luhn checksum security assertions in Rupees.
+            </p>
+            <button type="button" class="labs-launch-btn open-playground-trigger" data-target="cardStudio">
+              <span>Launch 3D Card Studio</span>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </button>
           </div>
         </div>
       </div>
@@ -5339,10 +5978,12 @@
       <!-- Interactive Career Flight Path (Metro Journey Map) -->
       <div class="flight-path-wrapper bounce-target bounce-pop d-6">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
-          <span style="font-family:var(--font-mono); font-size:0.75rem; font-weight:700; color:var(--accent); text-transform:uppercase; letter-spacing:0.05em;">
+          <span
+            style="font-family:var(--font-mono); font-size:0.75rem; font-weight:700; color:var(--accent); text-transform:uppercase; letter-spacing:0.05em;">
             ✈️ Career Flight Path // Interactive Transit Map
           </span>
-          <span style="font-family:var(--font-mono); font-size:0.68rem; color:#94a3b8;">Click any station hub to inspect</span>
+          <span style="font-family:var(--font-mono); font-size:0.68rem; color:#94a3b8;">Click any station hub to
+            inspect</span>
         </div>
 
         <!-- Metro Stations Line -->
@@ -5378,7 +6019,8 @@
             <div class="flight-detail-role" id="flightDetailRole">Senior Test Automation Engineer</div>
             <div class="flight-detail-org" id="flightDetailOrg">Wipro Technologies · 2025 – Present</div>
             <p class="flight-detail-desc" id="flightDetailDesc">
-              Leading cross-functional test architecture, engineering robust Page Object Model frameworks in Java + Selenium, and integrating strict automated CI/CD quality gates for enterprise delivery.
+              Leading cross-functional test architecture, engineering robust Page Object Model frameworks in Java +
+              Selenium, and integrating strict automated CI/CD quality gates for enterprise delivery.
             </p>
             <div class="flight-tech-pills" id="flightTechPills">
               <span class="flight-pill">Java 17</span>
@@ -5534,7 +6176,8 @@
         <div class="cred-card blueprint-card bounce-target bounce-pop d-8"
           data-locator="css=#certs .cred-card:nth-of-type(1)">
           <div class="icon-circle-badge">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
               <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
               <polyline points="9 12 11 14 15 10" />
             </svg>
@@ -5552,7 +6195,8 @@
         <div class="cred-card blueprint-card bounce-target bounce-pop d-9"
           data-locator="css=#certs .cred-card:nth-of-type(2)">
           <div class="icon-circle-badge">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
               <path d="M6 9H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h2" />
               <path d="M18 9h2a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-2" />
               <path d="M4 22h16" />
@@ -5565,8 +6209,9 @@
             <div class="cred-name">Best Debutant Award</div>
             <div class="cred-detail">Wipro &amp; Hexaware Delivery Honors</div>
             <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:2px;">
-              <button type="button" class="cred-link open-lightbox-btn" data-type="img" data-src="images/Best%20Debutant%20Award.png"
-                data-title="Best Debutant Recognition Award">Preview Award ↗</button>
+              <button type="button" class="cred-link open-lightbox-btn" data-type="img"
+                data-src="images/Best%20Debutant%20Award.png" data-title="Best Debutant Recognition Award">Preview Award
+                ↗</button>
               <span style="color:var(--border);">·</span>
               <a href="https://lnkd.in/p/gU_8CW2w" target="_blank" rel="noopener noreferrer" class="cred-link">LinkedIn
                 Post ↗</a>
@@ -5578,7 +6223,8 @@
         <div class="cred-card blueprint-card bounce-target bounce-pop d-10"
           data-locator="css=#certs .cred-card:nth-of-type(3)">
           <div class="icon-circle-badge">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
               <circle cx="12" cy="8" r="6" />
               <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11" />
             </svg>
@@ -5593,7 +6239,8 @@
         <div class="cred-card blueprint-card bounce-target bounce-pop d-11"
           data-locator="css=#certs .cred-card:nth-of-type(4)">
           <div class="icon-circle-badge">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
               <polygon
                 points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
             </svg>
@@ -5608,7 +6255,8 @@
         <div class="cred-card blueprint-card bounce-target bounce-pop d-11"
           data-locator="css=#certs .cred-card:nth-of-type(5)">
           <div class="icon-circle-badge">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
               <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
               <path d="M6 12v5c3 3 9 3 12 0v-5" />
             </svg>
@@ -5623,7 +6271,8 @@
         <div class="cred-card blueprint-card bounce-target bounce-pop d-12"
           data-locator="css=#certs .cred-card:nth-of-type(6)">
           <div class="icon-circle-badge">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
               <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
             </svg>
           </div>
@@ -5637,7 +6286,8 @@
         <div class="cred-card blueprint-card bounce-target bounce-pop d-12"
           data-locator="css=#certs .cred-card:nth-of-type(7)">
           <div class="icon-circle-badge">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
               <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
               <polyline points="9 22 9 12 15 12 15 22" />
             </svg>
@@ -5651,60 +6301,7 @@
     </div>
   </section>
 
-  <!-- Instant Interview Q&A Bot Section -->
-  <section id="interview-bot" style="padding-top: 30px;">
-    <div class="container">
-      <div class="section-header bounce-target bounce-pop d-7">
-        <span class="section-num">07.2 Instant Interview Bot</span>
-        <h2 class="section-title">Ask Srivatsa <strong>Anything</strong></h2>
-        <p style="font-size:0.88rem; color:var(--text-muted); max-width:760px; margin-top:8px;">
-          Hiring for an SDET Lead or Senior QA Automation role? Click any standard interview question below or type your own to get instant, metric-backed answers directly from Srivatsa's verified career playbook.
-        </p>
-      </div>
 
-      <div class="interview-bot-container bounce-target bounce-pop d-8">
-        <!-- Bot Header -->
-        <div class="bot-header">
-          <div class="bot-header-info">
-            <div class="bot-avatar-badge">SM</div>
-            <div>
-              <div class="bot-title-text">Srivatsa's SDET Playbook Bot</div>
-              <div class="bot-status-pill">
-                <span class="status-pulse-dot" style="width:7px; height:7px; background:#22c55e;"></span>
-                <span>ONLINE · VERIFIED RESPONSES</span>
-              </div>
-            </div>
-          </div>
-          <button type="button" id="botResetChatBtn" style="background:transparent; border:none; color:#64748b; font-family:var(--font-mono); font-size:0.72rem; cursor:pointer;">Clear Chat</button>
-        </div>
-
-        <!-- Chat Stream -->
-        <div class="bot-chat-stream" id="botChatStream">
-          <div class="chat-bubble bot-msg">
-            👋 Hi there! I'm Srivatsa's automated interview assistant. Feel free to click any of the prompt chips below to learn about my automation architecture, leadership philosophy, or key achievements at Apple, Citi, and Air Canada!
-          </div>
-        </div>
-
-        <!-- Preset Quick Prompt Chips -->
-        <div class="bot-prompt-chips" id="botPromptChips">
-          <button type="button" class="prompt-chip-btn" data-question="hire">💬 Why hire Srivatsa as Lead SDET?</button>
-          <button type="button" class="prompt-chip-btn" data-question="flakiness">💬 How do you eliminate flaky tests in CI/CD?</button>
-          <button type="button" class="prompt-chip-btn" data-question="apple-citi">💬 What was your biggest impact at Apple &amp; Citi?</button>
-          <button type="button" class="prompt-chip-btn" data-question="architecture">💬 What is your automation framework design?</button>
-          <button type="button" class="prompt-chip-btn" data-question="leadership">💬 What is your team leadership &amp; mentoring style?</button>
-        </div>
-
-        <!-- Input Bar -->
-        <form class="bot-input-bar" id="botInputForm" onsubmit="return false;">
-          <input type="text" class="bot-input-field" id="botUserQueryInput" placeholder="Ask a custom question (e.g. TestNG, Jenkins, Rest Assured)..." autocomplete="off" />
-          <button type="submit" class="bot-send-btn" id="botSendBtn">
-            <span>Ask</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
-          </button>
-        </form>
-      </div>
-    </div>
-  </section>
 
   <!-- Contact Section -->
   <section id="contact">
@@ -5953,6 +6550,290 @@
     </div>
   </div>
 
+  <!-- =========================================================================
+       INTERACTIVE QA & FINTECH LABS MODAL (PLAYGROUND & 3D CARD VERIFIER)
+       ========================================================================= -->
+  <div class="interactive-labs-modal-overlay" id="interactivePlaygroundModal" role="dialog" aria-modal="true" aria-label="Interactive QA & FinTech Labs Sandbox">
+    <div class="interactive-labs-modal-window">
+      <!-- Modal Header -->
+      <div class="interactive-labs-header">
+        <div class="interactive-labs-title-wrap">
+          <div class="interactive-labs-tag">
+            <span style="width:7px; height:7px; border-radius:50%; background:#22c55e; box-shadow:0 0 8px #22c55e; display:inline-block;"></span>
+            <span>QA LABS ENGINE // INTERACTIVE RUNTIMES</span>
+          </div>
+          <h3 class="interactive-labs-title">Enterprise QA <strong>&amp; FinTech Sandbox</strong></h3>
+        </div>
+
+        <!-- Labs Navigation Tabs -->
+        <div class="interactive-labs-nav-tabs">
+          <button type="button" class="interactive-labs-tab-btn active" id="modalTabBtnPlayground" data-target="playground">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="16 18 22 12 16 6"></polyline>
+              <polyline points="8 6 2 12 8 18"></polyline>
+            </svg>
+            <span>Live Automation &amp; BDD IDE</span>
+          </button>
+          <button type="button" class="interactive-labs-tab-btn" id="modalTabBtnCardStudio" data-target="cardStudio">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+              <line x1="1" y1="10" x2="23" y2="10"></line>
+            </svg>
+            <span>3D Payment &amp; Card Verifier</span>
+          </button>
+        </div>
+
+        <!-- Right Modal Controls -->
+        <div class="interactive-labs-ctrls">
+          <button type="button" class="studio-ctrl-btn" id="modalSoundFxToggleBtn" title="Toggle Lab Sound FX">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" id="modalSoundIconOn">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+              <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+            </svg>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" id="modalSoundIconOff" style="display:none;">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+              <line x1="23" y1="9" x2="17" y2="15"></line>
+              <line x1="17" y1="9" x2="23" y2="15"></line>
+            </svg>
+            <span id="modalSoundFxLabel">SFX</span>
+          </button>
+          <button type="button" class="drawer-close-btn" id="closeInteractiveModalBtn" title="Close Sandbox (ESC)">
+            ✕ Close [ESC]
+          </button>
+        </div>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="interactive-labs-body">
+        <!-- Tab 1: Live Automation Coding & BDD Playground -->
+        <div class="interactive-labs-panel active" id="modalPanelPlayground">
+          <div class="code-rig-wrapper">
+            <!-- 3 Clean File Tabs -->
+            <div class="code-tab-nav" id="codeTabNav">
+              <button class="code-tab-btn active" data-tab="java" id="tabJavaBtn">
+                <span>☕ AutomationTest.java</span>
+              </button>
+              <button class="code-tab-btn" data-tab="payment" id="tabPaymentBtn">
+                <span>💳 PaymentGatewayE2E.java</span>
+              </button>
+              <button class="code-tab-btn" data-tab="feature" id="tabFeatureBtn">
+                <span>🥒 ProfileVerification.feature</span>
+              </button>
+            </div>
+
+            <!-- IDE Header Bar -->
+            <div class="code-editor-header">
+              <div style="display:flex; align-items:center; gap:8px;">
+                <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#22c55e; box-shadow:0 0 8px #22c55e;"></span>
+                <span class="code-filename" id="codeFilename">src/test/java/AutomationTest.java</span>
+                <span style="font-family:var(--font-mono); font-size:0.65rem; color:#38bdf8; background:rgba(56,189,248,0.1); border:1px solid rgba(56,189,248,0.25); padding:1px 6px; border-radius:3px;">Portfolio DOM Active</span>
+              </div>
+              <div class="code-editor-actions">
+                <button class="code-reset-btn" id="codeResetBtn" title="Reset to Starter Template">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="1 4 1 10 7 10"></polyline>
+                    <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+                  </svg>
+                  <span>Reset</span>
+                </button>
+                <button class="code-copy-btn" id="codeCopyBtn" title="Copy Code">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                  </svg>
+                  <span>Copy</span>
+                </button>
+                <button class="code-run-btn" id="codePlaygroundRunBtn" title="Execute Code in Terminal (Ctrl/Cmd + Enter)">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                  </svg>
+                  <span>Run Code</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Playground Layout: Editable Editor on Left, Real-Time Terminal on Right -->
+            <div class="code-playground-layout">
+              <div style="display:flex; flex-direction:column; position:relative;">
+                <textarea class="code-textarea" id="interactiveCodeInput" spellcheck="false" placeholder="// Write Java or Feature code here..."></textarea>
+                <div style="padding:6px 14px; background:#0d0d12; border-top:1px solid #1e293b; border-right:1px solid #1e293b; font-family:var(--font-mono); font-size:0.68rem; color:#64748b; display:flex; justify-content:space-between;">
+                  <span id="editorLanguageLabel">Java 17 · Selenium 4 · TestNG 7.8</span>
+                  <span>Press <strong>⌘ + Enter</strong> to Run</span>
+                </div>
+              </div>
+
+              <div class="code-output-panel">
+                <div class="terminal-header" style="background:#13131a; border-bottom:1px solid #1e293b; padding:8px 16px; display:flex; align-items:center; justify-content:space-between;">
+                  <div class="terminal-title" style="font-size:0.72rem; color:#94a3b8; font-family:var(--font-mono);">
+                    <span id="terminalCmdTitle">mvn test -Dtest=AutomationTest</span>
+                  </div>
+                  <button id="clearTerminalBtn" style="background:transparent; border:none; color:#64748b; font-family:var(--font-mono); font-size:0.65rem; cursor:pointer;">Clear</button>
+                </div>
+
+                <!-- Technical Terminal Log Output -->
+                <div class="test-terminal-logs" id="playgroundTerminalLogs">
+                  <div style="color:#64748b;">// Driver initialized on active portfolio DOM.</div>
+                  <div style="color:#94a3b8;">Ready. Type code or System.out.println() and click <strong>[Run Code]</strong> to execute live.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 2: 3D Payment & Card Verifier -->
+        <div class="interactive-labs-panel" id="modalPanelCardStudio">
+          <div class="card-studio-wrapper" style="margin-top:0;">
+            <!-- Left: 3D Perspective Flip Card Display -->
+            <div class="card-stage">
+              <div class="card-3d-flipper" id="card3dFlipper" title="Click to flip card">
+                <!-- Card Front Face -->
+                <div class="card-face card-face-front" id="cardFaceFront" data-brand="visa">
+                  <div class="card-top-row">
+                    <div style="display:flex; align-items:center;">
+                      <div class="card-chip"></div>
+                      <svg class="card-contactless" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                        <path d="M8.5 16.5a5 5 0 0 1 0-9" />
+                        <path d="M12 19a8.5 8.5 0 0 0 0-14" />
+                        <path d="M15.5 21.5a12 12 0 0 0 0-19" />
+                      </svg>
+                    </div>
+                    <div style="display:flex; align-items:center; gap:8px;">
+                      <div class="card-amount-badge" id="cardDisplayAmount">₹50,000</div>
+                      <div class="card-brand-logo" id="cardBrandLogo">VISA</div>
+                    </div>
+                  </div>
+
+                  <div class="card-number-display" id="cardDisplayNumber">4532 •••• •••• 8891</div>
+
+                  <div class="card-bottom-row">
+                    <div class="card-holder-group">
+                      <span class="card-label-small">Cardholder Name</span>
+                      <span class="card-val-name" id="cardDisplayName">SRIVATSA MALALI</span>
+                    </div>
+                    <div class="card-expiry-group">
+                      <span class="card-label-small">Expires</span>
+                      <span class="card-val-exp" id="cardDisplayExp">08 / 28</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card Back Face -->
+                <div class="card-face card-face-back" id="cardFaceBack" data-brand="visa">
+                  <div class="card-mag-strip"></div>
+                  <div class="card-cvv-row">
+                    <span class="card-label-small" style="color:#ffffff; margin-bottom:4px;">CVV / CVC Security Code</span>
+                    <div class="card-signature-bar">
+                      <span id="cardDisplayCvv">842</span>
+                    </div>
+                    <div style="margin-top:14px; font-size:0.65rem; color:#94a3b8; font-family:var(--font-mono); text-align:right;">
+                      SECURE PAYMENT &amp; CARD QA VALIDATION ENGINE
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: Live Interactive Card Editor & QA Engine -->
+            <div class="card-editor-panel">
+              <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(148,163,184,0.15); padding-bottom:10px;">
+                <span style="font-family:var(--font-mono); font-size:0.78rem; font-weight:700; color:var(--color); text-transform:uppercase;">
+                  💳 Live Card &amp; Payment Gateway Editor
+                </span>
+                <span style="font-family:var(--font-mono); font-size:0.68rem; color:#22c55e; font-weight:600;">
+                  ● REAL-TIME VALIDATION ACTIVE
+                </span>
+              </div>
+
+              <div class="card-editor-grid">
+                <!-- Transfer Amount Field & Quick Presets -->
+                <div class="card-editor-field full-span">
+                  <label class="card-editor-label" for="cardInputAmount">
+                    <span>00. Payment / Transfer Amount</span>
+                    <span id="amountFormattedLabel" style="color:var(--accent, #38bdf8); font-weight:700;">₹50,000 INR</span>
+                  </label>
+                  <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+                    <div style="position:relative; flex:1; min-width:130px;">
+                      <span style="position:absolute; left:12px; top:50%; transform:translateY(-50%); font-family:var(--font-mono); font-size:0.88rem; font-weight:700; color:var(--accent, #38bdf8);">₹</span>
+                      <input type="text" class="card-live-input" id="cardInputAmount" value="50,000" placeholder="50,000" style="padding-left:26px;" autocomplete="off" />
+                    </div>
+                    <div class="card-amount-presets" style="display:flex; gap:6px;">
+                      <button type="button" class="btn-amount-chip" data-amount="5,000">₹5K</button>
+                      <button type="button" class="btn-amount-chip" data-amount="25,000">₹25K</button>
+                      <button type="button" class="btn-amount-chip active" data-amount="50,000">₹50K</button>
+                      <button type="button" class="btn-amount-chip" data-amount="100,000">₹1L</button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card Number -->
+                <div class="card-editor-field full-span">
+                  <label class="card-editor-label" for="cardInputNumber">
+                    <span>01. Card Number (Dynamic BIN Detection)</span>
+                    <span id="cardTypeDetectLabel" style="color:var(--accent, #38bdf8);">VISA DETECTED</span>
+                  </label>
+                  <input type="text" class="card-live-input" id="cardInputNumber" maxlength="19" value="4532 9988 7766 8891" placeholder="4532 0000 0000 0000" autocomplete="off" />
+                </div>
+
+                <!-- Cardholder Name -->
+                <div class="card-editor-field full-span">
+                  <label class="card-editor-label" for="cardInputName">
+                    <span>02. Cardholder Name</span>
+                    <span style="color:#94a3b8;">UPPERCASE</span>
+                  </label>
+                  <input type="text" class="card-live-input" id="cardInputName" maxlength="26" value="SRIVATSA MALALI" placeholder="FULL NAME" autocomplete="off" />
+                </div>
+
+                <!-- Expiry Date -->
+                <div class="card-editor-field">
+                  <label class="card-editor-label" for="cardInputExp">
+                    <span>03. Expiration Date</span>
+                  </label>
+                  <input type="text" class="card-live-input" id="cardInputExp" maxlength="5" value="08/28" placeholder="MM/YY" autocomplete="off" />
+                </div>
+
+                <!-- CVV Code (Auto-flips card on focus!) -->
+                <div class="card-editor-field">
+                  <label class="card-editor-label" for="cardInputCvv">
+                    <span>04. CVV / CVC</span>
+                  </label>
+                  <input type="text" class="card-live-input" id="cardInputCvv" maxlength="4" value="842" placeholder="123" autocomplete="off" />
+                </div>
+              </div>
+
+              <!-- Real-time QA Assertion Badges -->
+              <div class="card-telemetry-row">
+                <div class="card-badge-pill" id="luhnBadge">
+                  <span>✔ Luhn Mod-10 Checksum Valid</span>
+                </div>
+                <div class="card-badge-pill" id="expiryBadge">
+                  <span>✔ Expiration Future Active</span>
+                </div>
+                <div class="card-badge-pill" id="cvvBadge">
+                  <span>✔ 3-Digit CVV Masked</span>
+                </div>
+              </div>
+
+              <button type="button" class="btn-verify-card" id="btnVerifyCardTransaction">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span id="btnVerifyLabel">Verify &amp; Authorize ₹50,000 Payment</span>
+              </button>
+
+              <!-- Generated QA Test Receipt -->
+              <div class="card-qa-receipt" id="cardQaReceipt">
+                <div style="color:#22c55e; font-weight:700; margin-bottom:4px;">✔ TRANSACTION &amp; QA ASSERTION VERIFIED [PASS]</div>
+                <div>• Payment Gateway: <strong>Razorpay / NPCI Core Rails / Apple Pay</strong></div>
+                <div>• Card Network: <strong id="receiptNetwork">VISA DEBIT</strong> · Status: <strong>APPROVED (AUTH #884920)</strong></div>
+                <div>• Test Assertion: <strong>Assert.assertTrue(luhnCheck &amp;&amp; expValid &amp;&amp; cvvPassed);</strong></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Executive Resume Modal -->
   <div class="resume-modal-overlay" id="resumeModalOverlay">
     <div class="resume-paper">
@@ -6131,7 +7012,7 @@
     </div>
   </div>
 
-  <!-- Floating Command Trigger Button -->
+  <!-- Floating Command Trigger Button (Bottom-Left) -->
   <button class="cmd-floating-btn" id="cmdFloatingBtn" title="Press ⌘K or Click to Open Command Palette">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
       <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
@@ -6141,6 +7022,82 @@
     <span>⌘K Menu</span>
   </button>
 
+  <!-- Floating Bottom-Right AI Chatbot Launcher Button -->
+  <button type="button" class="floating-chatbot-btn" id="floatingChatbotTrigger" title="Ask Srivatsa AI (Instant SDET Q&amp;A)">
+    <div class="chatbot-btn-avatar">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+        <path d="M12 7v2"></path>
+        <path d="M9 11h6"></path>
+      </svg>
+      <span class="chatbot-pulse-ring"></span>
+    </div>
+    <span class="chatbot-btn-label">Ask Srivatsa AI</span>
+    <span class="chatbot-online-indicator"></span>
+  </button>
+
+  <!-- Floating AI Chatbot Popup Window -->
+  <div class="floating-chatbot-window" id="aiChatbotWidget" role="dialog" aria-modal="false" aria-label="Ask Srivatsa AI Assistant">
+    <!-- Bot Header -->
+    <div class="bot-header">
+      <div class="bot-header-info">
+        <div class="bot-avatar-badge">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2 2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"></path>
+            <rect x="4" y="8" width="16" height="12" rx="2"></rect>
+            <circle cx="9" cy="13" r="1.5" fill="currentColor"></circle>
+            <circle cx="15" cy="13" r="1.5" fill="currentColor"></circle>
+            <path d="M9 17h6"></path>
+          </svg>
+        </div>
+        <div>
+          <div class="bot-title-text">Srivatsa AI · SDET Playbook</div>
+          <div class="bot-status-pill">
+            <span class="status-pulse-dot" style="width:6px; height:6px; background:#22c55e;"></span>
+            <span>REAL-TIME GENERATIVE AI ACTIVE</span>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex; align-items:center; gap:6px;">
+        <button type="button" id="botResetChatBtn" title="Clear chat history" class="bot-header-action-btn">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
+        </button>
+        <button type="button" id="botCloseWidgetBtn" title="Minimize Chatbot (ESC)" class="bot-header-action-btn">✕</button>
+      </div>
+    </div>
+
+    <!-- Chat Stream -->
+    <div class="bot-chat-stream" id="botChatStream">
+      <div class="chat-bubble bot-msg">
+        <div class="bot-bubble-content">
+          👋 Hi! I'm <strong>Srivatsa's AI Assistant</strong>, loaded with 5.5+ years of verified SDET experience across Apple, Citi Bank, and Air Canada.
+          <br><br>
+          Select a question below or type your own to generate instant, tailored insights:
+        </div>
+      </div>
+    </div>
+
+    <!-- Preset Quick Prompt Chips -->
+    <div class="bot-prompt-chips" id="botPromptChips">
+      <button type="button" class="prompt-chip-btn" data-question="hire">✨ Why hire Srivatsa as Lead SDET?</button>
+      <button type="button" class="prompt-chip-btn" data-question="flakiness">🛡️ Flaky test strategy</button>
+      <button type="button" class="prompt-chip-btn" data-question="apple-citi">🍎 Apple &amp; Citi impacts</button>
+      <button type="button" class="prompt-chip-btn" data-question="architecture">⚙️ Automation architecture</button>
+      <button type="button" class="prompt-chip-btn" data-question="leadership">🤝 Leadership style</button>
+    </div>
+
+    <!-- Input Bar -->
+    <form class="bot-input-bar" id="botInputForm" onsubmit="return false;">
+      <input type="text" class="bot-input-field" id="botUserQueryInput" placeholder="Ask anything about Srivatsa's skills..." autocomplete="off" />
+      <button type="submit" class="bot-send-btn" id="botSendBtn" title="Send Question">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="22" y1="2" x2="11" y2="13"></line>
+          <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+        </svg>
+      </button>
+    </form>
+  </div>
+
   <!-- Toast Notification Message -->
   <div class="toast-msg" id="toastMsg">
     <span id="toastIcon">✓</span>
@@ -6149,7 +7106,239 @@
 
   <!-- Scripts -->
   <script>
-    // Theme toggle logic
+    // =========================================================================
+    // STUDIO SOUND FX MICRO-SYNTHESIZER ENGINE (Web Audio API - Modal Scoped)
+    // =========================================================================
+    const SoundFX = (() => {
+      let ctx = null;
+      let isMuted = localStorage.getItem('sfx_muted') === 'true';
+
+      const isModalOpen = () => {
+        const modal = document.getElementById('interactivePlaygroundModal');
+        return modal && modal.classList.contains('active');
+      };
+
+      const getCtx = () => {
+        if (!ctx) {
+          const AudioCtx = window.AudioContext || window.webkitAudioContext;
+          if (AudioCtx) ctx = new AudioCtx();
+        }
+        if (ctx && ctx.state === 'suspended') {
+          ctx.resume();
+        }
+        return ctx;
+      };
+
+      const playClick = () => {
+        if (isMuted || !isModalOpen()) return;
+        try {
+          const c = getCtx();
+          if (!c) return;
+          const osc = c.createOscillator();
+          const gain = c.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(820, c.currentTime);
+          osc.frequency.exponentialRampToValueAtTime(220, c.currentTime + 0.04);
+          gain.gain.setValueAtTime(0.08, c.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, c.currentTime + 0.04);
+          osc.connect(gain);
+          gain.connect(c.destination);
+          osc.start();
+          osc.stop(c.currentTime + 0.04);
+        } catch (e) {}
+      };
+
+      const playHover = () => {
+        if (isMuted || !isModalOpen()) return;
+        try {
+          const c = getCtx();
+          if (!c) return;
+          const osc = c.createOscillator();
+          const gain = c.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(700, c.currentTime);
+          osc.frequency.exponentialRampToValueAtTime(950, c.currentTime + 0.025);
+          gain.gain.setValueAtTime(0.02, c.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, c.currentTime + 0.025);
+          osc.connect(gain);
+          gain.connect(c.destination);
+          osc.start();
+          osc.stop(c.currentTime + 0.025);
+        } catch (e) {}
+      };
+
+      const playSuccess = () => {
+        if (isMuted || !isModalOpen()) return;
+        try {
+          const c = getCtx();
+          if (!c) return;
+          // Harmonic Chime Chord: C5, E5, G5, C6
+          [523.25, 659.25, 783.99, 1046.5].forEach((freq, i) => {
+            const osc = c.createOscillator();
+            const gain = c.createGain();
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(freq, c.currentTime + i * 0.045);
+            gain.gain.setValueAtTime(0, c.currentTime + i * 0.045);
+            gain.gain.linearRampToValueAtTime(0.06, c.currentTime + i * 0.045 + 0.015);
+            gain.gain.exponentialRampToValueAtTime(0.0001, c.currentTime + i * 0.045 + 0.35);
+            osc.connect(gain);
+            gain.connect(c.destination);
+            osc.start(c.currentTime + i * 0.045);
+            osc.stop(c.currentTime + i * 0.045 + 0.35);
+          });
+        } catch (e) {}
+      };
+
+      const playFlip = () => {
+        if (isMuted || !isModalOpen()) return;
+        try {
+          const c = getCtx();
+          if (!c) return;
+          const osc = c.createOscillator();
+          const gain = c.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(240, c.currentTime);
+          osc.frequency.exponentialRampToValueAtTime(580, c.currentTime + 0.06);
+          gain.gain.setValueAtTime(0.05, c.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, c.currentTime + 0.06);
+          osc.connect(gain);
+          gain.connect(c.destination);
+          osc.start();
+          osc.stop(c.currentTime + 0.06);
+        } catch (e) {}
+      };
+
+      const playKey = () => {
+        if (isMuted || !isModalOpen()) return;
+        try {
+          const c = getCtx();
+          if (!c) return;
+          const osc = c.createOscillator();
+          const gain = c.createGain();
+          osc.type = 'triangle';
+          const pitch = 360 + Math.random() * 80;
+          osc.frequency.setValueAtTime(pitch, c.currentTime);
+          gain.gain.setValueAtTime(0.025, c.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, c.currentTime + 0.02);
+          osc.connect(gain);
+          gain.connect(c.destination);
+          osc.start();
+          osc.stop(c.currentTime + 0.02);
+        } catch (e) {}
+      };
+
+      const toggleMute = () => {
+        isMuted = !isMuted;
+        localStorage.setItem('sfx_muted', isMuted ? 'true' : 'false');
+        if (!isMuted) playClick();
+        return isMuted;
+      };
+
+      return { playClick, playHover, playSuccess, playFlip, playKey, toggleMute, isMuted: () => isMuted };
+    })();
+
+    // Wire Sound FX Toggle Buttons (Global and Modal)
+    const soundToggleBtn = document.getElementById('soundToggleBtn');
+    const soundOnIcon = document.getElementById('soundOnIcon');
+    const soundOffIcon = document.getElementById('soundOffIcon');
+    const soundToggleLabel = document.getElementById('soundToggleLabel');
+    const modalSoundFxToggleBtn = document.getElementById('modalSoundFxToggleBtn');
+    const modalSoundIconOn = document.getElementById('modalSoundIconOn');
+    const modalSoundIconOff = document.getElementById('modalSoundIconOff');
+    const modalSoundFxLabel = document.getElementById('modalSoundFxLabel');
+
+    const updateSoundFxUI = (muted) => {
+      if (soundToggleBtn) {
+        soundToggleBtn.classList.toggle('muted', muted);
+        if (soundOnIcon) soundOnIcon.style.display = muted ? 'none' : 'block';
+        if (soundOffIcon) soundOffIcon.style.display = muted ? 'block' : 'none';
+        if (soundToggleLabel) soundToggleLabel.textContent = muted ? 'Muted' : 'SFX';
+      }
+      if (modalSoundFxToggleBtn) {
+        modalSoundFxToggleBtn.classList.toggle('muted', muted);
+        if (modalSoundIconOn) modalSoundIconOn.style.display = muted ? 'none' : 'block';
+        if (modalSoundIconOff) modalSoundIconOff.style.display = muted ? 'block' : 'none';
+        if (modalSoundFxLabel) modalSoundFxLabel.textContent = muted ? 'Muted' : 'Audio ON';
+      }
+    };
+
+    if (soundToggleBtn) {
+      updateSoundFxUI(SoundFX.isMuted());
+      soundToggleBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const muted = SoundFX.toggleMute();
+        updateSoundFxUI(muted);
+        if (typeof showToast === 'function') {
+          showToast(muted ? 'Sound FX Muted' : 'Sound FX Activated (Synthesizer ON)', muted ? '🔇' : '🔊');
+        }
+      });
+    }
+
+    // =========================================================================
+    // STUDIO ACCENT THEME PALETTE MANAGER
+    // =========================================================================
+    const paletteToggleBtn = document.getElementById('paletteToggleBtn');
+    const paletteDropdown = document.getElementById('paletteDropdown');
+    const paletteActiveDot = document.getElementById('paletteActiveDot');
+    const paletteChips = document.querySelectorAll('.palette-chip');
+
+    const accentColorMap = {
+      cyan: '#38bdf8',
+      gold: '#fbbf24',
+      emerald: '#10b981',
+      violet: '#a855f7'
+    };
+
+    const getStoredAccent = () => localStorage.getItem('studio_accent') || 'cyan';
+    const setStoredAccent = (accent) => localStorage.setItem('studio_accent', accent);
+
+    const applyAccentTheme = (accent) => {
+      document.documentElement.setAttribute('data-accent', accent);
+      if (paletteActiveDot && accentColorMap[accent]) {
+        paletteActiveDot.style.background = accentColorMap[accent];
+        paletteActiveDot.style.boxShadow = `0 0 8px ${accentColorMap[accent]}`;
+      }
+      paletteChips.forEach(chip => {
+        chip.classList.toggle('active', chip.getAttribute('data-accent') === accent);
+      });
+    };
+
+    let activeAccent = getStoredAccent();
+    applyAccentTheme(activeAccent);
+
+    if (paletteToggleBtn && paletteDropdown) {
+      paletteToggleBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        SoundFX.playClick();
+        paletteDropdown.classList.toggle('active');
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('#themePalettePicker')) {
+          paletteDropdown.classList.remove('active');
+        }
+      });
+    }
+
+    paletteChips.forEach(chip => {
+      chip.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const accent = chip.getAttribute('data-accent');
+        if (accent) {
+          activeAccent = accent;
+          applyAccentTheme(accent);
+          setStoredAccent(accent);
+          SoundFX.playClick();
+          if (paletteDropdown) paletteDropdown.classList.remove('active');
+          if (typeof showToast === 'function') {
+            const names = { cyan: 'Titanium Cyan', gold: 'FinTech Gold', emerald: 'Matrix Emerald', violet: 'Cyber Violet' };
+            showToast(`Studio Theme: ${names[accent] || accent}`, '🎨');
+          }
+        }
+      });
+    });
+
+    // Theme toggle logic (Light / Dark)
     const themeToggle = document.getElementById('themeToggle');
     const getStoredTheme = () => localStorage.getItem('theme');
     const setStoredTheme = theme => localStorage.setItem('theme', theme);
@@ -6168,10 +7357,26 @@
     let activeTheme = getStoredTheme() || 'light';
     applyTheme(activeTheme);
 
-    themeToggle.addEventListener('click', () => {
-      activeTheme = activeTheme === 'dark' ? 'light' : 'dark';
-      applyTheme(activeTheme);
-      setStoredTheme(activeTheme);
+    if (themeToggle) {
+      themeToggle.addEventListener('click', () => {
+        SoundFX.playClick();
+        activeTheme = activeTheme === 'dark' ? 'light' : 'dark';
+        applyTheme(activeTheme);
+        setStoredTheme(activeTheme);
+      });
+    }
+
+    // Global Micro-interaction Hover Sound (Silky smooth throttled)
+    let lastHoverTime = 0;
+    document.addEventListener('mouseover', (e) => {
+      const interactiveEl = e.target.closest('button, .btn, .chip, .palette-chip, .btn-amount-chip, .prompt-chip-btn, .metro-station-node, .arch-node, nav a, .studio-theme-btn, .cred-badge, .pill');
+      if (interactiveEl) {
+        const now = performance.now();
+        if (now - lastHoverTime > 90) {
+          lastHoverTime = now;
+          SoundFX.playHover();
+        }
+      }
     });
 
     // Simulated QA Test Runner logs simulation
@@ -7454,6 +8659,7 @@
       const skillCards = document.querySelectorAll('.skill-card');
       filterChips.forEach(chip => {
         chip.addEventListener('click', () => {
+          SoundFX.playClick();
           filterChips.forEach(c => c.classList.remove('active'));
           chip.classList.add('active');
           const filter = chip.getAttribute('data-filter');
@@ -7547,6 +8753,7 @@
       const openDrawer = (projKey) => {
         const proj = projectData[projKey];
         if (!proj || !drawerBody || !drawerOverlay) return;
+        SoundFX.playClick();
 
         let liveLinkHtml = '';
         if (proj.liveUrl) {
@@ -7591,6 +8798,7 @@
 
       const closeDrawer = () => {
         if (!drawerOverlay) return;
+        SoundFX.playClick();
         drawerOverlay.classList.remove('active');
         setScrollLock(false);
       };
@@ -7618,6 +8826,7 @@
 
       const openLightbox = (type, src, title) => {
         if (!lightboxOverlay || !lightboxMediaWrap) return;
+        SoundFX.playClick();
         if (lightboxTitle) lightboxTitle.textContent = title || 'Credential Preview';
 
         if (type === 'pdf') {
@@ -7632,6 +8841,7 @@
 
       const closeLightbox = () => {
         if (!lightboxOverlay) return;
+        SoundFX.playClick();
         lightboxOverlay.classList.remove('active');
         if (lightboxMediaWrap) lightboxMediaWrap.innerHTML = '';
         setScrollLock(false);
@@ -7662,6 +8872,7 @@
 
       const openCmdPalette = () => {
         if (!cmdPaletteOverlay) return;
+        SoundFX.playClick();
         cmdPaletteOverlay.classList.add('active');
         setScrollLock(true);
         if (cmdSearchInput) {
@@ -7673,6 +8884,7 @@
 
       const closeCmdPalette = () => {
         if (!cmdPaletteOverlay) return;
+        SoundFX.playClick();
         cmdPaletteOverlay.classList.remove('active');
         setScrollLock(false);
       };
@@ -7704,6 +8916,8 @@
           closeDrawer();
           closeLightbox();
           closeResumeModal();
+          closePlaygroundModal();
+          if (typeof closeChatbotWidget === 'function') closeChatbotWidget();
         }
       });
 
@@ -7751,7 +8965,7 @@ public class AutomationTest extends BaseTest {
         },
         payment: {
           filename: 'src/test/java/PaymentGatewayE2E.java',
-          badge: 'Citi ACH / Apple E2E',
+          badge: 'Payment Gateway E2E',
           lang: 'Java 17 · RestAssured · Selenium 4 · TestNG',
           cmd: 'mvn test -Dtest=PaymentGatewayE2E',
           code: `package com.srivatsa.fintech;
@@ -7764,7 +8978,7 @@ import org.testng.annotations.Test;
 
 public class PaymentGatewayE2E extends BaseTest {
 
-    @Test(description = "Automate 3D Payment Card simulation, CVV auto-flip, and $50,000 ACH Transfer")
+    @Test(description = "Automate 3D Payment Card simulation, CVV auto-flip, and ₹50,000 INR Payment")
     public void testPaymentGatewayCheckout() {
         // 1. Target 3D FinTech Card Studio
         driver.findElement(By.id("card-studio")).scrollIntoView();
@@ -7774,7 +8988,7 @@ public class PaymentGatewayE2E extends BaseTest {
         driver.findElement(By.id("cardInputName")).sendKeys("SRIVATSA MALALI");
         driver.findElement(By.id("cardInputExp")).sendKeys("08/28");
         
-        // 3. Set Transfer Amount ($50,000 USD)
+        // 3. Set Transfer Amount (₹50,000 INR)
         driver.findElement(By.id("cardInputAmount")).sendKeys("50,000");
         
         // 4. Focus CVV field to trigger 3D perspective flip animation
@@ -7782,14 +8996,14 @@ public class PaymentGatewayE2E extends BaseTest {
         cvvField.click();
         cvvField.sendKeys("842");
         
-        // 5. Submit Payment via Citi ACH / Apple Online Gateway
+        // 5. Submit Payment via Card Gateway
         WebElement submitBtn = driver.findElement(By.id("btnVerifyCardTransaction"));
         submitBtn.click();
         
         // 6. Assert Zero Defect Authorization
         WebElement receipt = driver.findElement(By.id("cardQaReceipt"));
         Assert.assertTrue(receipt.isDisplayed(), "Payment receipt must generate");
-        System.out.println("Payment Gateway E2E: $50,000 ACH Wire Transfer APPROVED [AUTH #884920]");
+        System.out.println("Payment Gateway E2E: ₹50,000 INR Payment Transfer APPROVED [AUTH #884920]");
     }
 }`
         },
@@ -7855,15 +9069,16 @@ Feature: Srivatsa Malali Portfolio Verification
         }
       };
 
-      if (tabJavaBtn) tabJavaBtn.addEventListener('click', () => switchFileTab('java'));
-      if (tabPaymentBtn) tabPaymentBtn.addEventListener('click', () => switchFileTab('payment'));
-      if (tabFeatureBtn) tabFeatureBtn.addEventListener('click', () => switchFileTab('feature'));
+      if (tabJavaBtn) tabJavaBtn.addEventListener('click', () => { SoundFX.playClick(); switchFileTab('java'); });
+      if (tabPaymentBtn) tabPaymentBtn.addEventListener('click', () => { SoundFX.playClick(); switchFileTab('payment'); });
+      if (tabFeatureBtn) tabFeatureBtn.addEventListener('click', () => { SoundFX.playClick(); switchFileTab('feature'); });
 
       // Initialize with Java file
       switchFileTab('java');
 
       if (codeResetBtn) {
         codeResetBtn.addEventListener('click', () => {
+          SoundFX.playClick();
           if (interactiveCodeInput) {
             fileBuffers[currentActiveFileKey] = portfolioFiles[currentActiveFileKey].code;
             interactiveCodeInput.value = portfolioFiles[currentActiveFileKey].code;
@@ -7874,6 +9089,7 @@ Feature: Srivatsa Malali Portfolio Verification
 
       if (codeCopyBtn) {
         codeCopyBtn.addEventListener('click', () => {
+          SoundFX.playClick();
           if (interactiveCodeInput) {
             navigator.clipboard.writeText(interactiveCodeInput.value).then(() => {
               showToast('Copied code to clipboard!', '📋');
@@ -7884,6 +9100,7 @@ Feature: Srivatsa Malali Portfolio Verification
 
       if (clearTerminalBtn && playgroundTerminalLogs) {
         clearTerminalBtn.addEventListener('click', () => {
+          SoundFX.playClick();
           playgroundTerminalLogs.innerHTML = `<div style="color:#64748b;">// Console cleared. Ready for execution.</div>`;
         });
       }
@@ -7891,6 +9108,7 @@ Feature: Srivatsa Malali Portfolio Verification
       // Allow Tab indentation in textarea
       if (interactiveCodeInput) {
         interactiveCodeInput.addEventListener('keydown', (e) => {
+          SoundFX.playKey();
           if (e.key === 'Tab') {
             e.preventDefault();
             const start = interactiveCodeInput.selectionStart;
@@ -7907,6 +9125,7 @@ Feature: Srivatsa Malali Portfolio Verification
 
       if (codePlaygroundRunBtn) {
         codePlaygroundRunBtn.addEventListener('click', () => {
+          SoundFX.playClick();
           executeCurrentPlayground();
         });
       }
@@ -7926,6 +9145,7 @@ Feature: Srivatsa Malali Portfolio Verification
         playgroundTerminalLogs.innerHTML = '';
 
         const appendLog = (text, type = 'info') => {
+          SoundFX.playKey();
           const line = document.createElement('div');
           if (type === 'cmd') {
             line.style.color = '#38bdf8';
@@ -8109,6 +9329,7 @@ Feature: Srivatsa Malali Portfolio Verification
               appendLog('[INFO] -------------------------------------------------------', 'dim');
               appendLog(`[INFO] Cucumber Summary: ${scenarioCount} Scenario (${stepsPassed}/${totalSteps} steps passed) [100% Passed]`, 'pass');
               appendLog('[INFO] BUILD SUCCESS', 'pass');
+              SoundFX.playSuccess();
               showToast('Cucumber Feature Execution: 100% Passed!', '🥒');
 
             } catch (err) {
@@ -8209,7 +9430,7 @@ Feature: Srivatsa Malali Portfolio Verification
                 appendLog('[FIND] Located <input id="cardInputAmount"> with By.id("cardInputAmount")', 'dim');
                 await typeIntoField(cardInputAmountEl, targetAmt, 20);
                 appendLog(`[ACTION] Typed '${targetAmt}' into <input id="cardInputAmount">`, 'info');
-                appendLog(`[INFO] Transfer Amount Validated: $${targetAmt} USD`, 'dim');
+                appendLog(`[INFO] Transfer Amount Validated: ₹${targetAmt} INR`, 'dim');
               }
               await new Promise(r => setTimeout(r, 250));
 
@@ -8251,13 +9472,14 @@ Feature: Srivatsa Malali Portfolio Verification
               }
               appendLog('[FIND] Located <div id="cardQaReceipt"> with By.id("cardQaReceipt")', 'dim');
               appendLog('[ASSERT] Assert.assertTrue(receipt.isDisplayed(), "Payment receipt must generate") -> PASS', 'pass');
-              appendLog('[STDOUT] Payment Gateway E2E: $50,000 ACH Wire Transfer APPROVED [AUTH #884920]', 'stdout');
+              appendLog('[STDOUT] Payment Gateway E2E: ₹50,000 INR Payment Transfer APPROVED [AUTH #884920]', 'stdout');
 
               appendLog('[INFO] -------------------------------------------------------', 'dim');
               appendLog('[INFO] Results: Tests run: 1, Failures: 0, Errors: 0, Skipped: 0 (5 assertions passed)', 'pass');
               appendLog('[INFO] -------------------------------------------------------', 'dim');
               appendLog('[INFO] BUILD SUCCESS (Total time: 3.250 s)', 'pass');
-              showToast('🏆 Payment Gateway E2E: $50,000 Wire Transfer Approved!', '💳');
+              SoundFX.playSuccess();
+              showToast('🏆 Payment Gateway E2E: ₹50,000 Payment Approved!', '💳');
 
             } catch (err) {
               appendLog(`[ERROR] ${err.message}`, 'error');
@@ -8361,7 +9583,7 @@ Feature: Srivatsa Malali Portfolio Verification
                 click: () => {
                   domEl.focus();
                   domEl.click();
-                  appendLog(`[ACTION] Clicked element <${domEl.tagName.toLowerCase()}${domEl.id ? ' id="'+domEl.id+'"' : ''}>`, 'info');
+                  appendLog(`[ACTION] Clicked element <${domEl.tagName.toLowerCase()}${domEl.id ? ' id="' + domEl.id + '"' : ''}>`, 'info');
                 },
                 sendKeys: (val) => {
                   if ('value' in domEl) {
@@ -8370,7 +9592,7 @@ Feature: Srivatsa Malali Portfolio Verification
                     domEl.dispatchEvent(new Event('input', { bubbles: true }));
                     domEl.dispatchEvent(new Event('change', { bubbles: true }));
                   }
-                  appendLog(`[ACTION] Typed '${val}' into <${domEl.tagName.toLowerCase()}${domEl.id ? ' id="'+domEl.id+'"' : ''}>`, 'info');
+                  appendLog(`[ACTION] Typed '${val}' into <${domEl.tagName.toLowerCase()}${domEl.id ? ' id="' + domEl.id + '"' : ''}>`, 'info');
                 },
                 clear: () => {
                   if ('value' in domEl) {
@@ -8381,7 +9603,7 @@ Feature: Srivatsa Malali Portfolio Verification
                 },
                 scrollIntoView: () => {
                   domEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                  appendLog(`[ACTION] Scrolled element <${domEl.tagName.toLowerCase()}${domEl.id ? ' id="'+domEl.id+'"' : ''}> into view`, 'info');
+                  appendLog(`[ACTION] Scrolled element <${domEl.tagName.toLowerCase()}${domEl.id ? ' id="' + domEl.id + '"' : ''}> into view`, 'info');
                 }
               };
             };
@@ -8468,6 +9690,7 @@ Feature: Srivatsa Malali Portfolio Verification
               appendLog(`[INFO] Results: Tests run: 1, Failures: 0, Errors: 0, Skipped: 0 (${assertionsPassed} assertions passed)`, 'pass');
               appendLog('[INFO] -------------------------------------------------------', 'dim');
               appendLog('[INFO] BUILD SUCCESS (Total time: 0.168 s)', 'pass');
+              SoundFX.playSuccess();
               showToast('BUILD SUCCESS: Candidate code executed in real time!', '🏆');
 
             } catch (err) {
@@ -8549,6 +9772,7 @@ Feature: Srivatsa Malali Portfolio Verification
 
       archNodes.forEach(node => {
         node.addEventListener('click', () => {
+          SoundFX.playClick();
           archNodes.forEach(n => n.classList.remove('selected'));
           node.classList.add('selected');
 
@@ -8574,6 +9798,7 @@ Feature: Srivatsa Malali Portfolio Verification
         simulatePacketBtn.addEventListener('click', () => {
           if (isTracing) return;
           isTracing = true;
+          SoundFX.playClick();
           simulatePacketBtn.disabled = true;
           simulatePacketBtn.style.opacity = '0.6';
           showToast('Tracing execution packet through enterprise tiers...', '⚡');
@@ -8590,6 +9815,7 @@ Feature: Srivatsa Malali Portfolio Verification
             tiers.forEach(t => t && t.classList.remove('active-tier'));
             if (step < tiers.length) {
               if (tiers[step]) tiers[step].classList.add('active-tier');
+              SoundFX.playKey();
               step++;
             } else {
               clearInterval(interval);
@@ -8597,6 +9823,7 @@ Feature: Srivatsa Malali Portfolio Verification
               isTracing = false;
               simulatePacketBtn.disabled = false;
               simulatePacketBtn.style.opacity = '1';
+              SoundFX.playSuccess();
               showToast('Signal Trace Complete: 4/4 Tiers Verified (12ms latency)', '✓');
             }
           }, 450);
@@ -8692,6 +9919,67 @@ Feature: Srivatsa Malali Portfolio Verification
         });
       }
 
+      // =========================================================================
+      // INTERACTIVE QA & FINTECH LABS MODAL CONTROLLER
+      // =========================================================================
+      const interactivePlaygroundModal = document.getElementById('interactivePlaygroundModal');
+      const modalTabBtnPlayground = document.getElementById('modalTabBtnPlayground');
+      const modalTabBtnCardStudio = document.getElementById('modalTabBtnCardStudio');
+      const modalPanelPlayground = document.getElementById('modalPanelPlayground');
+      const modalPanelCardStudio = document.getElementById('modalPanelCardStudio');
+      const closeInteractiveModalBtn = document.getElementById('closeInteractiveModalBtn');
+
+      const switchModalLabTab = (tabKey) => {
+        const isPlayground = (tabKey === 'playground');
+        if (modalTabBtnPlayground) modalTabBtnPlayground.classList.toggle('active', isPlayground);
+        if (modalTabBtnCardStudio) modalTabBtnCardStudio.classList.toggle('active', !isPlayground);
+        if (modalPanelPlayground) modalPanelPlayground.classList.toggle('active', isPlayground);
+        if (modalPanelCardStudio) modalPanelCardStudio.classList.toggle('active', !isPlayground);
+        SoundFX.playClick();
+      };
+
+      const openPlaygroundModal = (targetTab = 'playground') => {
+        if (!interactivePlaygroundModal) return;
+        interactivePlaygroundModal.classList.add('active');
+        setScrollLock(true);
+        switchModalLabTab(targetTab === 'cardStudio' ? 'cardStudio' : 'playground');
+        SoundFX.playClick();
+      };
+
+      const closePlaygroundModal = () => {
+        if (!interactivePlaygroundModal) return;
+        interactivePlaygroundModal.classList.remove('active');
+        setScrollLock(false);
+      };
+
+      window.openPlaygroundModal = openPlaygroundModal;
+      window.closePlaygroundModal = closePlaygroundModal;
+
+      if (modalTabBtnPlayground) {
+        modalTabBtnPlayground.addEventListener('click', () => switchModalLabTab('playground'));
+      }
+      if (modalTabBtnCardStudio) {
+        modalTabBtnCardStudio.addEventListener('click', () => switchModalLabTab('cardStudio'));
+      }
+      if (closeInteractiveModalBtn) {
+        closeInteractiveModalBtn.addEventListener('click', closePlaygroundModal);
+      }
+      if (interactivePlaygroundModal) {
+        interactivePlaygroundModal.addEventListener('click', (e) => {
+          if (e.target === interactivePlaygroundModal) closePlaygroundModal();
+        });
+      }
+
+      // Wire Open Playground Triggers
+      document.querySelectorAll('.open-playground-trigger').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          const targetTab = btn.getAttribute('data-target') || 'playground';
+          openPlaygroundModal(targetTab);
+        });
+      });
+
       // 11. Executive Resume Modal Handlers
       const resumeModalOverlay = document.getElementById('resumeModalOverlay');
       const resumeCloseBtn = document.getElementById('resumeCloseBtn');
@@ -8709,9 +9997,13 @@ Feature: Srivatsa Malali Portfolio Verification
         setScrollLock(false);
       };
 
+      window.openResumeModal = openResumeModal;
+      window.closeResumeModal = closeResumeModal;
+
       document.querySelectorAll('.open-resume-trigger').forEach(btn => {
         btn.addEventListener('click', (e) => {
           e.preventDefault();
+          e.stopPropagation();
           openResumeModal();
         });
       });
@@ -8730,13 +10022,18 @@ Feature: Srivatsa Malali Portfolio Verification
           case 'work':
           case 'pipeline':
           case 'skills':
-          case 'code':
           case 'workflow':
           case 'experience':
           case 'certs':
           case 'contact':
             const el = document.getElementById(action);
             if (el) el.scrollIntoView({ behavior: 'smooth' });
+            break;
+          case 'code':
+            openPlaygroundModal('playground');
+            break;
+          case 'card-studio':
+            openPlaygroundModal('cardStudio');
             break;
           case 'open-resume':
             openResumeModal();
@@ -8874,6 +10171,7 @@ Feature: Srivatsa Malali Portfolio Verification
       const runLiveAudit = () => {
         if (isAuditRunning || !terminalLogs) return;
         isAuditRunning = true;
+        SoundFX.playClick();
         if (runLiveAuditBtn) {
           runLiveAuditBtn.disabled = true;
           runLiveAuditBtn.style.opacity = '0.6';
@@ -8897,6 +10195,7 @@ Feature: Srivatsa Malali Portfolio Verification
               finalLog.innerHTML = `✔ <strong>TEST SUITE PASSED: 9/9 PASSED, 0 FAILURES [${(auditSteps.reduce((a, b) => a + b.time, 0))}ms]</strong>`;
               terminalLogs.appendChild(finalLog);
               terminalLogs.scrollTop = terminalLogs.scrollHeight;
+              SoundFX.playSuccess();
               showToast('All 9 Live QA Tests Passed Successfully! (0 Failures)', '🧪');
               isAuditRunning = false;
               if (runLiveAuditBtn) {
@@ -8934,6 +10233,7 @@ Feature: Srivatsa Malali Portfolio Verification
           logLine.innerHTML = `> ${step.log} <span class="log-badge">PASS · ${step.time}ms</span>`;
           terminalLogs.appendChild(logLine);
           terminalLogs.scrollTop = terminalLogs.scrollHeight;
+          SoundFX.playKey();
 
           stepIndex++;
           setTimeout(executeStep, 750);
@@ -8977,7 +10277,11 @@ Feature: Srivatsa Malali Portfolio Verification
       let isCardFlipped = false;
 
       function setCardFlip(flipState) {
-        isCardFlipped = Boolean(flipState);
+        const nextState = Boolean(flipState);
+        if (isCardFlipped !== nextState) {
+          SoundFX.playFlip();
+        }
+        isCardFlipped = nextState;
         if (card3dFlipper) card3dFlipper.classList.toggle('flipped', isCardFlipped);
       }
 
@@ -9049,18 +10353,18 @@ Feature: Srivatsa Malali Portfolio Verification
         if (cardFaceFront) cardFaceFront.setAttribute('data-brand', bgTheme);
         if (cardFaceBack) cardFaceBack.setAttribute('data-brand', bgTheme);
 
-        // 2. Amount Formatting & Synchronization
+        // 2. Amount Formatting & Synchronization (Indian Rupee INR formatting)
         let rawAmt = cardInputAmount ? cardInputAmount.value.replace(/[^\d]/g, '') : '50000';
         if (!rawAmt) rawAmt = '0';
         const numAmt = parseInt(rawAmt, 10) || 0;
-        const formattedAmt = numAmt.toLocaleString('en-US');
+        const formattedAmt = numAmt.toLocaleString('en-IN');
 
         if (cardInputAmount && document.activeElement === cardInputAmount) {
           cardInputAmount.value = formattedAmt;
         }
-        if (amountFormattedLabel) amountFormattedLabel.textContent = `$${formattedAmt} USD`;
-        if (cardDisplayAmount) cardDisplayAmount.textContent = `$${formattedAmt}`;
-        if (btnVerifyLabel) btnVerifyLabel.textContent = `Verify & Authorize $${formattedAmt} ACH Transfer`;
+        if (amountFormattedLabel) amountFormattedLabel.textContent = `₹${formattedAmt} INR`;
+        if (cardDisplayAmount) cardDisplayAmount.textContent = `₹${formattedAmt}`;
+        if (btnVerifyLabel) btnVerifyLabel.textContent = `Verify & Authorize ₹${formattedAmt} Payment`;
 
         // 3. Number Formatting & Display
         let formattedNum = '';
@@ -9179,6 +10483,7 @@ Feature: Srivatsa Malali Portfolio Verification
       // Amount Input & Preset Chips
       if (cardInputAmount) {
         cardInputAmount.addEventListener('input', () => {
+          SoundFX.playKey();
           btnAmountChips.forEach(chip => chip.classList.remove('active'));
           runCardLiveValidation();
         });
@@ -9186,6 +10491,7 @@ Feature: Srivatsa Malali Portfolio Verification
 
       btnAmountChips.forEach(chip => {
         chip.addEventListener('click', () => {
+          SoundFX.playClick();
           btnAmountChips.forEach(c => c.classList.remove('active'));
           chip.classList.add('active');
           const amt = chip.getAttribute('data-amount');
@@ -9199,6 +10505,7 @@ Feature: Srivatsa Malali Portfolio Verification
       // Attach Card Input Listeners
       if (cardInputNumber) {
         cardInputNumber.addEventListener('input', () => {
+          SoundFX.playKey();
           setCardFlip(false);
           runCardLiveValidation();
         });
@@ -9206,6 +10513,7 @@ Feature: Srivatsa Malali Portfolio Verification
 
       if (cardInputName) {
         cardInputName.addEventListener('input', () => {
+          SoundFX.playKey();
           setCardFlip(false);
           const upper = cardInputName.value.toUpperCase();
           cardInputName.value = upper;
@@ -9216,6 +10524,7 @@ Feature: Srivatsa Malali Portfolio Verification
 
       if (cardInputExp) {
         cardInputExp.addEventListener('input', () => {
+          SoundFX.playKey();
           setCardFlip(false);
           let clean = cardInputExp.value.replace(/\D/g, '').substring(0, 4);
           if (clean.length >= 3) {
@@ -9230,6 +10539,7 @@ Feature: Srivatsa Malali Portfolio Verification
       if (cardInputCvv) {
         cardInputCvv.addEventListener('focus', () => setCardFlip(true));
         cardInputCvv.addEventListener('input', () => {
+          SoundFX.playKey();
           setCardFlip(true);
           const raw = cardInputCvv.value.replace(/\D/g, '').substring(0, 4);
           cardInputCvv.value = raw;
@@ -9265,16 +10575,17 @@ Feature: Srivatsa Malali Portfolio Verification
                 <span>TRANSACTION &amp; QA ASSERTION VERIFIED [PASS]</span>
               </div>
               <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px 14px; margin-bottom:8px; font-size:0.75rem; color:#cbd5e1;">
-                <div>• Transfer Amount: <strong style="color:#38bdf8;">$${validation.formattedAmt} USD</strong></div>
-                <div>• Payment Gateway: <strong style="color:#f8fafc;">Citi ACH / Apple Pay</strong></div>
+                <div>• Transfer Amount: <strong style="color:var(--accent, #38bdf8);">₹${validation.formattedAmt} INR</strong></div>
+                <div>• Payment Gateway: <strong style="color:#f8fafc;">Razorpay / NPCI Rails</strong></div>
                 <div>• Card Network: <strong style="color:#f8fafc;">${validation.brand} DEBIT</strong></div>
                 <div>• Auth Status: <strong style="color:#22c55e;">APPROVED (AUTH #${authCode})</strong></div>
               </div>
               <div style="border-top:1px solid rgba(255,255,255,0.08); padding-top:6px; font-size:0.72rem; color:#94a3b8;">
-                • Test Assertion: <code style="color:#38bdf8;">Assert.assertTrue(receipt.isDisplayed())</code> &amp; <code style="color:#38bdf8;">Assert.assertTrue(luhnValid)</code> -> <strong style="color:#22c55e;">100% PASSED (0 Defect Leaks)</strong>
+                • Test Assertion: <code style="color:var(--accent, #38bdf8);">Assert.assertTrue(receipt.isDisplayed())</code> &amp; <code style="color:var(--accent, #38bdf8);">Assert.assertTrue(luhnValid)</code> -> <strong style="color:#22c55e;">100% PASSED (0 Defect Leaks)</strong>
               </div>
             `;
-            showToast(`✔ Transaction Approved: $${validation.formattedAmt} authorized on ${validation.brand}!`, '💳');
+            SoundFX.playSuccess();
+            showToast(`✔ Transaction Approved: ₹${validation.formattedAmt} authorized on ${validation.brand}!`, '💳');
           } else {
             // FAIL RECEIPT
             cardQaReceipt.className = 'card-qa-receipt failed';
@@ -9288,17 +10599,18 @@ Feature: Srivatsa Malali Portfolio Verification
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                 <span>TRANSACTION DECLINED: QA ASSERTIONS FAILED [FAIL]</span>
               </div>
-              <div style="color:#fca5a5; margin-bottom:6px;">• Target Amount: <strong>$${validation.formattedAmt} USD</strong> · Error: <strong>Card validation failed security criteria.</strong></div>
+              <div style="color:#fca5a5; margin-bottom:6px;">• Target Amount: <strong>₹${validation.formattedAmt} INR</strong> · Error: <strong>Card validation failed security criteria.</strong></div>
               <div style="padding-left:8px; font-size:0.72rem; color:#e2e8f0; line-height:1.7;">
                 <div>• Card Length: ${validation.isLenExact ? '<span style="color:#22c55e;">✔ PASS (' + validation.rawNum.length + '/' + validation.reqLen + ')</span>' : '<span style="color:#ef4444;">❌ FAIL (Expected ' + validation.reqLen + ' digits, got ' + validation.rawNum.length + ')</span>'}</div>
                 <div>• Luhn Mod-10: ${validation.isLuhnValid ? '<span style="color:#22c55e;">✔ PASS</span>' : '<span style="color:#ef4444;">❌ FAIL (Checksum Mismatch)</span>'}</div>
                 <div>• Expiration Date: ${validation.isExpValid ? '<span style="color:#22c55e;">✔ PASS</span>' : '<span style="color:#ef4444;">❌ FAIL (Invalid MM/YY or Past Date)</span>'}</div>
                 <div>• CVV Integrity: ${validation.isCvvValid ? '<span style="color:#22c55e;">✔ PASS</span>' : '<span style="color:#ef4444;">❌ FAIL (Expected ' + validation.cvvLen + ' digits)</span>'}</div>
                 ${!validation.isNameValid ? '<div>• Cardholder Name: <span style="color:#ef4444;">❌ FAIL (Name required min 3 chars)</span></div>' : ''}
-                ${validation.numAmt <= 0 ? '<div>• Transfer Amount: <span style="color:#ef4444;">❌ FAIL (Amount must be greater than $0)</span></div>' : ''}
+                ${validation.numAmt <= 0 ? '<div>• Transfer Amount: <span style="color:#ef4444;">❌ FAIL (Amount must be greater than ₹0)</span></div>' : ''}
               </div>
               <div style="margin-top:6px; color:#f87171;">• Security Assert: <code style="color:#f87171;">Assert.assertTrue(isCardValid) -> FAILED</code></div>
             `;
+            SoundFX.playClick();
             showToast('❌ Payment Declined: Security assertions failed!', '⚠️');
           }
 
@@ -9307,10 +10619,58 @@ Feature: Srivatsa Malali Portfolio Verification
         return allPassed;
       }
 
-      // Authorize & Verify Payment Transaction Button Click Listener
+      // Authorize & Verify Payment Transaction Button Click Listener with Smooth Animated Feedback
       if (btnVerifyCardTransaction) {
         btnVerifyCardTransaction.addEventListener('click', () => {
-          executePaymentAuthorization();
+          SoundFX.playClick();
+          if (btnVerifyCardTransaction.classList.contains('processing')) return;
+
+          btnVerifyCardTransaction.classList.add('processing');
+          const originalHTML = `
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span id="btnVerifyLabel">${btnVerifyLabel ? btnVerifyLabel.textContent : 'Verify & Authorize Payment'}</span>
+          `;
+
+          btnVerifyCardTransaction.innerHTML = `
+            <span class="btn-spinner"></span>
+            <span>Running QA &amp; Security Validation...</span>
+          `;
+
+          setTimeout(() => {
+            const passed = executePaymentAuthorization();
+            btnVerifyCardTransaction.classList.remove('processing');
+
+            if (passed) {
+              btnVerifyCardTransaction.classList.add('verified-success');
+              btnVerifyCardTransaction.innerHTML = `
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.8">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span style="color:#22c55e;">✔ Payment &amp; QA Assertions Passed!</span>
+              `;
+              setTimeout(() => {
+                btnVerifyCardTransaction.classList.remove('verified-success');
+                btnVerifyCardTransaction.innerHTML = originalHTML;
+                runCardLiveValidation();
+              }, 2400);
+            } else {
+              btnVerifyCardTransaction.classList.add('verified-failed');
+              btnVerifyCardTransaction.innerHTML = `
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2.8">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+                <span style="color:#ef4444;">❌ Security Assertions Failed</span>
+              `;
+              setTimeout(() => {
+                btnVerifyCardTransaction.classList.remove('verified-failed');
+                btnVerifyCardTransaction.innerHTML = originalHTML;
+                runCardLiveValidation();
+              }, 2400);
+            }
+          }, 450);
         });
       }
 
@@ -9372,6 +10732,7 @@ Feature: Srivatsa Malali Portfolio Verification
 
       metroNodes.forEach(node => {
         node.addEventListener('click', () => {
+          SoundFX.playClick();
           metroNodes.forEach(n => n.classList.remove('active'));
           node.classList.add('active');
 
@@ -9396,67 +10757,244 @@ Feature: Srivatsa Malali Portfolio Verification
       });
 
       // =========================================================================
-      // 15. FEATURE 3: SRIVATSA'S "INSTANT INTERVIEW Q&A BOT"
+      // 15. FEATURE 3: SRIVATSA'S REAL-TIME GENERATIVE AI CHATBOT ENGINE
       // =========================================================================
+      const floatingChatbotTrigger = document.getElementById('floatingChatbotTrigger');
+      const aiChatbotWidget = document.getElementById('aiChatbotWidget');
+      const botCloseWidgetBtn = document.getElementById('botCloseWidgetBtn');
       const botChatStream = document.getElementById('botChatStream');
       const botUserQueryInput = document.getElementById('botUserQueryInput');
       const botInputForm = document.getElementById('botInputForm');
       const botPromptChips = document.querySelectorAll('.prompt-chip-btn');
       const botResetChatBtn = document.getElementById('botResetChatBtn');
 
-      const botKnowledge = {
-        hire: "Why hire Srivatsa? 🚀 I bring 5.5+ years of verified enterprise automation experience spanning Wipro, Apple (TCS), Citi Bank (TCS), and Air Canada (Hexaware). I have automated 680+ test cases, architected Page Object Models in Java + Selenium, achieved 0 blocking defect leaks across 5 global launches, and received the 'Best Debutant' and 3x 'Best Performer' awards.",
-        flakiness: "Eliminating flakiness 🛡️ is my specialty! I avoid brittle Thread.sleep() and hardcoded delays. Instead, I implement dynamic FluentWaits, ARIA-based resilient locators, retry listeners for transient network lags, and strict test data isolation, maintaining a 99.8% pipeline success rate.",
-        'apple-citi': "At Apple & Citi 🍎💳: For Apple, I engineered multi-region test suites validating international e-commerce launches across 5 geographic zones with zero production defects. For Citi, I built Rest Assured contract API testing and SQL assertion layers for $50k+ daily ACH wire transfers and Flexcube banking rails.",
-        architecture: "Framework Architecture ⚙️: I design modular Page Object Models (POM) leveraging Java 17, Selenium 4, and TestNG with data-driven Excel/JSON pipelines. Suites run in parallel on Jenkins CI/CD grids, generating rich ExtentReports and Slack notifications on build failure.",
-        leadership: "Leadership Philosophy 🤝: I believe in 'Shift-Left' quality engineering—collaborating closely with Developers and Product Owners during sprint refinement to prevent defects before code is written, while mentoring junior engineers on clean automation practices."
+      let isBotStreaming = false;
+      const botTopicVariationsIndex = {};
+
+      const botAIPlaybookEngine = {
+        hire: [
+          "Why hire Srivatsa as Lead SDET? 🚀 Srivatsa brings 5.5+ years of verified enterprise automation experience spanning Wipro, Apple Online Store, Citi Bank Flexcube Payments, and Air Canada. Having automated 680+ mission-critical scenarios and eliminated 240+ defective builds before production releases, he delivers measurable quality velocity, Shift-Left test practices, and zero-defect launch track records.",
+          "Looking for a proven QA Automation Lead? 💡 Srivatsa is a Java 17, Selenium 4, and Cucumber BDD specialist with a proven track record of delivering 100% automated regression coverage for multi-region architectures. Honored with 'Best Debutant' and 3 consecutive 'Best Performer' accolades, he builds self-healing, maintainable CI/CD automation pipelines.",
+          "Here is what sets Srivatsa apart: 🏆 He combines deep technical mastery in Rest Assured API testing and SQL data validation with structured leadership in Agile defect triage. From architecting ThreadLocal parallel grids to validating complex financial payment rails, Srivatsa champions reliable engineering delivery."
+        ],
+        flakiness: [
+          "Eliminating flakiness 🛡️ is rooted in architectural discipline: Srivatsa rejects brittle Thread.sleep() delays in favor of dynamic FluentWaits and custom ExpectedConditions. By pairing data-isolated JSON/Excel fixtures with resilient ARIA locators, he maintains a 99.8% test pipeline pass rate.",
+          "Flaky tests kill developer trust. ⚡ Srivatsa's anti-flakiness strategy implements custom TestNG retry listeners with automated DOM screenshot captures, headless containerized grid workers, and atomic test data generation, preventing false-positive alerts across nightly Jenkins regressions.",
+          "How Srivatsa solves test flakiness: 🔍 1) Decoupling tests with independent state management. 2) Replacing static waits with fluent explicit polling. 3) Utilizing stable data-testid & CSS locators. 4) Running parallel suites in isolated Docker environments to isolate network latency."
+        ],
+        'apple-citi': [
+          "Enterprise Delivery at Apple & Citi Bank 🍎💳: At Apple, Srivatsa engineered multi-region regression suites covering e-commerce checkouts across 5 global regions with 0 defect leaks. At Citi Bank, he verified core banking integrity, validating Rest Assured API contracts and backend SQL transactions for daily wire transfer rails.",
+          "High-Stakes Enterprise Experience 🌐: For Apple Online Store, Srivatsa led automated checkout validation for major international product launches. At Citi Bank, he automated complex Flexcube banking transactions, ensuring AML compliance and strict payload contract assertion across distributed microservices.",
+          "Track record at Apple & Citi: 📊 Automated 450+ high-value end-to-end checkout scenarios for Apple global storefronts, and built robust API assertion suites at Citi Bank, reducing regression cycle times from 4 hours down to under 25 minutes."
+        ],
+        architecture: [
+          "Automation Architecture Blueprint ⚙️: Designed as an enterprise Page Object Model (POM) using Java 17, Selenium 4, and TestNG. Features ThreadLocal WebDriver thread safety, POJO Jackson serialization for API assertions, Maven multi-module dependency management, and parallel execution on Jenkins/Selenium Grid.",
+          "Framework Design Principles 🏗️: Srivatsa builds scalable, maintainable frameworks centered around Clean Code and BDD collaboration. Step definitions bind directly to reusable Page Objects, with ExtentReports telemetry and instant Slack/Teams alerting upon build failures.",
+          "Core Framework Stack 💻: Java 17 · Selenium 4 POM · Rest Assured · Cucumber BDD · TestNG Parallel Data Providers · Maven Build Automation · ExtentReports · Jenkins Headless Browser Grid with auto-retry triggers."
+        ],
+        leadership: [
+          "Engineering Leadership & Mentoring 🤝: Srivatsa fosters a culture of Shift-Left quality, partnering with Product Managers and Developers early in sprint refinement. He has mentored 12+ QA engineers on writing clean OOP test code and established standardized regression triage protocols.",
+          "Leadership Approach 🌟: Srivatsa believes in empowerment and technical rigor. He conducts weekly code reviews, sets strict quality gates in GitHub pull requests, and standardizes Gherkin acceptance criteria to bridge communication between business and engineering.",
+          "Mentorship & Delivery Philosophy 🎯: Focuses on continuous improvement, reducing manual toil through automation, and instilling strong Root Cause Analysis (RCA) habits across cross-functional Scrum teams."
+        ]
       };
 
-      const appendBotMessage = (text, sender = 'bot') => {
+      // Floating Widget Toggle Handlers
+      const openChatbotWidget = () => {
+        if (!aiChatbotWidget) return;
+        aiChatbotWidget.classList.add('active');
+        if (botUserQueryInput) setTimeout(() => botUserQueryInput.focus(), 200);
+      };
+
+      const closeChatbotWidget = () => {
+        if (!aiChatbotWidget) return;
+        aiChatbotWidget.classList.remove('active');
+      };
+
+      const toggleChatbotWidget = () => {
+        if (!aiChatbotWidget) return;
+        if (aiChatbotWidget.classList.contains('active')) {
+          closeChatbotWidget();
+        } else {
+          openChatbotWidget();
+        }
+      };
+
+      window.openChatbotWidget = openChatbotWidget;
+      window.closeChatbotWidget = closeChatbotWidget;
+
+      if (floatingChatbotTrigger) floatingChatbotTrigger.addEventListener('click', toggleChatbotWidget);
+      if (botCloseWidgetBtn) botCloseWidgetBtn.addEventListener('click', closeChatbotWidget);
+
+      // Stream text word-by-word in real time
+      const streamSentenceToBubble = (text, contentElement, topicKey, onFinish) => {
+        isBotStreaming = true;
+        contentElement.innerHTML = '';
+        const words = text.split(' ');
+        let idx = 0;
+
+        const interval = setInterval(() => {
+          if (idx < words.length) {
+            contentElement.innerHTML += (idx === 0 ? '' : ' ') + words[idx];
+            idx++;
+            if (botChatStream) botChatStream.scrollTop = botChatStream.scrollHeight;
+          } else {
+            clearInterval(interval);
+            isBotStreaming = false;
+
+            // Append dynamic regenerate button
+            const toolbar = document.createElement('div');
+            toolbar.className = 'bot-actions-toolbar';
+            toolbar.innerHTML = `
+              <button type="button" class="btn-regenerate-ai" data-topic="${topicKey}" title="Regenerate with alternative sentence structure">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
+                <span>Regenerate Answer ↺</span>
+              </button>
+            `;
+            const bubbleParent = contentElement.closest('.chat-bubble');
+            if (bubbleParent) {
+              bubbleParent.appendChild(toolbar);
+              const regenBtn = toolbar.querySelector('.btn-regenerate-ai');
+              if (regenBtn) {
+                regenBtn.addEventListener('click', () => {
+                  regenerateBotAnswer(topicKey, bubbleParent);
+                });
+              }
+            }
+
+            if (botChatStream) botChatStream.scrollTop = botChatStream.scrollHeight;
+            if (onFinish) onFinish();
+          }
+        }, 22);
+      };
+
+      const appendUserMessage = (text) => {
         if (!botChatStream) return;
         const bubble = document.createElement('div');
-        bubble.className = `chat-bubble ${sender === 'bot' ? 'bot-msg' : 'user-msg'}`;
+        bubble.className = 'chat-bubble user-msg';
         bubble.textContent = text;
         botChatStream.appendChild(bubble);
         botChatStream.scrollTop = botChatStream.scrollHeight;
       };
 
-      const handleBotQuery = (queryText) => {
-        if (!queryText || !queryText.trim()) return;
-        appendBotMessage(queryText.trim(), 'user');
+      const appendAITypingBubble = () => {
+        if (!botChatStream) return null;
+        const bubble = document.createElement('div');
+        bubble.className = 'ai-typing-indicator';
+        bubble.id = 'activeAiTypingIndicator';
+        bubble.innerHTML = `
+          <span class="ai-typing-dot"></span>
+          <span class="ai-typing-dot"></span>
+          <span class="ai-typing-dot"></span>
+          <span style="margin-left:4px;">✨ Synthesizing AI Playbook...</span>
+        `;
+        botChatStream.appendChild(bubble);
+        botChatStream.scrollTop = botChatStream.scrollHeight;
+        return bubble;
+      };
 
-        // Match keyword or provide comprehensive intelligent response
-        const lower = queryText.toLowerCase();
-        let answer = "";
-
-        if (lower.includes('hire') || lower.includes('why') || lower.includes('experience')) {
-          answer = botKnowledge.hire;
-        } else if (lower.includes('flak') || lower.includes('ci') || lower.includes('jenkins') || lower.includes('pipeline')) {
-          answer = botKnowledge.flakiness;
-        } else if (lower.includes('apple') || lower.includes('citi') || lower.includes('ach') || lower.includes('project')) {
-          answer = botKnowledge['apple-citi'];
-        } else if (lower.includes('architect') || lower.includes('framework') || lower.includes('selenium') || lower.includes('java')) {
-          answer = botKnowledge.architecture;
-        } else if (lower.includes('leader') || lower.includes('mentor') || lower.includes('team') || lower.includes('style')) {
-          answer = botKnowledge.leadership;
-        } else {
-          answer = `Thanks for asking about "${queryText}"! With 5.5+ years of enterprise experience across Java, Selenium, Rest Assured, TestNG, and CI/CD at companies like Wipro, TCS (Apple & Citi), and Hexaware (Air Canada), Srivatsa specializes in high-velocity quality engineering. Feel free to reach out directly via the contact form below or connect on LinkedIn!`;
+      const getNextVariation = (topicKey, queryText = '') => {
+        if (botAIPlaybookEngine[topicKey]) {
+          const arr = botAIPlaybookEngine[topicKey];
+          const currIdx = botTopicVariationsIndex[topicKey] || 0;
+          const nextIdx = (currIdx + 1) % arr.length;
+          botTopicVariationsIndex[topicKey] = nextIdx;
+          return arr[nextIdx];
         }
 
+        // Dynamic synthesis for custom user queries
+        const customVariations = [
+          `Regarding "${queryText}": Srivatsa has architected enterprise test automation across Java 17, Selenium 4, Rest Assured API contracts, and Cucumber BDD. In his roles at Wipro, TCS (Apple & Citi), and Hexaware (Air Canada), he delivered robust test coverage, 0 defect leaks, and automated daily CI/CD gates.`,
+          `Great question about "${queryText}"! In real-world enterprise environments, Srivatsa specializes in solving complex testing challenges—including data-driven TestNG grids, POM synchronization, and backend SQL transaction assertions with 99.8% pipeline stability.`,
+          `Here is Srivatsa's take on "${queryText}": With 5.5+ years of verified SDET experience, Srivatsa focuses on Shift-Left quality engineering, test reliability, and defect prevention. Feel free to explore his code architecture in the Live Labs or connect directly via LinkedIn!`
+        ];
+        const currIdx = botTopicVariationsIndex['custom'] || 0;
+        const nextIdx = (currIdx + 1) % customVariations.length;
+        botTopicVariationsIndex['custom'] = nextIdx;
+        return customVariations[nextIdx];
+      };
+
+      const regenerateBotAnswer = (topicKey, existingBubble) => {
+        if (isBotStreaming) return;
+
+        // Remove old toolbar
+        const oldToolbar = existingBubble.querySelector('.bot-actions-toolbar');
+        if (oldToolbar) oldToolbar.remove();
+
+        const contentEl = existingBubble.querySelector('.bot-bubble-content') || existingBubble;
+        contentEl.innerHTML = `
+          <div class="ai-typing-indicator" style="background:transparent; padding:0;">
+            <span class="ai-typing-dot"></span>
+            <span class="ai-typing-dot"></span>
+            <span class="ai-typing-dot"></span>
+            <span style="margin-left:4px;">Regenerating sentence variation...</span>
+          </div>
+        `;
+
         setTimeout(() => {
-          appendBotMessage(answer, 'bot');
-        }, 350);
+          const freshSentence = getNextVariation(topicKey);
+          streamSentenceToBubble(freshSentence, contentEl, topicKey);
+        }, 300);
+      };
+
+      const handleBotQuery = (queryText) => {
+        if (!queryText || !queryText.trim() || isBotStreaming) return;
+        const trimmed = queryText.trim();
+        appendUserMessage(trimmed);
+
+        const typingBubble = appendAITypingBubble();
+
+        const lower = trimmed.toLowerCase();
+        let topicKey = 'custom';
+
+        if (lower.includes('hire') || lower.includes('why') || lower.includes('experience') || lower.includes('role') || lower.includes('lead')) {
+          topicKey = 'hire';
+        } else if (lower.includes('flak') || lower.includes('ci') || lower.includes('jenkins') || lower.includes('wait') || lower.includes('fail')) {
+          topicKey = 'flakiness';
+        } else if (lower.includes('apple') || lower.includes('citi') || lower.includes('tcs') || lower.includes('project') || lower.includes('bank')) {
+          topicKey = 'apple-citi';
+        } else if (lower.includes('architect') || lower.includes('framework') || lower.includes('selenium') || lower.includes('java') || lower.includes('pom')) {
+          topicKey = 'architecture';
+        } else if (lower.includes('leader') || lower.includes('mentor') || lower.includes('team') || lower.includes('agile') || lower.includes('scrum')) {
+          topicKey = 'leadership';
+        }
+
+        const answerText = getNextVariation(topicKey, trimmed);
+
+        setTimeout(() => {
+          if (typingBubble) typingBubble.remove();
+          const bubble = document.createElement('div');
+          bubble.className = 'chat-bubble bot-msg';
+          const content = document.createElement('div');
+          content.className = 'bot-bubble-content';
+          bubble.appendChild(content);
+          botChatStream.appendChild(bubble);
+
+          streamSentenceToBubble(answerText, content, topicKey);
+        }, 400);
       };
 
       botPromptChips.forEach(chip => {
         chip.addEventListener('click', () => {
+          if (isBotStreaming) return;
           const qKey = chip.getAttribute('data-question');
-          if (botKnowledge[qKey]) {
-            appendBotMessage(chip.textContent.replace('💬 ', ''), 'user');
-            setTimeout(() => {
-              appendBotMessage(botKnowledge[qKey], 'bot');
-            }, 300);
-          }
+          const cleanPrompt = chip.textContent.replace(/^[^\w\s]+/, '').trim();
+          appendUserMessage(cleanPrompt);
+
+          const typingBubble = appendAITypingBubble();
+          const answerText = getNextVariation(qKey);
+
+          setTimeout(() => {
+            if (typingBubble) typingBubble.remove();
+            const bubble = document.createElement('div');
+            bubble.className = 'chat-bubble bot-msg';
+            const content = document.createElement('div');
+            content.className = 'bot-bubble-content';
+            bubble.appendChild(content);
+            botChatStream.appendChild(bubble);
+
+            streamSentenceToBubble(answerText, content, qKey);
+          }, 350);
         });
       });
 
@@ -9474,7 +11012,9 @@ Feature: Srivatsa Malali Portfolio Verification
           if (botChatStream) {
             botChatStream.innerHTML = `
               <div class="chat-bubble bot-msg">
-                👋 Chat cleared! Ask me anything about Srivatsa's SDET leadership, Apple/Citi experience, or automation frameworks!
+                <div class="bot-bubble-content">
+                  👋 Chat refreshed! Ask me anything about Srivatsa's SDET leadership, Apple/Citi experience, or automation frameworks!
+                </div>
               </div>`;
           }
         });
