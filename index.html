@@ -238,12 +238,42 @@
       width: 100%;
     }
 
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 64px;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      background: rgba(10, 15, 29, 0.82);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+      transition: all 0.3s ease;
+    }
+
     [data-theme="dark"] header {
-      background: rgba(9, 9, 11, 0.96);
+      background: rgba(10, 15, 29, 0.88);
+    }
+
+    [data-theme="light"] header {
+      background: rgba(255, 255, 255, 0.92) !important;
+      border-bottom: 1px solid rgba(226, 232, 240, 0.95) !important;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+    }
+
+    header .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
     }
 
     @media (max-width: 768px) {
       header {
+        height: auto;
         padding: 8px 0;
       }
 
@@ -254,36 +284,77 @@
         justify-content: space-between;
         gap: 6px 0;
       }
-
-      .logo {
-        font-size: 0.88rem;
-      }
     }
 
     .logo {
-      font-weight: 700;
-      font-size: 1.1rem;
-      letter-spacing: 0.1em;
+      font-weight: 800;
+      font-size: 1.05rem;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
       font-family: var(--font-display);
       text-decoration: none;
       color: var(--color);
       flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
     }
 
     .logo span {
-      font-weight: 200;
+      font-weight: 300;
       color: var(--text-muted);
+    }
+
+    .logo-badge-sdet {
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      font-weight: 700;
+      padding: 1px 5px;
+      border-radius: 4px;
+      background: rgba(56, 189, 248, 0.12);
+      color: var(--accent);
+      border: 1px solid rgba(56, 189, 248, 0.25);
     }
 
     .nav-links {
       display: flex;
-      gap: 24px;
+      align-items: center;
+      gap: 22px;
       list-style: none;
-      font-size: 0.8rem;
-      font-weight: 500;
+      font-size: 0.78rem;
+      font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.05em;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: all 0.2s ease;
+      padding: 4px 2px;
+      position: relative;
+    }
+
+    .nav-links a:hover {
+      color: var(--color);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: width 0.2s ease;
+      border-radius: 2px;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
     }
 
     @media (max-width: 768px) {
@@ -293,7 +364,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 8px;
+        gap: 10px;
         font-size: 0.68rem;
         overflow-x: auto;
         white-space: nowrap;
@@ -314,57 +385,132 @@
       }
     }
 
-    .nav-links a {
-      color: var(--color);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    .nav-links a:hover {
-      color: var(--accent);
-    }
-
     .actions-wrap {
       display: flex;
       align-items: center;
-      gap: 15px;
+      gap: 10px;
       flex-shrink: 0;
     }
 
-    @media (max-width: 768px) {
-      .actions-wrap {
-        gap: 6px;
-      }
+    /* Primary Resume Pill Button */
+    .nav-resume-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(56, 189, 248, 0.1);
+      color: var(--accent);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s ease;
     }
 
-    .theme-toggle-btn {
-      background: transparent;
-      border: 1px solid var(--border);
-      cursor: pointer;
-      width: 40px;
-      height: 40px;
-      display: flex;
+    .nav-resume-btn:hover {
+      background: var(--accent);
+      color: #ffffff;
+      border-color: var(--accent);
+      box-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
+      transform: translateY(-1px);
+    }
+
+    [data-theme="light"] .nav-resume-btn {
+      background: #f0f9ff;
+      color: #0284c7;
+      border: 1px solid #38bdf8;
+      box-shadow: 0 1px 3px rgba(2, 132, 199, 0.12);
+    }
+
+    [data-theme="light"] .nav-resume-btn:hover {
+      background: #0284c7;
+      color: #ffffff;
+      border-color: #0284c7;
+      box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);
+    }
+
+    /* Unified Segmented Utility Cluster */
+    .nav-utility-cluster {
+      display: inline-flex;
+      align-items: center;
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      border-radius: 9999px;
+      padding: 3px 5px;
+      gap: 4px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+    }
+
+    [data-theme="light"] .nav-utility-cluster {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(0, 0, 0, 0.04);
+    }
+
+    .nav-tool-btn {
+      background: rgba(30, 41, 59, 0.7);
+      border: 1px solid rgba(148, 163, 184, 0.22);
+      color: #cbd5e1;
+      width: 32px;
+      height: 32px;
+      min-width: 32px;
+      min-height: 32px;
+      padding: 0;
+      border-radius: 50%;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
-      color: var(--color);
-      transition: border-color 0.2s;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
     }
 
-    @media (max-width: 768px) {
-      .theme-toggle-btn {
-        width: 32px;
-        height: 32px;
-      }
+    .nav-tool-btn:hover {
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.2);
+      border-color: #38bdf8;
+      transform: translateY(-1px);
+      box-shadow: 0 0 12px rgba(56, 189, 248, 0.35);
     }
 
-    .theme-toggle-btn:hover {
-      border-color: var(--accent);
+    [data-theme="light"] .nav-tool-btn {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      color: #334155;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
     }
 
-    .theme-toggle-btn svg {
-      width: 18px;
-      height: 18px;
+    [data-theme="light"] .nav-tool-btn:hover {
+      background: #e0f2fe;
+      border-color: #0284c7;
+      color: #0284c7;
+      box-shadow: 0 2px 8px rgba(2, 132, 199, 0.2);
+    }
+
+    .nav-tool-btn svg {
+      width: 15px;
+      height: 15px;
+      display: block;
+      pointer-events: none;
+      transition: transform 0.2s ease;
+    }
+
+    .nav-tool-btn:hover svg {
+      transform: scale(1.08);
+    }
+
+    .nav-tool-btn svg:not([fill="none"]) {
       fill: currentColor;
+    }
+
+    .nav-tool-btn svg[fill="none"] {
+      fill: none;
+      stroke: currentColor;
     }
 
     /* Hero Section */
@@ -1782,13 +1928,13 @@
     /* Precision Coordinates & Locator HUD */
     .coords-hud {
       position: fixed;
-      bottom: 24px;
-      right: 24px;
-      background: rgba(15, 23, 42, 0.88);
+      bottom: 84px;
+      right: 28px;
+      background: rgba(15, 23, 42, 0.9);
       color: #38bdf8;
       font-family: var(--font-mono);
       font-size: 0.65rem;
-      padding: 7px 14px;
+      padding: 6px 12px;
       border-radius: 20px;
       border: 1px solid rgba(56, 189, 248, 0.3);
       backdrop-filter: blur(10px);
@@ -1799,6 +1945,14 @@
       gap: 10px;
       letter-spacing: 0.05em;
       box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+      transition: all 0.25s ease;
+    }
+
+    [data-theme="light"] .coords-hud {
+      background: rgba(255, 255, 255, 0.92);
+      color: #0284c7;
+      border-color: rgba(2, 132, 199, 0.3);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
     }
 
     .coords-pulse {
@@ -1808,6 +1962,11 @@
       background: #38bdf8;
       box-shadow: 0 0 8px #38bdf8;
       animation: coordsBlink 1.5s infinite;
+    }
+
+    [data-theme="light"] .coords-pulse {
+      background: #0284c7;
+      box-shadow: 0 0 8px #0284c7;
     }
 
     @keyframes coordsBlink {
@@ -1822,9 +1981,9 @@
       }
     }
 
-    @media (max-width: 800px) {
+    @media (max-width: 1024px) {
       .coords-hud {
-        display: none;
+        display: none !important;
       }
     }
 
@@ -3103,6 +3262,565 @@
       transform: translateY(-2px);
     }
 
+    /* =========================================================================
+       BOOK INTERVIEW & DYNAMIC GMEET MODAL DIALOG
+       ========================================================================= */
+    .interview-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 15, 29, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100000;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      padding: 20px 16px 40px;
+      box-sizing: border-box;
+    }
+
+    .interview-modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* Auto-hide bottom floating dock and buttons when modal is active */
+    body.has-active-modal .recruiter-action-dock,
+    body.has-active-modal .cmd-floating-btn,
+    body.has-active-modal .floating-chatbot-btn {
+      opacity: 0 !important;
+      pointer-events: none !important;
+      transform: translateY(40px) !important;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+
+    .interview-modal-window {
+      background: rgba(15, 23, 42, 0.96);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      border-radius: 18px;
+      width: 100%;
+      max-width: 780px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7), 0 0 35px rgba(56, 189, 248, 0.2);
+      display: flex;
+      flex-direction: column;
+      transform: translateY(18px) scale(0.97);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      color: #f1f5f9;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(56, 189, 248, 0.3) transparent;
+      margin: auto;
+    }
+
+    .interview-modal-overlay.active .interview-modal-window {
+      transform: translateY(0) scale(1);
+    }
+
+    [data-theme="light"] .interview-modal-window {
+      background: rgba(255, 255, 255, 0.98);
+      border-color: rgba(2, 132, 199, 0.3);
+      color: #0f172a;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.2), 0 0 30px rgba(2, 132, 199, 0.12);
+    }
+
+    .interview-quick-slots {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .quick-slot-chip {
+      background: rgba(30, 41, 59, 0.6);
+      border: 1px solid rgba(148, 163, 184, 0.22);
+      border-radius: 6px;
+      padding: 4px 8px;
+      color: var(--color);
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    [data-theme="light"] .quick-slot-chip {
+      background: #f8fafc;
+      border-color: #cbd5e1;
+      color: #334155;
+    }
+
+    .quick-slot-chip:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(56, 189, 248, 0.1);
+    }
+
+    .quick-slot-chip.active {
+      background: var(--accent);
+      color: #ffffff;
+      border-color: var(--accent);
+      font-weight: 700;
+    }
+
+    .interview-modal-header {
+      padding: 18px 24px;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.18);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      background: inherit;
+      backdrop-filter: blur(12px);
+      z-index: 10;
+    }
+
+    [data-theme="light"] .interview-modal-header {
+      border-bottom-color: rgba(203, 213, 225, 0.8);
+    }
+
+    .interview-tab-bar {
+      display: flex;
+      padding: 6px 20px;
+      gap: 8px;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.18);
+      background: rgba(15, 23, 42, 0.4);
+    }
+
+    [data-theme="light"] .interview-tab-bar {
+      background: #f1f5f9;
+      border-bottom-color: rgba(203, 213, 225, 0.8);
+    }
+
+    .interview-tab-btn {
+      flex: 1;
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--text-muted);
+      font-family: var(--font-display);
+      font-size: 0.76rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .interview-tab-btn:hover {
+      color: var(--color);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    [data-theme="light"] .interview-tab-btn:hover {
+      background: #ffffff;
+    }
+
+    .interview-tab-btn.active {
+      background: rgba(56, 189, 248, 0.15);
+      border-color: rgba(56, 189, 248, 0.35);
+      color: var(--accent);
+    }
+
+    [data-theme="light"] .interview-tab-btn.active {
+      background: #ffffff;
+      border-color: #0284c7;
+      color: #0284c7;
+      box-shadow: 0 1px 4px rgba(2, 132, 199, 0.12);
+    }
+
+    .interview-panel {
+      display: none;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .interview-panel.active {
+      display: flex;
+    }
+
+    .cal-embed-container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .cal-info-banner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(30, 41, 59, 0.5);
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      border-radius: 10px;
+      padding: 8px 12px;
+      gap: 8px;
+    }
+
+    [data-theme="light"] .cal-info-banner {
+      background: #f8fafc;
+      border-color: #e2e8f0;
+    }
+
+    [data-theme="light"] .cal-handle-config {
+      background: #f1f5f9 !important;
+      border-color: #0284c7 !important;
+    }
+
+    .cal-brand-badge {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      font-weight: 800;
+      background: #111827;
+      color: #ffffff;
+      padding: 2px 6px;
+      border-radius: 4px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      letter-spacing: 0.05em;
+    }
+
+    .cal-frame-wrapper {
+      width: 100%;
+      height: 620px;
+      max-height: 75vh;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      background: rgba(15, 23, 42, 0.6);
+    }
+
+    [data-theme="light"] .cal-frame-wrapper {
+      background: #ffffff;
+      border-color: #cbd5e1;
+    }
+
+    .cal-embed-iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .interview-modal-header-left {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .interview-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 3px 8px;
+      border-radius: 9999px;
+      width: fit-content;
+    }
+
+    .interview-modal-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin: 4px 0 0 0;
+      letter-spacing: -0.01em;
+    }
+
+    .interview-modal-body {
+      padding: 16px 20px 20px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .interview-field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .interview-label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .interview-duration-pills {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .duration-pill-btn {
+      background: rgba(30, 41, 59, 0.6);
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      border-radius: 10px;
+      padding: 10px 8px;
+      color: var(--color);
+      font-family: var(--font-display);
+      font-size: 0.76rem;
+      font-weight: 600;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+    }
+
+    [data-theme="light"] .duration-pill-btn {
+      background: #f8fafc;
+      border-color: #cbd5e1;
+      color: #334155;
+    }
+
+    .duration-pill-btn .pill-time {
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: var(--color);
+    }
+
+    .duration-pill-btn .pill-tag {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: var(--text-muted);
+    }
+
+    .duration-pill-btn:hover {
+      border-color: var(--accent);
+      background: rgba(56, 189, 248, 0.1);
+      transform: translateY(-1px);
+    }
+
+    .duration-pill-btn.active {
+      background: rgba(56, 189, 248, 0.18);
+      border-color: var(--accent);
+      color: var(--accent);
+      box-shadow: 0 0 12px rgba(56, 189, 248, 0.25);
+    }
+
+    [data-theme="light"] .duration-pill-btn.active {
+      background: #e0f2fe;
+      border-color: #0284c7;
+      color: #0284c7;
+      box-shadow: 0 2px 8px rgba(2, 132, 199, 0.2);
+    }
+
+    [data-theme="light"] .duration-pill-btn.active .pill-time {
+      color: #0284c7;
+    }
+
+    .interview-input, .interview-select {
+      background: rgba(30, 41, 59, 0.6);
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      border-radius: 8px;
+      padding: 9px 12px;
+      color: #f1f5f9;
+      font-family: var(--font-display);
+      font-size: 0.82rem;
+      transition: all 0.2s ease;
+      outline: none;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    [data-theme="light"] .interview-input,
+    [data-theme="light"] .interview-select {
+      background: #ffffff;
+      border-color: #cbd5e1;
+      color: #0f172a;
+    }
+
+    .interview-input:focus, .interview-select:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2);
+    }
+
+    .interview-gmeet-box {
+      background: rgba(16, 185, 129, 0.08);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      border-radius: 12px;
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    [data-theme="light"] .interview-gmeet-box {
+      background: #f0fdf4;
+      border-color: #86efac;
+    }
+
+    .gmeet-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .gmeet-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #10b981;
+    }
+
+    .gmeet-link-display {
+      display: flex;
+      align-items: center;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px dashed rgba(16, 185, 129, 0.4);
+      border-radius: 8px;
+      padding: 8px 12px;
+      justify-content: space-between;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: #6ee7b7;
+      word-break: break-all;
+    }
+
+    [data-theme="light"] .gmeet-link-display {
+      background: #ffffff;
+      border-color: #34d399;
+      color: #047857;
+    }
+
+    .gmeet-btn-sm {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      color: #10b981;
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .gmeet-btn-sm:hover {
+      background: #10b981;
+      color: #ffffff;
+    }
+
+    .interview-preview-box {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      border-radius: 10px;
+      padding: 12px;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      line-height: 1.5;
+      color: #94a3b8;
+      max-height: 140px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+    }
+
+    [data-theme="light"] .interview-preview-box {
+      background: #f8fafc;
+      border-color: #e2e8f0;
+      color: #475569;
+    }
+
+    .interview-actions-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .interview-btn-primary {
+      grid-column: span 2;
+      background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-family: var(--font-display);
+      font-size: 0.84rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+      transition: all 0.25s ease;
+    }
+
+    .interview-btn-primary:hover {
+      background: linear-gradient(135deg, #0369a1 0%, #1d4ed8 100%);
+      box-shadow: 0 8px 22px rgba(37, 99, 235, 0.5);
+      transform: translateY(-1px);
+    }
+
+    .interview-btn-secondary {
+      background: rgba(30, 41, 59, 0.6);
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      color: var(--color);
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-family: var(--font-display);
+      font-size: 0.74rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    [data-theme="light"] .interview-btn-secondary {
+      background: #f8fafc;
+      border-color: #cbd5e1;
+      color: #334155;
+    }
+
+    .interview-btn-secondary:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(56, 189, 248, 0.1);
+    }
+
+    @media (max-width: 600px) {
+      .interview-duration-pills {
+        grid-template-columns: 1fr;
+      }
+      .interview-actions-grid {
+        grid-template-columns: 1fr;
+      }
+      .interview-btn-primary, .interview-btn-secondary {
+        grid-column: span 1 !important;
+      }
+    }
+
     /* Complete Print Optimization */
     @media print {
       body {
@@ -3396,100 +4114,50 @@
       transition: all 0.25s ease;
     }
 
-    .replay-intro-btn:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-      background: var(--accent-muted);
-      transform: translateY(-1px);
-    }
-
-    /* Sound FX Toggle Button */
-    .sound-toggle-btn {
-      background: transparent;
-      border: 1px solid var(--border);
-      color: var(--color);
-      padding: 8px 12px;
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      transition: all 0.25s ease;
-      position: relative;
-    }
-
-    .sound-toggle-btn:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-      background: var(--accent-muted);
-      transform: translateY(-1px);
-    }
-
-    .sound-toggle-btn.muted {
-      color: var(--text-muted);
-      opacity: 0.75;
-    }
-
-    .sound-toggle-btn.muted:hover {
-      opacity: 1;
-      color: var(--color);
-    }
-
+    /* Sound FX & Studio Palette Dot Indicators */
     .sound-indicator-dot {
+      position: absolute;
+      bottom: 3px;
+      right: 3px;
       width: 6px;
       height: 6px;
       border-radius: 50%;
       background: #22c55e;
+      border: 1px solid var(--bg-card, #0f172a);
       box-shadow: 0 0 6px #22c55e;
-      transition: background 0.2s;
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+
+    [data-theme="light"] .sound-indicator-dot {
+      border-color: #ffffff;
     }
 
     .sound-toggle-btn.muted .sound-indicator-dot {
-      background: #94a3b8;
-      box-shadow: none;
+      background: #ef4444;
+      box-shadow: 0 0 5px rgba(239, 68, 68, 0.7);
     }
 
     /* Studio Accent Palette Picker */
     .theme-palette-picker {
       position: relative;
-      display: inline-block;
-    }
-
-    .palette-toggle-btn {
-      background: transparent;
-      border: 1px solid var(--border);
-      color: var(--color);
-      padding: 8px 12px;
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      cursor: pointer;
       display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      transition: all 0.25s ease;
-    }
-
-    .palette-toggle-btn:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-      background: var(--accent-muted);
-      transform: translateY(-1px);
     }
 
     .palette-active-dot {
-      width: 8px;
-      height: 8px;
+      position: absolute;
+      bottom: 3px;
+      right: 3px;
+      width: 7px;
+      height: 7px;
       border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 8px var(--accent);
+      background: var(--accent, #38bdf8);
+      border: 1px solid var(--bg-card, #0f172a);
+      box-shadow: 0 0 6px var(--accent, #38bdf8);
       transition: background 0.3s, box-shadow 0.3s;
+    }
+
+    [data-theme="light"] .palette-active-dot {
+      border-color: #ffffff;
     }
 
     .palette-dropdown {
@@ -4659,18 +5327,154 @@
 
     .station-name {
       font-family: var(--font-mono);
-      font-size: 0.72rem;
-      font-weight: 600;
+      font-size: 0.76rem;
+      font-weight: 700;
       color: var(--color);
       text-align: center;
       white-space: nowrap;
+      letter-spacing: 0.04em;
+    }
+
+    .station-client-pill {
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      font-weight: 600;
+      color: var(--accent);
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 12px;
+      padding: 2px 8px;
+      margin-top: 4px;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+    }
+
+    [data-theme="light"] .station-client-pill {
+      background: rgba(37, 99, 235, 0.08);
+      border-color: rgba(37, 99, 235, 0.2);
+    }
+
+    .metro-station-node.active .station-client-pill {
+      background: var(--accent);
+      color: #ffffff;
+      border-color: var(--accent);
     }
 
     .station-year {
       font-family: var(--font-mono);
       font-size: 0.65rem;
       color: var(--text-muted);
-      margin-top: 2px;
+      margin-top: 3px;
+    }
+
+    .exp-engagement-block {
+      padding: 14px 16px;
+      background: rgba(15, 23, 42, 0.45);
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      border-radius: 8px;
+      transition: all 0.25s ease;
+    }
+
+    .exp-engagement-block:hover {
+      border-color: rgba(56, 189, 248, 0.35);
+      background: rgba(15, 23, 42, 0.6);
+    }
+
+    [data-theme="light"] .exp-engagement-block {
+      background: rgba(241, 245, 249, 0.7) !important;
+      border-color: rgba(203, 213, 225, 0.8) !important;
+    }
+
+    [data-theme="light"] .exp-engagement-block:hover {
+      background: #ffffff !important;
+      border-color: rgba(37, 99, 235, 0.3) !important;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+    }
+
+    /* Official Company & Client Logo Brand Badges */
+    .company-logo-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(15, 23, 42, 0.65);
+      border: 1px solid rgba(148, 163, 184, 0.22);
+      padding: 6px 14px;
+      border-radius: 9999px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+      transition: all 0.25s ease;
+    }
+
+    .company-logo-pill:hover {
+      border-color: rgba(56, 189, 248, 0.45);
+      background: rgba(15, 23, 42, 0.85);
+      transform: translateY(-1px);
+    }
+
+    [data-theme="light"] .company-logo-pill {
+      background: #ffffff !important;
+      border-color: rgba(203, 213, 225, 0.9) !important;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06) !important;
+    }
+
+    [data-theme="light"] .company-logo-pill:hover {
+      border-color: rgba(37, 99, 235, 0.4) !important;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.12) !important;
+    }
+
+    .client-logo-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(30, 41, 59, 0.55);
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      padding: 5px 12px;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .client-logo-pill:hover {
+      background: rgba(30, 41, 59, 0.85);
+      border-color: rgba(56, 189, 248, 0.35);
+    }
+
+    [data-theme="light"] .client-logo-pill {
+      background: #f1f5f9 !important;
+      border-color: rgba(203, 213, 225, 0.85) !important;
+    }
+
+    [data-theme="light"] .client-logo-pill:hover {
+      background: #e2e8f0 !important;
+    }
+
+    .corp-brand-svg {
+      display: inline-block;
+      vertical-align: middle;
+      flex-shrink: 0;
+    }
+
+    .logo-img-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #ffffff;
+      padding: 3px 7px;
+      border-radius: 6px;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.18);
+      flex-shrink: 0;
+      line-height: 1;
+    }
+
+    .brand-logo-img {
+      display: inline-block;
+      vertical-align: middle;
+      object-fit: contain;
+    }
+
+    [data-theme="light"] .logo-img-badge {
+      background: #ffffff;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+      border: 1px solid rgba(203, 213, 225, 0.8);
     }
 
     .flight-metro-detail-card {
@@ -5258,6 +6062,304 @@
       .interactive-labs-body {
         padding: 10px;
       }
+
+      /* Mobile Interview & Booking Modal Optimization */
+      .interview-modal-overlay {
+        padding: 8px 8px calc(12px + env(safe-area-inset-bottom, 0px)) 8px !important;
+        align-items: flex-end;
+      }
+
+      .interview-modal-window {
+        width: 100% !important;
+        max-width: 100% !important;
+        max-height: 92dvh !important;
+        border-radius: 16px 16px 10px 10px !important;
+        margin: 0 !important;
+      }
+
+      .interview-modal-header {
+        padding: 12px 14px !important;
+      }
+
+      .interview-modal-title {
+        font-size: 0.98rem !important;
+      }
+
+      .interview-badge {
+        font-size: 0.6rem !important;
+        padding: 2px 6px !important;
+      }
+
+      .interview-modal-body {
+        padding: 8px 10px 12px 10px !important;
+      }
+
+      .cal-frame-wrapper {
+        height: 540px !important;
+        max-height: 72dvh !important;
+        min-height: 380px !important;
+        border-radius: 10px !important;
+      }
+
+      /* Mobile Safe Touch Targets & Prevent Horizontal Shake */
+      html, body {
+        overflow-x: hidden !important;
+        width: 100% !important;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      /* General Mobile Card Adjustments */
+      .blueprint-card,
+      .project-card,
+      .skill-card,
+      .metric-card,
+      .cred-card,
+      .workflow-card {
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+      }
+
+      /* Hero Section Mobile Polish */
+      .hero-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+      }
+
+      .qa-terminal {
+        max-width: 100% !important;
+        font-size: 0.72rem !important;
+        overflow-x: auto !important;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .logo {
+        font-size: 0.92rem !important;
+      }
+
+      .nav-resume-btn {
+        padding: 4px 8px !important;
+        font-size: 0.66rem !important;
+      }
+
+      .nav-utility-btn {
+        width: 32px !important;
+        height: 32px !important;
+      }
+
+      .cmd-floating-btn {
+        bottom: calc(64px + env(safe-area-inset-bottom, 0px)) !important;
+        left: 10px !important;
+        padding: 6px 10px !important;
+        font-size: 0.7rem !important;
+      }
+
+      .cal-frame-wrapper {
+        height: 480px !important;
+        max-height: 70dvh !important;
+      }
+    }
+
+    /* ==========================================================================
+       FEATURE: GLASSMORPHIC RECRUITER QUICK-ACTION DOCK
+       ========================================================================== */
+    .recruiter-action-dock {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 99990;
+      pointer-events: auto;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .dock-pill-container {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 10px;
+      background: rgba(13, 17, 26, 0.82);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 40px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 24px rgba(56, 189, 248, 0.12);
+      transition: all 0.3s ease;
+    }
+
+    [data-theme="light"] .dock-pill-container {
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid rgba(37, 99, 235, 0.22);
+      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.12), 0 0 20px rgba(37, 99, 235, 0.08);
+    }
+
+    .dock-pill-container:hover {
+      border-color: rgba(56, 189, 248, 0.45);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 32px rgba(56, 189, 248, 0.2);
+    }
+
+    [data-theme="light"] .dock-pill-container:hover {
+      border-color: rgba(37, 99, 235, 0.4);
+      box-shadow: 0 20px 50px rgba(15, 23, 42, 0.16), 0 0 28px rgba(37, 99, 235, 0.14);
+    }
+
+    .dock-badge-pulse {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 20px;
+    }
+
+    [data-theme="light"] .dock-badge-pulse {
+      background: rgba(37, 99, 235, 0.08);
+      border-color: rgba(37, 99, 235, 0.2);
+    }
+
+    .dock-badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 6px #22c55e;
+      animation: pulseDockDot 2s infinite ease-in-out;
+    }
+
+    @keyframes pulseDockDot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.8); }
+    }
+
+    .dock-badge-text {
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+
+    .dock-divider {
+      width: 1px;
+      height: 20px;
+      background: rgba(148, 163, 184, 0.2);
+      margin: 0 2px;
+    }
+
+    .dock-action-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      background: transparent;
+      border: 1px solid transparent;
+      border-radius: 20px;
+      color: #e2e8f0;
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      white-space: nowrap;
+    }
+
+    [data-theme="light"] .dock-action-btn {
+      color: #334155;
+    }
+
+    .dock-action-btn:not(.dock-btn-highlight):hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+      transform: translateY(-2px);
+    }
+
+    [data-theme="light"] .dock-action-btn:not(.dock-btn-highlight):hover {
+      background: rgba(37, 99, 235, 0.08);
+      border-color: rgba(37, 99, 235, 0.2);
+      color: #0f172a;
+    }
+
+    .dock-action-btn .dock-icon {
+      font-size: 0.92rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.25s ease;
+    }
+
+    .dock-action-btn:hover .dock-icon {
+      transform: scale(1.18);
+    }
+
+    .dock-action-btn.dock-btn-highlight,
+    [data-theme="light"] .dock-action-btn.dock-btn-highlight {
+      background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%) !important;
+      color: #ffffff !important;
+      border: 1px solid rgba(255, 255, 255, 0.35) !important;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+      font-weight: 700;
+    }
+
+    .dock-action-btn.dock-btn-highlight:hover,
+    [data-theme="light"] .dock-action-btn.dock-btn-highlight:hover {
+      background: linear-gradient(135deg, #0369a1 0%, #1d4ed8 100%) !important;
+      color: #ffffff !important;
+      border-color: rgba(255, 255, 255, 0.6) !important;
+      transform: translateY(-2px) scale(1.04);
+      box-shadow: 0 8px 24px rgba(37, 99, 235, 0.6) !important;
+    }
+
+    /* Mobile Quick-Action Dock Positioning */
+    @media (max-width: 900px) {
+      .recruiter-action-dock {
+        bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+        max-width: calc(100vw - 120px);
+        left: 20px;
+        transform: none;
+      }
+      .dock-pill-container {
+        padding: 4px 8px;
+        gap: 4px;
+        overflow-x: auto;
+        scrollbar-width: none;
+      }
+      .dock-pill-container::-webkit-scrollbar {
+        display: none;
+      }
+      .dock-badge-pulse {
+        display: none;
+      }
+      .dock-divider {
+        display: none;
+      }
+      .dock-action-btn {
+        padding: 5px 10px;
+        font-size: 0.7rem;
+      }
+      .cmd-floating-btn {
+        bottom: 74px;
+        left: 16px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .recruiter-action-dock {
+        left: 12px;
+        bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+        max-width: calc(100vw - 76px);
+      }
+      .dock-action-btn .dock-label {
+        display: none;
+      }
+      .dock-action-btn {
+        padding: 7px 10px;
+      }
+      .dock-action-btn .dock-icon {
+        font-size: 1.05rem;
+      }
     }
   </style>
 </head>
@@ -5302,87 +6404,99 @@
     <div class="container" style="display:flex; align-items:center; justify-content:space-between; width:100%;">
       <a href="#" class="logo" style="text-decoration:none; color:inherit;">
         SRIVATSA <span>MALALI</span>
+        <span class="logo-badge-sdet">SDET</span>
       </a>
+
+      <!-- Clean, Consolidated Navigation Links -->
       <ul class="nav-links">
         <li><a href="#work">Work</a></li>
         <li><a href="#pipeline">CI/CD</a></li>
         <li><a href="#skills">Skills</a></li>
-        <li><a href="#interactiveLabsHub" class="open-playground-trigger" data-target="playground">Live Labs 🚀</a></li>
-        <li><a href="#workflow">Workflow</a></li>
         <li><a href="#experience">Experience</a></li>
         <li><a href="#certs">Credentials</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
+
+      <!-- Streamlined Actions: Resume CTA + Unified Toolset Cluster -->
       <div class="actions-wrap">
-        <button class="replay-intro-btn open-resume-trigger" title="View Executive Resume Brief">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <button class="nav-resume-btn open-resume-trigger" title="View Executive Resume Brief">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
             <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
             <polyline points="14 2 14 8 20 8"></polyline>
             <line x1="16" y1="13" x2="8" y2="13"></line>
             <line x1="16" y1="17" x2="8" y2="17"></line>
-            <polyline points="10 9 9 9 8 9"></polyline>
           </svg>
           <span>Resume</span>
         </button>
-        <button class="replay-intro-btn" id="replayIntroBtn" title="Replay Energy Ball Formation & Burst Intro">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-            stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="1 4 1 10 7 10"></polyline>
-            <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
-          </svg>
-          <span>Intro</span>
-        </button>
-        <!-- Sound FX Micro-Synthesizer Toggle -->
-        <button class="sound-toggle-btn" id="soundToggleBtn" aria-label="Toggle UI Sound FX" title="Toggle UI Sound FX (Micro-Synthesizer)">
-          <svg class="sound-on-icon" id="soundOnIcon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-            <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
-          </svg>
-          <svg class="sound-off-icon" id="soundOffIcon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
-            <polygon points="11 5 6 9 2 9 2 15 6 15 11 5"></polygon>
-            <line x1="23" y1="9" x2="17" y2="15"></line>
-            <line x1="17" y1="9" x2="23" y2="15"></line>
-          </svg>
-          <span class="sound-indicator-dot" id="soundIndicatorDot"></span>
-          <span id="soundToggleLabel">SFX</span>
-        </button>
 
-        <!-- Studio Theme Palette Picker -->
-        <div class="theme-palette-picker" id="themePalettePicker">
-          <button class="palette-toggle-btn" id="paletteToggleBtn" title="Customize Studio Accent Theme" aria-label="Customize Studio Theme">
-            <span class="palette-active-dot" id="paletteActiveDot"></span>
-            <span>Theme</span>
+        <!-- Unified Toolset Cluster -->
+        <div class="nav-utility-cluster">
+          <!-- Sound FX Toggle -->
+          <button class="nav-tool-btn sound-toggle-btn" id="soundToggleBtn" aria-label="Toggle UI Sound FX" title="Toggle Sound FX">
+            <svg class="sound-on-icon" id="soundOnIcon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+              <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+            </svg>
+            <svg class="sound-off-icon" id="soundOffIcon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 5"></polygon>
+              <line x1="23" y1="9" x2="17" y2="15"></line>
+              <line x1="17" y1="9" x2="23" y2="15"></line>
+            </svg>
+            <span class="sound-indicator-dot" id="soundIndicatorDot"></span>
           </button>
-          <div class="palette-dropdown" id="paletteDropdown">
-            <div class="palette-dropdown-title">Studio Accent Palette</div>
-            <div class="palette-chips">
-              <button class="palette-chip active" data-accent="cyan" title="Titanium Cyan">
-                <span class="chip-color" style="background: #38bdf8;"></span>
-                <span>Titanium Cyan</span>
-              </button>
-              <button class="palette-chip" data-accent="gold" title="FinTech Gold">
-                <span class="chip-color" style="background: #fbbf24;"></span>
-                <span>FinTech Gold</span>
-              </button>
-              <button class="palette-chip" data-accent="emerald" title="Matrix Emerald">
-                <span class="chip-color" style="background: #10b981;"></span>
-                <span>Matrix Emerald</span>
-              </button>
-              <button class="palette-chip" data-accent="violet" title="Cyber Violet">
-                <span class="chip-color" style="background: #a855f7;"></span>
-                <span>Cyber Violet</span>
-              </button>
+
+          <!-- Studio Theme Palette Picker -->
+          <div class="theme-palette-picker" id="themePalettePicker">
+            <button class="nav-tool-btn palette-toggle-btn" id="paletteToggleBtn" title="Customize Studio Accent Theme" aria-label="Customize Studio Theme">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c1 0 1.8-.8 1.8-1.8 0-.5-.2-.9-.5-1.3-.3-.3-.5-.8-.5-1.3 0-1 .8-1.8 1.8-1.8H16c3.3 0 6-2.7 6-6 0-5.5-4.5-9.8-10-9.8z"></path>
+                <circle cx="7.5" cy="11.5" r="1.5" fill="currentColor"></circle>
+                <circle cx="10.5" cy="7.5" r="1.5" fill="currentColor"></circle>
+                <circle cx="14.5" cy="7.5" r="1.5" fill="currentColor"></circle>
+                <circle cx="16.5" cy="11.5" r="1.5" fill="currentColor"></circle>
+              </svg>
+              <span class="palette-active-dot" id="paletteActiveDot"></span>
+            </button>
+            <div class="palette-dropdown" id="paletteDropdown">
+              <div class="palette-dropdown-title">Studio Accent Palette</div>
+              <div class="palette-chips">
+                <button class="palette-chip active" data-accent="cyan" title="Titanium Cyan">
+                  <span class="chip-color" style="background: #38bdf8;"></span>
+                  <span>Titanium Cyan</span>
+                </button>
+                <button class="palette-chip" data-accent="gold" title="FinTech Gold">
+                  <span class="chip-color" style="background: #fbbf24;"></span>
+                  <span>FinTech Gold</span>
+                </button>
+                <button class="palette-chip" data-accent="emerald" title="Matrix Emerald">
+                  <span class="chip-color" style="background: #10b981;"></span>
+                  <span>Matrix Emerald</span>
+                </button>
+                <button class="palette-chip" data-accent="violet" title="Cyber Violet">
+                  <span class="chip-color" style="background: #a855f7;"></span>
+                  <span>Cyber Violet</span>
+                </button>
+              </div>
             </div>
           </div>
-        </div>
 
-        <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle light/dark theme">
-          <svg viewBox="0 0 24 24" id="themeIcon">
-            <path
-              d="M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69zM12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6zm0-10c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4z" />
-          </svg>
-        </button>
+          <!-- Replay Intro -->
+          <button class="nav-tool-btn replay-intro-btn" id="replayIntroBtn" title="Replay Energy Ball Formation & Burst Intro">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="1 4 1 10 7 10"></polyline>
+              <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+            </svg>
+          </button>
+
+          <!-- Light/Dark Mode Toggle -->
+          <button class="nav-tool-btn theme-toggle-btn" id="themeToggle" aria-label="Toggle light/dark theme" title="Toggle Light / Dark Mode">
+            <svg viewBox="0 0 24 24" id="themeIcon">
+              <path
+                d="M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69zM12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6zm0-10c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4z" />
+            </svg>
+          </button>
+        </div>
       </div>
     </div>
   </header>
@@ -5522,7 +6636,13 @@
         <div class="project-card blueprint-card bounce-target bounce-pop d-4"
           data-locator="css=.project-card:nth-of-type(1)">
           <div>
-            <div class="project-meta">Aston Recruitment · Production Web Solution</div>
+            <div class="project-meta" style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+              <span class="client-logo-pill" style="padding:3px 8px; font-weight:700; font-size:0.75rem;">
+                <span style="display:inline-flex; align-items:center; justify-content:center; width:16px; height:16px; border-radius:3px; background:#2563eb; color:#ffffff; font-size:10px; font-weight:900;">A</span>
+                <span>Aston Recruitment</span>
+              </span>
+              <span style="font-family:var(--font-mono); font-size:0.7rem; color:var(--text-muted);">Production Web Solution</span>
+            </div>
             <h3 class="project-title">Full Recruitment Platform</h3>
             <p class="project-desc">Led technical design, repository workflows, and execution to construct a
               high-performance web recruitment platform for client matching and candidate management.</p>
@@ -5547,7 +6667,15 @@
         <div class="project-card blueprint-card bounce-target bounce-pop d-5"
           data-locator="css=.project-card:nth-of-type(2)">
           <div>
-            <div class="project-meta">TCS · Apple Online E-Commerce</div>
+            <div class="project-meta" style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+              <span class="client-logo-pill" style="padding:3px 8px; font-weight:700; font-size:0.75rem;">
+                <span class="logo-img-badge" style="height:18px; padding:1px 4px;">
+                  <img src="images/Appple.svg" alt="Apple Logo" class="brand-logo-img" style="height:14px; width:auto;" />
+                </span>
+                <span>Apple Online Store</span>
+              </span>
+              <span style="font-family:var(--font-mono); font-size:0.7rem; color:var(--text-muted);">TCS Client Engagement</span>
+            </div>
             <h3 class="project-title">Multi-Region Automation Suite</h3>
             <p class="project-desc">Engineered robust Selenium Webdriver tests mapping across 5 geographic regions,
               validating localized purchase structures for international launch events.</p>
@@ -5564,7 +6692,15 @@
         <div class="project-card blueprint-card bounce-target bounce-pop d-6"
           data-locator="css=.project-card:nth-of-type(3)">
           <div>
-            <div class="project-meta">TCS · Citi Bank Platform</div>
+            <div class="project-meta" style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+              <span class="client-logo-pill" style="padding:3px 8px; font-weight:700; font-size:0.75rem;">
+                <span class="logo-img-badge" style="height:18px; padding:1px 4px;">
+                  <img src="images/citi.png" alt="Citi Logo" class="brand-logo-img" style="height:14px; width:auto; max-width:40px;" />
+                </span>
+                <span>Citi Bank Platform</span>
+              </span>
+              <span style="font-family:var(--font-mono); font-size:0.7rem; color:var(--text-muted);">TCS Client Engagement</span>
+            </div>
             <h3 class="project-title">Payment Flow Regression</h3>
             <p class="project-desc">Developed contract API integrations (Rest Assured) and database assertions for
               Flexcube ACH networks, ensuring safe and verified payment states.</p>
@@ -5581,7 +6717,15 @@
         <div class="project-card blueprint-card bounce-target bounce-pop d-7"
           data-locator="css=.project-card:nth-of-type(4)">
           <div>
-            <div class="project-meta">Hexaware · Air Canada Enterprise</div>
+            <div class="project-meta" style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+              <span class="client-logo-pill" style="padding:3px 8px; font-weight:700; font-size:0.75rem;">
+                <span class="logo-img-badge" style="height:18px; padding:1px 4px;">
+                  <img src="images/hexaware.png" alt="Hexaware Logo" class="brand-logo-img" style="height:14px; width:auto; max-width:40px;" />
+                </span>
+                <span>Air Canada Enterprise</span>
+              </span>
+              <span style="font-family:var(--font-mono); font-size:0.7rem; color:var(--text-muted);">Hexaware Client</span>
+            </div>
             <h3 class="project-title">Passenger Operations Testing</h3>
             <p class="project-desc">Automated reservation system routines. Recognized with the "Best Debutant" and three
               consecutive "Best Performer" accolades for high defect capture ratios.</p>
@@ -6088,29 +7232,41 @@
             inspect</span>
         </div>
 
-        <!-- Metro Stations Line -->
+        <!-- Metro Stations Line (3 Key Career Tenures) -->
         <div class="flight-metro-track" id="flightMetroTrack">
           <button type="button" class="metro-station-node" data-station="hexaware">
             <div class="station-bullet">01</div>
-            <div class="station-name">HEXAWARE</div>
+            <div class="station-name" style="display:flex; align-items:center; justify-content:center; gap:6px;">
+              <span class="logo-img-badge" style="height:16px; padding:1px 3px; border-radius:3px;">
+                <img src="images/hexaware.png" alt="Hexaware" class="brand-logo-img" style="height:11px; width:auto;" />
+              </span>
+              <span>HEXAWARE</span>
+            </div>
+            <div class="station-client-pill">Air Canada</div>
             <div class="station-year">2020 – 2022</div>
           </button>
 
-          <button type="button" class="metro-station-node" data-station="apple">
+          <button type="button" class="metro-station-node" data-station="tcs">
             <div class="station-bullet">02</div>
-            <div class="station-name">TCS · APPLE</div>
-            <div class="station-year">2022 – 2025</div>
-          </button>
-
-          <button type="button" class="metro-station-node" data-station="citi">
-            <div class="station-bullet">03</div>
-            <div class="station-name">TCS · CITI</div>
+            <div class="station-name" style="display:flex; align-items:center; justify-content:center; gap:6px;">
+              <span class="logo-img-badge" style="height:16px; padding:1px 3px; border-radius:3px;">
+                <img src="images/TCS.png" alt="TCS" class="brand-logo-img" style="height:11px; width:auto;" />
+              </span>
+              <span>TCS</span>
+            </div>
+            <div class="station-client-pill">Apple · Citi Bank</div>
             <div class="station-year">2022 – 2025</div>
           </button>
 
           <button type="button" class="metro-station-node active" data-station="wipro">
-            <div class="station-bullet">04</div>
-            <div class="station-name">WIPRO</div>
+            <div class="station-bullet">03</div>
+            <div class="station-name" style="display:flex; align-items:center; justify-content:center; gap:6px;">
+              <span class="logo-img-badge" style="height:16px; padding:1px 3px; border-radius:3px;">
+                <img src="images/wirpo.jpeg" alt="Wipro" class="brand-logo-img" style="height:11px; width:auto;" />
+              </span>
+              <span>WIPRO</span>
+            </div>
+            <div class="station-client-pill">Enterprise SDET</div>
             <div class="station-year">2025 – Present</div>
           </button>
         </div>
@@ -6152,15 +7308,23 @@
       </div>
 
       <div class="experience-list">
-        <!-- Job 1 -->
+        <!-- Tenure 1: Wipro Technologies -->
         <div class="exp-item bounce-target bounce-pop d-6">
           <div class="exp-inner-card blueprint-card"
-            data-locator="xpath=//div[contains(@class,'exp-co') and text()='Wipro']">
+            data-locator="xpath=//div[contains(@class,'exp-co') and contains(.,'Wipro')]">
             <div class="exp-meta">
-              <span>Wipro</span>
+              <span>Wipro Technologies</span>
               <span>2025 – Present</span>
             </div>
-            <div class="exp-co">Wipro Technologies</div>
+            <div class="exp-co" style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:10px;">
+              <div class="company-logo-pill" title="Wipro Technologies (Current Employer)">
+                <span class="logo-img-badge">
+                  <img src="images/wirpo.jpeg" alt="Wipro Logo" class="brand-logo-img" style="height:22px; width:auto; max-width:65px;" />
+                </span>
+                <span style="font-weight:700; font-size:0.92rem; color:var(--color);">Wipro Technologies</span>
+              </div>
+              <span style="font-family:var(--font-mono); font-size:0.72rem; padding:3px 8px; border-radius:4px; background:rgba(34,197,94,0.15); color:#22c55e; border:1px solid rgba(34,197,94,0.3); font-weight:600;">● Active Role</span>
+            </div>
             <div class="exp-role">Senior Test Automation Engineer</div>
             <ul class="exp-bullets">
               <li>Architecting cross-platform automation suites using Page Object Models and Selenium.</li>
@@ -6173,51 +7337,88 @@
           </div>
         </div>
 
-        <!-- Job 2 -->
+        <!-- Tenure 2: Tata Consultancy Services (TCS) - Apple & Citi Bank Engagements -->
         <div class="exp-item bounce-target bounce-pop d-7">
           <div class="exp-inner-card blueprint-card"
-            data-locator="xpath=//div[contains(@class,'exp-co') and text()='TCS — Citi Bank']">
+            data-locator="xpath=//div[contains(@class,'exp-co') and contains(.,'TCS')]">
             <div class="exp-meta">
-              <span>Tata Consultancy Services (Citi Bank Client)</span>
+              <span>Tata Consultancy Services (TCS)</span>
               <span>2022 – 2025</span>
             </div>
-            <div class="exp-co">TCS — Citi Bank</div>
-            <div class="exp-role">System Engineer</div>
-            <ul class="exp-bullets">
-              <li>Constructed full suite regression cycles for ACH money transfers and Flexcube online payments.</li>
-              <li>Managed compliance testing for Anti-Money Laundering (AML) onboarding profiles and KYC flows.</li>
-              <li>Tested API responses using Rest Assured and constructed deep database validation scripts with MySQL.
-              </li>
-            </ul>
+            <div class="exp-co" style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:10px;">
+              <div class="company-logo-pill" title="Tata Consultancy Services">
+                <span class="logo-img-badge">
+                  <img src="images/TCS.png" alt="TCS Logo" class="brand-logo-img" style="height:22px; width:auto; max-width:65px;" />
+                </span>
+                <span style="font-weight:700; font-size:0.92rem; color:var(--color);">Tata Consultancy Services</span>
+              </div>
+              <span style="font-family:var(--font-mono); font-size:0.72rem; padding:3px 8px; border-radius:4px; background:rgba(56,189,248,0.12); color:var(--accent); border:1px solid rgba(56,189,248,0.25); font-weight:600;">Enterprise SDET</span>
+            </div>
+            <div class="exp-role">System Engineer · Enterprise Test Automation</div>
+
+            <div class="exp-engagements-grid" style="margin-top:16px; display:flex; flex-direction:column; gap:14px;">
+              <!-- Engagement 1: Apple Online Store -->
+              <div class="exp-engagement-block">
+                <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; flex-wrap:wrap; gap:8px;">
+                  <div class="client-logo-pill" title="Apple Inc. Client Engagement">
+                    <span class="logo-img-badge">
+                      <img src="images/Appple.svg" alt="Apple Logo" class="brand-logo-img" style="height:16px; width:auto;" />
+                    </span>
+                    <strong style="font-size:0.88rem; color:var(--color);">Apple Online Store (Client Engagement)</strong>
+                  </div>
+                  <span style="font-family:var(--font-mono); font-size:0.65rem; color:var(--accent); font-weight:600;">E-Commerce QA Automation</span>
+                </div>
+                <ul class="exp-bullets" style="margin-top:0;">
+                  <li>Authored automated regression suites validating localized checkout funnels across 5 global regions with 0 defect leaks for international Apple launch cycles.</li>
+                  <li>Validated dynamic purchase queues, multi-currency tax calculations, and localized responsive checkout layouts.</li>
+                </ul>
+              </div>
+
+              <!-- Engagement 2: Citi Bank Financial Platform -->
+              <div class="exp-engagement-block">
+                <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; flex-wrap:wrap; gap:8px;">
+                  <div class="client-logo-pill" title="Citi Bank Client Engagement">
+                    <span class="logo-img-badge">
+                      <img src="images/citi.png" alt="Citi Bank Logo" class="brand-logo-img" style="height:16px; width:auto; max-width:45px;" />
+                    </span>
+                    <strong style="font-size:0.88rem; color:var(--color);">Citi Bank Financial Platform (Client Engagement)</strong>
+                  </div>
+                  <span style="font-family:var(--font-mono); font-size:0.65rem; color:var(--accent); font-weight:600;">FinTech &amp; API Testing</span>
+                </div>
+                <ul class="exp-bullets" style="margin-top:0;">
+                  <li>Constructed full suite regression cycles for ACH money transfers and Flexcube banking rails.</li>
+                  <li>Automated Rest Assured contract API assertions and database SQL verification scripts with MySQL.</li>
+                  <li>Formulated compliance testing for Anti-Money Laundering (AML) onboarding and KYC flows.</li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
 
-        <!-- Job 3 -->
+        <!-- Tenure 3: Hexaware Technologies -->
         <div class="exp-item bounce-target bounce-pop d-8">
           <div class="exp-inner-card blueprint-card"
-            data-locator="xpath=//div[contains(@class,'exp-co') and text()='TCS — Apple']">
+            data-locator="xpath=//div[contains(@class,'exp-co') and contains(.,'Hexaware')]">
             <div class="exp-meta">
-              <span>Tata Consultancy Services (Apple Client)</span>
-              <span>2022 – 2025</span>
-            </div>
-            <div class="exp-co">TCS — Apple</div>
-            <div class="exp-role">System Engineer</div>
-            <ul class="exp-bullets">
-              <li>Authored automation cases ensuring zero defects during Apple online e-commerce launch cycles.</li>
-              <li>Validated region-specific payment structures and checkout page layouts.</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- Job 4 -->
-        <div class="exp-item bounce-target bounce-pop d-9">
-          <div class="exp-inner-card blueprint-card"
-            data-locator="xpath=//div[contains(@class,'exp-co') and text()='Hexaware — Air Canada']">
-            <div class="exp-meta">
-              <span>Hexaware Technologies (Air Canada Client)</span>
+              <span>Hexaware Technologies</span>
               <span>2020 – 2022</span>
             </div>
-            <div class="exp-co">Hexaware — Air Canada</div>
+            <div class="exp-co" style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:10px;">
+              <div class="company-logo-pill" title="Hexaware Technologies">
+                <span class="logo-img-badge">
+                  <img src="images/hexaware.png" alt="Hexaware Logo" class="brand-logo-img" style="height:22px; width:auto; max-width:65px;" />
+                </span>
+                <span style="font-weight:700; font-size:0.92rem; color:var(--color);">Hexaware Technologies</span>
+              </div>
+              <div class="client-logo-pill" title="Air Canada Enterprise Client">
+                <svg class="corp-brand-svg" width="18" height="18" viewBox="0 0 100 100" fill="none">
+                  <!-- Official Air Canada Roundel -->
+                  <circle cx="50" cy="50" r="45" stroke="#ED1C24" stroke-width="5.5" fill="none"/>
+                  <path d="M50 16 L53.5 29 L63 25 L59.5 37 L72 35 L66 45 L78 50 L68 57 L74 65 L61 63 L61 74 L50 67 L39 74 L39 63 L26 65 L32 57 L22 50 L34 45 L28 35 L40.5 37 L37 25 L46.5 29 Z M48.2 67 L48.2 82 L51.8 82 L51.8 67 Z" fill="#ED1C24"/>
+                </svg>
+                <span style="font-family:var(--font-mono); font-size:0.75rem; color:var(--accent); font-weight:600;">Air Canada (Client)</span>
+              </div>
+            </div>
             <div class="exp-role">Automation Test Engineer</div>
             <ul class="exp-bullets">
               <li>Developed functional reservation verification scenarios for global traveler scheduling networks.</li>
@@ -7114,6 +8315,61 @@
     </div>
   </div>
 
+  <!-- Book Interview & Technical Discussion Modal Dialog -->
+  <div class="interview-modal-overlay" id="interviewModalOverlay" role="dialog" aria-modal="true" aria-label="Book Interview & Technical Discussion">
+    <div class="interview-modal-window">
+      <!-- Modal Header -->
+      <div class="interview-modal-header">
+        <div class="interview-modal-header-left">
+          <span class="interview-badge">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            DIRECT RECRUITER &amp; LEAD CHANNEL
+          </span>
+          <h3 class="interview-modal-title">Schedule Technical Sync / Interview</h3>
+        </div>
+        <button type="button" class="drawer-close-btn" id="closeInterviewModalBtn" title="Close Modal (ESC)">✕</button>
+      </div>
+
+      <!-- Modal Body: Direct Pure Scheduler Embed -->
+      <div class="interview-modal-body">
+        <div class="cal-frame-wrapper">
+          <iframe id="calIframe" src="https://cal.com/srivatsa-malali-sammy-wiuioy?embed=true" class="cal-embed-iframe" title="Schedule Technical Sync & Interview" loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Glassmorphic Recruiter Quick-Action Dock (Bottom-Center) -->
+  <nav class="recruiter-action-dock" id="recruiterActionDock" aria-label="Recruiter Quick Actions">
+    <div class="dock-pill-container">
+      <div class="dock-badge-pulse" title="Quick Actions for Hiring Managers & Engineering Leads">
+        <span class="dock-badge-dot"></span>
+        <span class="dock-badge-text">RECRUITER DOCK</span>
+      </div>
+      <div class="dock-divider"></div>
+      <button type="button" class="dock-action-btn" id="dockBtnApple" data-dock="apple" title="Jump to Apple Case Study & Zero-Defect Architecture">
+        <span class="dock-icon">
+          <svg width="15" height="18" viewBox="0 0 814 1000" fill="currentColor" style="display:inline-block; vertical-align:middle;">
+            <path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76.5 0-103.7 40.8-165.9 40.8s-105.6-57-155.5-127C46.7 790.7 0 663 0 541.8c0-194.4 126.4-297.5 250.8-297.5 66.1 0 121.2 43.4 162.7 43.4 39.5 0 101.1-46 176.3-46 28.5 0 130.9 2.6 198.3 99.2zm-234-181.5c31.1-36.9 53.1-88.1 53.1-139.3 0-7.1-.6-14.3-1.9-20.1-50.6 1.9-110.8 33.7-147.1 75.8-28.5 32.4-55.1 83.6-55.1 135.5 0 7.8 1.3 15.6 1.9 18.1 3.2.6 8.4 1.3 13.6 1.3 45.4 0 102.5-30.4 135.5-71.3z"/>
+          </svg>
+        </span>
+        <span class="dock-label">Apple Case Study</span>
+      </button>
+      <button type="button" class="dock-action-btn" id="dockBtnCard" data-dock="card" title="Open 3D FinTech Card Verifier & Luhn Algorithm Sandbox">
+        <span class="dock-icon">💳</span>
+        <span class="dock-label">3D Card Sandbox</span>
+      </button>
+      <button type="button" class="dock-action-btn" id="dockBtnIDE" data-dock="ide" title="Open Live Automation & Cucumber BDD Code Playground">
+        <span class="dock-icon">⚡</span>
+        <span class="dock-label">Live Code IDE</span>
+      </button>
+      <button type="button" class="dock-action-btn dock-btn-highlight" id="dockBtnInterview" data-dock="interview" title="Schedule an Interview / Connect with Srivatsa">
+        <span class="dock-icon">📅</span>
+        <span class="dock-label">Book Interview</span>
+      </button>
+    </div>
+  </nav>
+
   <!-- Floating Command Trigger Button (Bottom-Left) -->
   <button class="cmd-floating-btn" id="cmdFloatingBtn" title="Press ⌘K or Click to Open Command Palette">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -7183,7 +8439,12 @@
     <div class="bot-prompt-chips" id="botPromptChips">
       <button type="button" class="prompt-chip-btn" data-question="hire">✨ Why hire Srivatsa as Lead SDET?</button>
       <button type="button" class="prompt-chip-btn" data-question="flakiness">🛡️ Flaky test strategy</button>
-      <button type="button" class="prompt-chip-btn" data-question="apple-citi">🍎 Apple &amp; Citi impacts</button>
+      <button type="button" class="prompt-chip-btn" data-question="apple-citi" style="display:inline-flex; align-items:center; gap:5px;">
+        <svg width="12" height="14" viewBox="0 0 814 1000" fill="currentColor">
+          <path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76.5 0-103.7 40.8-165.9 40.8s-105.6-57-155.5-127C46.7 790.7 0 663 0 541.8c0-194.4 126.4-297.5 250.8-297.5 66.1 0 121.2 43.4 162.7 43.4 39.5 0 101.1-46 176.3-46 28.5 0 130.9 2.6 198.3 99.2zm-234-181.5c31.1-36.9 53.1-88.1 53.1-139.3 0-7.1-.6-14.3-1.9-20.1-50.6 1.9-110.8 33.7-147.1 75.8-28.5 32.4-55.1 83.6-55.1 135.5 0 7.8 1.3 15.6 1.9 18.1 3.2.6 8.4 1.3 13.6 1.3 45.4 0 102.5-30.4 135.5-71.3z"/>
+        </svg>
+        <span>Apple &amp; Citi impacts</span>
+      </button>
       <button type="button" class="prompt-chip-btn" data-question="architecture">⚙️ Automation architecture</button>
       <button type="button" class="prompt-chip-btn" data-question="leadership">🤝 Leadership style</button>
     </div>
@@ -9029,6 +10290,7 @@
           closeLightbox();
           closeResumeModal();
           closePlaygroundModal();
+          if (typeof closeInterviewModal === 'function') closeInterviewModal();
           if (typeof closeChatbotWidget === 'function') closeChatbotWidget();
         }
       });
@@ -10792,39 +12054,29 @@ Feature: Srivatsa Malali Portfolio Verification
       const flightStations = {
         hexaware: {
           role: 'Automation Test Engineer',
-          org: 'Hexaware Technologies (Air Canada Enterprise) · 2020 – 2022',
+          org: 'Hexaware Technologies (Client: Air Canada Enterprise) · 2020 – 2022',
           desc: 'Automated global reservation and passenger flight scheduling routines using Selenium Webdriver and Java. Honored with "Best Debutant" and three consecutive "Best Performer" accolades for high defect capture ratios.',
           tech: ['Selenium Webdriver', 'Java', 'TestNG', 'JIRA Defect Triage', 'Agile Scrum'],
           highlight: 'Best Debutant & 3x Best Performer',
-          highlightSub: 'Highest defect capture ratio across 4 releases',
+          highlightSub: 'Highest defect capture ratio across global release cycles',
           stat: '99.4% Defect Leakage Free',
           statSub: 'Critical reservation flow verification'
         },
-        apple: {
-          role: 'System Engineer · E-Commerce QA',
-          org: 'Tata Consultancy Services (Apple Online Store) · 2022 – 2025',
-          desc: 'Engineered robust multi-region test automation architectures verifying localized online store checkouts, high-concurrency purchase queues, and currency conversion across 5 global regions for Apple international launch events.',
-          tech: ['Selenium Webdriver', 'Java 17', 'Multi-Region Test Suites', 'CI/CD Jenkins', 'Cross-Browser Grid'],
-          highlight: '5 Global Region Launches',
-          highlightSub: 'Validated localized checkout structures for peak launches',
-          stat: '0 Blocking Defects',
-          statSub: 'Seamless Apple international deployment coverage'
-        },
-        citi: {
-          role: 'System Engineer · FinTech Automation',
-          org: 'Tata Consultancy Services (Citi Bank Financial Platform) · 2022 – 2025',
-          desc: 'Developed financial contract API suites with Rest Assured and backend SQL validation for ACH money transfers and Flexcube banking rails. Formulated compliance assertions for AML and KYC customer onboarding.',
-          tech: ['Rest Assured API', 'Flexcube Banking Rails', 'ACH Wire Transfer', 'MySQL Assertions', 'AML/KYC Flows'],
-          highlight: 'ACH & Flexcube Core Integrity',
-          highlightSub: 'Automated regression for $50k+ daily ACH wires',
-          stat: '100% Contract API Assertions',
-          statSub: 'Guaranteed compliance against strict AML regulations'
+        tcs: {
+          role: 'System Engineer · Enterprise Test Automation',
+          org: 'Tata Consultancy Services (Clients: Apple Online Store & Citi Bank) · 2022 – 2025',
+          desc: 'Led critical enterprise test automation at TCS across two high-impact global client engagements:\n\n•  Apple Online Store: Authored multi-region Selenium suites validating localized checkout funnels across 5 global regions with 0 defect leaks for international Apple launch cycles.\n\n• 💳 Citi Bank Financial Platform: Developed Rest Assured contract API testing and SQL assertions for Flexcube banking transactions and ACH wire transfers, verifying strict AML/KYC compliance.',
+          tech: ['Java 17', 'Selenium 4 POM', 'Rest Assured API', 'Cucumber BDD', 'Jenkins CI/CD', 'MySQL Validation', 'Apple Store Checkout', 'Citi Flexcube Rails'],
+          highlight: 'Dual Enterprise Impact (Apple & Citi)',
+          highlightSub: '5 Global Apple Launches + 100% Citi API Contract Coverage',
+          stat: '0 Defect Leaks',
+          statSub: 'High-concurrency checkout & banking integrity'
         },
         wipro: {
           role: 'Senior Test Automation Engineer',
           org: 'Wipro Technologies · 2025 – Present',
-          desc: 'Leading test automation architecture, engineering scalable Page Object Model suites in Java + Selenium, and establishing automated daily regression quality gates on enterprise CI/CD pipelines.',
-          tech: ['Java 17', 'Selenium 4', 'TestNG XML', 'Jenkins Quality Gates', 'ExtentReports 5'],
+          desc: 'Leading cross-functional test automation architecture, engineering scalable Page Object Model suites in Java + Selenium, and establishing automated daily regression quality gates on enterprise CI/CD pipelines.',
+          tech: ['Java 17', 'Selenium 4', 'TestNG XML', 'Jenkins Quality Gates', 'ExtentReports 5', 'CI/CD Automation'],
           highlight: 'Outstanding Engineering Delivery',
           highlightSub: 'Publicly recognized for technical delivery excellence',
           stat: 'Daily Automated Gates',
@@ -11129,6 +12381,84 @@ Feature: Srivatsa Malali Portfolio Verification
                 </div>
               </div>`;
           }
+        });
+      }
+
+      // =========================================================================
+      // 16. FEATURE: GLASSMORPHIC RECRUITER QUICK-ACTION DOCK CONTROLLER
+      // =========================================================================
+      const dockBtnApple = document.getElementById('dockBtnApple');
+      const dockBtnCard = document.getElementById('dockBtnCard');
+      const dockBtnIDE = document.getElementById('dockBtnIDE');
+      const dockBtnInterview = document.getElementById('dockBtnInterview');
+
+      if (dockBtnApple) {
+        dockBtnApple.addEventListener('click', () => {
+          SoundFX.playClick();
+          const expSec = document.getElementById('experience');
+          if (expSec) {
+            expSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+          const appleNode = document.querySelector('.metro-station-node[data-station="tcs"]');
+          if (appleNode) {
+            setTimeout(() => appleNode.click(), 450);
+          }
+          showToast('Navigated to TCS (Apple & Citi Engagements)', '');
+        });
+      }
+
+      if (dockBtnCard) {
+        dockBtnCard.addEventListener('click', () => {
+          SoundFX.playClick();
+          openPlaygroundModal('cardStudio');
+          showToast('Opening 3D FinTech Card Verifier & Luhn-10 Sandbox 💳', '🚀');
+        });
+      }
+
+      if (dockBtnIDE) {
+        dockBtnIDE.addEventListener('click', () => {
+          SoundFX.playClick();
+          openPlaygroundModal('playground');
+          showToast('Opening Live Automation & Cucumber BDD IDE ⚡', '💻');
+        });
+      }
+
+      // =========================================================================
+      // 17. FEATURE: BOOK INTERVIEW & DYNAMIC GMEET MODAL CONTROLLER
+      // =========================================================================
+      const interviewModalOverlay = document.getElementById('interviewModalOverlay');
+      const closeInterviewModalBtn = document.getElementById('closeInterviewModalBtn');
+
+      const openInterviewModal = () => {
+        if (!interviewModalOverlay) return;
+        interviewModalOverlay.classList.add('active');
+        document.body.classList.add('has-active-modal');
+        setScrollLock(true);
+        SoundFX.playClick();
+      };
+
+      const closeInterviewModal = () => {
+        if (!interviewModalOverlay) return;
+        interviewModalOverlay.classList.remove('active');
+        document.body.classList.remove('has-active-modal');
+        setScrollLock(false);
+        SoundFX.playClick();
+      };
+
+      if (closeInterviewModalBtn) {
+        closeInterviewModalBtn.addEventListener('click', closeInterviewModal);
+      }
+
+      if (interviewModalOverlay) {
+        interviewModalOverlay.addEventListener('click', (e) => {
+          if (e.target === interviewModalOverlay) closeInterviewModal();
+        });
+      }
+
+      if (dockBtnInterview) {
+        dockBtnInterview.addEventListener('click', () => {
+          openInterviewModal();
+          showToast('Schedule an Interview / Technical Sync 📅', '✨');
         });
       }
     };
