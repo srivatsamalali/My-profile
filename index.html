@@ -3,7 +3,8 @@
 
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, interactive-widget=resizes-content" />
   <title>Srivatsa Malali — Senior QA Automation Engineer</title>
   <meta name="description"
     content="Senior QA Automation Engineer with 5.5+ years experience architecting Java, Selenium, Cucumber BDD, and Rest Assured test frameworks for Apple, Citi Bank, and Air Canada." />
@@ -145,7 +146,9 @@
     html,
     body {
       max-width: 100%;
-      overflow-x: hidden;
+      overflow-x: hidden !important;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
     }
 
     body {
@@ -5157,6 +5160,67 @@
       transform: translateY(-1px);
       box-shadow: 0 4px 14px rgba(37, 99, 235, 0.45);
     }
+
+    /* ==========================================================================
+       MOBILE TYPING & VIRTUAL KEYBOARD LAYOUT STABILITY
+       ========================================================================== */
+    @media (max-width: 768px) {
+      input,
+      textarea,
+      select,
+      .contact-form-input,
+      .contact-form-textarea,
+      .card-live-input,
+      .bot-input-field,
+      .cmd-search-input,
+      .code-textarea {
+        font-size: 16px !important;
+        -webkit-text-size-adjust: 100% !important;
+        touch-action: manipulation;
+      }
+
+      .floating-chatbot-window {
+        right: 8px;
+        left: 8px;
+        bottom: 8px;
+        width: auto;
+        max-width: calc(100vw - 16px);
+        max-height: calc(100dvh - 16px);
+        border-radius: 14px;
+      }
+
+      .floating-chatbot-btn {
+        bottom: 16px;
+        right: 16px;
+        padding: 8px 14px 8px 10px;
+        font-size: 0.72rem;
+      }
+
+      .card-editor-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .card-editor-field.full-span {
+        grid-column: 1;
+      }
+
+      .interactive-labs-modal-overlay {
+        padding: 6px;
+      }
+
+      .interactive-labs-modal-window {
+        max-height: 96dvh;
+        border-radius: 10px;
+      }
+
+      .interactive-labs-header {
+        padding: 10px 14px;
+      }
+
+      .interactive-labs-body {
+        padding: 10px;
+      }
+    }
   </style>
 </head>
 
@@ -7552,7 +7616,13 @@
         });
       };
 
+      let lastProfileWinWidth = window.innerWidth;
       const resize = () => {
+        const newWidth = window.innerWidth;
+        if (width && newWidth === lastProfileWinWidth && Math.abs(window.innerHeight - height) > 0) {
+          return;
+        }
+        lastProfileWinWidth = newWidth;
         width = window.innerWidth;
         height = window.innerHeight;
         dpr = window.devicePixelRatio || 1;
@@ -8532,9 +8602,13 @@
         let particles = [];
         let heroMouse = { x: -1000, y: -1000, radius: 140 };
 
+        let lastHeroSecWidth = 0;
         const resizeCanvas = () => {
           const heroSec = heroCanvas.closest('.hero-section') || heroCanvas.parentElement;
           if (!heroSec) return;
+          const newWidth = heroSec.clientWidth;
+          if (width && newWidth === lastHeroSecWidth) return;
+          lastHeroSecWidth = newWidth;
           width = heroCanvas.width = heroSec.clientWidth;
           height = heroCanvas.height = heroSec.clientHeight;
           initParticles();
