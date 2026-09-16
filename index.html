@@ -95,6 +95,7 @@
       --accent-glow: #38bdf8;
       --accent-muted: rgba(56, 189, 248, 0.12);
     }
+
     [data-theme="dark"][data-accent="cyan"],
     [data-theme="dark"]:not([data-accent]) {
       --accent: #38bdf8;
@@ -107,6 +108,7 @@
       --accent-glow: #fbbf24;
       --accent-muted: rgba(251, 191, 36, 0.12);
     }
+
     [data-theme="dark"][data-accent="gold"] {
       --accent: #fbbf24;
       --accent-glow: #d97706;
@@ -118,6 +120,7 @@
       --accent-glow: #34d399;
       --accent-muted: rgba(52, 211, 153, 0.12);
     }
+
     [data-theme="dark"][data-accent="emerald"] {
       --accent: #10b981;
       --accent-glow: #059669;
@@ -129,6 +132,7 @@
       --accent-glow: #c084fc;
       --accent-muted: rgba(192, 132, 252, 0.12);
     }
+
     [data-theme="dark"][data-accent="violet"] {
       --accent: #a855f7;
       --accent-glow: #7c3aed;
@@ -3150,8 +3154,15 @@
     }
 
     @keyframes fadeInLabs {
-      from { opacity: 0; transform: translateY(6px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(6px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     /* Scroll Reading Progress Bar (Top Laser) */
@@ -3634,7 +3645,8 @@
       color: #0284c7;
     }
 
-    .interview-input, .interview-select {
+    .interview-input,
+    .interview-select {
       background: rgba(30, 41, 59, 0.6);
       border: 1px solid rgba(148, 163, 184, 0.25);
       border-radius: 8px;
@@ -3655,7 +3667,8 @@
       color: #0f172a;
     }
 
-    .interview-input:focus, .interview-select:focus {
+    .interview-input:focus,
+    .interview-select:focus {
       border-color: var(--accent);
       box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2);
     }
@@ -3819,10 +3832,13 @@
       .interview-duration-pills {
         grid-template-columns: 1fr;
       }
+
       .interview-actions-grid {
         grid-template-columns: 1fr;
       }
-      .interview-btn-primary, .interview-btn-secondary {
+
+      .interview-btn-primary,
+      .interview-btn-secondary {
         grid-column: span 1 !important;
       }
     }
@@ -5169,19 +5185,41 @@
     }
 
     @keyframes btnSpin {
-      to { transform: rotate(360deg); }
+      to {
+        transform: rotate(360deg);
+      }
     }
 
     @keyframes verifyBounce {
-      0% { transform: scale(0.92); }
-      50% { transform: scale(1.04); }
-      100% { transform: scale(1); }
+      0% {
+        transform: scale(0.92);
+      }
+
+      50% {
+        transform: scale(1.04);
+      }
+
+      100% {
+        transform: scale(1);
+      }
     }
 
     @keyframes verifyShake {
-      0%, 100% { transform: translateX(0); }
-      20%, 60% { transform: translateX(-6px); }
-      40%, 80% { transform: translateX(6px); }
+
+      0%,
+      100% {
+        transform: translateX(0);
+      }
+
+      20%,
+      60% {
+        transform: translateX(-6px);
+      }
+
+      40%,
+      80% {
+        transform: translateX(6px);
+      }
     }
 
     .card-qa-receipt {
@@ -5634,8 +5672,15 @@
     }
 
     @keyframes pulseRing {
-      0% { transform: scale(0.9); opacity: 0.8; }
-      100% { transform: scale(1.4); opacity: 0; }
+      0% {
+        transform: scale(0.9);
+        opacity: 0.8;
+      }
+
+      100% {
+        transform: scale(1.4);
+        opacity: 0;
+      }
     }
 
     .chatbot-online-indicator {
@@ -5819,12 +5864,27 @@
       animation: typingBlink 1.4s infinite both;
     }
 
-    .ai-typing-dot:nth-child(2) { animation-delay: 0.2s; }
-    .ai-typing-dot:nth-child(3) { animation-delay: 0.4s; }
+    .ai-typing-dot:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .ai-typing-dot:nth-child(3) {
+      animation-delay: 0.4s;
+    }
 
     @keyframes typingBlink {
-      0%, 80%, 100% { opacity: 0.2; transform: scale(0.8); }
-      40% { opacity: 1; transform: scale(1.2); }
+
+      0%,
+      80%,
+      100% {
+        opacity: 0.2;
+        transform: scale(0.8);
+      }
+
+      40% {
+        opacity: 1;
+        transform: scale(1.2);
+      }
     }
 
     .bot-actions-toolbar {
@@ -5957,6 +6017,7 @@
        MOBILE TYPING & VIRTUAL KEYBOARD LAYOUT STABILITY
        ========================================================================== */
     @media (max-width: 768px) {
+
       input,
       textarea,
       select,
@@ -6149,6 +6210,7 @@
         -webkit-overflow-scrolling: touch !important;
         scrollbar-width: none !important;
       }
+
       .code-tab-nav::-webkit-scrollbar {
         display: none !important;
       }
@@ -6293,46 +6355,96 @@
         padding: 6px 10px !important;
       }
 
-      /* Mobile Interview & Booking Modal Optimization */
+      /* Mobile Interview & Booking Modal Optimization (Full-Screen Immersive Fit) */
       .interview-modal-overlay {
-        padding: 8px 8px calc(12px + env(safe-area-inset-bottom, 0px)) 8px !important;
-        align-items: flex-end;
+        padding: 0 !important;
+        align-items: flex-end !important;
       }
 
       .interview-modal-window {
         width: 100% !important;
         max-width: 100% !important;
-        max-height: 92dvh !important;
-        border-radius: 16px 16px 10px 10px !important;
+        height: 100dvh !important;
+        max-height: 100dvh !important;
+        border-radius: 0 !important;
+        border: none !important;
         margin: 0 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        overflow: hidden !important;
       }
 
       .interview-modal-header {
-        padding: 12px 14px !important;
+        padding: calc(10px + env(safe-area-inset-top, 0px)) 16px 10px 16px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        flex-shrink: 0 !important;
+        border-bottom: 1px solid var(--border) !important;
+      }
+
+      .interview-modal-header-left {
+        flex: 1 !important;
+        min-width: 0 !important;
       }
 
       .interview-modal-title {
-        font-size: 0.98rem !important;
+        font-size: 0.95rem !important;
+        line-height: 1.25 !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
       }
 
       .interview-badge {
-        font-size: 0.6rem !important;
+        font-size: 0.58rem !important;
         padding: 2px 6px !important;
       }
 
+      .interview-modal-header .drawer-close-btn {
+        width: 32px !important;
+        height: 32px !important;
+        min-width: 32px !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        font-size: 0.9rem !important;
+        border-radius: 6px !important;
+        padding: 0 !important;
+      }
+
       .interview-modal-body {
-        padding: 8px 10px 12px 10px !important;
+        flex: 1 1 auto !important;
+        height: calc(100dvh - 65px - env(safe-area-inset-top, 0px)) !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        overflow: hidden !important;
+        display: flex !important;
+        flex-direction: column !important;
       }
 
       .cal-frame-wrapper {
-        height: 540px !important;
-        max-height: 72dvh !important;
-        min-height: 380px !important;
-        border-radius: 10px !important;
+        flex: 1 1 auto !important;
+        width: 100% !important;
+        height: 100% !important;
+        max-height: 100% !important;
+        min-height: 0 !important;
+        border: none !important;
+        border-radius: 0 !important;
+        background: transparent !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+
+      .cal-embed-iframe {
+        width: 100% !important;
+        height: 100% !important;
+        border: none !important;
       }
 
       /* Mobile Safe Touch Targets & Prevent Horizontal Shake */
-      html, body {
+      html,
+      body {
         overflow-x: hidden !important;
         width: 100% !important;
         -webkit-overflow-scrolling: touch;
@@ -6382,11 +6494,6 @@
         left: 10px !important;
         padding: 6px 10px !important;
         font-size: 0.7rem !important;
-      }
-
-      .cal-frame-wrapper {
-        height: 480px !important;
-        max-height: 70dvh !important;
       }
     }
 
@@ -6458,8 +6565,17 @@
     }
 
     @keyframes pulseDockDot {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.8); }
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.4;
+        transform: scale(0.8);
+      }
     }
 
     .dock-badge-text {
@@ -6550,25 +6666,31 @@
         left: 20px;
         transform: none;
       }
+
       .dock-pill-container {
         padding: 4px 8px;
         gap: 4px;
         overflow-x: auto;
         scrollbar-width: none;
       }
+
       .dock-pill-container::-webkit-scrollbar {
         display: none;
       }
+
       .dock-badge-pulse {
         display: none;
       }
+
       .dock-divider {
         display: none;
       }
+
       .dock-action-btn {
         padding: 5px 10px;
         font-size: 0.7rem;
       }
+
       .cmd-floating-btn {
         bottom: 74px;
         left: 16px;
@@ -6581,12 +6703,15 @@
         bottom: calc(14px + env(safe-area-inset-bottom, 0px));
         max-width: calc(100vw - 76px);
       }
+
       .dock-action-btn .dock-label {
         display: none;
       }
+
       .dock-action-btn {
         padding: 7px 10px;
       }
+
       .dock-action-btn .dock-icon {
         font-size: 1.05rem;
       }
@@ -6607,6 +6732,7 @@
       transition: opacity 0.25s ease, transform 0.04s ease-out;
       will-change: transform, width, height;
     }
+
     .custom-cursor-dot {
       width: 6px;
       height: 6px;
@@ -6615,6 +6741,7 @@
       margin-left: -3px;
       margin-top: -3px;
     }
+
     .custom-cursor-ring {
       width: 32px;
       height: 32px;
@@ -6624,13 +6751,14 @@
       margin-top: -16px;
       opacity: 0.65;
       transition: width 0.22s cubic-bezier(0.16, 1, 0.3, 1),
-                  height 0.22s cubic-bezier(0.16, 1, 0.3, 1),
-                  margin 0.22s cubic-bezier(0.16, 1, 0.3, 1),
-                  background-color 0.22s ease,
-                  border-color 0.22s ease,
-                  opacity 0.22s ease,
-                  transform 0.08s ease-out;
+        height 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+        margin 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+        background-color 0.22s ease,
+        border-color 0.22s ease,
+        opacity 0.22s ease,
+        transform 0.08s ease-out;
     }
+
     body.cursor-hovering .custom-cursor-ring {
       width: 46px;
       height: 46px;
@@ -6640,6 +6768,7 @@
       border-color: var(--accent-glow, #38bdf8);
       opacity: 0.95;
     }
+
     body.cursor-clicking .custom-cursor-ring {
       width: 26px;
       height: 26px;
@@ -6648,11 +6777,14 @@
       background: var(--accent, #38bdf8);
       opacity: 0.8;
     }
+
     body.cursor-hidden .custom-cursor-dot,
     body.cursor-hidden .custom-cursor-ring {
       opacity: 0 !important;
     }
+
     @media (hover: none) and (pointer: coarse) {
+
       .custom-cursor-dot,
       .custom-cursor-ring {
         display: none !important;
@@ -6691,10 +6823,12 @@
       visibility: hidden;
       transition: opacity 0.25s ease, visibility 0.25s ease;
     }
+
     .card-gen-modal-overlay.active {
       opacity: 1;
       visibility: visible;
     }
+
     .card-gen-modal-window {
       width: 100%;
       max-width: 980px;
@@ -6711,9 +6845,11 @@
       transform: scale(0.95) translateY(12px);
       transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
     }
+
     .card-gen-modal-overlay.active .card-gen-modal-window {
       transform: scale(1) translateY(0);
     }
+
     .card-gen-header {
       padding: 18px 24px;
       border-bottom: 1px solid var(--border);
@@ -6722,17 +6858,20 @@
       justify-content: space-between;
       gap: 16px;
     }
+
     .card-gen-body-split {
       display: grid;
       grid-template-columns: 340px 1fr;
       overflow-y: auto;
       flex: 1;
     }
+
     @media (max-width: 860px) {
       .card-gen-body-split {
         grid-template-columns: 1fr;
       }
     }
+
     .card-gen-controls {
       padding: 22px;
       border-right: 1px solid var(--border);
@@ -6741,17 +6880,20 @@
       gap: 18px;
       background: rgba(125, 125, 125, 0.03);
     }
+
     @media (max-width: 860px) {
       .card-gen-controls {
         border-right: none;
         border-bottom: 1px solid var(--border);
       }
     }
+
     .card-gen-field-group {
       display: flex;
       flex-direction: column;
       gap: 6px;
     }
+
     .card-gen-label {
       font-family: var(--font-mono);
       font-size: 0.72rem;
@@ -6763,6 +6905,7 @@
       align-items: center;
       justify-content: space-between;
     }
+
     .card-gen-input,
     .card-gen-select {
       width: 100%;
@@ -6776,16 +6919,19 @@
       outline: none;
       transition: border-color 0.2s ease, box-shadow 0.2s ease;
     }
+
     .card-gen-input:focus,
     .card-gen-select:focus {
       border-color: var(--accent);
       box-shadow: 0 0 0 3px var(--accent-muted);
     }
+
     .card-gen-checkboxes {
       display: flex;
       flex-direction: column;
       gap: 8px;
     }
+
     .card-gen-checkbox-label {
       display: flex;
       align-items: center;
@@ -6794,6 +6940,7 @@
       color: var(--color);
       cursor: pointer;
     }
+
     .card-gen-checkbox-label input {
       accent-color: var(--accent);
       cursor: pointer;
@@ -6810,11 +6957,13 @@
       background: rgba(0, 0, 0, 0.1);
       overflow-y: auto;
     }
+
     .exec-card-canvas-container {
       width: 100%;
       max-width: 520px;
       position: relative;
     }
+
     .exec-card {
       width: 100%;
       padding: 26px;
@@ -6830,10 +6979,12 @@
       position: relative;
       overflow: hidden;
     }
+
     [data-theme="light"] .exec-card {
       background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 250, 252, 0.9));
       box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08), inset 0 1px 1px rgba(255, 255, 255, 0.8);
     }
+
     .exec-card-glow-orb {
       position: absolute;
       top: -60px;
@@ -6844,17 +6995,20 @@
       opacity: 0.35;
       pointer-events: none;
     }
+
     .exec-card-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 14px;
     }
+
     .exec-card-profile {
       display: flex;
       align-items: center;
       gap: 14px;
     }
+
     .exec-card-avatar {
       width: 54px;
       height: 54px;
@@ -6863,23 +7017,27 @@
       border: 2px solid var(--accent);
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
     }
+
     .exec-card-name-role {
       display: flex;
       flex-direction: column;
       gap: 2px;
     }
+
     .exec-card-name {
       font-size: 1.15rem;
       font-weight: 700;
       color: var(--color);
       letter-spacing: -0.3px;
     }
+
     .exec-card-role {
       font-family: var(--font-mono);
       font-size: 0.72rem;
       font-weight: 600;
       color: var(--accent);
     }
+
     .exec-card-recruiter-pill {
       padding: 4px 10px;
       border-radius: 999px;
@@ -6893,6 +7051,7 @@
       text-transform: uppercase;
       white-space: nowrap;
     }
+
     .exec-card-metrics-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -6902,11 +7061,13 @@
       background: rgba(125, 125, 125, 0.05);
       border: 1px solid var(--border);
     }
+
     @media (max-width: 500px) {
       .exec-card-metrics-grid {
         grid-template-columns: repeat(2, 1fr);
       }
     }
+
     .exec-metric-cell {
       display: flex;
       flex-direction: column;
@@ -6914,23 +7075,27 @@
       text-align: center;
       gap: 2px;
     }
+
     .exec-metric-val {
       font-family: var(--font-mono);
       font-size: 0.95rem;
       font-weight: 700;
       color: var(--accent);
     }
+
     .exec-metric-lbl {
       font-size: 0.62rem;
       color: var(--text-muted);
       text-transform: uppercase;
       letter-spacing: 0.4px;
     }
+
     .exec-card-highlights {
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
     }
+
     .exec-card-chip {
       padding: 4px 9px;
       border-radius: 8px;
@@ -6943,6 +7108,7 @@
       align-items: center;
       gap: 5px;
     }
+
     .exec-card-footer {
       padding-top: 10px;
       border-top: 1px dashed var(--border);
@@ -6951,6 +7117,7 @@
       justify-content: space-between;
       gap: 12px;
     }
+
     .exec-card-footer-info {
       display: flex;
       flex-direction: column;
@@ -6959,6 +7126,7 @@
       color: var(--text-muted);
       font-family: var(--font-mono);
     }
+
     .exec-card-qr-badge {
       display: flex;
       align-items: center;
@@ -6983,6 +7151,7 @@
       gap: 10px;
       flex-wrap: wrap;
     }
+
     .card-action-btn {
       display: inline-flex;
       align-items: center;
@@ -6998,16 +7167,19 @@
       background: var(--card-bg);
       color: var(--color);
     }
+
     .card-action-btn:hover {
       transform: translateY(-2px);
       border-color: var(--accent);
     }
+
     .card-action-btn.primary {
       background: linear-gradient(135deg, var(--accent), #2563eb);
       color: #fff;
       border: none;
       box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
     }
+
     .card-action-btn.primary:hover {
       box-shadow: 0 6px 22px rgba(37, 99, 235, 0.45);
     }
@@ -7017,10 +7189,12 @@
       body * {
         visibility: hidden !important;
       }
+
       #printCandidateCardTarget,
       #printCandidateCardTarget * {
         visibility: visible !important;
       }
+
       #printCandidateCardTarget {
         position: fixed !important;
         left: 50% !important;
@@ -7113,12 +7287,16 @@
         <!-- Unified Toolset Cluster -->
         <div class="nav-utility-cluster">
           <!-- Sound FX Toggle -->
-          <button class="nav-tool-btn sound-toggle-btn" id="soundToggleBtn" aria-label="Toggle UI Sound FX" title="Toggle Sound FX">
-            <svg class="sound-on-icon" id="soundOnIcon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <button class="nav-tool-btn sound-toggle-btn" id="soundToggleBtn" aria-label="Toggle UI Sound FX"
+            title="Toggle Sound FX">
+            <svg class="sound-on-icon" id="soundOnIcon" width="13" height="13" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
               <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
               <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
             </svg>
-            <svg class="sound-off-icon" id="soundOffIcon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+            <svg class="sound-off-icon" id="soundOffIcon" width="13" height="13" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"
+              style="display:none;">
               <polygon points="11 5 6 9 2 9 2 15 6 15 11 5"></polygon>
               <line x1="23" y1="9" x2="17" y2="15"></line>
               <line x1="17" y1="9" x2="23" y2="15"></line>
@@ -7128,9 +7306,13 @@
 
           <!-- Studio Theme Palette Picker -->
           <div class="theme-palette-picker" id="themePalettePicker">
-            <button class="nav-tool-btn palette-toggle-btn" id="paletteToggleBtn" title="Customize Studio Accent Theme" aria-label="Customize Studio Theme">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c1 0 1.8-.8 1.8-1.8 0-.5-.2-.9-.5-1.3-.3-.3-.5-.8-.5-1.3 0-1 .8-1.8 1.8-1.8H16c3.3 0 6-2.7 6-6 0-5.5-4.5-9.8-10-9.8z"></path>
+            <button class="nav-tool-btn palette-toggle-btn" id="paletteToggleBtn" title="Customize Studio Accent Theme"
+              aria-label="Customize Studio Theme">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path
+                  d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c1 0 1.8-.8 1.8-1.8 0-.5-.2-.9-.5-1.3-.3-.3-.5-.8-.5-1.3 0-1 .8-1.8 1.8-1.8H16c3.3 0 6-2.7 6-6 0-5.5-4.5-9.8-10-9.8z">
+                </path>
                 <circle cx="7.5" cy="11.5" r="1.5" fill="currentColor"></circle>
                 <circle cx="10.5" cy="7.5" r="1.5" fill="currentColor"></circle>
                 <circle cx="14.5" cy="7.5" r="1.5" fill="currentColor"></circle>
@@ -7162,15 +7344,18 @@
           </div>
 
           <!-- Replay Intro -->
-          <button class="nav-tool-btn replay-intro-btn" id="replayIntroBtn" title="Replay Energy Ball Formation & Burst Intro" aria-label="Replay Intro Animation">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <button class="nav-tool-btn replay-intro-btn" id="replayIntroBtn"
+            title="Replay Energy Ball Formation & Burst Intro" aria-label="Replay Intro Animation">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+              stroke-linecap="round" stroke-linejoin="round">
               <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
               <path d="M3 3v5h5"></path>
             </svg>
           </button>
 
           <!-- Light/Dark Mode Toggle -->
-          <button class="nav-tool-btn theme-toggle-btn" id="themeToggle" aria-label="Toggle light/dark theme" title="Toggle Light / Dark Mode">
+          <button class="nav-tool-btn theme-toggle-btn" id="themeToggle" aria-label="Toggle light/dark theme"
+            title="Toggle Light / Dark Mode">
             <svg viewBox="0 0 24 24" id="themeIcon">
               <path
                 d="M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69zM12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6zm0-10c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4z" />
@@ -7318,10 +7503,12 @@
           <div>
             <div class="project-meta" style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
               <span class="client-logo-pill" style="padding:3px 8px; font-weight:700; font-size:0.75rem;">
-                <span style="display:inline-flex; align-items:center; justify-content:center; width:16px; height:16px; border-radius:3px; background:#2563eb; color:#ffffff; font-size:10px; font-weight:900;">A</span>
+                <span
+                  style="display:inline-flex; align-items:center; justify-content:center; width:16px; height:16px; border-radius:3px; background:#2563eb; color:#ffffff; font-size:10px; font-weight:900;">A</span>
                 <span>Aston Recruitment</span>
               </span>
-              <span style="font-family:var(--font-mono); font-size:0.7rem; color:var(--text-muted);">Production Web Solution</span>
+              <span style="font-family:var(--font-mono); font-size:0.7rem; color:var(--text-muted);">Production Web
+                Solution</span>
             </div>
             <h3 class="project-title">Full Recruitment Platform</h3>
             <p class="project-desc">Led technical design, repository workflows, and execution to construct a
@@ -7350,11 +7537,13 @@
             <div class="project-meta" style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
               <span class="client-logo-pill" style="padding:3px 8px; font-weight:700; font-size:0.75rem;">
                 <span class="logo-img-badge" style="height:18px; padding:1px 4px;">
-                  <img src="images/Appple.svg" alt="Apple Logo" class="brand-logo-img" style="height:14px; width:auto;" />
+                  <img src="images/Appple.svg" alt="Apple Logo" class="brand-logo-img"
+                    style="height:14px; width:auto;" />
                 </span>
                 <span>Apple Online Store</span>
               </span>
-              <span style="font-family:var(--font-mono); font-size:0.7rem; color:var(--text-muted);">TCS Client Engagement</span>
+              <span style="font-family:var(--font-mono); font-size:0.7rem; color:var(--text-muted);">TCS Client
+                Engagement</span>
             </div>
             <h3 class="project-title">Multi-Region Automation Suite</h3>
             <p class="project-desc">Engineered robust Selenium Webdriver tests mapping across 5 geographic regions,
@@ -7375,11 +7564,13 @@
             <div class="project-meta" style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
               <span class="client-logo-pill" style="padding:3px 8px; font-weight:700; font-size:0.75rem;">
                 <span class="logo-img-badge" style="height:18px; padding:1px 4px;">
-                  <img src="images/citi.png" alt="Citi Logo" class="brand-logo-img" style="height:14px; width:auto; max-width:40px;" />
+                  <img src="images/citi.png" alt="Citi Logo" class="brand-logo-img"
+                    style="height:14px; width:auto; max-width:40px;" />
                 </span>
                 <span>Citi Bank Platform</span>
               </span>
-              <span style="font-family:var(--font-mono); font-size:0.7rem; color:var(--text-muted);">TCS Client Engagement</span>
+              <span style="font-family:var(--font-mono); font-size:0.7rem; color:var(--text-muted);">TCS Client
+                Engagement</span>
             </div>
             <h3 class="project-title">Payment Flow Regression</h3>
             <p class="project-desc">Developed contract API integrations (Rest Assured) and database assertions for
@@ -7400,11 +7591,13 @@
             <div class="project-meta" style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
               <span class="client-logo-pill" style="padding:3px 8px; font-weight:700; font-size:0.75rem;">
                 <span class="logo-img-badge" style="height:18px; padding:1px 4px;">
-                  <img src="images/hexaware.png" alt="Hexaware Logo" class="brand-logo-img" style="height:14px; width:auto; max-width:40px;" />
+                  <img src="images/hexaware.png" alt="Hexaware Logo" class="brand-logo-img"
+                    style="height:14px; width:auto; max-width:40px;" />
                 </span>
                 <span>Air Canada Enterprise</span>
               </span>
-              <span style="font-family:var(--font-mono); font-size:0.7rem; color:var(--text-muted);">Hexaware Client</span>
+              <span style="font-family:var(--font-mono); font-size:0.7rem; color:var(--text-muted);">Hexaware
+                Client</span>
             </div>
             <h3 class="project-title">Passenger Operations Testing</h3>
             <p class="project-desc">Automated reservation system routines. Recognized with the "Best Debutant" and three
@@ -7705,14 +7898,16 @@
       <div class="labs-launcher-hub blueprint-card bounce-target bounce-pop d-6" id="interactiveLabsHub">
         <div class="labs-hub-header">
           <div>
-            <div style="font-family: var(--font-mono); font-size: 0.68rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; margin-bottom: 4px;">
+            <div
+              style="font-family: var(--font-mono); font-size: 0.68rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; margin-bottom: 4px;">
               PORTFOLIO QA ENGINE // INTERACTIVE RUNTIMES
             </div>
             <h3 style="font-size: 1.25rem; text-transform: uppercase; font-weight: 700; margin: 0;">
               Interactive QA <strong>&amp; FinTech Sandboxes</strong>
             </h3>
             <p style="font-size: 0.84rem; color: var(--text-muted); margin: 6px 0 0 0; max-width: 680px;">
-              Launch full-featured interactive test environments in an isolated modal sandbox. Test live Selenium POM scripts on the active DOM or simulate 3D FinTech payment validation with Luhn Mod-10 checksum assertions.
+              Launch full-featured interactive test environments in an isolated modal sandbox. Test live Selenium POM
+              scripts on the active DOM or simulate 3D FinTech payment validation with Luhn Mod-10 checksum assertions.
             </p>
           </div>
         </div>
@@ -7721,7 +7916,8 @@
           <!-- Card 1: Live Automation Rig -->
           <div class="labs-launch-item open-playground-trigger" data-target="playground">
             <div class="labs-item-header">
-              <div class="icon-circle-badge icon-circle-badge-sm" style="color: #38bdf8; background: rgba(56, 189, 248, 0.1);">
+              <div class="icon-circle-badge icon-circle-badge-sm"
+                style="color: #38bdf8; background: rgba(56, 189, 248, 0.1);">
                 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
                   <polyline points="16 18 22 12 16 6"></polyline>
                   <polyline points="8 6 2 12 8 18"></polyline>
@@ -7731,7 +7927,8 @@
             </div>
             <h4 class="labs-item-title">Live Automation &amp; BDD IDE</h4>
             <p class="labs-item-desc">
-              Execute live Java Page Object Model scripts and Cucumber BDD features directly against this portfolio's DOM in a real-time terminal sandbox.
+              Execute live Java Page Object Model scripts and Cucumber BDD features directly against this portfolio's
+              DOM in a real-time terminal sandbox.
             </p>
             <button type="button" class="labs-launch-btn open-playground-trigger" data-target="playground">
               <span>Launch Live Code Sandbox</span>
@@ -7744,7 +7941,8 @@
           <!-- Card 2: 3D FinTech Card Verifier -->
           <div class="labs-launch-item open-playground-trigger" data-target="cardStudio">
             <div class="labs-item-header">
-              <div class="icon-circle-badge icon-circle-badge-sm" style="color: #22c55e; background: rgba(34, 197, 94, 0.1);">
+              <div class="icon-circle-badge icon-circle-badge-sm"
+                style="color: #22c55e; background: rgba(34, 197, 94, 0.1);">
                 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
                   <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
                   <line x1="1" y1="10" x2="23" y2="10"></line>
@@ -7754,7 +7952,8 @@
             </div>
             <h4 class="labs-item-title">Satisfying 3D Payment Verifier</h4>
             <p class="labs-item-desc">
-              Interact with a 3D perspective credit card with dynamic BIN detection, auto-flipping on CVV focus, and live Luhn checksum security assertions in Rupees.
+              Interact with a 3D perspective credit card with dynamic BIN detection, auto-flipping on CVV focus, and
+              live Luhn checksum security assertions in Rupees.
             </p>
             <button type="button" class="labs-launch-btn open-playground-trigger" data-target="cardStudio">
               <span>Launch 3D Card Studio</span>
@@ -7996,14 +8195,18 @@
               <span>Wipro Technologies</span>
               <span>2025 – Present</span>
             </div>
-            <div class="exp-co" style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:10px;">
+            <div class="exp-co"
+              style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:10px;">
               <div class="company-logo-pill" title="Wipro Technologies (Current Employer)">
                 <span class="logo-img-badge">
-                  <img src="images/wirpo.jpeg" alt="Wipro Logo" class="brand-logo-img" style="height:22px; width:auto; max-width:65px;" />
+                  <img src="images/wirpo.jpeg" alt="Wipro Logo" class="brand-logo-img"
+                    style="height:22px; width:auto; max-width:65px;" />
                 </span>
                 <span style="font-weight:700; font-size:0.92rem; color:var(--color);">Wipro Technologies</span>
               </div>
-              <span style="font-family:var(--font-mono); font-size:0.72rem; padding:3px 8px; border-radius:4px; background:rgba(34,197,94,0.15); color:#22c55e; border:1px solid rgba(34,197,94,0.3); font-weight:600;">● Active Role</span>
+              <span
+                style="font-family:var(--font-mono); font-size:0.72rem; padding:3px 8px; border-radius:4px; background:rgba(34,197,94,0.15); color:#22c55e; border:1px solid rgba(34,197,94,0.3); font-weight:600;">●
+                Active Role</span>
             </div>
             <div class="exp-role">Senior Test Automation Engineer</div>
             <ul class="exp-bullets">
@@ -8025,49 +8228,66 @@
               <span>Tata Consultancy Services (TCS)</span>
               <span>2022 – 2025</span>
             </div>
-            <div class="exp-co" style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:10px;">
+            <div class="exp-co"
+              style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:10px;">
               <div class="company-logo-pill" title="Tata Consultancy Services">
                 <span class="logo-img-badge">
-                  <img src="images/TCS.png" alt="TCS Logo" class="brand-logo-img" style="height:22px; width:auto; max-width:65px;" />
+                  <img src="images/TCS.png" alt="TCS Logo" class="brand-logo-img"
+                    style="height:22px; width:auto; max-width:65px;" />
                 </span>
                 <span style="font-weight:700; font-size:0.92rem; color:var(--color);">Tata Consultancy Services</span>
               </div>
-              <span style="font-family:var(--font-mono); font-size:0.72rem; padding:3px 8px; border-radius:4px; background:rgba(56,189,248,0.12); color:var(--accent); border:1px solid rgba(56,189,248,0.25); font-weight:600;">Enterprise SDET</span>
+              <span
+                style="font-family:var(--font-mono); font-size:0.72rem; padding:3px 8px; border-radius:4px; background:rgba(56,189,248,0.12); color:var(--accent); border:1px solid rgba(56,189,248,0.25); font-weight:600;">Enterprise
+                SDET</span>
             </div>
             <div class="exp-role">System Engineer · Enterprise Test Automation</div>
 
             <div class="exp-engagements-grid" style="margin-top:16px; display:flex; flex-direction:column; gap:14px;">
               <!-- Engagement 1: Apple Online Store -->
               <div class="exp-engagement-block">
-                <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; flex-wrap:wrap; gap:8px;">
+                <div
+                  style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; flex-wrap:wrap; gap:8px;">
                   <div class="client-logo-pill" title="Apple Inc. Client Engagement">
                     <span class="logo-img-badge">
-                      <img src="images/Appple.svg" alt="Apple Logo" class="brand-logo-img" style="height:16px; width:auto;" />
+                      <img src="images/Appple.svg" alt="Apple Logo" class="brand-logo-img"
+                        style="height:16px; width:auto;" />
                     </span>
-                    <strong style="font-size:0.88rem; color:var(--color);">Apple Online Store (Client Engagement)</strong>
+                    <strong style="font-size:0.88rem; color:var(--color);">Apple Online Store (Client
+                      Engagement)</strong>
                   </div>
-                  <span style="font-family:var(--font-mono); font-size:0.65rem; color:var(--accent); font-weight:600;">E-Commerce QA Automation</span>
+                  <span
+                    style="font-family:var(--font-mono); font-size:0.65rem; color:var(--accent); font-weight:600;">E-Commerce
+                    QA Automation</span>
                 </div>
                 <ul class="exp-bullets" style="margin-top:0;">
-                  <li>Authored automated regression suites validating localized checkout funnels across 5 global regions with 0 defect leaks for international Apple launch cycles.</li>
-                  <li>Validated dynamic purchase queues, multi-currency tax calculations, and localized responsive checkout layouts.</li>
+                  <li>Authored automated regression suites validating localized checkout funnels across 5 global regions
+                    with 0 defect leaks for international Apple launch cycles.</li>
+                  <li>Validated dynamic purchase queues, multi-currency tax calculations, and localized responsive
+                    checkout layouts.</li>
                 </ul>
               </div>
 
               <!-- Engagement 2: Citi Bank Financial Platform -->
               <div class="exp-engagement-block">
-                <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; flex-wrap:wrap; gap:8px;">
+                <div
+                  style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; flex-wrap:wrap; gap:8px;">
                   <div class="client-logo-pill" title="Citi Bank Client Engagement">
                     <span class="logo-img-badge">
-                      <img src="images/citi.png" alt="Citi Bank Logo" class="brand-logo-img" style="height:16px; width:auto; max-width:45px;" />
+                      <img src="images/citi.png" alt="Citi Bank Logo" class="brand-logo-img"
+                        style="height:16px; width:auto; max-width:45px;" />
                     </span>
-                    <strong style="font-size:0.88rem; color:var(--color);">Citi Bank Financial Platform (Client Engagement)</strong>
+                    <strong style="font-size:0.88rem; color:var(--color);">Citi Bank Financial Platform (Client
+                      Engagement)</strong>
                   </div>
-                  <span style="font-family:var(--font-mono); font-size:0.65rem; color:var(--accent); font-weight:600;">FinTech &amp; API Testing</span>
+                  <span
+                    style="font-family:var(--font-mono); font-size:0.65rem; color:var(--accent); font-weight:600;">FinTech
+                    &amp; API Testing</span>
                 </div>
                 <ul class="exp-bullets" style="margin-top:0;">
                   <li>Constructed full suite regression cycles for ACH money transfers and Flexcube banking rails.</li>
-                  <li>Automated Rest Assured contract API assertions and database SQL verification scripts with MySQL.</li>
+                  <li>Automated Rest Assured contract API assertions and database SQL verification scripts with MySQL.
+                  </li>
                   <li>Formulated compliance testing for Anti-Money Laundering (AML) onboarding and KYC flows.</li>
                 </ul>
               </div>
@@ -8083,20 +8303,25 @@
               <span>Hexaware Technologies</span>
               <span>2020 – 2022</span>
             </div>
-            <div class="exp-co" style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:10px;">
+            <div class="exp-co"
+              style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:10px;">
               <div class="company-logo-pill" title="Hexaware Technologies">
                 <span class="logo-img-badge">
-                  <img src="images/hexaware.png" alt="Hexaware Logo" class="brand-logo-img" style="height:22px; width:auto; max-width:65px;" />
+                  <img src="images/hexaware.png" alt="Hexaware Logo" class="brand-logo-img"
+                    style="height:22px; width:auto; max-width:65px;" />
                 </span>
                 <span style="font-weight:700; font-size:0.92rem; color:var(--color);">Hexaware Technologies</span>
               </div>
               <div class="client-logo-pill" title="Air Canada Enterprise Client">
                 <svg class="corp-brand-svg" width="18" height="18" viewBox="0 0 100 100" fill="none">
                   <!-- Official Air Canada Roundel -->
-                  <circle cx="50" cy="50" r="45" stroke="#ED1C24" stroke-width="5.5" fill="none"/>
-                  <path d="M50 16 L53.5 29 L63 25 L59.5 37 L72 35 L66 45 L78 50 L68 57 L74 65 L61 63 L61 74 L50 67 L39 74 L39 63 L26 65 L32 57 L22 50 L34 45 L28 35 L40.5 37 L37 25 L46.5 29 Z M48.2 67 L48.2 82 L51.8 82 L51.8 67 Z" fill="#ED1C24"/>
+                  <circle cx="50" cy="50" r="45" stroke="#ED1C24" stroke-width="5.5" fill="none" />
+                  <path
+                    d="M50 16 L53.5 29 L63 25 L59.5 37 L72 35 L66 45 L78 50 L68 57 L74 65 L61 63 L61 74 L50 67 L39 74 L39 63 L26 65 L32 57 L22 50 L34 45 L28 35 L40.5 37 L37 25 L46.5 29 Z M48.2 67 L48.2 82 L51.8 82 L51.8 67 Z"
+                    fill="#ED1C24" />
                 </svg>
-                <span style="font-family:var(--font-mono); font-size:0.75rem; color:var(--accent); font-weight:600;">Air Canada (Client)</span>
+                <span style="font-family:var(--font-mono); font-size:0.75rem; color:var(--accent); font-weight:600;">Air
+                  Canada (Client)</span>
               </div>
             </div>
             <div class="exp-role">Automation Test Engineer</div>
@@ -8536,7 +8761,8 @@
   <!-- =========================================================================
        INTERACTIVE QA & FINTECH LABS MODAL (PLAYGROUND & 3D CARD VERIFIER)
        ========================================================================= -->
-  <div class="interactive-labs-modal-overlay" id="interactivePlaygroundModal" role="dialog" aria-modal="true" aria-label="Interactive QA & FinTech Labs Sandbox">
+  <div class="interactive-labs-modal-overlay" id="interactivePlaygroundModal" role="dialog" aria-modal="true"
+    aria-label="Interactive QA & FinTech Labs Sandbox">
     <div class="interactive-labs-modal-window">
       <!-- Modal Header -->
       <div class="interactive-labs-header">
@@ -8552,11 +8778,13 @@
           <!-- Right Modal Controls -->
           <div class="interactive-labs-ctrls">
             <button type="button" class="studio-ctrl-btn" id="modalSoundFxToggleBtn" title="Toggle Lab Sound FX">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" id="modalSoundIconOn">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                id="modalSoundIconOn">
                 <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
                 <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
               </svg>
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" id="modalSoundIconOff" style="display:none;">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                id="modalSoundIconOff" style="display:none;">
                 <polygon points="11 5 6 9 2 9 2 15 6 15 11 5"></polygon>
                 <line x1="23" y1="9" x2="17" y2="15"></line>
                 <line x1="17" y1="9" x2="23" y2="15"></line>
@@ -8571,7 +8799,8 @@
 
         <!-- Labs Navigation Tabs -->
         <div class="interactive-labs-nav-tabs">
-          <button type="button" class="interactive-labs-tab-btn active" id="modalTabBtnPlayground" data-target="playground">
+          <button type="button" class="interactive-labs-tab-btn active" id="modalTabBtnPlayground"
+            data-target="playground">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <polyline points="16 18 22 12 16 6"></polyline>
               <polyline points="8 6 2 12 8 18"></polyline>
@@ -8609,9 +8838,12 @@
             <!-- IDE Header Bar -->
             <div class="code-editor-header">
               <div style="display:flex; align-items:center; gap:8px;">
-                <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#22c55e; box-shadow:0 0 8px #22c55e;"></span>
+                <span
+                  style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#22c55e; box-shadow:0 0 8px #22c55e;"></span>
                 <span class="code-filename" id="codeFilename">src/test/java/AutomationTest.java</span>
-                <span style="font-family:var(--font-mono); font-size:0.65rem; color:#38bdf8; background:rgba(56,189,248,0.1); border:1px solid rgba(56,189,248,0.25); padding:1px 6px; border-radius:3px;">Portfolio DOM Active</span>
+                <span
+                  style="font-family:var(--font-mono); font-size:0.65rem; color:#38bdf8; background:rgba(56,189,248,0.1); border:1px solid rgba(56,189,248,0.25); padding:1px 6px; border-radius:3px;">Portfolio
+                  DOM Active</span>
               </div>
               <div class="code-editor-actions">
                 <button class="code-reset-btn" id="codeResetBtn" title="Reset to Starter Template">
@@ -8628,7 +8860,8 @@
                   </svg>
                   <span>Copy</span>
                 </button>
-                <button class="code-run-btn" id="codePlaygroundRunBtn" title="Execute Code in Terminal (Ctrl/Cmd + Enter)">
+                <button class="code-run-btn" id="codePlaygroundRunBtn"
+                  title="Execute Code in Terminal (Ctrl/Cmd + Enter)">
                   <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
                     <polygon points="5 3 19 12 5 21 5 3"></polygon>
                   </svg>
@@ -8640,25 +8873,30 @@
             <!-- Playground Layout: Editable Editor on Left, Real-Time Terminal on Right -->
             <div class="code-playground-layout">
               <div style="display:flex; flex-direction:column; position:relative;">
-                <textarea class="code-textarea" id="interactiveCodeInput" spellcheck="false" placeholder="// Write Java or Feature code here..."></textarea>
-                <div style="padding:6px 14px; background:#0d0d12; border-top:1px solid #1e293b; border-right:1px solid #1e293b; font-family:var(--font-mono); font-size:0.68rem; color:#64748b; display:flex; justify-content:space-between;">
+                <textarea class="code-textarea" id="interactiveCodeInput" spellcheck="false"
+                  placeholder="// Write Java or Feature code here..."></textarea>
+                <div
+                  style="padding:6px 14px; background:#0d0d12; border-top:1px solid #1e293b; border-right:1px solid #1e293b; font-family:var(--font-mono); font-size:0.68rem; color:#64748b; display:flex; justify-content:space-between;">
                   <span id="editorLanguageLabel">Java 17 · Selenium 4 · TestNG 7.8</span>
                   <span>Press <strong>⌘ + Enter</strong> to Run</span>
                 </div>
               </div>
 
               <div class="code-output-panel">
-                <div class="terminal-header" style="background:#13131a; border-bottom:1px solid #1e293b; padding:8px 16px; display:flex; align-items:center; justify-content:space-between;">
+                <div class="terminal-header"
+                  style="background:#13131a; border-bottom:1px solid #1e293b; padding:8px 16px; display:flex; align-items:center; justify-content:space-between;">
                   <div class="terminal-title" style="font-size:0.72rem; color:#94a3b8; font-family:var(--font-mono);">
                     <span id="terminalCmdTitle">mvn test -Dtest=AutomationTest</span>
                   </div>
-                  <button id="clearTerminalBtn" style="background:transparent; border:none; color:#64748b; font-family:var(--font-mono); font-size:0.65rem; cursor:pointer;">Clear</button>
+                  <button id="clearTerminalBtn"
+                    style="background:transparent; border:none; color:#64748b; font-family:var(--font-mono); font-size:0.65rem; cursor:pointer;">Clear</button>
                 </div>
 
                 <!-- Technical Terminal Log Output -->
                 <div class="test-terminal-logs" id="playgroundTerminalLogs">
                   <div style="color:#64748b;">// Driver initialized on active portfolio DOM.</div>
-                  <div style="color:#94a3b8;">Ready. Type code or System.out.println() and click <strong>[Run Code]</strong> to execute live.</div>
+                  <div style="color:#94a3b8;">Ready. Type code or System.out.println() and click <strong>[Run
+                      Code]</strong> to execute live.</div>
                 </div>
               </div>
             </div>
@@ -8676,7 +8914,8 @@
                   <div class="card-top-row">
                     <div style="display:flex; align-items:center;">
                       <div class="card-chip"></div>
-                      <svg class="card-contactless" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                      <svg class="card-contactless" width="22" height="22" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round">
                         <path d="M8.5 16.5a5 5 0 0 1 0-9" />
                         <path d="M12 19a8.5 8.5 0 0 0 0-14" />
                         <path d="M15.5 21.5a12 12 0 0 0 0-19" />
@@ -8706,11 +8945,13 @@
                 <div class="card-face card-face-back" id="cardFaceBack" data-brand="visa">
                   <div class="card-mag-strip"></div>
                   <div class="card-cvv-row">
-                    <span class="card-label-small" style="color:#ffffff; margin-bottom:4px;">CVV / CVC Security Code</span>
+                    <span class="card-label-small" style="color:#ffffff; margin-bottom:4px;">CVV / CVC Security
+                      Code</span>
                     <div class="card-signature-bar">
                       <span id="cardDisplayCvv">842</span>
                     </div>
-                    <div style="margin-top:14px; font-size:0.65rem; color:#94a3b8; font-family:var(--font-mono); text-align:right;">
+                    <div
+                      style="margin-top:14px; font-size:0.65rem; color:#94a3b8; font-family:var(--font-mono); text-align:right;">
                       SECURE PAYMENT &amp; CARD QA VALIDATION ENGINE
                     </div>
                   </div>
@@ -8720,8 +8961,10 @@
 
             <!-- Right: Live Interactive Card Editor & QA Engine -->
             <div class="card-editor-panel">
-              <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(148,163,184,0.15); padding-bottom:10px;">
-                <span style="font-family:var(--font-mono); font-size:0.78rem; font-weight:700; color:var(--color); text-transform:uppercase;">
+              <div
+                style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(148,163,184,0.15); padding-bottom:10px;">
+                <span
+                  style="font-family:var(--font-mono); font-size:0.78rem; font-weight:700; color:var(--color); text-transform:uppercase;">
                   💳 Live Card &amp; Payment Gateway Editor
                 </span>
                 <span style="font-family:var(--font-mono); font-size:0.68rem; color:#22c55e; font-weight:600;">
@@ -8734,12 +8977,15 @@
                 <div class="card-editor-field full-span">
                   <label class="card-editor-label" for="cardInputAmount">
                     <span>00. Payment / Transfer Amount</span>
-                    <span id="amountFormattedLabel" style="color:var(--accent, #38bdf8); font-weight:700;">₹50,000 INR</span>
+                    <span id="amountFormattedLabel" style="color:var(--accent, #38bdf8); font-weight:700;">₹50,000
+                      INR</span>
                   </label>
                   <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
                     <div style="position:relative; flex:1; min-width:130px;">
-                      <span style="position:absolute; left:12px; top:50%; transform:translateY(-50%); font-family:var(--font-mono); font-size:0.88rem; font-weight:700; color:var(--accent, #38bdf8);">₹</span>
-                      <input type="text" class="card-live-input" id="cardInputAmount" value="50,000" placeholder="50,000" style="padding-left:26px;" autocomplete="off" />
+                      <span
+                        style="position:absolute; left:12px; top:50%; transform:translateY(-50%); font-family:var(--font-mono); font-size:0.88rem; font-weight:700; color:var(--accent, #38bdf8);">₹</span>
+                      <input type="text" class="card-live-input" id="cardInputAmount" value="50,000"
+                        placeholder="50,000" style="padding-left:26px;" autocomplete="off" />
                     </div>
                     <div class="card-amount-presets" style="display:flex; gap:6px;">
                       <button type="button" class="btn-amount-chip" data-amount="5,000">₹5K</button>
@@ -8756,7 +9002,8 @@
                     <span>01. Card Number (Dynamic BIN Detection)</span>
                     <span id="cardTypeDetectLabel" style="color:var(--accent, #38bdf8);">VISA DETECTED</span>
                   </label>
-                  <input type="text" class="card-live-input" id="cardInputNumber" maxlength="19" value="4532 9988 7766 8891" placeholder="4532 0000 0000 0000" autocomplete="off" />
+                  <input type="text" class="card-live-input" id="cardInputNumber" maxlength="19"
+                    value="4532 9988 7766 8891" placeholder="4532 0000 0000 0000" autocomplete="off" />
                 </div>
 
                 <!-- Cardholder Name -->
@@ -8765,7 +9012,8 @@
                     <span>02. Cardholder Name</span>
                     <span style="color:#94a3b8;">UPPERCASE</span>
                   </label>
-                  <input type="text" class="card-live-input" id="cardInputName" maxlength="26" value="SRIVATSA MALALI" placeholder="FULL NAME" autocomplete="off" />
+                  <input type="text" class="card-live-input" id="cardInputName" maxlength="26" value="SRIVATSA MALALI"
+                    placeholder="FULL NAME" autocomplete="off" />
                 </div>
 
                 <!-- Expiry Date -->
@@ -8773,7 +9021,8 @@
                   <label class="card-editor-label" for="cardInputExp">
                     <span>03. Expiration Date</span>
                   </label>
-                  <input type="text" class="card-live-input" id="cardInputExp" maxlength="5" value="08/28" placeholder="MM/YY" autocomplete="off" />
+                  <input type="text" class="card-live-input" id="cardInputExp" maxlength="5" value="08/28"
+                    placeholder="MM/YY" autocomplete="off" />
                 </div>
 
                 <!-- CVV Code (Auto-flips card on focus!) -->
@@ -8781,7 +9030,8 @@
                   <label class="card-editor-label" for="cardInputCvv">
                     <span>04. CVV / CVC</span>
                   </label>
-                  <input type="text" class="card-live-input" id="cardInputCvv" maxlength="4" value="842" placeholder="123" autocomplete="off" />
+                  <input type="text" class="card-live-input" id="cardInputCvv" maxlength="4" value="842"
+                    placeholder="123" autocomplete="off" />
                 </div>
               </div>
 
@@ -8807,10 +9057,13 @@
 
               <!-- Generated QA Test Receipt -->
               <div class="card-qa-receipt" id="cardQaReceipt">
-                <div style="color:#22c55e; font-weight:700; margin-bottom:4px;">✔ TRANSACTION &amp; QA ASSERTION VERIFIED [PASS]</div>
+                <div style="color:#22c55e; font-weight:700; margin-bottom:4px;">✔ TRANSACTION &amp; QA ASSERTION
+                  VERIFIED [PASS]</div>
                 <div>• Payment Gateway: <strong>Razorpay / NPCI Core Rails / Apple Pay</strong></div>
-                <div>• Card Network: <strong id="receiptNetwork">VISA DEBIT</strong> · Status: <strong>APPROVED (AUTH #884920)</strong></div>
-                <div>• Test Assertion: <strong>Assert.assertTrue(luhnCheck &amp;&amp; expValid &amp;&amp; cvvPassed);</strong></div>
+                <div>• Card Network: <strong id="receiptNetwork">VISA DEBIT</strong> · Status: <strong>APPROVED (AUTH
+                    #884920)</strong></div>
+                <div>• Test Assertion: <strong>Assert.assertTrue(luhnCheck &amp;&amp; expValid &amp;&amp;
+                    cvvPassed);</strong></div>
               </div>
             </div>
           </div>
@@ -8998,13 +9251,17 @@
   </div>
 
   <!-- Book Interview & Technical Discussion Modal Dialog -->
-  <div class="interview-modal-overlay" id="interviewModalOverlay" role="dialog" aria-modal="true" aria-label="Book Interview & Technical Discussion">
+  <div class="interview-modal-overlay" id="interviewModalOverlay" role="dialog" aria-modal="true"
+    aria-label="Book Interview & Technical Discussion">
     <div class="interview-modal-window">
       <!-- Modal Header -->
       <div class="interview-modal-header">
         <div class="interview-modal-header-left">
           <span class="interview-badge">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
             DIRECT RECRUITER &amp; LEAD CHANNEL
           </span>
           <h3 class="interview-modal-title">Schedule Technical Sync / Interview</h3>
@@ -9015,14 +9272,16 @@
       <!-- Modal Body: Direct Pure Scheduler Embed -->
       <div class="interview-modal-body">
         <div class="cal-frame-wrapper">
-          <iframe id="calIframe" src="https://cal.com/srivatsa-malali-sammy-wiuioy?embed=true" class="cal-embed-iframe" title="Schedule Technical Sync & Interview" loading="lazy"></iframe>
+          <iframe id="calIframe" src="https://cal.com/srivatsa-malali-sammy-wiuioy?embed=true" class="cal-embed-iframe"
+            title="Schedule Technical Sync & Interview" loading="lazy"></iframe>
         </div>
       </div>
     </div>
   </div>
 
   <!-- Instant Personalized Candidate Card & PDF Generator Modal -->
-  <div class="card-gen-modal-overlay" id="cardGeneratorModalOverlay" role="dialog" aria-modal="true" aria-label="Instant Candidate Card & PDF Generator">
+  <div class="card-gen-modal-overlay" id="cardGeneratorModalOverlay" role="dialog" aria-modal="true"
+    aria-label="Instant Candidate Card & PDF Generator">
     <div class="card-gen-modal-window">
       <!-- Header -->
       <div class="card-gen-header">
@@ -9030,7 +9289,8 @@
           <span class="achieve-badge-tag">📇 CANDIDATE SNAPSHOT ENGINE</span>
           <h3 class="achieve-title">Personalized Profile Card &amp; 1-Page PDF</h3>
         </div>
-        <button type="button" class="drawer-close-btn" id="closeCardGenModalBtn" title="Close Generator (ESC)">✕</button>
+        <button type="button" class="drawer-close-btn" id="closeCardGenModalBtn"
+          title="Close Generator (ESC)">✕</button>
       </div>
 
       <!-- Body Split View -->
@@ -9041,7 +9301,8 @@
             <label class="card-gen-label" for="cardGenCompanyInput">
               <span>Hiring Company / Team</span>
             </label>
-            <input type="text" class="card-gen-input" id="cardGenCompanyInput" placeholder="e.g. Apple, Google, Stripe, Citi..." value="Engineering Leadership" />
+            <input type="text" class="card-gen-input" id="cardGenCompanyInput"
+              placeholder="e.g. Apple, Google, Stripe, Citi..." value="Engineering Leadership" />
           </div>
 
           <div class="card-gen-field-group">
@@ -9066,7 +9327,8 @@
                 <span>Java &amp; Selenium Frameworks</span>
               </label>
               <label class="card-gen-checkbox-label">
-                <input type="checkbox" class="card-gen-highlight-check" value="Cucumber BDD & CI/CD Pipelines" checked />
+                <input type="checkbox" class="card-gen-highlight-check" value="Cucumber BDD & CI/CD Pipelines"
+                  checked />
                 <span>Cucumber BDD &amp; CI/CD Pipelines</span>
               </label>
               <label class="card-gen-checkbox-label">
@@ -9156,15 +9418,27 @@
       <!-- Action Footer -->
       <div class="card-gen-footer-actions">
         <button type="button" class="card-action-btn" id="cardGenCopyBriefBtn" title="Copy Formatted Markdown Brief">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
           <span>Copy Brief</span>
         </button>
         <button type="button" class="card-action-btn" id="cardGenExportPdfBtn" title="Export Clean 1-Page PDF / Print">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7"></path><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 9V2h12v7"></path>
+            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+            <rect x="6" y="14" width="12" height="8"></rect>
+          </svg>
           <span>Export 1-Page PDF</span>
         </button>
-        <button type="button" class="card-action-btn primary" id="cardGenDownloadPngBtn" title="Download High-Res 2X PNG Card">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+        <button type="button" class="card-action-btn primary" id="cardGenDownloadPngBtn"
+          title="Download High-Res 2X PNG Card">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
           <span>Download PNG Card</span>
         </button>
       </div>
@@ -9179,27 +9453,34 @@
         <span class="dock-badge-text">RECRUITER DOCK</span>
       </div>
       <div class="dock-divider"></div>
-      <button type="button" class="dock-action-btn" id="dockBtnApple" data-dock="apple" title="Jump to Apple Case Study & Zero-Defect Architecture">
+      <button type="button" class="dock-action-btn" id="dockBtnApple" data-dock="apple"
+        title="Jump to Apple Case Study & Zero-Defect Architecture">
         <span class="dock-icon">
-          <svg width="15" height="18" viewBox="0 0 814 1000" fill="currentColor" style="display:inline-block; vertical-align:middle;">
-            <path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76.5 0-103.7 40.8-165.9 40.8s-105.6-57-155.5-127C46.7 790.7 0 663 0 541.8c0-194.4 126.4-297.5 250.8-297.5 66.1 0 121.2 43.4 162.7 43.4 39.5 0 101.1-46 176.3-46 28.5 0 130.9 2.6 198.3 99.2zm-234-181.5c31.1-36.9 53.1-88.1 53.1-139.3 0-7.1-.6-14.3-1.9-20.1-50.6 1.9-110.8 33.7-147.1 75.8-28.5 32.4-55.1 83.6-55.1 135.5 0 7.8 1.3 15.6 1.9 18.1 3.2.6 8.4 1.3 13.6 1.3 45.4 0 102.5-30.4 135.5-71.3z"/>
+          <svg width="15" height="18" viewBox="0 0 814 1000" fill="currentColor"
+            style="display:inline-block; vertical-align:middle;">
+            <path
+              d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76.5 0-103.7 40.8-165.9 40.8s-105.6-57-155.5-127C46.7 790.7 0 663 0 541.8c0-194.4 126.4-297.5 250.8-297.5 66.1 0 121.2 43.4 162.7 43.4 39.5 0 101.1-46 176.3-46 28.5 0 130.9 2.6 198.3 99.2zm-234-181.5c31.1-36.9 53.1-88.1 53.1-139.3 0-7.1-.6-14.3-1.9-20.1-50.6 1.9-110.8 33.7-147.1 75.8-28.5 32.4-55.1 83.6-55.1 135.5 0 7.8 1.3 15.6 1.9 18.1 3.2.6 8.4 1.3 13.6 1.3 45.4 0 102.5-30.4 135.5-71.3z" />
           </svg>
         </span>
         <span class="dock-label">Apple Case Study</span>
       </button>
-      <button type="button" class="dock-action-btn" id="dockBtnCard" data-dock="card" title="Open 3D FinTech Card Verifier & Luhn Algorithm Sandbox">
+      <button type="button" class="dock-action-btn" id="dockBtnCard" data-dock="card"
+        title="Open 3D FinTech Card Verifier & Luhn Algorithm Sandbox">
         <span class="dock-icon">💳</span>
         <span class="dock-label">3D Card Sandbox</span>
       </button>
-      <button type="button" class="dock-action-btn" id="dockBtnIDE" data-dock="ide" title="Open Live Automation & Cucumber BDD Code Playground">
+      <button type="button" class="dock-action-btn" id="dockBtnIDE" data-dock="ide"
+        title="Open Live Automation & Cucumber BDD Code Playground">
         <span class="dock-icon">⚡</span>
         <span class="dock-label">Live Code IDE</span>
       </button>
-      <button type="button" class="dock-action-btn" id="dockBtnCardGen" data-dock="cardgen" title="Generate Personalized Executive Snapshot & PDF Card">
+      <button type="button" class="dock-action-btn" id="dockBtnCardGen" data-dock="cardgen"
+        title="Generate Personalized Executive Snapshot & PDF Card">
         <span class="dock-icon">📇</span>
         <span class="dock-label">Snapshot Card</span>
       </button>
-      <button type="button" class="dock-action-btn dock-btn-highlight" id="dockBtnInterview" data-dock="interview" title="Schedule an Interview / Connect with Srivatsa">
+      <button type="button" class="dock-action-btn dock-btn-highlight" id="dockBtnInterview" data-dock="interview"
+        title="Schedule an Interview / Connect with Srivatsa">
         <span class="dock-icon">📅</span>
         <span class="dock-label">Book Interview</span>
       </button>
@@ -9217,7 +9498,8 @@
   </button>
 
   <!-- Floating Bottom-Right AI Chatbot Launcher Button -->
-  <button type="button" class="floating-chatbot-btn" id="floatingChatbotTrigger" title="Ask Srivatsa AI (Instant SDET Q&amp;A)">
+  <button type="button" class="floating-chatbot-btn" id="floatingChatbotTrigger"
+    title="Ask Srivatsa AI (Instant SDET Q&amp;A)">
     <div class="chatbot-btn-avatar">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
@@ -9231,7 +9513,8 @@
   </button>
 
   <!-- Floating AI Chatbot Popup Window -->
-  <div class="floating-chatbot-window" id="aiChatbotWidget" role="dialog" aria-modal="false" aria-label="Ask Srivatsa AI Assistant">
+  <div class="floating-chatbot-window" id="aiChatbotWidget" role="dialog" aria-modal="false"
+    aria-label="Ask Srivatsa AI Assistant">
     <!-- Bot Header -->
     <div class="bot-header">
       <div class="bot-header-info">
@@ -9254,9 +9537,13 @@
       </div>
       <div style="display:flex; align-items:center; gap:6px;">
         <button type="button" id="botResetChatBtn" title="Clear chat history" class="bot-header-action-btn">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="1 4 1 10 7 10"></polyline>
+            <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+          </svg>
         </button>
-        <button type="button" id="botCloseWidgetBtn" title="Minimize Chatbot (ESC)" class="bot-header-action-btn">✕</button>
+        <button type="button" id="botCloseWidgetBtn" title="Minimize Chatbot (ESC)"
+          class="bot-header-action-btn">✕</button>
       </div>
     </div>
 
@@ -9264,7 +9551,8 @@
     <div class="bot-chat-stream" id="botChatStream">
       <div class="chat-bubble bot-msg">
         <div class="bot-bubble-content">
-          👋 Hi! I'm <strong>Srivatsa's AI Assistant</strong>, loaded with 5.5+ years of verified SDET experience across Apple, Citi Bank, and Air Canada.
+          👋 Hi! I'm <strong>Srivatsa's AI Assistant</strong>, loaded with 5.5+ years of verified SDET experience across
+          Apple, Citi Bank, and Air Canada.
           <br><br>
           Select a question below or type your own to generate instant, tailored insights:
         </div>
@@ -9275,9 +9563,11 @@
     <div class="bot-prompt-chips" id="botPromptChips">
       <button type="button" class="prompt-chip-btn" data-question="hire">✨ Why hire Srivatsa as Lead SDET?</button>
       <button type="button" class="prompt-chip-btn" data-question="flakiness">🛡️ Flaky test strategy</button>
-      <button type="button" class="prompt-chip-btn" data-question="apple-citi" style="display:inline-flex; align-items:center; gap:5px;">
+      <button type="button" class="prompt-chip-btn" data-question="apple-citi"
+        style="display:inline-flex; align-items:center; gap:5px;">
         <svg width="12" height="14" viewBox="0 0 814 1000" fill="currentColor">
-          <path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76.5 0-103.7 40.8-165.9 40.8s-105.6-57-155.5-127C46.7 790.7 0 663 0 541.8c0-194.4 126.4-297.5 250.8-297.5 66.1 0 121.2 43.4 162.7 43.4 39.5 0 101.1-46 176.3-46 28.5 0 130.9 2.6 198.3 99.2zm-234-181.5c31.1-36.9 53.1-88.1 53.1-139.3 0-7.1-.6-14.3-1.9-20.1-50.6 1.9-110.8 33.7-147.1 75.8-28.5 32.4-55.1 83.6-55.1 135.5 0 7.8 1.3 15.6 1.9 18.1 3.2.6 8.4 1.3 13.6 1.3 45.4 0 102.5-30.4 135.5-71.3z"/>
+          <path
+            d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76.5 0-103.7 40.8-165.9 40.8s-105.6-57-155.5-127C46.7 790.7 0 663 0 541.8c0-194.4 126.4-297.5 250.8-297.5 66.1 0 121.2 43.4 162.7 43.4 39.5 0 101.1-46 176.3-46 28.5 0 130.9 2.6 198.3 99.2zm-234-181.5c31.1-36.9 53.1-88.1 53.1-139.3 0-7.1-.6-14.3-1.9-20.1-50.6 1.9-110.8 33.7-147.1 75.8-28.5 32.4-55.1 83.6-55.1 135.5 0 7.8 1.3 15.6 1.9 18.1 3.2.6 8.4 1.3 13.6 1.3 45.4 0 102.5-30.4 135.5-71.3z" />
         </svg>
         <span>Apple &amp; Citi impacts</span>
       </button>
@@ -9287,7 +9577,8 @@
 
     <!-- Input Bar -->
     <form class="bot-input-bar" id="botInputForm" onsubmit="return false;">
-      <input type="text" class="bot-input-field" id="botUserQueryInput" placeholder="Ask anything about Srivatsa's skills..." autocomplete="off" />
+      <input type="text" class="bot-input-field" id="botUserQueryInput"
+        placeholder="Ask anything about Srivatsa's skills..." autocomplete="off" />
       <button type="submit" class="bot-send-btn" id="botSendBtn" title="Send Question">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <line x1="22" y1="2" x2="11" y2="13"></line>
@@ -9344,7 +9635,7 @@
           gain.connect(c.destination);
           osc.start();
           osc.stop(c.currentTime + 0.04);
-        } catch (e) {}
+        } catch (e) { }
       };
 
       const playHover = () => {
@@ -9363,7 +9654,7 @@
           gain.connect(c.destination);
           osc.start();
           osc.stop(c.currentTime + 0.025);
-        } catch (e) {}
+        } catch (e) { }
       };
 
       const playSuccess = () => {
@@ -9385,7 +9676,7 @@
             osc.start(c.currentTime + i * 0.045);
             osc.stop(c.currentTime + i * 0.045 + 0.35);
           });
-        } catch (e) {}
+        } catch (e) { }
       };
 
       const playFlip = () => {
@@ -9404,7 +9695,7 @@
           gain.connect(c.destination);
           osc.start();
           osc.stop(c.currentTime + 0.06);
-        } catch (e) {}
+        } catch (e) { }
       };
 
       const playKey = () => {
@@ -9423,7 +9714,7 @@
           gain.connect(c.destination);
           osc.start();
           osc.stop(c.currentTime + 0.02);
-        } catch (e) {}
+        } catch (e) { }
       };
 
       const toggleMute = () => {
@@ -13303,7 +13594,7 @@ Feature: Srivatsa Malali Portfolio Verification
       // =========================================================================
       const ConfettiEngine = (() => {
         const canvas = document.getElementById('confettiCanvas');
-        if (!canvas) return { burst: () => {}, shower: () => {} };
+        if (!canvas) return { burst: () => { }, shower: () => { } };
         const ctx = canvas.getContext('2d');
         let particles = [];
         let animationFrame = null;
