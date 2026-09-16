@@ -4096,24 +4096,6 @@
       }
     }
 
-    /* Replay Intro Button in Header */
-    .replay-intro-btn {
-      background: transparent;
-      border: 1px solid var(--border);
-      color: var(--color);
-      padding: 8px 14px;
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      transition: all 0.25s ease;
-    }
-
     /* Sound FX & Studio Palette Dot Indicators */
     .sound-indicator-dot {
       position: absolute;
@@ -6046,21 +6028,208 @@
         grid-column: 1;
       }
 
+      /* Comprehensive Mobile Polish for Interactive QA & FinTech Sandboxes Modal */
       .interactive-labs-modal-overlay {
-        padding: 6px;
+        padding: 0 !important;
+        align-items: flex-end !important;
       }
 
       .interactive-labs-modal-window {
-        max-height: 96dvh;
-        border-radius: 10px;
+        width: 100% !important;
+        max-width: 100% !important;
+        height: 100dvh !important;
+        max-height: 100dvh !important;
+        border-radius: 0 !important;
+        border: none !important;
+        display: flex !important;
+        flex-direction: column !important;
       }
 
       .interactive-labs-header {
-        padding: 10px 14px;
+        padding: 10px 14px 8px 14px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 10px !important;
+      }
+
+      .interactive-labs-title-wrap {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 1px !important;
+      }
+
+      .interactive-labs-title {
+        font-size: 0.95rem !important;
+      }
+
+      .interactive-labs-tag {
+        font-size: 0.58rem !important;
+      }
+
+      .interactive-labs-nav-tabs {
+        display: flex !important;
+        width: 100% !important;
+        gap: 4px !important;
+        padding: 2px !important;
+        box-sizing: border-box !important;
+      }
+
+      .interactive-labs-tab-btn {
+        flex: 1 !important;
+        justify-content: center !important;
+        padding: 7px 8px !important;
+        font-size: 0.68rem !important;
+        gap: 4px !important;
+        white-space: nowrap !important;
+      }
+
+      .interactive-labs-ctrls {
+        position: absolute !important;
+        top: 10px !important;
+        right: 12px !important;
+        gap: 6px !important;
       }
 
       .interactive-labs-body {
-        padding: 10px;
+        padding: 10px 12px calc(20px + env(safe-area-inset-bottom, 0px)) 12px !important;
+        overflow-y: auto !important;
+        flex: 1 !important;
+        -webkit-overflow-scrolling: touch !important;
+      }
+
+      /* Tab 1: Code Playground Mobile Optimizations */
+      .code-rig-wrapper {
+        border-radius: 10px !important;
+      }
+
+      .code-tab-nav {
+        overflow-x: auto !important;
+        white-space: nowrap !important;
+        -webkit-overflow-scrolling: touch !important;
+        scrollbar-width: none !important;
+      }
+      .code-tab-nav::-webkit-scrollbar {
+        display: none !important;
+      }
+
+      .code-tab-btn {
+        padding: 8px 12px !important;
+        font-size: 0.68rem !important;
+        flex-shrink: 0 !important;
+      }
+
+      .code-editor-header {
+        padding: 8px 10px !important;
+        gap: 6px !important;
+      }
+
+      .code-filename {
+        font-size: 0.7rem !important;
+        max-width: 150px !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        white-space: nowrap !important;
+      }
+
+      .code-playground-layout {
+        display: flex !important;
+        flex-direction: column !important;
+      }
+
+      .code-textarea {
+        height: 180px !important;
+        font-size: 0.72rem !important;
+        padding: 10px !important;
+        line-height: 1.5 !important;
+        border-right: none !important;
+        border-bottom: 1px solid #1e293b !important;
+      }
+
+      .code-output-panel {
+        height: 180px !important;
+      }
+
+      .test-terminal-logs {
+        padding: 10px !important;
+        font-size: 0.68rem !important;
+      }
+
+      /* Tab 2: 3D Payment Verifier Mobile Optimizations */
+      .card-studio-wrapper {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 16px !important;
+        align-items: stretch !important;
+      }
+
+      .card-stage {
+        width: 100% !important;
+        max-width: 290px !important;
+        height: 175px !important;
+        margin: 0 auto !important;
+        perspective: 800px !important;
+      }
+
+      .card-face {
+        padding: 14px 16px !important;
+        border-radius: 14px !important;
+      }
+
+      .card-amount-badge {
+        font-size: 0.65rem !important;
+        padding: 2px 7px !important;
+      }
+
+      .card-brand-logo {
+        font-size: 0.85rem !important;
+      }
+
+      .card-number-display {
+        font-size: 0.92rem !important;
+        letter-spacing: 2px !important;
+        margin: 4px 0 !important;
+      }
+
+      .card-holder-group,
+      .card-expiry-group {
+        font-size: 0.6rem !important;
+      }
+
+      .card-val-name,
+      .card-val-exp {
+        font-size: 0.72rem !important;
+      }
+
+      .card-editor-panel {
+        padding: 14px !important;
+        border-radius: 12px !important;
+      }
+
+      .card-editor-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 10px !important;
+      }
+
+      .card-live-input {
+        padding: 9px 12px !important;
+        font-size: 0.85rem !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+      }
+
+      .card-telemetry-row {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 6px !important;
+      }
+
+      .card-badge-pill {
+        width: 100% !important;
+        box-sizing: border-box !important;
+        font-size: 0.68rem !important;
+        padding: 6px 10px !important;
       }
 
       /* Mobile Interview & Booking Modal Optimization */
@@ -6361,10 +6530,461 @@
         font-size: 1.05rem;
       }
     }
+
+    /* =========================================================================
+       1. MAGNETIC INTERACTIVE CURSOR
+       ========================================================================= */
+    .custom-cursor-dot,
+    .custom-cursor-ring {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      border-radius: 50%;
+      z-index: 999999;
+      transform: translate3d(-100px, -100px, 0);
+      transition: opacity 0.25s ease, transform 0.04s ease-out;
+      will-change: transform, width, height;
+    }
+    .custom-cursor-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--accent, #38bdf8);
+      box-shadow: 0 0 10px var(--accent-glow, #38bdf8);
+      margin-left: -3px;
+      margin-top: -3px;
+    }
+    .custom-cursor-ring {
+      width: 32px;
+      height: 32px;
+      border: 1.5px solid var(--accent, #38bdf8);
+      background: transparent;
+      margin-left: -16px;
+      margin-top: -16px;
+      opacity: 0.65;
+      transition: width 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+                  height 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+                  margin 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+                  background-color 0.22s ease,
+                  border-color 0.22s ease,
+                  opacity 0.22s ease,
+                  transform 0.08s ease-out;
+    }
+    body.cursor-hovering .custom-cursor-ring {
+      width: 46px;
+      height: 46px;
+      margin-left: -23px;
+      margin-top: -23px;
+      background: var(--accent-muted, rgba(56, 189, 248, 0.12));
+      border-color: var(--accent-glow, #38bdf8);
+      opacity: 0.95;
+    }
+    body.cursor-clicking .custom-cursor-ring {
+      width: 26px;
+      height: 26px;
+      margin-left: -13px;
+      margin-top: -13px;
+      background: var(--accent, #38bdf8);
+      opacity: 0.8;
+    }
+    body.cursor-hidden .custom-cursor-dot,
+    body.cursor-hidden .custom-cursor-ring {
+      opacity: 0 !important;
+    }
+    @media (hover: none) and (pointer: coarse) {
+      .custom-cursor-dot,
+      .custom-cursor-ring {
+        display: none !important;
+      }
+    }
+
+    /* =========================================================================
+       2. INTERACTIVE CONFETTI CANVAS
+       ========================================================================= */
+    #confettiCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 999998;
+    }
+
+    /* =========================================================================
+       3. INSTANT PERSONALIZED PORTFOLIO CARD & PDF GENERATOR
+       ========================================================================= */
+
+    .card-gen-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.78);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 99999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.25s ease, visibility 0.25s ease;
+    }
+    .card-gen-modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    .card-gen-modal-window {
+      width: 100%;
+      max-width: 980px;
+      max-height: 92vh;
+      display: flex;
+      flex-direction: column;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5);
+      overflow: hidden;
+      backdrop-filter: blur(30px);
+      -webkit-backdrop-filter: blur(30px);
+      transform: scale(0.95) translateY(12px);
+      transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .card-gen-modal-overlay.active .card-gen-modal-window {
+      transform: scale(1) translateY(0);
+    }
+    .card-gen-header {
+      padding: 18px 24px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .card-gen-body-split {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      overflow-y: auto;
+      flex: 1;
+    }
+    @media (max-width: 860px) {
+      .card-gen-body-split {
+        grid-template-columns: 1fr;
+      }
+    }
+    .card-gen-controls {
+      padding: 22px;
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      background: rgba(125, 125, 125, 0.03);
+    }
+    @media (max-width: 860px) {
+      .card-gen-controls {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
+    }
+    .card-gen-field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .card-gen-label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--color);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .card-gen-input,
+    .card-gen-select {
+      width: 100%;
+      padding: 9px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--card-bg);
+      color: var(--color);
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .card-gen-input:focus,
+    .card-gen-select:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-muted);
+    }
+    .card-gen-checkboxes {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .card-gen-checkbox-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.78rem;
+      color: var(--color);
+      cursor: pointer;
+    }
+    .card-gen-checkbox-label input {
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+
+    /* Live Preview Section */
+    .card-gen-preview-wrap {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      background: rgba(0, 0, 0, 0.1);
+      overflow-y: auto;
+    }
+    .exec-card-canvas-container {
+      width: 100%;
+      max-width: 520px;
+      position: relative;
+    }
+    .exec-card {
+      width: 100%;
+      padding: 26px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+      border: 1.5px solid var(--border);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      position: relative;
+      overflow: hidden;
+    }
+    [data-theme="light"] .exec-card {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 250, 252, 0.9));
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08), inset 0 1px 1px rgba(255, 255, 255, 0.8);
+    }
+    .exec-card-glow-orb {
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 160px;
+      height: 160px;
+      background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+      opacity: 0.35;
+      pointer-events: none;
+    }
+    .exec-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+    .exec-card-profile {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .exec-card-avatar {
+      width: 54px;
+      height: 54px;
+      border-radius: 14px;
+      object-fit: cover;
+      border: 2px solid var(--accent);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    }
+    .exec-card-name-role {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .exec-card-name {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--color);
+      letter-spacing: -0.3px;
+    }
+    .exec-card-role {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--accent);
+    }
+    .exec-card-recruiter-pill {
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--accent-muted);
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .exec-card-metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      padding: 12px;
+      border-radius: 12px;
+      background: rgba(125, 125, 125, 0.05);
+      border: 1px solid var(--border);
+    }
+    @media (max-width: 500px) {
+      .exec-card-metrics-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    .exec-metric-cell {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 2px;
+    }
+    .exec-metric-val {
+      font-family: var(--font-mono);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .exec-metric-lbl {
+      font-size: 0.62rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+    .exec-card-highlights {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .exec-card-chip {
+      padding: 4px 9px;
+      border-radius: 8px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--color);
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .exec-card-footer {
+      padding-top: 10px;
+      border-top: 1px dashed var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .exec-card-footer-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+    }
+    .exec-card-qr-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 8px;
+      border-radius: 8px;
+      background: var(--accent-muted);
+      border: 1px solid var(--border);
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      font-weight: 600;
+      color: var(--color);
+    }
+
+    /* Modal Action Bar */
+    .card-gen-footer-actions {
+      padding: 16px 24px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .card-action-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 18px;
+      border-radius: 12px;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: 1px solid var(--border);
+      background: var(--card-bg);
+      color: var(--color);
+    }
+    .card-action-btn:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+    }
+    .card-action-btn.primary {
+      background: linear-gradient(135deg, var(--accent), #2563eb);
+      color: #fff;
+      border: none;
+      box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+    }
+    .card-action-btn.primary:hover {
+      box-shadow: 0 6px 22px rgba(37, 99, 235, 0.45);
+    }
+
+    /* Print Clean Stylesheet */
+    @media print {
+      body * {
+        visibility: hidden !important;
+      }
+      #printCandidateCardTarget,
+      #printCandidateCardTarget * {
+        visibility: visible !important;
+      }
+      #printCandidateCardTarget {
+        position: fixed !important;
+        left: 50% !important;
+        top: 40px !important;
+        transform: translateX(-50%) !important;
+        width: 100% !important;
+        max-width: 650px !important;
+        display: block !important;
+        background: #fff !important;
+        color: #000 !important;
+        box-shadow: none !important;
+        border: 2px solid #0f172a !important;
+      }
+    }
   </style>
 </head>
 
 <body class="intro-active">
+  <!-- High-Performance Interactive Confetti Canvas Overlay -->
+  <canvas id="confettiCanvas"></canvas>
+
+  <!-- Smooth Magnetic Interactive Custom Cursor -->
+  <div class="custom-cursor-dot" id="customCursorDot"></div>
+  <div class="custom-cursor-ring" id="customCursorRing"></div>
+
   <!-- Scroll Reading Progress Laser -->
   <div class="scroll-progress-bar" id="scrollProgressBar"></div>
 
@@ -6481,11 +7101,10 @@
           </div>
 
           <!-- Replay Intro -->
-          <button class="nav-tool-btn replay-intro-btn" id="replayIntroBtn" title="Replay Energy Ball Formation & Burst Intro">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
-              stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="1 4 1 10 7 10"></polyline>
-              <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+          <button class="nav-tool-btn replay-intro-btn" id="replayIntroBtn" title="Replay Energy Ball Formation & Burst Intro" aria-label="Replay Intro Animation">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+              <path d="M3 3v5h5"></path>
             </svg>
           </button>
 
@@ -8339,6 +8958,156 @@
     </div>
   </div>
 
+  <!-- Instant Personalized Candidate Card & PDF Generator Modal -->
+  <div class="card-gen-modal-overlay" id="cardGeneratorModalOverlay" role="dialog" aria-modal="true" aria-label="Instant Candidate Card & PDF Generator">
+    <div class="card-gen-modal-window">
+      <!-- Header -->
+      <div class="card-gen-header">
+        <div class="achieve-title-wrap">
+          <span class="achieve-badge-tag">📇 CANDIDATE SNAPSHOT ENGINE</span>
+          <h3 class="achieve-title">Personalized Profile Card &amp; 1-Page PDF</h3>
+        </div>
+        <button type="button" class="drawer-close-btn" id="closeCardGenModalBtn" title="Close Generator (ESC)">✕</button>
+      </div>
+
+      <!-- Body Split View -->
+      <div class="card-gen-body-split">
+        <!-- Config Controls -->
+        <div class="card-gen-controls">
+          <div class="card-gen-field-group">
+            <label class="card-gen-label" for="cardGenCompanyInput">
+              <span>Hiring Company / Team</span>
+            </label>
+            <input type="text" class="card-gen-input" id="cardGenCompanyInput" placeholder="e.g. Apple, Google, Stripe, Citi..." value="Engineering Leadership" />
+          </div>
+
+          <div class="card-gen-field-group">
+            <label class="card-gen-label" for="cardGenRoleSelect">
+              <span>Target Role Focus</span>
+            </label>
+            <select class="card-gen-select" id="cardGenRoleSelect">
+              <option value="Senior QA Automation Architect">Senior QA Automation Architect</option>
+              <option value="Lead SDET / Test Lead">Lead SDET / Test Lead</option>
+              <option value="Senior QA Automation Engineer" selected>Senior QA Automation Engineer</option>
+              <option value="FinTech QA & Performance Lead">FinTech QA & Performance Lead</option>
+            </select>
+          </div>
+
+          <div class="card-gen-field-group">
+            <label class="card-gen-label">
+              <span>Key Focus Highlights</span>
+            </label>
+            <div class="card-gen-checkboxes">
+              <label class="card-gen-checkbox-label">
+                <input type="checkbox" class="card-gen-highlight-check" value="Java & Selenium Frameworks" checked />
+                <span>Java &amp; Selenium Frameworks</span>
+              </label>
+              <label class="card-gen-checkbox-label">
+                <input type="checkbox" class="card-gen-highlight-check" value="Cucumber BDD & CI/CD Pipelines" checked />
+                <span>Cucumber BDD &amp; CI/CD Pipelines</span>
+              </label>
+              <label class="card-gen-checkbox-label">
+                <input type="checkbox" class="card-gen-highlight-check" value="Rest Assured API Automation" checked />
+                <span>Rest Assured API Automation</span>
+              </label>
+              <label class="card-gen-checkbox-label">
+                <input type="checkbox" class="card-gen-highlight-check" value="Zero Defect Client Releases" checked />
+                <span>Zero Defect Client Releases</span>
+              </label>
+              <label class="card-gen-checkbox-label">
+                <input type="checkbox" class="card-gen-highlight-check" value="Apple & Citi Bank Engagements" checked />
+                <span>Apple &amp; Citi Bank Engagements</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="card-gen-field-group">
+            <label class="card-gen-label" for="cardGenAccentSelect">
+              <span>Card Accent Theme</span>
+            </label>
+            <select class="card-gen-select" id="cardGenAccentSelect">
+              <option value="cyan">Titanium Cyan</option>
+              <option value="gold">FinTech Gold</option>
+              <option value="emerald">Matrix Emerald</option>
+              <option value="violet">Cyber Violet</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Live Card Preview -->
+        <div class="card-gen-preview-wrap">
+          <div class="exec-card-canvas-container" id="execCardPreviewContainer">
+            <div class="exec-card" id="printCandidateCardTarget">
+              <div class="exec-card-glow-orb"></div>
+              <div class="exec-card-header">
+                <div class="exec-card-profile">
+                  <img src="images/IMG_2084.jpg" alt="Srivatsa Malali" class="exec-card-avatar" />
+                  <div class="exec-card-name-role">
+                    <div class="exec-card-name">Srivatsa Malali</div>
+                    <div class="exec-card-role" id="previewCardRole">Senior QA Automation Engineer</div>
+                  </div>
+                </div>
+                <div class="exec-card-recruiter-pill" id="previewCardCompanyBadge">FOR ENGINEERING LEADERSHIP</div>
+              </div>
+
+              <!-- Core Metrics Scorecard -->
+              <div class="exec-card-metrics-grid">
+                <div class="exec-metric-cell">
+                  <span class="exec-metric-val">5.5+</span>
+                  <span class="exec-metric-lbl">Yrs Exp</span>
+                </div>
+                <div class="exec-metric-cell">
+                  <span class="exec-metric-val">40+</span>
+                  <span class="exec-metric-lbl">Frameworks</span>
+                </div>
+                <div class="exec-metric-cell">
+                  <span class="exec-metric-val">0</span>
+                  <span class="exec-metric-lbl">Defect Leak</span>
+                </div>
+                <div class="exec-metric-cell">
+                  <span class="exec-metric-val">99.8%</span>
+                  <span class="exec-metric-lbl">Pass Rate</span>
+                </div>
+              </div>
+
+              <!-- Key Competency Highlights -->
+              <div class="exec-card-highlights" id="previewCardHighlights">
+                <!-- Injected via live sync -->
+              </div>
+
+              <!-- Card Footer & Live Verified QR Link -->
+              <div class="exec-card-footer">
+                <div class="exec-card-footer-info">
+                  <span>📍 Bangalore, India · Available Immediately</span>
+                  <span>🔗 srivatsamalali.github.io</span>
+                </div>
+                <div class="exec-card-qr-badge">
+                  <span>✓ VERIFIED SDET</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Footer -->
+      <div class="card-gen-footer-actions">
+        <button type="button" class="card-action-btn" id="cardGenCopyBriefBtn" title="Copy Formatted Markdown Brief">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          <span>Copy Brief</span>
+        </button>
+        <button type="button" class="card-action-btn" id="cardGenExportPdfBtn" title="Export Clean 1-Page PDF / Print">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7"></path><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+          <span>Export 1-Page PDF</span>
+        </button>
+        <button type="button" class="card-action-btn primary" id="cardGenDownloadPngBtn" title="Download High-Res 2X PNG Card">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          <span>Download PNG Card</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- Glassmorphic Recruiter Quick-Action Dock (Bottom-Center) -->
   <nav class="recruiter-action-dock" id="recruiterActionDock" aria-label="Recruiter Quick Actions">
     <div class="dock-pill-container">
@@ -8362,6 +9131,10 @@
       <button type="button" class="dock-action-btn" id="dockBtnIDE" data-dock="ide" title="Open Live Automation & Cucumber BDD Code Playground">
         <span class="dock-icon">⚡</span>
         <span class="dock-label">Live Code IDE</span>
+      </button>
+      <button type="button" class="dock-action-btn" id="dockBtnCardGen" data-dock="cardgen" title="Generate Personalized Executive Snapshot & PDF Card">
+        <span class="dock-icon">📇</span>
+        <span class="dock-label">Snapshot Card</span>
       </button>
       <button type="button" class="dock-action-btn dock-btn-highlight" id="dockBtnInterview" data-dock="interview" title="Schedule an Interview / Connect with Srivatsa">
         <span class="dock-icon">📅</span>
@@ -12461,6 +13234,404 @@ Feature: Srivatsa Malali Portfolio Verification
           showToast('Schedule an Interview / Technical Sync 📅', '✨');
         });
       }
+
+      // =========================================================================
+      // 18. FEATURE: HIGH-PERFORMANCE INTERACTIVE CONFETTI ENGINE
+      // =========================================================================
+      const ConfettiEngine = (() => {
+        const canvas = document.getElementById('confettiCanvas');
+        if (!canvas) return { burst: () => {}, shower: () => {} };
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        let animationFrame = null;
+
+        const resize = () => {
+          canvas.width = window.innerWidth;
+          canvas.height = window.innerHeight;
+        };
+        window.addEventListener('resize', resize);
+        resize();
+
+        const colors = ['#38bdf8', '#0284c7', '#34d399', '#10b981', '#fbbf24', '#f59e0b', '#c084fc', '#a855f7', '#f43f5e', '#ffffff'];
+
+        class Confetto {
+          constructor(x, y, vx, vy, color) {
+            this.x = x;
+            this.y = y;
+            this.vx = vx;
+            this.vy = vy;
+            this.color = color;
+            this.size = Math.random() * 8 + 4;
+            this.rotation = Math.random() * 360;
+            this.rotSpeed = (Math.random() - 0.5) * 12;
+            this.gravity = 0.35 + Math.random() * 0.15;
+            this.drag = 0.985;
+            this.opacity = 1;
+            this.shape = Math.random() > 0.4 ? 'rect' : 'circle';
+          }
+          update() {
+            this.x += this.vx;
+            this.y += this.vy;
+            this.vy += this.gravity;
+            this.vx *= this.drag;
+            this.vy *= this.drag;
+            this.rotation += this.rotSpeed;
+            if (this.y > canvas.height - 100) {
+              this.opacity -= 0.025;
+            }
+          }
+          draw(ctx) {
+            ctx.save();
+            ctx.translate(this.x, this.y);
+            ctx.rotate((this.rotation * Math.PI) / 180);
+            ctx.globalAlpha = Math.max(0, this.opacity);
+            ctx.fillStyle = this.color;
+            if (this.shape === 'rect') {
+              ctx.fillRect(-this.size / 2, -this.size / 2, this.size, this.size * 1.6);
+            } else {
+              ctx.beginPath();
+              ctx.arc(0, 0, this.size / 2, 0, Math.PI * 2);
+              ctx.fill();
+            }
+            ctx.restore();
+          }
+        }
+
+        const loop = () => {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          for (let i = particles.length - 1; i >= 0; i--) {
+            const p = particles[i];
+            p.update();
+            p.draw(ctx);
+            if (p.opacity <= 0 || p.y > canvas.height + 50) {
+              particles.splice(i, 1);
+            }
+          }
+          if (particles.length > 0) {
+            animationFrame = requestAnimationFrame(loop);
+          } else {
+            animationFrame = null;
+          }
+        };
+
+        const burst = (x = window.innerWidth / 2, y = window.innerHeight / 3, count = 70) => {
+          for (let i = 0; i < count; i++) {
+            const angle = Math.random() * Math.PI * 2;
+            const speed = Math.random() * 16 + 6;
+            const vx = Math.cos(angle) * speed;
+            const vy = Math.sin(angle) * speed - 6;
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            particles.push(new Confetto(x, y, vx, vy, color));
+          }
+          if (!animationFrame) loop();
+        };
+
+        const shower = (durationMs = 2000) => {
+          const startTime = performance.now();
+          const emit = () => {
+            burst(Math.random() * canvas.width * 0.8 + canvas.width * 0.1, Math.random() * 200 + 50, 25);
+            if (performance.now() - startTime < durationMs) {
+              setTimeout(emit, 250);
+            }
+          };
+          emit();
+        };
+
+        return { burst, shower };
+      })();
+
+      // =========================================================================
+      // 19. FEATURE: MAGNETIC INTERACTIVE CURSOR CONTROLLER
+      // =========================================================================
+      const MagneticCursorController = (() => {
+        const dot = document.getElementById('customCursorDot');
+        const ring = document.getElementById('customCursorRing');
+        if (!dot || !ring) return;
+
+        let mouseX = -100, mouseY = -100;
+        let ringX = -100, ringY = -100;
+        let isHovering = false;
+        let magneticTarget = null;
+
+        window.addEventListener('pointermove', (e) => {
+          mouseX = e.clientX;
+          mouseY = e.clientY;
+          document.body.classList.remove('cursor-hidden');
+          dot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
+        });
+
+        document.addEventListener('mouseleave', () => {
+          document.body.classList.add('cursor-hidden');
+        });
+
+        document.addEventListener('pointerdown', () => {
+          document.body.classList.add('cursor-clicking');
+        });
+        document.addEventListener('pointerup', () => {
+          document.body.classList.remove('cursor-clicking');
+        });
+
+        const interactiveSelector = 'button, a, input, select, .blueprint-card, .dock-action-btn, .prompt-chip-btn, .metro-station-node, .nav-tool-btn, .palette-chip, .palette-chip-btn, .open-resume-trigger';
+
+        document.addEventListener('pointerover', (e) => {
+          const target = e.target.closest(interactiveSelector);
+          if (target) {
+            isHovering = true;
+            document.body.classList.add('cursor-hovering');
+            magneticTarget = target;
+          }
+        });
+
+        document.addEventListener('pointerout', (e) => {
+          const target = e.target.closest(interactiveSelector);
+          if (target && target === magneticTarget) {
+            isHovering = false;
+            document.body.classList.remove('cursor-hovering');
+            magneticTarget = null;
+          }
+        });
+
+        const lerp = (start, end, factor) => start + (end - start) * factor;
+
+        const updateRing = () => {
+          let targetX = mouseX;
+          let targetY = mouseY;
+
+          if (isHovering && magneticTarget) {
+            const rect = magneticTarget.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+            targetX = lerp(mouseX, centerX, 0.35);
+            targetY = lerp(mouseY, centerY, 0.35);
+          }
+
+          ringX = lerp(ringX, targetX, 0.2);
+          ringY = lerp(ringY, targetY, 0.2);
+
+          ring.style.transform = `translate3d(${ringX}px, ${ringY}px, 0)`;
+          requestAnimationFrame(updateRing);
+        };
+        requestAnimationFrame(updateRing);
+      })();
+
+      // =========================================================================
+      // 20. FEATURE: INSTANT PERSONALIZED CANDIDATE CARD & PDF GENERATOR
+      // =========================================================================
+      const initCandidateCardGenerator = () => {
+        const modal = document.getElementById('cardGeneratorModalOverlay');
+        const openDockBtn = document.getElementById('dockBtnCardGen');
+        const closeBtn = document.getElementById('closeCardGenModalBtn');
+
+        const companyInput = document.getElementById('cardGenCompanyInput');
+        const roleSelect = document.getElementById('cardGenRoleSelect');
+        const accentSelect = document.getElementById('cardGenAccentSelect');
+        const highlightChecks = document.querySelectorAll('.card-gen-highlight-check');
+
+        const previewRole = document.getElementById('previewCardRole');
+        const previewCompanyBadge = document.getElementById('previewCardCompanyBadge');
+        const previewHighlights = document.getElementById('previewCardHighlights');
+
+        const downloadPngBtn = document.getElementById('cardGenDownloadPngBtn');
+        const exportPdfBtn = document.getElementById('cardGenExportPdfBtn');
+        const copyBriefBtn = document.getElementById('cardGenCopyBriefBtn');
+
+        const syncPreview = () => {
+          const comp = (companyInput ? companyInput.value.trim() : '') || 'Engineering Leadership';
+          const role = roleSelect ? roleSelect.value : 'Senior QA Automation Engineer';
+
+          if (previewCompanyBadge) previewCompanyBadge.textContent = `FOR ${comp.toUpperCase()}`;
+          if (previewRole) previewRole.textContent = role;
+
+          if (previewHighlights) {
+            const selected = Array.from(highlightChecks)
+              .filter(c => c.checked)
+              .map(c => c.value);
+            previewHighlights.innerHTML = selected.map(h => `
+              <div class="exec-card-chip">
+                <span style="color:var(--accent);">⚡</span>
+                <span>${h}</span>
+              </div>
+            `).join('');
+          }
+        };
+
+        if (companyInput) companyInput.addEventListener('input', syncPreview);
+        if (roleSelect) roleSelect.addEventListener('change', syncPreview);
+        if (accentSelect) {
+          accentSelect.addEventListener('change', (e) => {
+            const themeChip = document.querySelector(`.palette-chip[data-accent="${e.target.value}"]`);
+            if (themeChip) themeChip.click();
+            syncPreview();
+          });
+        }
+        highlightChecks.forEach(c => c.addEventListener('change', syncPreview));
+        syncPreview();
+
+        const openModal = () => {
+          if (!modal) return;
+          syncPreview();
+          modal.classList.add('active');
+          document.body.classList.add('has-active-modal');
+          setScrollLock(true);
+          SoundFX.playClick();
+        };
+
+        const closeModal = () => {
+          if (!modal) return;
+          modal.classList.remove('active');
+          document.body.classList.remove('has-active-modal');
+          setScrollLock(false);
+          SoundFX.playClick();
+        };
+
+        if (openDockBtn) openDockBtn.addEventListener('click', openModal);
+        if (closeBtn) closeBtn.addEventListener('click', closeModal);
+        if (modal) {
+          modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+          });
+        }
+
+        // Action: Copy Formatted Brief
+        if (copyBriefBtn) {
+          copyBriefBtn.addEventListener('click', () => {
+            const comp = companyInput ? companyInput.value.trim() : 'Engineering Leadership';
+            const role = roleSelect ? roleSelect.value : 'Senior QA Automation Engineer';
+            const text = `📋 CANDIDATE EXECUTIVE PROFILE: SRIVATSA MALALI\n` +
+              `Target Role: ${role}\n` +
+              `Prepared For: ${comp}\n` +
+              `Experience: 5.5+ Years | Enterprise QA Automation & SDET\n` +
+              `Companies: Apple (Retail POS), Citi Bank (Cards & Wealth), Air Canada\n` +
+              `Tech Stack: Java, Selenium WebDriver, Cucumber BDD, Rest Assured API, Jenkins CI/CD\n` +
+              `Portfolio: https://srivatsamalali.github.io/\n` +
+              `Status: Available for immediate hire (Bangalore / Hybrid / Remote)`;
+
+            navigator.clipboard.writeText(text).then(() => {
+              showToast('Candidate Brief Copied to Clipboard!', '📋');
+              ConfettiEngine.burst(window.innerWidth / 2, window.innerHeight / 2, 30);
+            });
+          });
+        }
+
+        // Action: Clean 1-Page PDF Print
+        if (exportPdfBtn) {
+          exportPdfBtn.addEventListener('click', () => {
+            SoundFX.playClick();
+            showToast('Preparing Clean Printable PDF...', '📄');
+            setTimeout(() => {
+              window.print();
+            }, 300);
+          });
+        }
+
+        // Action: Download High-Res 2X PNG Card
+        if (downloadPngBtn) {
+          downloadPngBtn.addEventListener('click', () => {
+            SoundFX.playClick();
+            const canvas = document.createElement('canvas');
+            canvas.width = 1200;
+            canvas.height = 760;
+            const ctx = canvas.getContext('2d');
+
+            const comp = (companyInput ? companyInput.value.trim() : '') || 'Engineering Leadership';
+            const role = roleSelect ? roleSelect.value : 'Senior QA Automation Engineer';
+
+            // Background
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            const bgGrad = ctx.createLinearGradient(0, 0, 1200, 760);
+            bgGrad.addColorStop(0, isDark ? '#09090b' : '#ffffff');
+            bgGrad.addColorStop(1, isDark ? '#18181b' : '#f1f5f9');
+            ctx.fillStyle = bgGrad;
+            ctx.fillRect(0, 0, 1200, 760);
+
+            // Card Border
+            ctx.strokeStyle = isDark ? '#38bdf8' : '#0284c7';
+            ctx.lineWidth = 4;
+            ctx.strokeRect(40, 40, 1120, 680);
+
+            // Header Banner
+            ctx.fillStyle = isDark ? '#38bdf8' : '#0284c7';
+            ctx.font = 'bold 36px Montserrat, sans-serif';
+            ctx.fillText('SRIVATSA MALALI', 80, 120);
+
+            ctx.font = '600 22px "IBM Plex Mono", monospace';
+            ctx.fillStyle = isDark ? '#cbd5e1' : '#334155';
+            ctx.fillText(`${role.toUpperCase()} · VERIFIED SDET`, 80, 165);
+
+            // Recruiter pill
+            ctx.fillStyle = isDark ? 'rgba(56, 189, 248, 0.2)' : 'rgba(2, 132, 199, 0.15)';
+            ctx.fillRect(80, 195, 420, 40);
+            ctx.fillStyle = isDark ? '#38bdf8' : '#0284c7';
+            ctx.font = 'bold 16px "IBM Plex Mono", monospace';
+            ctx.fillText(`FOR ${comp.toUpperCase()}`, 100, 222);
+
+            // Metrics Grid Box
+            ctx.fillStyle = isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.04)';
+            ctx.fillRect(80, 270, 1040, 120);
+            ctx.strokeStyle = isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.08)';
+            ctx.lineWidth = 1.5;
+            ctx.strokeRect(80, 270, 1040, 120);
+
+            const metrics = [
+              { val: '5.5+ YRS', lbl: 'EXPERIENCE' },
+              { val: '40+ SUITES', lbl: 'FRAMEWORKS' },
+              { val: '0 LEAKS', lbl: 'DEFECT DEFENSE' },
+              { val: '99.8%', lbl: 'PASS RATE' }
+            ];
+
+            metrics.forEach((m, idx) => {
+              const x = 110 + idx * 260;
+              ctx.fillStyle = isDark ? '#38bdf8' : '#0284c7';
+              ctx.font = 'bold 32px "IBM Plex Mono", monospace';
+              ctx.fillText(m.val, x, 325);
+              ctx.fillStyle = isDark ? '#94a3b8' : '#64748b';
+              ctx.font = '600 14px Montserrat, sans-serif';
+              ctx.fillText(m.lbl, x, 360);
+            });
+
+            // Highlights
+            ctx.fillStyle = isDark ? '#f8fafc' : '#0f172a';
+            ctx.font = 'bold 20px Montserrat, sans-serif';
+            ctx.fillText('CORE COMPETENCIES & CLIENT ENGAGEMENTS:', 80, 440);
+
+            const selected = Array.from(highlightChecks).filter(c => c.checked).map(c => c.value);
+            selected.forEach((h, idx) => {
+              const col = idx % 2;
+              const row = Math.floor(idx / 2);
+              const x = 80 + col * 520;
+              const y = 480 + row * 45;
+              ctx.fillStyle = isDark ? '#38bdf8' : '#0284c7';
+              ctx.fillText('⚡', x, y);
+              ctx.fillStyle = isDark ? '#cbd5e1' : '#334155';
+              ctx.font = '500 18px Montserrat, sans-serif';
+              ctx.fillText(h, x + 30, y);
+            });
+
+            // Footer
+            ctx.strokeStyle = isDark ? 'rgba(255,255,255,0.15)' : 'rgba(0,0,0,0.12)';
+            ctx.beginPath();
+            ctx.moveTo(80, 640);
+            ctx.lineTo(1120, 640);
+            ctx.stroke();
+
+            ctx.fillStyle = isDark ? '#94a3b8' : '#64748b';
+            ctx.font = '500 16px "IBM Plex Mono", monospace';
+            ctx.fillText('📍 Bangalore, India · Available Immediately', 80, 680);
+            ctx.fillText('🔗 https://srivatsamalali.github.io/', 750, 680);
+
+            // Download Trigger
+            const link = document.createElement('a');
+            link.download = `Srivatsa_Malali_SDET_${comp.replace(/\s+/g, '_')}_Card.png`;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+
+            showToast('High-Res 2X Candidate Card Downloaded! 📸', '✨');
+            ConfettiEngine.burst(window.innerWidth / 2, window.innerHeight / 2, 50);
+          });
+        }
+      };
+
+      initCandidateCardGenerator();
     };
 
     if (document.readyState === 'loading') {
