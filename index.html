@@ -3022,13 +3022,19 @@
 
     .interactive-labs-header {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 14px 20px;
+      flex-direction: column;
+      padding: 14px 20px 12px 20px;
       background: #111420;
       border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+      gap: 12px;
+    }
+
+    .interactive-labs-header-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
       gap: 14px;
-      flex-wrap: wrap;
     }
 
     [data-theme="light"] .interactive-labs-header {
@@ -6046,53 +6052,85 @@
       }
 
       .interactive-labs-header {
-        padding: 10px 14px 8px 14px !important;
+        padding: 12px 14px 10px 14px !important;
         display: flex !important;
         flex-direction: column !important;
-        align-items: stretch !important;
         gap: 10px !important;
+      }
+
+      .interactive-labs-header-top {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        width: 100% !important;
+        gap: 8px !important;
       }
 
       .interactive-labs-title-wrap {
         display: flex !important;
         flex-direction: column !important;
-        gap: 1px !important;
+        gap: 2px !important;
+        flex: 1 !important;
+        min-width: 0 !important;
       }
 
       .interactive-labs-title {
-        font-size: 0.95rem !important;
+        font-size: 0.88rem !important;
+        font-weight: 700 !important;
+        line-height: 1.2 !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
       }
 
       .interactive-labs-tag {
         font-size: 0.58rem !important;
+        font-weight: 700 !important;
+        letter-spacing: 0.05em !important;
+      }
+
+      .interactive-labs-ctrls {
+        position: static !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 6px !important;
+        flex-shrink: 0 !important;
+      }
+
+      .interactive-labs-ctrls .drawer-close-btn {
+        width: 30px !important;
+        height: 30px !important;
+        padding: 0 !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        font-size: 0.85rem !important;
+        border-radius: 6px !important;
       }
 
       .interactive-labs-nav-tabs {
         display: flex !important;
         width: 100% !important;
         gap: 4px !important;
-        padding: 2px !important;
+        padding: 3px !important;
+        background: rgba(15, 23, 42, 0.9) !important;
+        border-radius: 8px !important;
         box-sizing: border-box !important;
       }
 
       .interactive-labs-tab-btn {
         flex: 1 !important;
         justify-content: center !important;
-        padding: 7px 8px !important;
-        font-size: 0.68rem !important;
-        gap: 4px !important;
+        padding: 7px 6px !important;
+        font-size: 0.72rem !important;
+        font-weight: 600 !important;
+        gap: 5px !important;
         white-space: nowrap !important;
-      }
-
-      .interactive-labs-ctrls {
-        position: absolute !important;
-        top: 10px !important;
-        right: 12px !important;
-        gap: 6px !important;
+        text-align: center !important;
       }
 
       .interactive-labs-body {
-        padding: 10px 12px calc(20px + env(safe-area-inset-bottom, 0px)) 12px !important;
+        padding: 10px 12px calc(24px + env(safe-area-inset-bottom, 0px)) 12px !important;
         overflow-y: auto !important;
         flex: 1 !important;
         -webkit-overflow-scrolling: touch !important;
@@ -6101,9 +6139,11 @@
       /* Tab 1: Code Playground Mobile Optimizations */
       .code-rig-wrapper {
         border-radius: 10px !important;
+        overflow: hidden !important;
       }
 
       .code-tab-nav {
+        display: flex !important;
         overflow-x: auto !important;
         white-space: nowrap !important;
         -webkit-overflow-scrolling: touch !important;
@@ -6121,15 +6161,36 @@
 
       .code-editor-header {
         padding: 8px 10px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
         gap: 6px !important;
+        flex-wrap: wrap !important;
       }
 
       .code-filename {
-        font-size: 0.7rem !important;
-        max-width: 150px !important;
+        font-size: 0.68rem !important;
+        max-width: 130px !important;
         overflow: hidden !important;
         text-overflow: ellipsis !important;
         white-space: nowrap !important;
+      }
+
+      .code-editor-actions {
+        display: flex !important;
+        align-items: center !important;
+        gap: 5px !important;
+      }
+
+      .code-reset-btn,
+      .code-copy-btn {
+        padding: 4px 8px !important;
+        font-size: 0.65rem !important;
+      }
+
+      .code-run-btn {
+        padding: 5px 10px !important;
+        font-size: 0.68rem !important;
       }
 
       .code-playground-layout {
@@ -6147,7 +6208,7 @@
       }
 
       .code-output-panel {
-        height: 180px !important;
+        height: 170px !important;
       }
 
       .test-terminal-logs {
@@ -8479,48 +8540,50 @@
     <div class="interactive-labs-modal-window">
       <!-- Modal Header -->
       <div class="interactive-labs-header">
-        <div class="interactive-labs-title-wrap">
-          <div class="interactive-labs-tag">
-            <span style="width:7px; height:7px; border-radius:50%; background:#22c55e; box-shadow:0 0 8px #22c55e; display:inline-block;"></span>
-            <span>QA LABS ENGINE // INTERACTIVE RUNTIMES</span>
+        <div class="interactive-labs-header-top">
+          <div class="interactive-labs-title-wrap">
+            <div class="interactive-labs-tag">
+              <span class="status-pulse-dot" style="width:6px; height:6px; background:#22c55e;"></span>
+              <span>QA LABS ENGINE // RUNTIMES</span>
+            </div>
+            <h3 class="interactive-labs-title">Enterprise QA &amp; FinTech Sandbox</h3>
           </div>
-          <h3 class="interactive-labs-title">Enterprise QA <strong>&amp; FinTech Sandbox</strong></h3>
+
+          <!-- Right Modal Controls -->
+          <div class="interactive-labs-ctrls">
+            <button type="button" class="studio-ctrl-btn" id="modalSoundFxToggleBtn" title="Toggle Lab Sound FX">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" id="modalSoundIconOn">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+              </svg>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" id="modalSoundIconOff" style="display:none;">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 5"></polygon>
+                <line x1="23" y1="9" x2="17" y2="15"></line>
+                <line x1="17" y1="9" x2="23" y2="15"></line>
+              </svg>
+              <span id="modalSoundFxLabel">SFX</span>
+            </button>
+            <button type="button" class="drawer-close-btn" id="closeInteractiveModalBtn" title="Close Sandbox (ESC)">
+              ✕
+            </button>
+          </div>
         </div>
 
         <!-- Labs Navigation Tabs -->
         <div class="interactive-labs-nav-tabs">
           <button type="button" class="interactive-labs-tab-btn active" id="modalTabBtnPlayground" data-target="playground">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <polyline points="16 18 22 12 16 6"></polyline>
               <polyline points="8 6 2 12 8 18"></polyline>
             </svg>
-            <span>Live Automation &amp; BDD IDE</span>
+            <span>Automation IDE</span>
           </button>
           <button type="button" class="interactive-labs-tab-btn" id="modalTabBtnCardStudio" data-target="cardStudio">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
               <line x1="1" y1="10" x2="23" y2="10"></line>
             </svg>
-            <span>3D Payment &amp; Card Verifier</span>
-          </button>
-        </div>
-
-        <!-- Right Modal Controls -->
-        <div class="interactive-labs-ctrls">
-          <button type="button" class="studio-ctrl-btn" id="modalSoundFxToggleBtn" title="Toggle Lab Sound FX">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" id="modalSoundIconOn">
-              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-              <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-            </svg>
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" id="modalSoundIconOff" style="display:none;">
-              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-              <line x1="23" y1="9" x2="17" y2="15"></line>
-              <line x1="17" y1="9" x2="23" y2="15"></line>
-            </svg>
-            <span id="modalSoundFxLabel">SFX</span>
-          </button>
-          <button type="button" class="drawer-close-btn" id="closeInteractiveModalBtn" title="Close Sandbox (ESC)">
-            ✕ Close [ESC]
+            <span>3D Card Studio</span>
           </button>
         </div>
       </div>
