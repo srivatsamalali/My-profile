@@ -6658,50 +6658,145 @@
       box-shadow: 0 8px 24px rgba(37, 99, 235, 0.6) !important;
     }
 
-    /* Mobile Quick-Action Dock Positioning */
-    @media (max-width: 900px) {
+    /* ==========================================================================
+       RESPONSIVE COLLISION PREVENTION FOR FLOATING NAV & ACTION DOCK
+       ========================================================================== */
+    @media (max-width: 1400px) {
+      .floating-chatbot-btn {
+        right: 18px;
+        bottom: 20px;
+        padding: 8px 14px 8px 10px;
+        font-size: 0.74rem;
+        gap: 8px;
+      }
+
       .recruiter-action-dock {
-        bottom: calc(14px + env(safe-area-inset-bottom, 0px));
-        max-width: calc(100vw - 120px);
-        left: 20px;
-        transform: none;
+        bottom: 20px;
       }
 
       .dock-pill-container {
-        padding: 4px 8px;
+        padding: 5px 8px;
+        gap: 4px;
+      }
+
+      .dock-action-btn {
+        padding: 5px 9px;
+        font-size: 0.72rem;
+      }
+
+      .cmd-floating-btn {
+        bottom: 20px;
+        left: 18px;
+        padding: 7px 12px;
+        font-size: 0.72rem;
+      }
+    }
+
+    @media (max-width: 1200px) {
+      .dock-badge-pulse,
+      .dock-divider {
+        display: none !important;
+      }
+
+      .floating-chatbot-btn {
+        right: 16px;
+        bottom: 18px;
+        width: 44px;
+        height: 44px;
+        padding: 0;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 99997;
+      }
+
+      .floating-chatbot-btn .chatbot-btn-avatar {
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .floating-chatbot-btn .chatbot-btn-avatar svg {
+        width: 20px;
+        height: 20px;
+      }
+
+      .floating-chatbot-btn .chatbot-pulse-ring,
+      .floating-chatbot-btn .chatbot-btn-label {
+        display: none !important;
+      }
+
+      .floating-chatbot-btn .chatbot-online-indicator {
+        position: absolute;
+        top: 3px;
+        right: 3px;
+        width: 8px;
+        height: 8px;
+        border: 1.5px solid #0d111a;
+      }
+
+      .recruiter-action-dock {
+        bottom: 18px;
+        max-width: calc(100vw - 160px);
+      }
+
+      .cmd-floating-btn {
+        bottom: 18px;
+        left: 16px;
+        padding: 7px 10px;
+        font-size: 0.7rem;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .recruiter-action-dock {
+        left: 12px;
+        transform: none;
+        bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+        max-width: calc(100vw - 76px);
+      }
+
+      .dock-pill-container {
+        padding: 4px 6px;
         gap: 4px;
         overflow-x: auto;
         scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
       }
 
       .dock-pill-container::-webkit-scrollbar {
         display: none;
       }
 
-      .dock-badge-pulse {
-        display: none;
-      }
-
-      .dock-divider {
-        display: none;
-      }
-
       .dock-action-btn {
-        padding: 5px 10px;
-        font-size: 0.7rem;
+        padding: 5px 8px;
+        font-size: 0.68rem;
+      }
+
+      .floating-chatbot-btn {
+        bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+        right: calc(14px + env(safe-area-inset-right, 0px));
+        z-index: 99999;
       }
 
       .cmd-floating-btn {
-        bottom: 74px;
-        left: 16px;
+        bottom: calc(68px + env(safe-area-inset-bottom, 0px));
+        left: 12px;
+        padding: 6px 10px;
+        font-size: 0.68rem;
+        z-index: 9990;
       }
     }
 
     @media (max-width: 600px) {
       .recruiter-action-dock {
-        left: 12px;
-        bottom: calc(14px + env(safe-area-inset-bottom, 0px));
-        max-width: calc(100vw - 76px);
+        left: 10px;
+        bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+        max-width: calc(100vw - 68px);
       }
 
       .dock-action-btn .dock-label {
@@ -6714,6 +6809,11 @@
 
       .dock-action-btn .dock-icon {
         font-size: 1.05rem;
+      }
+
+      .floating-chatbot-btn {
+        bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+        right: calc(10px + env(safe-area-inset-right, 0px));
       }
     }
 
