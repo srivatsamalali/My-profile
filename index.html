@@ -1943,28 +1943,28 @@
 
     [data-theme="light"] .cred-btn,
     [data-theme="light"] .cred-link {
-      background: rgba(37, 99, 235, 0.07);
-      border-color: rgba(37, 99, 235, 0.24);
-      color: #2563eb;
+      background: var(--accent-muted);
+      border-color: var(--accent);
+      color: var(--accent);
     }
 
     [data-theme="light"] .cred-btn:hover,
     [data-theme="light"] .cred-link:hover {
-      background: #2563eb;
+      background: var(--accent);
       color: #ffffff !important;
-      border-color: #2563eb;
+      border-color: var(--accent);
     }
 
     [data-theme="light"] .cred-btn-outline {
-      background: #ffffff;
+      background: transparent;
       border-color: var(--border);
       color: var(--text-muted);
     }
 
     [data-theme="light"] .cred-btn-outline:hover {
-      background: rgba(37, 99, 235, 0.06);
-      color: #2563eb !important;
-      border-color: #2563eb;
+      background: var(--accent-muted);
+      color: var(--accent) !important;
+      border-color: var(--accent);
     }
 
     /* Enterprise Automation Architecture Visualizer */
@@ -3134,18 +3134,25 @@
     .contact-form-textarea {
       width: 100%;
       padding: 12px 14px;
-      background: var(--card-bg);
-      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.95);
+      border: 1.5px solid var(--border);
       color: var(--color);
       font-family: var(--font-display);
       font-size: 0.88rem;
-      border-radius: 4px;
+      border-radius: 10px;
       transition: all 0.25s ease;
+      box-sizing: border-box;
+    }
+
+    [data-theme="dark"] .contact-form-input,
+    [data-theme="dark"] .contact-form-textarea {
+      background: rgba(255, 255, 255, 0.04);
+      border-color: rgba(255, 255, 255, 0.1);
     }
 
     .contact-form-textarea {
       resize: vertical;
-      min-height: 80px;
+      min-height: 84px;
       line-height: 1.5;
     }
 
@@ -3154,15 +3161,21 @@
       outline: none;
       border-color: var(--accent);
       box-shadow: 0 0 0 3px var(--accent-muted);
-      background: var(--bg);
+      background: #ffffff;
+    }
+
+    [data-theme="dark"] .contact-form-input:focus,
+    [data-theme="dark"] .contact-form-textarea:focus {
+      background: rgba(255, 255, 255, 0.07);
+      border-color: var(--accent);
     }
 
     .contact-preview-box {
       margin-top: 14px;
       padding: 12px 16px;
-      background: rgba(15, 23, 42, 0.03);
+      background: rgba(15, 23, 42, 0.025);
       border: 1px dashed var(--border);
-      border-radius: 4px;
+      border-radius: 10px;
       font-family: var(--font-mono);
       font-size: 0.72rem;
       transition: all 0.2s ease;
@@ -3170,6 +3183,7 @@
 
     [data-theme="dark"] .contact-preview-box {
       background: rgba(255, 255, 255, 0.03);
+      border-color: rgba(255, 255, 255, 0.1);
     }
 
     .preview-header {
@@ -8123,7 +8137,7 @@
       padding: 0 14px;
       border-radius: 12px;
       border: 1.5px solid var(--border);
-      background: var(--card-bg);
+      background: rgba(255, 255, 255, 0.95);
       color: var(--color);
       font-family: var(--font-sans);
       font-size: 0.88rem;
@@ -8131,6 +8145,12 @@
       outline: none;
       box-sizing: border-box;
       transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    [data-theme="dark"] .card-gen-input,
+    [data-theme="dark"] .card-gen-select {
+      background: rgba(255, 255, 255, 0.04);
+      border-color: rgba(255, 255, 255, 0.1);
     }
 
     .card-gen-select {
@@ -8152,7 +8172,12 @@
     .card-gen-select:focus {
       border-color: var(--accent);
       box-shadow: 0 0 0 3px var(--accent-muted);
-      background: var(--card-bg);
+      background: #ffffff;
+    }
+
+    [data-theme="dark"] .card-gen-input:focus,
+    [data-theme="dark"] .card-gen-select:focus {
+      background: rgba(255, 255, 255, 0.07);
     }
 
     .card-gen-chip-cloud {
@@ -8210,7 +8235,7 @@
       align-items: center;
       justify-content: center;
       gap: 16px;
-      background: rgba(0, 0, 0, 0.1);
+      background: transparent;
       overflow-y: auto;
     }
 
