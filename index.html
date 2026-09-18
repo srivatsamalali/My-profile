@@ -2237,6 +2237,17 @@
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     }
 
+    @media (max-width: 640px) {
+      .qa-scan-badge {
+        font-size: 0.58rem;
+        padding: 2px 6px;
+        top: -22px;
+        max-width: calc(100vw - 40px);
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+
     /* Project Deep-Dive Slide-Out Drawer */
     .drawer-overlay {
       position: fixed;
