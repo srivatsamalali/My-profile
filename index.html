@@ -3321,6 +3321,16 @@
       visibility: visible;
     }
 
+    /* Strict Scroll Lock & Containment when any modal is active */
+    html.has-active-modal,
+    body.has-active-modal {
+      overflow: hidden !important;
+      height: 100% !important;
+      max-height: 100vh !important;
+      touch-action: none !important;
+      overscroll-behavior: none !important;
+    }
+
     /* Auto-hide bottom floating dock and buttons when modal is active */
     body.has-active-modal .recruiter-action-dock,
     body.has-active-modal .cmd-floating-btn,
@@ -3329,6 +3339,28 @@
       pointer-events: none !important;
       transform: translateY(40px) !important;
       transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+
+    .yoga-modal-overlay,
+    .card-gen-modal-overlay,
+    .interview-modal-overlay,
+    .cmd-palette-overlay,
+    .drawer-overlay,
+    .lightbox-overlay,
+    .studio-3d-overlay,
+    .interactive-labs-modal-overlay,
+    .resume-modal-overlay {
+      overscroll-behavior: contain !important;
+    }
+
+    .yoga-modal-window,
+    .card-gen-modal-window,
+    .resume-modal-window,
+    .interactive-labs-modal-window,
+    .interview-modal-window,
+    .yoga-pillars-list,
+    .drawer-content {
+      overscroll-behavior: contain !important;
     }
 
     .interview-modal-window {
@@ -10602,6 +10634,44 @@
       return { playClick, playHover, playSuccess, playFlip, playKey, toggleMute, isMuted: () => isMuted };
     })();
 
+    // =========================================================================
+    // GLOBAL MODAL SCROLL LOCK & SCROLL CHAINING TRAP ENGINE
+    // =========================================================================
+    let activeModalCount = 0;
+    const setScrollLock = (locked) => {
+      if (locked) {
+        activeModalCount++;
+        document.documentElement.classList.add('has-active-modal');
+        document.body.classList.add('has-active-modal');
+        document.documentElement.style.overflow = 'hidden';
+        document.body.style.overflow = 'hidden';
+      } else {
+        activeModalCount = Math.max(0, activeModalCount - 1);
+        if (activeModalCount === 0) {
+          document.documentElement.classList.remove('has-active-modal');
+          document.body.classList.remove('has-active-modal');
+          document.documentElement.style.overflow = '';
+          document.body.style.overflow = '';
+        }
+      }
+    };
+
+    // Passive wheel boundary trap to completely prevent background rubberbanding & scrolling
+    window.addEventListener('wheel', (e) => {
+      if (!document.body.classList.contains('has-active-modal')) return;
+      const scrollable = e.target.closest('.yoga-pillars-list, .drawer-content, .interview-modal-window, .card-gen-controls, .interactive-labs-body, .bot-chat-stream, .cmd-item-list, .resume-modal-window, .card-editor-panel');
+      if (!scrollable) {
+        e.preventDefault();
+      } else {
+        const { scrollTop, scrollHeight, clientHeight } = scrollable;
+        const isAtTop = scrollTop <= 0 && e.deltaY < 0;
+        const isAtBottom = scrollTop + clientHeight >= scrollHeight - 1 && e.deltaY > 0;
+        if (isAtTop || isAtBottom) {
+          e.preventDefault();
+        }
+      }
+    }, { passive: false });
+
     // Wire Sound FX Toggle Buttons (Global and Modal)
     const soundToggleBtn = document.getElementById('soundToggleBtn');
     const soundOnIcon = document.getElementById('soundOnIcon');
@@ -11715,7 +11785,7 @@
       const open3DStudio = () => {
         if (!avatar3DStudioModal) return;
         avatar3DStudioModal.classList.add('active');
-        document.body.style.overflow = 'hidden';
+        setScrollLock(true);
         isStudioActive = true;
         rotY = 0;
         rotX = 0;
@@ -11733,7 +11803,7 @@
       const close3DStudio = () => {
         if (!avatar3DStudioModal) return;
         avatar3DStudioModal.classList.remove('active');
-        document.body.style.overflow = '';
+        setScrollLock(false);
         isStudioActive = false;
         if (studioRafId) {
           cancelAnimationFrame(studioRafId);
@@ -12110,18 +12180,6 @@
             "Discovered high-severity edge-case defects in passenger re-booking workflows prior to production releases."
           ],
           results: "Awarded 'Best Debutant' and three consecutive 'Best Performer' honors for record defect capture ratios."
-        }
-      };
-
-      const setScrollLock = (locked) => {
-        if (locked) {
-          document.documentElement.style.overflow = 'hidden';
-          document.body.style.overflow = 'hidden';
-          document.documentElement.style.touchAction = 'none';
-        } else {
-          document.documentElement.style.overflow = '';
-          document.body.style.overflow = '';
-          document.documentElement.style.touchAction = '';
         }
       };
 
@@ -14434,7 +14492,6 @@ Feature: Srivatsa Malali Portfolio Verification
       const openInterviewModal = () => {
         if (!interviewModalOverlay) return;
         interviewModalOverlay.classList.add('active');
-        document.body.classList.add('has-active-modal');
         setScrollLock(true);
         SoundFX.playClick();
       };
@@ -14442,7 +14499,6 @@ Feature: Srivatsa Malali Portfolio Verification
       const closeInterviewModal = () => {
         if (!interviewModalOverlay) return;
         interviewModalOverlay.classList.remove('active');
-        document.body.classList.remove('has-active-modal');
         setScrollLock(false);
         SoundFX.playClick();
       };
@@ -14700,7 +14756,6 @@ Feature: Srivatsa Malali Portfolio Verification
           if (!modal) return;
           syncPreview();
           modal.classList.add('active');
-          document.body.classList.add('has-active-modal');
           setScrollLock(true);
           SoundFX.playClick();
         };
@@ -14708,7 +14763,6 @@ Feature: Srivatsa Malali Portfolio Verification
         const closeModal = () => {
           if (!modal) return;
           modal.classList.remove('active');
-          document.body.classList.remove('has-active-modal');
           setScrollLock(false);
           SoundFX.playClick();
         };
@@ -14926,7 +14980,7 @@ Feature: Srivatsa Malali Portfolio Verification
         const openYogaModal = () => {
           if (!yogaModal) return;
           yogaModal.classList.add('active');
-          document.body.classList.add('has-active-modal');
+          setScrollLock(true);
           SoundFX.playClick();
           updateYogaDisplay(currentYogaIdx);
         };
@@ -14934,7 +14988,7 @@ Feature: Srivatsa Malali Portfolio Verification
         const closeYogaModal = () => {
           if (!yogaModal) return;
           yogaModal.classList.remove('active');
-          document.body.classList.remove('has-active-modal');
+          setScrollLock(false);
           SoundFX.playClick();
         };
 
