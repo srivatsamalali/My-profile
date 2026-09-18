@@ -7271,27 +7271,36 @@
         display: flex !important;
         flex-direction: column !important;
         overflow: hidden !important;
-        background: var(--card-bg) !important;
+        background: var(--bg) !important;
       }
 
       .card-gen-header {
-        padding: calc(12px + env(safe-area-inset-top, 0px)) 16px 10px 16px !important;
+        padding: calc(14px + env(safe-area-inset-top, 0px)) 16px 8px 16px !important;
         flex-shrink: 0 !important;
+        background: var(--card-bg) !important;
+        border-bottom: 1px solid var(--border) !important;
       }
 
       .card-gen-header .achieve-title {
-        font-size: 0.92rem !important;
+        font-size: 0.95rem !important;
         line-height: 1.25 !important;
+        font-weight: 700 !important;
       }
 
       .card-gen-mobile-nav {
         display: flex !important;
         align-items: center !important;
-        gap: 8px !important;
-        padding: 8px 16px !important;
-        background: rgba(125, 125, 125, 0.05) !important;
-        border-bottom: 1px solid var(--border) !important;
+        gap: 4px !important;
+        padding: 4px !important;
+        margin: 10px 14px 4px 14px !important;
+        background: rgba(0, 0, 0, 0.06) !important;
+        border: 1px solid var(--border) !important;
+        border-radius: 12px !important;
         flex-shrink: 0 !important;
+      }
+
+      [data-theme="dark"] .card-gen-mobile-nav {
+        background: rgba(255, 255, 255, 0.06) !important;
       }
 
       .card-gen-tab-btn {
@@ -7300,15 +7309,15 @@
         align-items: center !important;
         justify-content: center !important;
         gap: 6px !important;
-        padding: 9px 12px !important;
-        border-radius: 10px !important;
-        font-family: var(--font-mono) !important;
-        font-size: 0.74rem !important;
-        font-weight: 700 !important;
-        letter-spacing: 0.3px !important;
+        padding: 8px 12px !important;
+        border-radius: 9px !important;
+        font-family: var(--font-sans, system-ui, sans-serif) !important;
+        font-size: 0.8rem !important;
+        font-weight: 600 !important;
+        letter-spacing: -0.2px !important;
         color: var(--text-muted) !important;
         background: transparent !important;
-        border: 1px solid transparent !important;
+        border: none !important;
         cursor: pointer !important;
         transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
       }
@@ -7316,8 +7325,8 @@
       .card-gen-tab-btn.active {
         color: var(--color) !important;
         background: var(--card-bg) !important;
-        border-color: var(--border) !important;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12) !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+        font-weight: 700 !important;
       }
 
       .card-gen-tab-btn.active svg {
@@ -7336,10 +7345,11 @@
       /* Mobile Controls View State */
       .card-gen-modal-window[data-mobile-view="controls"] .card-gen-controls {
         display: flex !important;
-        padding: 18px 16px !important;
+        padding: 16px 14px 24px 14px !important;
         gap: 16px !important;
         border-right: none !important;
         border-bottom: none !important;
+        background: transparent !important;
       }
 
       .card-gen-modal-window[data-mobile-view="controls"] .card-gen-preview-wrap {
@@ -7351,7 +7361,9 @@
         width: 100% !important;
         justify-content: center !important;
         padding: 12px 18px !important;
-        font-size: 0.85rem !important;
+        font-size: 0.86rem !important;
+        font-weight: 700 !important;
+        border-radius: 12px !important;
       }
 
       .card-gen-modal-window[data-mobile-view="controls"] .card-gen-action-item {
@@ -7368,12 +7380,36 @@
         flex-direction: column !important;
         align-items: center !important;
         justify-content: center !important;
-        padding: 20px 14px !important;
-        min-height: 100% !important;
+        padding: 14px 12px 20px 12px !important;
+        min-height: auto !important;
+        background: transparent !important;
       }
 
       .card-gen-modal-window[data-mobile-view="preview"] .card-gen-btn-to-preview {
         display: none !important;
+      }
+
+      .card-gen-quick-edit-btn {
+        display: inline-flex !important;
+        align-items: center !important;
+        gap: 6px !important;
+        padding: 6px 14px !important;
+        border-radius: 999px !important;
+        font-family: var(--font-sans, system-ui, sans-serif) !important;
+        font-size: 0.74rem !important;
+        font-weight: 600 !important;
+        color: var(--text-muted) !important;
+        background: rgba(125, 125, 125, 0.08) !important;
+        border: 1px solid var(--border) !important;
+        cursor: pointer !important;
+        transition: all 0.2s ease !important;
+        margin-top: 10px !important;
+      }
+
+      .card-gen-quick-edit-btn:hover {
+        color: var(--accent) !important;
+        border-color: var(--accent) !important;
+        background: var(--accent-muted) !important;
       }
 
       .card-gen-modal-window[data-mobile-view="preview"] .card-gen-footer-actions {
@@ -7386,43 +7422,48 @@
         display: inline-flex !important;
         width: 100% !important;
         justify-content: center !important;
-        padding: 11px 12px !important;
+        padding: 10px 10px !important;
         font-size: 0.74rem !important;
+        font-weight: 600 !important;
+        border-radius: 11px !important;
       }
 
-      .card-gen-modal-window[data-mobile-view="preview"] #cardGenDownloadPngBtn {
+      .card-gen-modal-window[data-mobile-view="preview"] .card-gen-download-btn {
         grid-column: 1 / -1 !important;
         padding: 12px 16px !important;
-        font-size: 0.82rem !important;
+        font-size: 0.84rem !important;
+        font-weight: 700 !important;
       }
 
       .card-gen-footer-actions {
-        padding: 12px 16px calc(14px + env(safe-area-inset-bottom, 0px)) 16px !important;
+        padding: 10px 14px calc(14px + env(safe-area-inset-bottom, 0px)) 14px !important;
         flex-shrink: 0 !important;
         background: var(--card-bg) !important;
         border-top: 1px solid var(--border) !important;
       }
 
-      .card-gen-checkbox-label {
-        padding: 8px 10px !important;
-        border-radius: 8px !important;
-        background: rgba(125, 125, 125, 0.04) !important;
-        border: 1px solid var(--border) !important;
-        font-size: 0.78rem !important;
-      }
-
-      /* Exec Card Mobile Polish */
+      /* Executive Card Mobile Polish */
       .exec-card-canvas-container {
         width: 100% !important;
-        max-width: 100% !important;
+        max-width: 380px !important;
+        margin: 0 auto !important;
       }
 
       .exec-card {
-        padding: 18px 16px !important;
+        padding: 18px 14px !important;
         border-radius: 18px !important;
-        gap: 14px !important;
+        gap: 12px !important;
         box-sizing: border-box !important;
         width: 100% !important;
+        border: 1.5px solid var(--accent) !important;
+        background: linear-gradient(145deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%) !important;
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3), 0 0 18px var(--accent-muted) !important;
+      }
+
+      [data-theme="light"] .exec-card {
+        background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%) !important;
+        border: 1.5px solid var(--accent) !important;
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08), 0 0 18px var(--accent-muted) !important;
       }
 
       .exec-card-header {
@@ -7436,10 +7477,13 @@
         width: 46px !important;
         height: 46px !important;
         border-radius: 12px !important;
+        border: 2px solid var(--accent) !important;
       }
 
       .exec-card-name {
         font-size: 1.05rem !important;
+        font-weight: 700 !important;
+        letter-spacing: -0.2px !important;
       }
 
       .exec-card-role {
@@ -7459,14 +7503,15 @@
         grid-template-columns: repeat(4, 1fr) !important;
         padding: 8px 4px !important;
         gap: 4px !important;
+        border-radius: 10px !important;
       }
 
       .exec-metric-val {
-        font-size: 0.84rem !important;
+        font-size: 0.85rem !important;
       }
 
       .exec-metric-lbl {
-        font-size: 0.54rem !important;
+        font-size: 0.52rem !important;
         letter-spacing: 0.2px !important;
       }
 
@@ -7476,7 +7521,7 @@
 
       .exec-card-chip {
         font-size: 0.66rem !important;
-        padding: 4px 8px !important;
+        padding: 3px 7px !important;
         border-radius: 6px !important;
       }
 
@@ -8041,6 +8086,10 @@
       display: none;
     }
 
+    .card-gen-quick-edit-btn {
+      display: none;
+    }
+
     .card-gen-body-split {
       display: grid;
       grid-template-columns: 340px 1fr;
@@ -8108,24 +8157,51 @@
       box-shadow: 0 0 0 3px var(--accent-muted);
     }
 
-    .card-gen-checkboxes {
+    .card-gen-chip-cloud {
       display: flex;
-      flex-direction: column;
+      flex-wrap: wrap;
       gap: 8px;
     }
 
-    .card-gen-checkbox-label {
-      display: flex;
+    .card-gen-chip-item {
+      display: inline-flex;
       align-items: center;
-      gap: 8px;
-      font-size: 0.78rem;
-      color: var(--color);
+      position: relative;
       cursor: pointer;
     }
 
-    .card-gen-checkbox-label input {
-      accent-color: var(--accent);
-      cursor: pointer;
+    .card-gen-chip-item input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .card-gen-chip-item .chip-text {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 11px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--color);
+      background: rgba(125, 125, 125, 0.05);
+      border: 1.5px solid var(--border);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      user-select: none;
+    }
+
+    .card-gen-chip-item:hover .chip-text {
+      border-color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    .card-gen-chip-item input:checked + .chip-text {
+      background: var(--accent-muted);
+      border-color: var(--accent);
+      color: var(--accent);
+      font-weight: 600;
+      box-shadow: 0 2px 8px var(--accent-muted);
     }
 
     /* Live Preview Section */
@@ -11171,7 +11247,7 @@
   <!-- Instant Personalized Candidate Card & PDF Generator Modal -->
   <div class="card-gen-modal-overlay" id="cardGeneratorModalOverlay" role="dialog" aria-modal="true"
     aria-label="Instant Candidate Card & PDF Generator">
-    <div class="card-gen-modal-window" id="cardGenModalWindow" data-mobile-view="controls">
+    <div class="card-gen-modal-window" id="cardGenModalWindow" data-mobile-view="preview">
       <!-- Header -->
       <div class="card-gen-header">
         <div class="achieve-title-wrap">
@@ -11187,13 +11263,13 @@
 
       <!-- Mobile Segmented Tab Switcher (Visible on Mobile Only) -->
       <div class="card-gen-mobile-nav" id="cardGenMobileNav" role="tablist">
-        <button type="button" class="card-gen-tab-btn active" data-target-tab="controls" id="cardGenTabControls" role="tab" aria-selected="true">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
-          <span>Customize Profile</span>
+        <button type="button" class="card-gen-tab-btn active" data-target-tab="preview" id="cardGenTabPreview" role="tab" aria-selected="true">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"></rect><circle cx="9" cy="10" r="2"></circle><line x1="15" y1="8" x2="17" y2="8"></line><line x1="15" y1="12" x2="17" y2="12"></line><line x1="7" y1="16" x2="17" y2="16"></line></svg>
+          <span>Candidate Card</span>
         </button>
-        <button type="button" class="card-gen-tab-btn" data-target-tab="preview" id="cardGenTabPreview" role="tab" aria-selected="false">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-          <span>Live Card Preview</span>
+        <button type="button" class="card-gen-tab-btn" data-target-tab="controls" id="cardGenTabControls" role="tab" aria-selected="false">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+          <span>Customize Details</span>
         </button>
       </div>
 
@@ -11203,7 +11279,7 @@
         <div class="card-gen-controls" id="cardGenControlsPane">
           <div class="card-gen-field-group">
             <label class="card-gen-label" for="cardGenCompanyInput">
-              <span>Hiring Company / Team</span>
+              <span>Target Hiring Company / Team</span>
             </label>
             <input type="text" class="card-gen-input" id="cardGenCompanyInput"
               placeholder="e.g. Apple, Google, Stripe, Citi..." value="Engineering Leadership" />
@@ -11223,29 +11299,28 @@
 
           <div class="card-gen-field-group">
             <label class="card-gen-label">
-              <span>Key Focus Highlights</span>
+              <span>Key Competency Highlights</span>
             </label>
-            <div class="card-gen-checkboxes">
-              <label class="card-gen-checkbox-label">
+            <div class="card-gen-chip-cloud">
+              <label class="card-gen-chip-item">
                 <input type="checkbox" class="card-gen-highlight-check" value="Java & Selenium Frameworks" checked />
-                <span>Java &amp; Selenium Frameworks</span>
+                <span class="chip-text">⚡ Java &amp; Selenium Frameworks</span>
               </label>
-              <label class="card-gen-checkbox-label">
-                <input type="checkbox" class="card-gen-highlight-check" value="Cucumber BDD & CI/CD Pipelines"
-                  checked />
-                <span>Cucumber BDD &amp; CI/CD Pipelines</span>
+              <label class="card-gen-chip-item">
+                <input type="checkbox" class="card-gen-highlight-check" value="Cucumber BDD & CI/CD Pipelines" checked />
+                <span class="chip-text">⚡ Cucumber BDD &amp; CI/CD</span>
               </label>
-              <label class="card-gen-checkbox-label">
+              <label class="card-gen-chip-item">
                 <input type="checkbox" class="card-gen-highlight-check" value="Rest Assured API Automation" checked />
-                <span>Rest Assured API Automation</span>
+                <span class="chip-text">⚡ Rest Assured API</span>
               </label>
-              <label class="card-gen-checkbox-label">
+              <label class="card-gen-chip-item">
                 <input type="checkbox" class="card-gen-highlight-check" value="Zero Defect Client Releases" checked />
-                <span>Zero Defect Client Releases</span>
+                <span class="chip-text">⚡ Zero Defect Releases</span>
               </label>
-              <label class="card-gen-checkbox-label">
+              <label class="card-gen-chip-item">
                 <input type="checkbox" class="card-gen-highlight-check" value="Apple & Citi Bank Engagements" checked />
-                <span>Apple &amp; Citi Bank Engagements</span>
+                <span class="chip-text">⚡ Apple &amp; Citi Bank</span>
               </label>
             </div>
           </div>
@@ -11325,6 +11400,12 @@
               </div>
             </div>
           </div>
+
+          <!-- Quick customize trigger link below card -->
+          <button type="button" class="card-gen-quick-edit-btn" id="cardGenQuickEditBtn" title="Customize company, role, highlights & theme">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+            <span>Customize Card Info &amp; Accent</span>
+          </button>
         </div>
       </div>
 
@@ -11332,20 +11413,22 @@
       <div class="card-gen-footer-actions">
         <!-- Mobile Switch to Preview Button (Visible on Mobile in Controls Mode) -->
         <button type="button" class="card-action-btn primary card-gen-btn-to-preview" id="cardGenToPreviewBtn"
-          title="Preview Generated Candidate Card">
-          <span>Preview Live Card</span>
+          title="Save settings & view candidate card">
+          <span>View Updated Card</span>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
             <line x1="5" y1="12" x2="19" y2="12"></line>
             <polyline points="12 5 19 12 12 19"></polyline>
           </svg>
         </button>
 
-        <button type="button" class="card-action-btn card-gen-action-item" id="cardGenCopyBriefBtn" title="Copy Formatted Markdown Brief">
+        <button type="button" class="card-action-btn primary card-gen-action-item card-gen-download-btn" id="cardGenDownloadPngBtn"
+          title="Download High-Res 2X PNG Card">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
           </svg>
-          <span>Copy Brief</span>
+          <span>Download PNG Card</span>
         </button>
         <button type="button" class="card-action-btn card-gen-action-item" id="cardGenExportPdfBtn" title="Export Clean 1-Page PDF / Print">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -11355,14 +11438,12 @@
           </svg>
           <span>Export 1-Page PDF</span>
         </button>
-        <button type="button" class="card-action-btn primary card-gen-action-item" id="cardGenDownloadPngBtn"
-          title="Download High-Res 2X PNG Card">
+        <button type="button" class="card-action-btn card-gen-action-item" id="cardGenCopyBriefBtn" title="Copy Formatted Markdown Brief">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-            <polyline points="7 10 12 15 17 10"></polyline>
-            <line x1="12" y1="15" x2="12" y2="3"></line>
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
           </svg>
-          <span>Download PNG Card</span>
+          <span>Copy Brief</span>
         </button>
       </div>
     </div>
@@ -15973,6 +16054,8 @@ Feature: Srivatsa Malali Portfolio Verification
         const exportPdfBtn = document.getElementById('cardGenExportPdfBtn');
         const copyBriefBtn = document.getElementById('cardGenCopyBriefBtn');
 
+        const quickEditBtn = document.getElementById('cardGenQuickEditBtn');
+
         const setMobileTab = (tabName) => {
           if (!modalWindow) return;
           modalWindow.setAttribute('data-mobile-view', tabName);
@@ -15993,6 +16076,7 @@ Feature: Srivatsa Malali Portfolio Verification
         if (tabControls) tabControls.addEventListener('click', () => setMobileTab('controls'));
         if (tabPreview) tabPreview.addEventListener('click', () => setMobileTab('preview'));
         if (toPreviewBtn) toPreviewBtn.addEventListener('click', () => setMobileTab('preview'));
+        if (quickEditBtn) quickEditBtn.addEventListener('click', () => setMobileTab('controls'));
 
         const syncPreview = () => {
           const comp = (companyInput ? companyInput.value.trim() : '') || 'Engineering Leadership';
@@ -16029,7 +16113,7 @@ Feature: Srivatsa Malali Portfolio Verification
         const openModal = () => {
           if (!modal) return;
           syncPreview();
-          setMobileTab('controls');
+          setMobileTab('preview');
           modal.classList.add('active');
           setScrollLock(true);
           SoundFX.playClick();
