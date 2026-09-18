@@ -7254,7 +7254,7 @@
         max-height: calc(100dvh - 65px - env(safe-area-inset-top, 0px)) !important;
       }
 
-      /* Mobile Card Generator Modal Optimization */
+      /* Mobile Candidate Snapshot Engine Modal Optimization */
       .card-gen-modal-overlay {
         padding: 0 !important;
         align-items: flex-end !important;
@@ -7271,20 +7271,231 @@
         display: flex !important;
         flex-direction: column !important;
         overflow: hidden !important;
+        background: var(--card-bg) !important;
       }
 
       .card-gen-header {
-        padding: calc(12px + env(safe-area-inset-top, 0px)) 16px 12px 16px !important;
+        padding: calc(12px + env(safe-area-inset-top, 0px)) 16px 10px 16px !important;
         flex-shrink: 0 !important;
       }
 
+      .card-gen-header .achieve-title {
+        font-size: 0.92rem !important;
+        line-height: 1.25 !important;
+      }
+
+      .card-gen-mobile-nav {
+        display: flex !important;
+        align-items: center !important;
+        gap: 8px !important;
+        padding: 8px 16px !important;
+        background: rgba(125, 125, 125, 0.05) !important;
+        border-bottom: 1px solid var(--border) !important;
+        flex-shrink: 0 !important;
+      }
+
+      .card-gen-tab-btn {
+        flex: 1 !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 6px !important;
+        padding: 9px 12px !important;
+        border-radius: 10px !important;
+        font-family: var(--font-mono) !important;
+        font-size: 0.74rem !important;
+        font-weight: 700 !important;
+        letter-spacing: 0.3px !important;
+        color: var(--text-muted) !important;
+        background: transparent !important;
+        border: 1px solid transparent !important;
+        cursor: pointer !important;
+        transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+      }
+
+      .card-gen-tab-btn.active {
+        color: var(--color) !important;
+        background: var(--card-bg) !important;
+        border-color: var(--border) !important;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12) !important;
+      }
+
+      .card-gen-tab-btn.active svg {
+        stroke: var(--accent) !important;
+      }
+
       .card-gen-body-split {
-        grid-template-columns: 1fr !important;
+        display: block !important;
         overflow-y: auto !important;
         -webkit-overflow-scrolling: touch !important;
         touch-action: pan-y !important;
         flex: 1 1 auto !important;
-        max-height: calc(100dvh - 65px - env(safe-area-inset-top, 0px)) !important;
+        max-height: none !important;
+      }
+
+      /* Mobile Controls View State */
+      .card-gen-modal-window[data-mobile-view="controls"] .card-gen-controls {
+        display: flex !important;
+        padding: 18px 16px !important;
+        gap: 16px !important;
+        border-right: none !important;
+        border-bottom: none !important;
+      }
+
+      .card-gen-modal-window[data-mobile-view="controls"] .card-gen-preview-wrap {
+        display: none !important;
+      }
+
+      .card-gen-modal-window[data-mobile-view="controls"] .card-gen-btn-to-preview {
+        display: inline-flex !important;
+        width: 100% !important;
+        justify-content: center !important;
+        padding: 12px 18px !important;
+        font-size: 0.85rem !important;
+      }
+
+      .card-gen-modal-window[data-mobile-view="controls"] .card-gen-action-item {
+        display: none !important;
+      }
+
+      /* Mobile Preview View State */
+      .card-gen-modal-window[data-mobile-view="preview"] .card-gen-controls {
+        display: none !important;
+      }
+
+      .card-gen-modal-window[data-mobile-view="preview"] .card-gen-preview-wrap {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        padding: 20px 14px !important;
+        min-height: 100% !important;
+      }
+
+      .card-gen-modal-window[data-mobile-view="preview"] .card-gen-btn-to-preview {
+        display: none !important;
+      }
+
+      .card-gen-modal-window[data-mobile-view="preview"] .card-gen-footer-actions {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 8px !important;
+      }
+
+      .card-gen-modal-window[data-mobile-view="preview"] .card-gen-action-item {
+        display: inline-flex !important;
+        width: 100% !important;
+        justify-content: center !important;
+        padding: 11px 12px !important;
+        font-size: 0.74rem !important;
+      }
+
+      .card-gen-modal-window[data-mobile-view="preview"] #cardGenDownloadPngBtn {
+        grid-column: 1 / -1 !important;
+        padding: 12px 16px !important;
+        font-size: 0.82rem !important;
+      }
+
+      .card-gen-footer-actions {
+        padding: 12px 16px calc(14px + env(safe-area-inset-bottom, 0px)) 16px !important;
+        flex-shrink: 0 !important;
+        background: var(--card-bg) !important;
+        border-top: 1px solid var(--border) !important;
+      }
+
+      .card-gen-checkbox-label {
+        padding: 8px 10px !important;
+        border-radius: 8px !important;
+        background: rgba(125, 125, 125, 0.04) !important;
+        border: 1px solid var(--border) !important;
+        font-size: 0.78rem !important;
+      }
+
+      /* Exec Card Mobile Polish */
+      .exec-card-canvas-container {
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+
+      .exec-card {
+        padding: 18px 16px !important;
+        border-radius: 18px !important;
+        gap: 14px !important;
+        box-sizing: border-box !important;
+        width: 100% !important;
+      }
+
+      .exec-card-header {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        gap: 8px !important;
+      }
+
+      .exec-card-avatar {
+        width: 46px !important;
+        height: 46px !important;
+        border-radius: 12px !important;
+      }
+
+      .exec-card-name {
+        font-size: 1.05rem !important;
+      }
+
+      .exec-card-role {
+        font-size: 0.68rem !important;
+      }
+
+      .exec-card-recruiter-pill {
+        font-size: 0.58rem !important;
+        padding: 3px 8px !important;
+        max-width: 140px !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+      }
+
+      .exec-card-metrics-grid {
+        grid-template-columns: repeat(4, 1fr) !important;
+        padding: 8px 4px !important;
+        gap: 4px !important;
+      }
+
+      .exec-metric-val {
+        font-size: 0.84rem !important;
+      }
+
+      .exec-metric-lbl {
+        font-size: 0.54rem !important;
+        letter-spacing: 0.2px !important;
+      }
+
+      .exec-card-highlights {
+        gap: 5px !important;
+      }
+
+      .exec-card-chip {
+        font-size: 0.66rem !important;
+        padding: 4px 8px !important;
+        border-radius: 6px !important;
+      }
+
+      .exec-card-footer {
+        padding-top: 10px !important;
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        gap: 6px !important;
+      }
+
+      .exec-card-footer-info {
+        font-size: 0.6rem !important;
+        gap: 2px !important;
+      }
+
+      .exec-card-qr-badge {
+        font-size: 0.58rem !important;
+        padding: 3px 6px !important;
       }
 
       /* Mobile Safe Touch Targets & Prevent Horizontal Shake */
@@ -7820,6 +8031,14 @@
       align-items: center;
       justify-content: space-between;
       gap: 16px;
+    }
+
+    .card-gen-mobile-nav {
+      display: none;
+    }
+
+    .card-gen-btn-to-preview {
+      display: none;
     }
 
     .card-gen-body-split {
@@ -10952,7 +11171,7 @@
   <!-- Instant Personalized Candidate Card & PDF Generator Modal -->
   <div class="card-gen-modal-overlay" id="cardGeneratorModalOverlay" role="dialog" aria-modal="true"
     aria-label="Instant Candidate Card & PDF Generator">
-    <div class="card-gen-modal-window">
+    <div class="card-gen-modal-window" id="cardGenModalWindow" data-mobile-view="controls">
       <!-- Header -->
       <div class="card-gen-header">
         <div class="achieve-title-wrap">
@@ -10966,10 +11185,22 @@
           title="Close Generator (ESC)">✕</button>
       </div>
 
+      <!-- Mobile Segmented Tab Switcher (Visible on Mobile Only) -->
+      <div class="card-gen-mobile-nav" id="cardGenMobileNav" role="tablist">
+        <button type="button" class="card-gen-tab-btn active" data-target-tab="controls" id="cardGenTabControls" role="tab" aria-selected="true">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+          <span>Customize Profile</span>
+        </button>
+        <button type="button" class="card-gen-tab-btn" data-target-tab="preview" id="cardGenTabPreview" role="tab" aria-selected="false">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          <span>Live Card Preview</span>
+        </button>
+      </div>
+
       <!-- Body Split View -->
       <div class="card-gen-body-split">
         <!-- Config Controls -->
-        <div class="card-gen-controls">
+        <div class="card-gen-controls" id="cardGenControlsPane">
           <div class="card-gen-field-group">
             <label class="card-gen-label" for="cardGenCompanyInput">
               <span>Hiring Company / Team</span>
@@ -11033,7 +11264,7 @@
         </div>
 
         <!-- Live Card Preview -->
-        <div class="card-gen-preview-wrap">
+        <div class="card-gen-preview-wrap" id="cardGenPreviewPane">
           <div class="exec-card-canvas-container" id="execCardPreviewContainer">
             <div class="exec-card" id="printCandidateCardTarget">
               <div class="exec-card-glow-orb"></div>
@@ -11099,14 +11330,24 @@
 
       <!-- Action Footer -->
       <div class="card-gen-footer-actions">
-        <button type="button" class="card-action-btn" id="cardGenCopyBriefBtn" title="Copy Formatted Markdown Brief">
+        <!-- Mobile Switch to Preview Button (Visible on Mobile in Controls Mode) -->
+        <button type="button" class="card-action-btn primary card-gen-btn-to-preview" id="cardGenToPreviewBtn"
+          title="Preview Generated Candidate Card">
+          <span>Preview Live Card</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </button>
+
+        <button type="button" class="card-action-btn card-gen-action-item" id="cardGenCopyBriefBtn" title="Copy Formatted Markdown Brief">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
             <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
           </svg>
           <span>Copy Brief</span>
         </button>
-        <button type="button" class="card-action-btn" id="cardGenExportPdfBtn" title="Export Clean 1-Page PDF / Print">
+        <button type="button" class="card-action-btn card-gen-action-item" id="cardGenExportPdfBtn" title="Export Clean 1-Page PDF / Print">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M6 9V2h12v7"></path>
             <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
@@ -11114,7 +11355,7 @@
           </svg>
           <span>Export 1-Page PDF</span>
         </button>
-        <button type="button" class="card-action-btn primary" id="cardGenDownloadPngBtn"
+        <button type="button" class="card-action-btn primary card-gen-action-item" id="cardGenDownloadPngBtn"
           title="Download High-Res 2X PNG Card">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
@@ -15711,8 +15952,13 @@ Feature: Srivatsa Malali Portfolio Verification
       // =========================================================================
       const initCandidateCardGenerator = () => {
         const modal = document.getElementById('cardGeneratorModalOverlay');
+        const modalWindow = document.getElementById('cardGenModalWindow');
         const openDockBtn = document.getElementById('dockBtnCardGen');
         const closeBtn = document.getElementById('closeCardGenModalBtn');
+
+        const tabControls = document.getElementById('cardGenTabControls');
+        const tabPreview = document.getElementById('cardGenTabPreview');
+        const toPreviewBtn = document.getElementById('cardGenToPreviewBtn');
 
         const companyInput = document.getElementById('cardGenCompanyInput');
         const roleSelect = document.getElementById('cardGenRoleSelect');
@@ -15726,6 +15972,27 @@ Feature: Srivatsa Malali Portfolio Verification
         const downloadPngBtn = document.getElementById('cardGenDownloadPngBtn');
         const exportPdfBtn = document.getElementById('cardGenExportPdfBtn');
         const copyBriefBtn = document.getElementById('cardGenCopyBriefBtn');
+
+        const setMobileTab = (tabName) => {
+          if (!modalWindow) return;
+          modalWindow.setAttribute('data-mobile-view', tabName);
+          if (tabControls) {
+            tabControls.classList.toggle('active', tabName === 'controls');
+            tabControls.setAttribute('aria-selected', tabName === 'controls' ? 'true' : 'false');
+          }
+          if (tabPreview) {
+            tabPreview.classList.toggle('active', tabName === 'preview');
+            tabPreview.setAttribute('aria-selected', tabName === 'preview' ? 'true' : 'false');
+          }
+          if (tabName === 'preview') {
+            syncPreview();
+          }
+          SoundFX.playClick();
+        };
+
+        if (tabControls) tabControls.addEventListener('click', () => setMobileTab('controls'));
+        if (tabPreview) tabPreview.addEventListener('click', () => setMobileTab('preview'));
+        if (toPreviewBtn) toPreviewBtn.addEventListener('click', () => setMobileTab('preview'));
 
         const syncPreview = () => {
           const comp = (companyInput ? companyInput.value.trim() : '') || 'Engineering Leadership';
@@ -15762,6 +16029,7 @@ Feature: Srivatsa Malali Portfolio Verification
         const openModal = () => {
           if (!modal) return;
           syncPreview();
+          setMobileTab('controls');
           modal.classList.add('active');
           setScrollLock(true);
           SoundFX.playClick();
