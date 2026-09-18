@@ -7356,20 +7356,6 @@
         display: none !important;
       }
 
-      .card-gen-modal-window[data-mobile-view="controls"] .card-gen-btn-to-preview {
-        display: inline-flex !important;
-        width: 100% !important;
-        justify-content: center !important;
-        padding: 12px 18px !important;
-        font-size: 0.86rem !important;
-        font-weight: 700 !important;
-        border-radius: 12px !important;
-      }
-
-      .card-gen-modal-window[data-mobile-view="controls"] .card-gen-action-item {
-        display: none !important;
-      }
-
       /* Mobile Preview View State */
       .card-gen-modal-window[data-mobile-view="preview"] .card-gen-controls {
         display: none !important;
@@ -7383,10 +7369,6 @@
         padding: 14px 12px 20px 12px !important;
         min-height: auto !important;
         background: transparent !important;
-      }
-
-      .card-gen-modal-window[data-mobile-view="preview"] .card-gen-btn-to-preview {
-        display: none !important;
       }
 
       .card-gen-quick-edit-btn {
@@ -7412,13 +7394,17 @@
         background: var(--accent-muted) !important;
       }
 
-      .card-gen-modal-window[data-mobile-view="preview"] .card-gen-footer-actions {
+      .card-gen-footer-actions {
         display: grid !important;
         grid-template-columns: 1fr 1fr !important;
         gap: 8px !important;
+        padding: 10px 14px calc(14px + env(safe-area-inset-bottom, 0px)) 14px !important;
+        flex-shrink: 0 !important;
+        background: var(--card-bg) !important;
+        border-top: 1px solid var(--border) !important;
       }
 
-      .card-gen-modal-window[data-mobile-view="preview"] .card-gen-action-item {
+      .card-gen-action-item {
         display: inline-flex !important;
         width: 100% !important;
         justify-content: center !important;
@@ -7428,18 +7414,11 @@
         border-radius: 11px !important;
       }
 
-      .card-gen-modal-window[data-mobile-view="preview"] .card-gen-download-btn {
+      .card-gen-download-btn {
         grid-column: 1 / -1 !important;
         padding: 12px 16px !important;
         font-size: 0.84rem !important;
         font-weight: 700 !important;
-      }
-
-      .card-gen-footer-actions {
-        padding: 10px 14px calc(14px + env(safe-area-inset-bottom, 0px)) 14px !important;
-        flex-shrink: 0 !important;
-        background: var(--card-bg) !important;
-        border-top: 1px solid var(--border) !important;
       }
 
       /* Executive Card Mobile Polish */
@@ -8104,12 +8083,12 @@
     }
 
     .card-gen-controls {
-      padding: 22px;
+      padding: 24px;
       border-right: 1px solid var(--border);
       display: flex;
       flex-direction: column;
       gap: 18px;
-      background: rgba(125, 125, 125, 0.03);
+      background: transparent;
     }
 
     @media (max-width: 860px) {
@@ -8122,14 +8101,14 @@
     .card-gen-field-group {
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 7px;
     }
 
     .card-gen-label {
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
+      font-family: var(--font-sans);
+      font-size: 0.76rem;
       font-weight: 700;
-      color: var(--color);
+      color: var(--text-muted);
       text-transform: uppercase;
       letter-spacing: 0.5px;
       display: flex;
@@ -8140,21 +8119,40 @@
     .card-gen-input,
     .card-gen-select {
       width: 100%;
-      padding: 9px 12px;
-      border-radius: 10px;
-      border: 1px solid var(--border);
+      height: 44px;
+      padding: 0 14px;
+      border-radius: 12px;
+      border: 1.5px solid var(--border);
       background: var(--card-bg);
       color: var(--color);
-      font-family: var(--font-display);
-      font-size: 0.85rem;
+      font-family: var(--font-sans);
+      font-size: 0.88rem;
+      font-weight: 500;
       outline: none;
-      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      box-sizing: border-box;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .card-gen-select {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      cursor: pointer;
+      padding-right: 38px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23888888' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+    }
+
+    [data-theme="dark"] .card-gen-select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23cbd5e1' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
     }
 
     .card-gen-input:focus,
     .card-gen-select:focus {
       border-color: var(--accent);
       box-shadow: 0 0 0 3px var(--accent-muted);
+      background: var(--card-bg);
     }
 
     .card-gen-chip-cloud {
@@ -11411,16 +11409,6 @@
 
       <!-- Action Footer -->
       <div class="card-gen-footer-actions">
-        <!-- Mobile Switch to Preview Button (Visible on Mobile in Controls Mode) -->
-        <button type="button" class="card-action-btn primary card-gen-btn-to-preview" id="cardGenToPreviewBtn"
-          title="Save settings & view candidate card">
-          <span>View Updated Card</span>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <line x1="5" y1="12" x2="19" y2="12"></line>
-            <polyline points="12 5 19 12 12 19"></polyline>
-          </svg>
-        </button>
-
         <button type="button" class="card-action-btn primary card-gen-action-item card-gen-download-btn" id="cardGenDownloadPngBtn"
           title="Download High-Res 2X PNG Card">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -16039,8 +16027,6 @@ Feature: Srivatsa Malali Portfolio Verification
 
         const tabControls = document.getElementById('cardGenTabControls');
         const tabPreview = document.getElementById('cardGenTabPreview');
-        const toPreviewBtn = document.getElementById('cardGenToPreviewBtn');
-
         const companyInput = document.getElementById('cardGenCompanyInput');
         const roleSelect = document.getElementById('cardGenRoleSelect');
         const accentSelect = document.getElementById('cardGenAccentSelect');
@@ -16075,7 +16061,6 @@ Feature: Srivatsa Malali Portfolio Verification
 
         if (tabControls) tabControls.addEventListener('click', () => setMobileTab('controls'));
         if (tabPreview) tabPreview.addEventListener('click', () => setMobileTab('preview'));
-        if (toPreviewBtn) toPreviewBtn.addEventListener('click', () => setMobileTab('preview'));
         if (quickEditBtn) quickEditBtn.addEventListener('click', () => setMobileTab('controls'));
 
         const syncPreview = () => {
