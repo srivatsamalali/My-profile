@@ -16166,10 +16166,40 @@ Feature: Srivatsa Malali Portfolio Verification
           });
         }
 
-        // Action: Download High-Res 2X PNG Card
+        const drawRoundedRect = (context, x, y, width, height, radius) => {
+          context.beginPath();
+          context.moveTo(x + radius, y);
+          context.lineTo(x + width - radius, y);
+          context.quadraticCurveTo(x + width, y, x + width, y + radius);
+          context.lineTo(x + width, y + height - radius);
+          context.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+          context.lineTo(x + radius, y + height);
+          context.quadraticCurveTo(x, y + height, x, y + height - radius);
+          context.lineTo(x, y + radius);
+          context.quadraticCurveTo(x, y, x + radius, y);
+          context.closePath();
+        };
+
+        const loadProfileImage = (src) => {
+          return new Promise((resolve) => {
+            const domImg = document.querySelector('.exec-card-avatar');
+            if (domImg && domImg.complete && domImg.naturalWidth > 0) {
+              return resolve(domImg);
+            }
+            const img = new Image();
+            img.crossOrigin = 'anonymous';
+            img.onload = () => resolve(img);
+            img.onerror = () => resolve(null);
+            img.src = src;
+          });
+        };
+
+        // Action: Download High-Res 2X PNG Card with Photo
         if (downloadPngBtn) {
-          downloadPngBtn.addEventListener('click', () => {
+          downloadPngBtn.addEventListener('click', async () => {
             SoundFX.playClick();
+            showToast('Generating High-Res Photo Card...', '📸');
+
             const canvas = document.createElement('canvas');
             canvas.width = 1200;
             canvas.height = 760;
@@ -16178,41 +16208,88 @@ Feature: Srivatsa Malali Portfolio Verification
             const comp = (companyInput ? companyInput.value.trim() : '') || 'Engineering Leadership';
             const role = roleSelect ? roleSelect.value : 'Senior QA Automation Engineer';
 
-            // Background
+            // Theme colors
             const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            const accentMap = {
+              cyan: { light: '#0284c7', dark: '#38bdf8', glow: 'rgba(56, 189, 248, 0.25)' },
+              gold: { light: '#d97706', dark: '#facc15', glow: 'rgba(250, 204, 21, 0.25)' },
+              emerald: { light: '#059669', dark: '#34d399', glow: 'rgba(52, 211, 153, 0.25)' },
+              violet: { light: '#7c3aed', dark: '#a78bfa', glow: 'rgba(167, 139, 250, 0.25)' }
+            };
+            const accentKey = accentSelect ? accentSelect.value : 'cyan';
+            const themeAcc = accentMap[accentKey] || accentMap.cyan;
+            const accentColor = isDark ? themeAcc.dark : themeAcc.light;
+
+            // Background
             const bgGrad = ctx.createLinearGradient(0, 0, 1200, 760);
-            bgGrad.addColorStop(0, isDark ? '#09090b' : '#ffffff');
-            bgGrad.addColorStop(1, isDark ? '#18181b' : '#f1f5f9');
+            bgGrad.addColorStop(0, isDark ? '#0a0d14' : '#ffffff');
+            bgGrad.addColorStop(1, isDark ? '#111622' : '#f1f5f9');
             ctx.fillStyle = bgGrad;
             ctx.fillRect(0, 0, 1200, 760);
 
-            // Card Border
-            ctx.strokeStyle = isDark ? '#38bdf8' : '#0284c7';
-            ctx.lineWidth = 4;
-            ctx.strokeRect(40, 40, 1120, 680);
+            // Card Outer Border
+            ctx.strokeStyle = accentColor;
+            ctx.lineWidth = 3;
+            drawRoundedRect(ctx, 40, 40, 1120, 680, 24);
+            ctx.stroke();
 
-            // Header Banner
-            ctx.fillStyle = isDark ? '#38bdf8' : '#0284c7';
+            // Load and draw Srivatsa's portrait photo
+            const avatarImg = await loadProfileImage('images/IMG_2084.jpg');
+            const avX = 80, avY = 75, avSize = 110, avRadius = 20;
+
+            if (avatarImg) {
+              ctx.save();
+              drawRoundedRect(ctx, avX, avY, avSize, avSize, avRadius);
+              ctx.clip();
+              ctx.drawImage(avatarImg, avX, avY, avSize, avSize);
+              ctx.restore();
+
+              // Avatar Border
+              ctx.strokeStyle = accentColor;
+              ctx.lineWidth = 3;
+              drawRoundedRect(ctx, avX, avY, avSize, avSize, avRadius);
+              ctx.stroke();
+            }
+
+            // Header Banner Text
+            const textLeft = avatarImg ? 215 : 80;
+            ctx.fillStyle = isDark ? '#f8fafc' : '#0f172a';
             ctx.font = 'bold 36px Montserrat, sans-serif';
-            ctx.fillText('SRIVATSA MALALI', 80, 120);
+            ctx.fillText('SRIVATSA MALALI', textLeft, 120);
 
-            ctx.font = '600 22px "IBM Plex Mono", monospace';
-            ctx.fillStyle = isDark ? '#cbd5e1' : '#334155';
-            ctx.fillText(`${role.toUpperCase()} · VERIFIED SDET`, 80, 165);
+            ctx.font = '600 20px "IBM Plex Mono", monospace';
+            ctx.fillStyle = accentColor;
+            ctx.fillText(`${role.toUpperCase()} · VERIFIED SDET`, textLeft, 160);
 
-            // Recruiter pill
-            ctx.fillStyle = isDark ? 'rgba(56, 189, 248, 0.2)' : 'rgba(2, 132, 199, 0.15)';
-            ctx.fillRect(80, 195, 420, 40);
-            ctx.fillStyle = isDark ? '#38bdf8' : '#0284c7';
-            ctx.font = 'bold 16px "IBM Plex Mono", monospace';
-            ctx.fillText(`FOR ${comp.toUpperCase()}`, 100, 222);
+            // Recruiter Target Pill (Top Right)
+            const pillText = `FOR ${comp.toUpperCase()}`;
+            ctx.font = 'bold 15px "IBM Plex Mono", monospace';
+            const textMetrics = ctx.measureText(pillText);
+            const pillW = Math.max(textMetrics.width + 36, 180);
+            const pillX = 1120 - pillW;
+            const pillY = 90;
+
+            ctx.fillStyle = isDark ? themeAcc.glow : 'rgba(2, 132, 199, 0.12)';
+            drawRoundedRect(ctx, pillX, pillY, pillW, 40, 20);
+            ctx.fill();
+            ctx.strokeStyle = accentColor;
+            ctx.lineWidth = 1.5;
+            drawRoundedRect(ctx, pillX, pillY, pillW, 40, 20);
+            ctx.stroke();
+
+            ctx.fillStyle = accentColor;
+            ctx.textAlign = 'center';
+            ctx.fillText(pillText, pillX + pillW / 2, pillY + 25);
+            ctx.textAlign = 'left';
 
             // Metrics Grid Box
-            ctx.fillStyle = isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.04)';
-            ctx.fillRect(80, 270, 1040, 120);
+            ctx.fillStyle = isDark ? 'rgba(255,255,255,0.04)' : 'rgba(0,0,0,0.03)';
+            drawRoundedRect(ctx, 80, 220, 1040, 115, 16);
+            ctx.fill();
             ctx.strokeStyle = isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.08)';
             ctx.lineWidth = 1.5;
-            ctx.strokeRect(80, 270, 1040, 120);
+            drawRoundedRect(ctx, 80, 220, 1040, 115, 16);
+            ctx.stroke();
 
             const metrics = [
               { val: '5.5+ YRS', lbl: 'EXPERIENCE' },
@@ -16223,43 +16300,55 @@ Feature: Srivatsa Malali Portfolio Verification
 
             metrics.forEach((m, idx) => {
               const x = 110 + idx * 260;
-              ctx.fillStyle = isDark ? '#38bdf8' : '#0284c7';
-              ctx.font = 'bold 32px "IBM Plex Mono", monospace';
-              ctx.fillText(m.val, x, 325);
+              ctx.fillStyle = accentColor;
+              ctx.font = 'bold 30px "IBM Plex Mono", monospace';
+              ctx.fillText(m.val, x, 272);
               ctx.fillStyle = isDark ? '#94a3b8' : '#64748b';
-              ctx.font = '600 14px Montserrat, sans-serif';
-              ctx.fillText(m.lbl, x, 360);
+              ctx.font = '600 13px Montserrat, sans-serif';
+              ctx.fillText(m.lbl, x, 305);
             });
 
             // Highlights
             ctx.fillStyle = isDark ? '#f8fafc' : '#0f172a';
-            ctx.font = 'bold 20px Montserrat, sans-serif';
-            ctx.fillText('CORE COMPETENCIES & CLIENT ENGAGEMENTS:', 80, 440);
+            ctx.font = 'bold 18px Montserrat, sans-serif';
+            ctx.fillText('CORE COMPETENCIES & CLIENT ENGAGEMENTS:', 80, 385);
 
             const selected = Array.from(highlightChecks).filter(c => c.checked).map(c => c.value);
             selected.forEach((h, idx) => {
               const col = idx % 2;
               const row = Math.floor(idx / 2);
               const x = 80 + col * 520;
-              const y = 480 + row * 45;
-              ctx.fillStyle = isDark ? '#38bdf8' : '#0284c7';
-              ctx.fillText('⚡', x, y);
+              const y = 425 + row * 45;
+
+              // Chip background box
+              ctx.fillStyle = isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.03)';
+              drawRoundedRect(ctx, x, y - 24, 480, 36, 10);
+              ctx.fill();
+              ctx.strokeStyle = isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.06)';
+              ctx.lineWidth = 1;
+              drawRoundedRect(ctx, x, y - 24, 480, 36, 10);
+              ctx.stroke();
+
+              ctx.fillStyle = accentColor;
+              ctx.font = '16px Montserrat, sans-serif';
+              ctx.fillText('⚡', x + 12, y);
+
               ctx.fillStyle = isDark ? '#cbd5e1' : '#334155';
-              ctx.font = '500 18px Montserrat, sans-serif';
-              ctx.fillText(h, x + 30, y);
+              ctx.font = '500 16px Montserrat, sans-serif';
+              ctx.fillText(h, x + 40, y);
             });
 
             // Footer
-            ctx.strokeStyle = isDark ? 'rgba(255,255,255,0.15)' : 'rgba(0,0,0,0.12)';
+            ctx.strokeStyle = isDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.1)';
             ctx.beginPath();
-            ctx.moveTo(80, 640);
-            ctx.lineTo(1120, 640);
+            ctx.moveTo(80, 630);
+            ctx.lineTo(1120, 630);
             ctx.stroke();
 
             ctx.fillStyle = isDark ? '#94a3b8' : '#64748b';
-            ctx.font = '500 16px "IBM Plex Mono", monospace';
-            ctx.fillText('📍 Bangalore, India · Available Immediately', 80, 680);
-            ctx.fillText('🔗 https://srivatsamalali.github.io/', 750, 680);
+            ctx.font = '500 15px "IBM Plex Mono", monospace';
+            ctx.fillText('📍 Bangalore, India · Available Immediately', 80, 670);
+            ctx.fillText('🔗 https://srivatsamalali.github.io/', 730, 670);
 
             // Download Trigger
             const link = document.createElement('a');
@@ -16267,7 +16356,7 @@ Feature: Srivatsa Malali Portfolio Verification
             link.href = canvas.toDataURL('image/png');
             link.click();
 
-            showToast('High-Res 2X Candidate Card Downloaded! 📸', '✨');
+            showToast('High-Res Photo Candidate Card Downloaded! 📸', '✨');
             ConfettiEngine.burst(window.innerWidth / 2, window.innerHeight / 2, 50);
           });
         }
