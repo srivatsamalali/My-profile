@@ -919,6 +919,16 @@
     }
 
     @media (max-width: 600px) {
+      .hero-floating-badges {
+        gap: 8px;
+        margin-top: 16px;
+      }
+
+      .hero-floating-pill {
+        padding: 5px 10px;
+        font-size: 0.64rem;
+      }
+
       .hero-profile-header {
         flex-direction: row;
         gap: 14px;
@@ -1258,6 +1268,45 @@
       border-color: rgba(250, 204, 21, 0.5);
       color: #fef08a;
       background: rgba(0, 0, 0, 0.45);
+    }
+
+    @media (max-width: 640px) {
+      .terminal-header {
+        gap: 6px;
+        padding-bottom: 8px;
+        margin-bottom: 8px;
+        flex-wrap: nowrap;
+      }
+
+      .terminal-title {
+        font-size: 0.62rem;
+        max-width: 120px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        flex-shrink: 1;
+      }
+
+      .terminal-audit-btn {
+        padding: 4px 8px 4px 7px;
+        font-size: 0.62rem;
+        gap: 4px;
+        flex-shrink: 0;
+      }
+
+      .audit-btn-badge {
+        display: none !important;
+      }
+
+      .terminal-dots {
+        gap: 4px;
+        flex-shrink: 0;
+      }
+
+      .terminal-dot {
+        width: 8px;
+        height: 8px;
+      }
     }
 
     .terminal-logs {
@@ -8239,6 +8288,11 @@
                     <div class="avatar-glare-sheen" id="avatarGlare"></div>
                     <div class="hero-avatar-badge" title="Click to Open 3D Studio & Rotate 360°">
                       <span class="status-pulse-dot"></span>
+                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="color:#38bdf8; flex-shrink:0;">
+                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                        <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                        <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                      </svg>
                       <span>3D STUDIO ↗</span>
                     </div>
                   </div>
@@ -8313,7 +8367,7 @@
           <div class="qa-terminal" data-locator="css=.qa-terminal">
             <div class="terminal-header">
               <div class="terminal-title">live_qa_test_simulation.sh</div>
-              <div style="display:flex; align-items:center; gap:10px;">
+              <div class="terminal-actions" style="display:flex; align-items:center; gap:8px; flex-shrink:0;">
                 <button id="runLiveAuditBtn" class="terminal-audit-btn"
                   title="Run Live Automated QA Audit on this Portfolio" aria-label="Run Live Automated QA Audit">
                   <span class="audit-btn-pulse"></span>
