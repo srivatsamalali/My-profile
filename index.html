@@ -859,6 +859,17 @@
       animation-delay: 2.6s;
     }
 
+    .hero-floating-pill.yoga-pill-trigger {
+      cursor: pointer;
+      border-color: rgba(245, 158, 11, 0.35);
+      outline: none;
+    }
+
+    .hero-floating-pill.yoga-pill-trigger:hover {
+      border-color: #f59e0b;
+      box-shadow: 0 6px 16px rgba(245, 158, 11, 0.2), 0 0 12px rgba(245, 158, 11, 0.25);
+    }
+
     @keyframes floatPill {
 
       0%,
@@ -1618,6 +1629,12 @@
       border-color: rgba(34, 197, 94, 0.35);
       background: rgba(34, 197, 94, 0.06);
       color: #22c55e;
+    }
+
+    .icon-circle-badge.gold-tint {
+      border-color: rgba(245, 158, 11, 0.35);
+      background: rgba(245, 158, 11, 0.08);
+      color: #f59e0b;
     }
 
     .icon-circle-badge-sm {
@@ -5604,11 +5621,22 @@
       height: 32px;
       border-radius: 8px;
       background: rgba(37, 99, 235, 0.15);
+      border: 1px solid rgba(37, 99, 235, 0.3);
       color: var(--accent);
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
+    }
+
+    .flight-metric-icon svg {
+      width: 16px;
+      height: 16px;
+      stroke-width: 2;
+      stroke: currentColor;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
     }
 
     .flight-metric-text strong {
@@ -7309,6 +7337,575 @@
         border: 2px solid #0f172a !important;
       }
     }
+    /* ==========================================================================
+       FEATURE: NATIONAL YOGA CHAMPION SHOWCASE MODAL
+       ========================================================================== */
+    .yoga-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(4, 7, 15, 0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      z-index: 999999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      visibility: hidden;
+      transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s ease;
+    }
+
+    .yoga-modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+      visibility: visible;
+    }
+
+    .yoga-modal-window {
+      position: relative;
+      width: 100%;
+      max-width: 1060px;
+      max-height: 90vh;
+      background: rgba(13, 18, 30, 0.95);
+      border: 1px solid rgba(251, 191, 36, 0.35);
+      border-radius: 20px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85), 0 0 40px rgba(251, 191, 36, 0.18);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transform: scale(0.94) translateY(20px);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .yoga-modal-overlay.active .yoga-modal-window {
+      transform: scale(1) translateY(0);
+    }
+
+    [data-theme="light"] .yoga-modal-window {
+      background: rgba(255, 255, 255, 0.97);
+      border: 1px solid rgba(217, 119, 6, 0.3);
+      box-shadow: 0 25px 60px rgba(15, 23, 42, 0.25), 0 0 35px rgba(217, 119, 6, 0.12);
+    }
+
+    .yoga-modal-header {
+      padding: 16px 24px;
+      background: rgba(10, 14, 23, 0.8);
+      border-bottom: 1px solid rgba(251, 191, 36, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    [data-theme="light"] .yoga-modal-header {
+      background: rgba(248, 250, 252, 0.95);
+      border-bottom-color: rgba(217, 119, 6, 0.18);
+    }
+
+    .yoga-title-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .yoga-badge-tag {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: #fbbf24;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    [data-theme="light"] .yoga-badge-tag {
+      color: #b45309;
+    }
+
+    .yoga-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: -0.01em;
+      margin: 0;
+    }
+
+    [data-theme="light"] .yoga-title {
+      color: #0f172a;
+    }
+
+    .yoga-modal-body {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      overflow: hidden;
+      max-height: calc(90vh - 75px);
+    }
+
+    .yoga-gallery-main {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      border-right: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(8, 12, 20, 0.6);
+    }
+
+    [data-theme="light"] .yoga-gallery-main {
+      border-right-color: rgba(0, 0, 0, 0.08);
+      background: rgba(241, 245, 249, 0.5);
+    }
+
+    .yoga-active-view-container {
+      position: relative;
+      width: 100%;
+      height: 380px;
+      background: #000000;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(251, 191, 36, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.8);
+    }
+
+    .yoga-active-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      transition: transform 0.3s ease, opacity 0.25s ease;
+    }
+
+    .yoga-photo-badge {
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      right: 12px;
+      padding: 8px 14px;
+      background: rgba(10, 15, 26, 0.85);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(251, 191, 36, 0.3);
+      border-radius: 8px;
+      color: #fef08a;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-align: center;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    [data-theme="light"] .yoga-photo-badge {
+      background: rgba(255, 255, 255, 0.9);
+      color: #78350f;
+      border-color: rgba(217, 119, 6, 0.35);
+    }
+
+    .yoga-nav-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(251, 191, 36, 0.4);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      z-index: 3;
+    }
+
+    .yoga-nav-arrow:hover {
+      background: #fbbf24;
+      color: #0f172a;
+      transform: translateY(-50%) scale(1.1);
+      box-shadow: 0 0 16px rgba(251, 191, 36, 0.6);
+    }
+
+    .yoga-nav-prev { left: 10px; }
+    .yoga-nav-next { right: 10px; }
+
+    .yoga-counter {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(251, 191, 36, 0.3);
+      border-radius: 12px;
+      padding: 3px 10px;
+      color: #fbbf24;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 700;
+      z-index: 2;
+    }
+
+    .yoga-thumbs-strip {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+    }
+
+    .yoga-thumb-btn {
+      position: relative;
+      height: 70px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 2px solid transparent;
+      padding: 0;
+      background: #000;
+      cursor: pointer;
+      opacity: 0.6;
+      transition: all 0.25s ease;
+    }
+
+    .yoga-thumb-btn img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .yoga-thumb-btn:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+    }
+
+    .yoga-thumb-btn.active {
+      opacity: 1;
+      border-color: #fbbf24;
+      box-shadow: 0 0 14px rgba(251, 191, 36, 0.5);
+      transform: translateY(-2px);
+    }
+
+    /* Sidebar Info */
+    .yoga-sidebar-info {
+      padding: 20px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      overflow: hidden;
+      box-sizing: border-box;
+    }
+
+    .yoga-info-card {
+      background: rgba(251, 191, 36, 0.05);
+      border: 1px solid rgba(251, 191, 36, 0.2);
+      border-radius: 12px;
+      padding: 14px 16px;
+    }
+
+    [data-theme="light"] .yoga-info-card {
+      background: rgba(254, 243, 199, 0.4);
+      border-color: rgba(217, 119, 6, 0.25);
+    }
+
+    .yoga-card-tag {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: #fbbf24;
+      letter-spacing: 0.06em;
+      margin-bottom: 6px;
+    }
+
+    [data-theme="light"] .yoga-card-tag {
+      color: #b45309;
+    }
+
+    .yoga-info-card h4 {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 6px;
+    }
+
+    [data-theme="light"] .yoga-info-card h4 {
+      color: #0f172a;
+    }
+
+    .yoga-info-card p {
+      font-size: 0.77rem;
+      line-height: 1.5;
+      color: #cbd5e1;
+      margin-bottom: 6px;
+    }
+
+    .yoga-info-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    [data-theme="light"] .yoga-info-card p {
+      color: #334155;
+    }
+
+    .yoga-metrics-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .yoga-metric-box {
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      padding: 8px 10px;
+      text-align: center;
+    }
+
+    [data-theme="light"] .yoga-metric-box {
+      background: #f8fafc;
+      border-color: #e2e8f0;
+    }
+
+    .yoga-metric-val {
+      font-family: var(--font-mono);
+      font-size: 0.98rem;
+      font-weight: 800;
+      color: #fbbf24;
+    }
+
+    [data-theme="light"] .yoga-metric-val {
+      color: #b45309;
+    }
+
+    .yoga-metric-lbl {
+      font-size: 0.66rem;
+      color: #94a3b8;
+      margin-top: 2px;
+    }
+
+    [data-theme="light"] .yoga-metric-lbl {
+      color: #64748b;
+    }
+
+    .yoga-pillars-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      overflow-y: auto;
+      max-height: 175px;
+      padding-right: 6px;
+      overscroll-behavior: contain;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(251, 191, 36, 0.4) rgba(255, 255, 255, 0.04);
+    }
+
+    .yoga-pillars-list::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    .yoga-pillars-list::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.04);
+      border-radius: 4px;
+    }
+
+    .yoga-pillars-list::-webkit-scrollbar-thumb {
+      background: rgba(251, 191, 36, 0.4);
+      border-radius: 4px;
+    }
+
+    .yoga-pillars-list::-webkit-scrollbar-thumb:hover {
+      background: rgba(251, 191, 36, 0.8);
+    }
+
+    [data-theme="light"] .yoga-pillars-list {
+      scrollbar-color: rgba(217, 119, 6, 0.4) rgba(0, 0, 0, 0.04);
+    }
+
+    [data-theme="light"] .yoga-pillars-list::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.04);
+    }
+
+    [data-theme="light"] .yoga-pillars-list::-webkit-scrollbar-thumb {
+      background: rgba(217, 119, 6, 0.4);
+    }
+
+    [data-theme="light"] .yoga-pillars-list::-webkit-scrollbar-thumb:hover {
+      background: rgba(217, 119, 6, 0.8);
+    }
+
+    .yoga-pillar-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.75rem;
+      color: #cbd5e1;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 10px 12px;
+      border-radius: 8px;
+    }
+
+    [data-theme="light"] .yoga-pillar-item {
+      color: #334155;
+      background: #ffffff;
+      border-color: #e2e8f0;
+    }
+
+    .yoga-pillar-icon {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      background: rgba(245, 158, 11, 0.08);
+      color: #f59e0b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .yoga-pillar-icon svg {
+      width: 13px;
+      height: 13px;
+      stroke-width: 2;
+      stroke: currentColor;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      display: block;
+    }
+
+    [data-theme="light"] .yoga-pillar-icon {
+      border-color: rgba(217, 119, 6, 0.35);
+      background: rgba(254, 243, 199, 0.6);
+      color: #b45309;
+    }
+
+    .yoga-pillar-item strong {
+      display: block;
+      color: #ffffff;
+      font-size: 0.77rem;
+      margin-bottom: 2px;
+    }
+
+    [data-theme="light"] .yoga-pillar-item strong {
+      color: #0f172a;
+    }
+
+    .yoga-pillar-item span {
+      display: block;
+      line-height: 1.4;
+      color: #94a3b8;
+    }
+
+    [data-theme="light"] .yoga-pillar-item span {
+      color: #64748b;
+    }
+
+    /* Responsive Yoga Modal */
+    @media (max-width: 850px) {
+      .yoga-modal-body {
+        grid-template-columns: 1fr;
+        overflow-y: auto;
+      }
+
+      .yoga-pillars-list {
+        max-height: 220px;
+      }
+
+      .yoga-gallery-main {
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .yoga-active-view-container {
+        height: 280px;
+      }
+    }
+
+    /* ==========================================================================
+       FEATURE: DATA PACKET FLOW ON ARCHITECTURE & PROJECT CARDS
+       ========================================================================== */
+    .project-card,
+    .arch-tier-column,
+    .arch-visualizer-card {
+      position: relative;
+    }
+
+    .card-packet-beam {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent, #38bdf8), #ffffff, var(--accent, #38bdf8), transparent);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateX(-100%);
+      transition: opacity 0.3s ease;
+      z-index: 5;
+    }
+
+    .project-card:hover .card-packet-beam,
+    .arch-visualizer-card:hover .card-packet-beam,
+    .arch-tier-column.active-tier .card-packet-beam {
+      opacity: 1;
+      animation: packetStreamAnim 2.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+
+    @keyframes packetStreamAnim {
+      0% {
+        transform: translateX(-100%);
+      }
+      100% {
+        transform: translateX(100%);
+      }
+    }
+
+    .arch-tier-column {
+      position: relative;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .arch-tier-column.active-tier {
+      border-color: var(--accent) !important;
+      box-shadow: 0 0 25px rgba(56, 189, 248, 0.35), inset 0 0 15px rgba(56, 189, 248, 0.15) !important;
+      transform: translateY(-3px);
+    }
+
+    .arch-node-item {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .arch-node-item::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.25), transparent);
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      opacity: 0;
+    }
+
+    .arch-node-item:hover::after,
+    .arch-tier-column.active-tier .arch-node-item::after {
+      opacity: 1;
+      animation: nodeSweepAnim 1.4s ease infinite;
+    }
+
+    @keyframes nodeSweepAnim {
+      0% {
+        left: -100%;
+      }
+      100% {
+        left: 200%;
+      }
+    }
   </style>
 </head>
 
@@ -7546,16 +8143,15 @@
               </div>
               <span>99.8% Defect Free</span>
             </div>
-            <div class="hero-floating-pill pill-3">
-              <div class="icon-circle-badge icon-circle-badge-sm"
+            <button type="button" class="hero-floating-pill pill-3 yoga-pill-trigger open-yoga-trigger" id="heroYogaChampPill" title="View National Yoga Champion Showcase &amp; Athletic Discipline">
+              <div class="icon-circle-badge icon-circle-badge-sm gold-tint"
                 style="width:20px; height:20px; padding:0; border:none; background:transparent;">
                 <svg viewBox="0 0 24 24" style="width:13px; height:13px;">
-                  <polygon
-                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
                 </svg>
               </div>
-              <span>Yoga National Champ</span>
-            </div>
+              <span>Yoga Gold Medalist ↗</span>
+            </button>
           </div>
         </div>
 
@@ -7600,6 +8196,7 @@
         <!-- Project 1 -->
         <div class="project-card blueprint-card bounce-target bounce-pop d-4"
           data-locator="css=.project-card:nth-of-type(1)">
+          <div class="card-packet-beam"></div>
           <div>
             <div class="project-meta" style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
               <span class="client-logo-pill" style="padding:3px 8px; font-weight:700; font-size:0.75rem;">
@@ -7633,6 +8230,7 @@
         <!-- Project 2 -->
         <div class="project-card blueprint-card bounce-target bounce-pop d-5"
           data-locator="css=.project-card:nth-of-type(2)">
+          <div class="card-packet-beam"></div>
           <div>
             <div class="project-meta" style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
               <span class="client-logo-pill" style="padding:3px 8px; font-weight:700; font-size:0.75rem;">
@@ -7660,6 +8258,7 @@
         <!-- Project 3 -->
         <div class="project-card blueprint-card bounce-target bounce-pop d-6"
           data-locator="css=.project-card:nth-of-type(3)">
+          <div class="card-packet-beam"></div>
           <div>
             <div class="project-meta" style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
               <span class="client-logo-pill" style="padding:3px 8px; font-weight:700; font-size:0.75rem;">
@@ -7687,6 +8286,7 @@
         <!-- Project 4 -->
         <div class="project-card blueprint-card bounce-target bounce-pop d-7"
           data-locator="css=.project-card:nth-of-type(4)">
+          <div class="card-packet-beam"></div>
           <div>
             <div class="project-meta" style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
               <span class="client-logo-pill" style="padding:3px 8px; font-weight:700; font-size:0.75rem;">
@@ -8204,8 +8804,9 @@
       <div class="flight-path-wrapper bounce-target bounce-pop d-6">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
           <span
-            style="font-family:var(--font-mono); font-size:0.75rem; font-weight:700; color:var(--accent); text-transform:uppercase; letter-spacing:0.05em;">
-            ✈️ Career Flight Path // Interactive Transit Map
+            style="font-family:var(--font-mono); font-size:0.75rem; font-weight:700; color:var(--accent); text-transform:uppercase; letter-spacing:0.05em; display:flex; align-items:center; gap:6px;">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
+            <span>Career Flight Path // Interactive Transit Map</span>
           </span>
           <span style="font-family:var(--font-mono); font-size:0.68rem; color:#94a3b8;">Click any station hub to
             inspect</span>
@@ -8269,14 +8870,18 @@
           </div>
           <div class="flight-metrics-column" id="flightMetricsColumn">
             <div class="flight-metric-row">
-              <div class="flight-metric-icon">🏆</div>
+              <div class="flight-metric-icon">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+              </div>
               <div class="flight-metric-text">
                 <strong id="flightMetricHighlight">Outstanding Engineering Delivery</strong>
                 <span id="flightMetricSub">Recognized for excellence in client delivery</span>
               </div>
             </div>
             <div class="flight-metric-row">
-              <div class="flight-metric-icon">⚡</div>
+              <div class="flight-metric-icon">
+                <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              </div>
               <div class="flight-metric-text">
                 <strong id="flightMetricStat">Zero Defect Leakage</strong>
                 <span id="flightMetricStatSub">Daily automated regression pipeline runs</span>
@@ -8530,7 +9135,7 @@
         <!-- Yoga National Gold Medal -->
         <div class="cred-card blueprint-card bounce-target bounce-pop d-10"
           data-locator="css=#certs .cred-card:nth-of-type(3)">
-          <div class="icon-circle-badge">
+          <div class="icon-circle-badge" style="background:rgba(251,191,36,0.15); border-color:rgba(251,191,36,0.4); color:#fbbf24;">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
               stroke-linejoin="round">
               <circle cx="12" cy="8" r="6" />
@@ -8539,7 +9144,10 @@
           </div>
           <div>
             <div class="cred-name">National Yoga Gold Medalist</div>
-            <div class="cred-detail">National Level Championship · Focus &amp; Agility</div>
+            <div class="cred-detail">Zonal, State &amp; National Champion · Mysore, Chikkamagaluru &amp; Doddaballapura</div>
+            <div class="cred-actions" style="margin-top:8px;">
+              <button type="button" class="cred-link open-yoga-trigger" id="openYogaModalBtn" title="View National Yoga Champion Gallery &amp; Journey">View Gallery &amp; Journey ↗</button>
+            </div>
           </div>
         </div>
 
@@ -8925,13 +9533,22 @@
             <!-- 3 Clean File Tabs -->
             <div class="code-tab-nav" id="codeTabNav">
               <button class="code-tab-btn active" data-tab="java" id="tabJavaBtn">
-                <span>☕ AutomationTest.java</span>
+                <span style="display:inline-flex; align-items:center; gap:5px;">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                  <span>AutomationTest.java</span>
+                </span>
               </button>
               <button class="code-tab-btn" data-tab="payment" id="tabPaymentBtn">
-                <span>💳 PaymentGatewayE2E.java</span>
+                <span style="display:inline-flex; align-items:center; gap:5px;">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+                  <span>PaymentGatewayE2E.java</span>
+                </span>
               </button>
               <button class="code-tab-btn" data-tab="feature" id="tabFeatureBtn">
-                <span>🥒 ProfileVerification.feature</span>
+                <span style="display:inline-flex; align-items:center; gap:5px;">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+                  <span>ProfileVerification.feature</span>
+                </span>
               </button>
             </div>
 
@@ -9064,8 +9681,9 @@
               <div
                 style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(148,163,184,0.15); padding-bottom:10px;">
                 <span
-                  style="font-family:var(--font-mono); font-size:0.78rem; font-weight:700; color:var(--color); text-transform:uppercase;">
-                  💳 Live Card &amp; Payment Gateway Editor
+                  style="font-family:var(--font-mono); font-size:0.78rem; font-weight:700; color:var(--color); text-transform:uppercase; display:inline-flex; align-items:center; gap:6px;">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+                  <span>Live Card &amp; Payment Gateway Editor</span>
                 </span>
                 <span style="font-family:var(--font-mono); font-size:0.68rem; color:#22c55e; font-weight:600;">
                   ● REAL-TIME VALIDATION ACTIVE
@@ -9138,13 +9756,22 @@
               <!-- Real-time QA Assertion Badges -->
               <div class="card-telemetry-row">
                 <div class="card-badge-pill" id="luhnBadge">
-                  <span>✔ Luhn Mod-10 Checksum Valid</span>
+                  <span style="display:inline-flex; align-items:center; gap:4px;">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <span>Luhn Mod-10 Checksum Valid</span>
+                  </span>
                 </div>
                 <div class="card-badge-pill" id="expiryBadge">
-                  <span>✔ Expiration Future Active</span>
+                  <span style="display:inline-flex; align-items:center; gap:4px;">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <span>Expiration Future Active</span>
+                  </span>
                 </div>
                 <div class="card-badge-pill" id="cvvBadge">
-                  <span>✔ 3-Digit CVV Masked</span>
+                  <span style="display:inline-flex; align-items:center; gap:4px;">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <span>3-Digit CVV Masked</span>
+                  </span>
                 </div>
               </div>
 
@@ -9157,8 +9784,10 @@
 
               <!-- Generated QA Test Receipt -->
               <div class="card-qa-receipt" id="cardQaReceipt">
-                <div style="color:#22c55e; font-weight:700; margin-bottom:4px;">✔ TRANSACTION &amp; QA ASSERTION
-                  VERIFIED [PASS]</div>
+                <div style="color:#22c55e; font-weight:700; margin-bottom:4px; display:inline-flex; align-items:center; gap:5px;">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span>TRANSACTION &amp; QA ASSERTION VERIFIED [PASS]</span>
+                </div>
                 <div>• Payment Gateway: <strong>Razorpay / NPCI Core Rails / Apple Pay</strong></div>
                 <div>• Card Network: <strong id="receiptNetwork">VISA DEBIT</strong> · Status: <strong>APPROVED (AUTH
                     #884920)</strong></div>
@@ -9318,34 +9947,20 @@
       <input type="text" class="cmd-search-input" id="cmdSearchInput"
         placeholder="Type a command or jump to section... (ESC to exit)" autocomplete="off" />
       <ul class="cmd-item-list" id="cmdItemList">
-        <li class="cmd-item" data-action="work"><span>📂 Jump to Selected Works</span><span
-            class="cmd-shortcut-tag">#work</span></li>
-        <li class="cmd-item" data-action="pipeline"><span>📊 Jump to CI/CD &amp; Pipeline Health</span><span
-            class="cmd-shortcut-tag">#pipeline</span></li>
-        <li class="cmd-item" data-action="skills"><span>⚡ Jump to Engineering Skills</span><span
-            class="cmd-shortcut-tag">#skills</span></li>
-        <li class="cmd-item" data-action="code"><span>💻 Jump to Architecture Code Tabs</span><span
-            class="cmd-shortcut-tag">#code</span></li>
-        <li class="cmd-item" data-action="workflow"><span>🔄 Jump to QA Lifecycle &amp; Defect Strategy</span><span
-            class="cmd-shortcut-tag">#workflow</span></li>
-        <li class="cmd-item" data-action="experience"><span>⏱ Jump to Career Timeline</span><span
-            class="cmd-shortcut-tag">#experience</span></li>
-        <li class="cmd-item" data-action="certs"><span>🏆 Jump to Credentials &amp; Awards</span><span
-            class="cmd-shortcut-tag">#certs</span></li>
-        <li class="cmd-item" data-action="contact"><span>💬 Jump to Contact &amp; WhatsApp</span><span
-            class="cmd-shortcut-tag">#contact</span></li>
-        <li class="cmd-item" data-action="open-resume"><span>📄 Open Executive Resume Brief</span><span
-            class="cmd-shortcut-tag">Resume</span></li>
-        <li class="cmd-item" data-action="run-audit"><span>🧪 Run Live Automated QA Audit</span><span
-            class="cmd-shortcut-tag">Audit</span></li>
-        <li class="cmd-item" data-action="copy-email"><span>📋 Copy Email to Clipboard</span><span
-            class="cmd-shortcut-tag">Email</span></li>
-        <li class="cmd-item" data-action="copy-phone"><span>📱 Copy Phone to Clipboard</span><span
-            class="cmd-shortcut-tag">Phone</span></li>
-        <li class="cmd-item" data-action="toggle-theme"><span>🌓 Toggle Light / Dark Theme</span><span
-            class="cmd-shortcut-tag">Theme</span></li>
-        <li class="cmd-item" data-action="replay-intro"><span>💥 Replay Quantum Formation Intro</span><span
-            class="cmd-shortcut-tag">Intro</span></li>
+        <li class="cmd-item" data-action="work"><span style="display:inline-flex; align-items:center; gap:8px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg><span>Jump to Selected Works</span></span><span class="cmd-shortcut-tag">#work</span></li>
+        <li class="cmd-item" data-action="pipeline"><span style="display:inline-flex; align-items:center; gap:8px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg><span>Jump to CI/CD &amp; Pipeline Health</span></span><span class="cmd-shortcut-tag">#pipeline</span></li>
+        <li class="cmd-item" data-action="skills"><span style="display:inline-flex; align-items:center; gap:8px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg><span>Jump to Engineering Skills</span></span><span class="cmd-shortcut-tag">#skills</span></li>
+        <li class="cmd-item" data-action="code"><span style="display:inline-flex; align-items:center; gap:8px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg><span>Jump to Architecture Code Tabs</span></span><span class="cmd-shortcut-tag">#code</span></li>
+        <li class="cmd-item" data-action="workflow"><span style="display:inline-flex; align-items:center; gap:8px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg><span>Jump to QA Lifecycle &amp; Defect Strategy</span></span><span class="cmd-shortcut-tag">#workflow</span></li>
+        <li class="cmd-item" data-action="experience"><span style="display:inline-flex; align-items:center; gap:8px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg><span>Jump to Career Timeline</span></span><span class="cmd-shortcut-tag">#experience</span></li>
+        <li class="cmd-item" data-action="certs"><span style="display:inline-flex; align-items:center; gap:8px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg><span>Jump to Credentials &amp; Awards</span></span><span class="cmd-shortcut-tag">#certs</span></li>
+        <li class="cmd-item" data-action="contact"><span style="display:inline-flex; align-items:center; gap:8px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg><span>Jump to Contact &amp; WhatsApp</span></span><span class="cmd-shortcut-tag">#contact</span></li>
+        <li class="cmd-item" data-action="open-resume"><span style="display:inline-flex; align-items:center; gap:8px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg><span>Open Executive Resume Brief</span></span><span class="cmd-shortcut-tag">Resume</span></li>
+        <li class="cmd-item" data-action="run-audit"><span style="display:inline-flex; align-items:center; gap:8px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><polyline points="9 12 11 14 15 10"></polyline></svg><span>Run Live Automated QA Audit</span></span><span class="cmd-shortcut-tag">Audit</span></li>
+        <li class="cmd-item" data-action="copy-email"><span style="display:inline-flex; align-items:center; gap:8px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg><span>Copy Email to Clipboard</span></span><span class="cmd-shortcut-tag">Email</span></li>
+        <li class="cmd-item" data-action="copy-phone"><span style="display:inline-flex; align-items:center; gap:8px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg><span>Copy Phone to Clipboard</span></span><span class="cmd-shortcut-tag">Phone</span></li>
+        <li class="cmd-item" data-action="toggle-theme"><span style="display:inline-flex; align-items:center; gap:8px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg><span>Toggle Light / Dark Theme</span></span><span class="cmd-shortcut-tag">Theme</span></li>
+        <li class="cmd-item" data-action="replay-intro"><span style="display:inline-flex; align-items:center; gap:8px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg><span>Replay Quantum Formation Intro</span></span><span class="cmd-shortcut-tag">Intro</span></li>
       </ul>
     </div>
   </div>
@@ -9386,7 +10001,10 @@
       <!-- Header -->
       <div class="card-gen-header">
         <div class="achieve-title-wrap">
-          <span class="achieve-badge-tag">📇 CANDIDATE SNAPSHOT ENGINE</span>
+          <span class="achieve-badge-tag" style="display:inline-flex; align-items:center; gap:5px;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"></rect><circle cx="9" cy="10" r="2"></circle><line x1="15" y1="8" x2="17" y2="8"></line><line x1="15" y1="12" x2="17" y2="12"></line><line x1="7" y1="16" x2="17" y2="16"></line></svg>
+            <span>CANDIDATE SNAPSHOT ENGINE</span>
+          </span>
           <h3 class="achieve-title">Personalized Profile Card &amp; 1-Page PDF</h3>
         </div>
         <button type="button" class="drawer-close-btn" id="closeCardGenModalBtn"
@@ -9503,11 +10121,20 @@
               <!-- Card Footer & Live Verified QR Link -->
               <div class="exec-card-footer">
                 <div class="exec-card-footer-info">
-                  <span>📍 Bangalore, India · Available Immediately</span>
-                  <span>🔗 srivatsamalali.github.io</span>
+                  <span style="display:inline-flex; align-items:center; gap:4px;">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    <span>Bangalore, India · Available Immediately</span>
+                  </span>
+                  <span style="display:inline-flex; align-items:center; gap:4px;">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                    <span>srivatsamalali.github.io</span>
+                  </span>
                 </div>
                 <div class="exec-card-qr-badge">
-                  <span>✓ VERIFIED SDET</span>
+                  <span style="display:inline-flex; align-items:center; gap:4px;">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <span>VERIFIED SDET</span>
+                  </span>
                 </div>
               </div>
             </div>
@@ -9545,6 +10172,137 @@
     </div>
   </div>
 
+  <!-- =========================================================================
+       FEATURE: NATIONAL YOGA CHAMPION SHOWCASE MODAL
+       ========================================================================= -->
+  <div class="yoga-modal-overlay" id="yogaChampionModal" role="dialog" aria-modal="true"
+    aria-label="National Yoga Champion Showcase">
+    <div class="yoga-modal-window">
+      <!-- Header -->
+      <div class="yoga-modal-header">
+        <div class="yoga-title-wrap">
+          <span class="yoga-badge-tag">
+            <span class="status-pulse-dot" style="background:#fbbf24;"></span>
+            <span>NATIONAL YOGA CHAMPIONSHIP // ATHLETIC DISCIPLINE</span>
+          </span>
+          <h3 class="yoga-title">Srivatsa Malali — <strong>National Yoga Gold Medalist</strong></h3>
+        </div>
+        <button type="button" class="drawer-close-btn" id="closeYogaModalBtn" title="Close Gallery [ESC]">✕</button>
+      </div>
+
+      <!-- Content Split View -->
+      <div class="yoga-modal-body">
+        <!-- Main Stage / Active Photo Viewer -->
+        <div class="yoga-gallery-main">
+          <div class="yoga-active-view-container">
+            <img src="images/yoga/yoga_competition_2017.jpg" alt="National Yoga Champion Performance" id="yogaActivePhoto" class="yoga-active-img" />
+            <div class="yoga-photo-badge" id="yogaPhotoBadge">2017 Inter-College Yoga Competition · Purna Dhanurasana (Full Bow Pose)</div>
+            
+            <!-- Prev/Next Controls -->
+            <button type="button" class="yoga-nav-arrow yoga-nav-prev" id="yogaPrevBtn" title="Previous Photo [←]">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            </button>
+            <button type="button" class="yoga-nav-arrow yoga-nav-next" id="yogaNextBtn" title="Next Photo [→]">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </button>
+            <div class="yoga-counter" id="yogaCounter">1 / 5</div>
+          </div>
+
+          <!-- Thumbnails Strip -->
+          <div class="yoga-thumbs-strip" id="yogaThumbsStrip">
+            <button type="button" class="yoga-thumb-btn active" data-index="0" data-src="images/yoga/yoga_competition_2017.jpg" data-caption="2017 Inter-College Yoga Competition · Purna Dhanurasana (Full Bow Pose)">
+              <img src="images/yoga/yoga_competition_2017.jpg" alt="Yoga Posture 1 - Full Bow Pose" />
+            </button>
+            <button type="button" class="yoga-thumb-btn" data-index="1" data-src="images/yoga/IMG_20180609_135239.jpg" data-caption="National Demonstration · Advanced Spinal Flexibility &amp; Balance">
+              <img src="images/yoga/IMG_20180609_135239.jpg" alt="Yoga Posture 2 - Flexibility Mastery" />
+            </button>
+            <button type="button" class="yoga-thumb-btn" data-index="2" data-src="images/yoga/IMG_20180609_135336.jpg" data-caption="Championship Stage · Symmetrical Asana Mastery &amp; Core Alignment">
+              <img src="images/yoga/IMG_20180609_135336.jpg" alt="Yoga Posture 3 - Symmetrical Alignment" />
+            </button>
+            <button type="button" class="yoga-thumb-btn" data-index="3" data-src="images/yoga/IMG_20200620_211010_087.jpg" data-caption="Intensive Asana Sadhana · Core Strength &amp; Dynamic Equilibrium">
+              <img src="images/yoga/IMG_20200620_211010_087.jpg" alt="Yoga Posture 4 - Dynamic Equilibrium" />
+            </button>
+            <button type="button" class="yoga-thumb-btn" data-index="4" data-src="images/yoga/IMG_20210821_173321.jpg" data-caption="Advanced Yogic Posture · Focus, Alignment &amp; Mental Discipline">
+              <img src="images/yoga/IMG_20210821_173321.jpg" alt="Yoga Posture 5 - Focus & Alignment" />
+            </button>
+          </div>
+        </div>
+
+        <!-- Sidebar Narrative / Connection to Engineering -->
+        <div class="yoga-sidebar-info">
+          <div class="yoga-info-card">
+            <div class="yoga-card-tag">ENGINEERING &amp; ATHLETIC MASTERY</div>
+            <h4>From State &amp; National Arenas to Enterprise Automation</h4>
+            <p>
+              Having competed and triumphed across <strong>Mysore, Chikkamagaluru, Doddaballapura</strong>, and premier arenas, I represented and won across <strong>Zonal, State, and National Yoga Championships</strong>.
+            </p>
+            <p>
+              Over a decade of intensive championship sadhana built unshakeable <strong>concentration, multi-tasking ability, deep dedication, and daily discipline</strong> — traits that directly power my zero-defect QA engineering philosophy for Apple, Citi Bank, and Air Canada.
+            </p>
+          </div>
+
+          <div class="yoga-metrics-grid">
+            <div class="yoga-metric-box">
+              <div class="yoga-metric-val">1st Place</div>
+              <div class="yoga-metric-lbl">National Gold Medalist</div>
+            </div>
+            <div class="yoga-metric-box">
+              <div class="yoga-metric-val">Zonal &amp; State</div>
+              <div class="yoga-metric-lbl">Multi-Tier Champion</div>
+            </div>
+            <div class="yoga-metric-box">
+              <div class="yoga-metric-val">100%</div>
+              <div class="yoga-metric-lbl">Focus Under Pressure</div>
+            </div>
+            <div class="yoga-metric-box">
+              <div class="yoga-metric-val">Zero-Defect</div>
+              <div class="yoga-metric-lbl">Mindset &amp; Precision</div>
+            </div>
+          </div>
+
+          <div class="yoga-pillars-list">
+            <div class="yoga-pillar-item">
+              <span class="yoga-pillar-icon">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+              </span>
+              <div>
+                <strong>Laser Concentration</strong>
+                <span>Deep mental focus for scrutinizing high-complexity test logs, race conditions, and edge-case discovery without fatigue.</span>
+              </div>
+            </div>
+            <div class="yoga-pillar-item">
+              <span class="yoga-pillar-icon">
+                <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              </span>
+              <div>
+                <strong>Dynamic Multitasking</strong>
+                <span>Fluid context-switching across cross-platform frameworks (Selenium, Playwright, Rest Assured, CI/CD pipelines).</span>
+              </div>
+            </div>
+            <div class="yoga-pillar-item">
+              <span class="yoga-pillar-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </span>
+              <div>
+                <strong>Relentless Dedication</strong>
+                <span>Unwavering commitment to 100% test coverage and robust zero-defect regression suites.</span>
+              </div>
+            </div>
+            <div class="yoga-pillar-item">
+              <span class="yoga-pillar-icon">
+                <svg viewBox="0 0 24 24"><line x1="12" y1="3" x2="12" y2="21"/><polyline points="3 8 12 3 21 8"/><polyline points="6 12 3 8 1 12"/><polyline points="23 12 21 8 18 12"/><circle cx="3.5" cy="12" r="2.5"/><circle cx="20.5" cy="12" r="2.5"/></svg>
+              </span>
+              <div>
+                <strong>Engineering Discipline</strong>
+                <span>Meticulous standards in both yogic alignment and enterprise test architecture.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Glassmorphic Recruiter Quick-Action Dock (Bottom-Center) -->
   <nav class="recruiter-action-dock" id="recruiterActionDock" aria-label="Recruiter Quick Actions">
     <div class="dock-pill-container">
@@ -9566,22 +10324,47 @@
       </button>
       <button type="button" class="dock-action-btn" id="dockBtnCard" data-dock="card"
         title="Open 3D FinTech Card Verifier & Luhn Algorithm Sandbox">
-        <span class="dock-icon">💳</span>
+        <span class="dock-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+            <line x1="1" y1="10" x2="23" y2="10"></line>
+          </svg>
+        </span>
         <span class="dock-label">3D Card Sandbox</span>
       </button>
       <button type="button" class="dock-action-btn" id="dockBtnIDE" data-dock="ide"
         title="Open Live Automation & Cucumber BDD Code Playground">
-        <span class="dock-icon">⚡</span>
+        <span class="dock-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="16 18 22 12 16 6"></polyline>
+            <polyline points="8 6 2 12 8 18"></polyline>
+          </svg>
+        </span>
         <span class="dock-label">Live Code IDE</span>
       </button>
       <button type="button" class="dock-action-btn" id="dockBtnCardGen" data-dock="cardgen"
         title="Generate Personalized Executive Snapshot & PDF Card">
-        <span class="dock-icon">📇</span>
+        <span class="dock-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+            <circle cx="9" cy="10" r="2"></circle>
+            <line x1="15" y1="8" x2="17" y2="8"></line>
+            <line x1="15" y1="12" x2="17" y2="12"></line>
+            <line x1="7" y1="16" x2="17" y2="16"></line>
+          </svg>
+        </span>
         <span class="dock-label">Snapshot Card</span>
       </button>
       <button type="button" class="dock-action-btn dock-btn-highlight" id="dockBtnInterview" data-dock="interview"
         title="Schedule an Interview / Connect with Srivatsa">
-        <span class="dock-icon">📅</span>
+        <span class="dock-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="16" y1="2" x2="16" y2="6"></line>
+            <line x1="8" y1="2" x2="8" y2="6"></line>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+          </svg>
+        </span>
         <span class="dock-label">Book Interview</span>
       </button>
     </div>
@@ -9661,8 +10444,14 @@
 
     <!-- Preset Quick Prompt Chips -->
     <div class="bot-prompt-chips" id="botPromptChips">
-      <button type="button" class="prompt-chip-btn" data-question="hire">✨ Why hire Srivatsa as Lead SDET?</button>
-      <button type="button" class="prompt-chip-btn" data-question="flakiness">🛡️ Flaky test strategy</button>
+      <button type="button" class="prompt-chip-btn" data-question="hire" style="display:inline-flex; align-items:center; gap:5px;">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <span>Why hire Srivatsa as Lead SDET?</span>
+      </button>
+      <button type="button" class="prompt-chip-btn" data-question="flakiness" style="display:inline-flex; align-items:center; gap:5px;">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <span>Flaky test strategy</span>
+      </button>
       <button type="button" class="prompt-chip-btn" data-question="apple-citi"
         style="display:inline-flex; align-items:center; gap:5px;">
         <svg width="12" height="14" viewBox="0 0 814 1000" fill="currentColor">
@@ -9671,8 +10460,14 @@
         </svg>
         <span>Apple &amp; Citi impacts</span>
       </button>
-      <button type="button" class="prompt-chip-btn" data-question="architecture">⚙️ Automation architecture</button>
-      <button type="button" class="prompt-chip-btn" data-question="leadership">🤝 Leadership style</button>
+      <button type="button" class="prompt-chip-btn" data-question="architecture" style="display:inline-flex; align-items:center; gap:5px;">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        <span>Automation architecture</span>
+      </button>
+      <button type="button" class="prompt-chip-btn" data-question="leadership" style="display:inline-flex; align-items:center; gap:5px;">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <span>Leadership style</span>
+      </button>
     </div>
 
     <!-- Input Bar -->
@@ -14085,7 +14880,188 @@ Feature: Srivatsa Malali Portfolio Verification
         }
       };
 
+      // =========================================================================
+      // 16. FEATURE: NATIONAL YOGA CHAMPION SHOWCASE MODAL ENGINE
+      // =========================================================================
+      const initYogaChampionModal = () => {
+        const yogaModal = document.getElementById('yogaChampionModal');
+        const closeYogaBtn = document.getElementById('closeYogaModalBtn');
+        const yogaActivePhoto = document.getElementById('yogaActivePhoto');
+        const yogaPhotoBadge = document.getElementById('yogaPhotoBadge');
+        const yogaCounter = document.getElementById('yogaCounter');
+        const yogaPrevBtn = document.getElementById('yogaPrevBtn');
+        const yogaNextBtn = document.getElementById('yogaNextBtn');
+        const yogaThumbBtns = document.querySelectorAll('.yoga-thumb-btn');
+        const yogaTriggers = document.querySelectorAll('.open-yoga-trigger');
+
+        const yogaPhotos = [
+          {
+            src: 'images/yoga/yoga_competition_2017.jpg',
+            caption: '2017 Inter-College Yoga Competition · Purna Dhanurasana (Full Bow Pose)'
+          },
+          {
+            src: 'images/yoga/IMG_20180609_135239.jpg',
+            caption: 'National Demonstration · Advanced Spinal Flexibility & Balance'
+          },
+          {
+            src: 'images/yoga/IMG_20180609_135336.jpg',
+            caption: 'Championship Stage · Symmetrical Asana Mastery & Core Alignment'
+          },
+          {
+            src: 'images/yoga/IMG_20200620_211010_087.jpg',
+            caption: 'Intensive Asana Sadhana · Core Strength & Dynamic Equilibrium'
+          },
+          {
+            src: 'images/yoga/IMG_20210821_173321.jpg',
+            caption: 'Advanced Yogic Posture · Focus, Alignment & Mental Discipline'
+          }
+        ];
+
+        let currentYogaIdx = 0;
+
+        const updateYogaDisplay = (idx) => {
+          if (idx < 0) idx = yogaPhotos.length - 1;
+          if (idx >= yogaPhotos.length) idx = 0;
+          currentYogaIdx = idx;
+
+          if (yogaActivePhoto) {
+            yogaActivePhoto.style.opacity = '0.4';
+            yogaActivePhoto.style.transform = 'scale(0.97)';
+            setTimeout(() => {
+              yogaActivePhoto.src = yogaPhotos[currentYogaIdx].src;
+              yogaActivePhoto.alt = yogaPhotos[currentYogaIdx].caption;
+              yogaActivePhoto.style.opacity = '1';
+              yogaActivePhoto.style.transform = 'scale(1)';
+            }, 120);
+          }
+
+          if (yogaPhotoBadge) yogaPhotoBadge.textContent = yogaPhotos[currentYogaIdx].caption;
+          if (yogaCounter) yogaCounter.textContent = `${currentYogaIdx + 1} / ${yogaPhotos.length}`;
+
+          yogaThumbBtns.forEach((btn, bIdx) => {
+            btn.classList.toggle('active', bIdx === currentYogaIdx);
+          });
+        };
+
+        const openYogaModal = () => {
+          if (!yogaModal) return;
+          yogaModal.classList.add('active');
+          document.body.classList.add('has-active-modal');
+          SoundFX.playClick();
+          updateYogaDisplay(currentYogaIdx);
+        };
+
+        const closeYogaModal = () => {
+          if (!yogaModal) return;
+          yogaModal.classList.remove('active');
+          document.body.classList.remove('has-active-modal');
+          SoundFX.playClick();
+        };
+
+        yogaTriggers.forEach(btn => btn.addEventListener('click', openYogaModal));
+        if (closeYogaBtn) closeYogaBtn.addEventListener('click', closeYogaModal);
+
+        if (yogaModal) {
+          yogaModal.addEventListener('click', (e) => {
+            if (e.target === yogaModal) closeYogaModal();
+          });
+        }
+
+        if (yogaPrevBtn) {
+          yogaPrevBtn.addEventListener('click', () => {
+            SoundFX.playKey();
+            updateYogaDisplay(currentYogaIdx - 1);
+          });
+        }
+
+        if (yogaNextBtn) {
+          yogaNextBtn.addEventListener('click', () => {
+            SoundFX.playKey();
+            updateYogaDisplay(currentYogaIdx + 1);
+          });
+        }
+
+        yogaThumbBtns.forEach((btn) => {
+          btn.addEventListener('click', () => {
+            const idx = parseInt(btn.getAttribute('data-index'), 10) || 0;
+            SoundFX.playKey();
+            updateYogaDisplay(idx);
+          });
+        });
+
+        // Keyboard Arrow & ESC support for Yoga Modal
+        window.addEventListener('keydown', (e) => {
+          if (!yogaModal || !yogaModal.classList.contains('active')) return;
+          if (e.key === 'Escape') closeYogaModal();
+          if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            SoundFX.playKey();
+            updateYogaDisplay(currentYogaIdx - 1);
+          }
+          if (e.key === 'ArrowRight') {
+            e.preventDefault();
+            SoundFX.playKey();
+            updateYogaDisplay(currentYogaIdx + 1);
+          }
+        });
+      };
+
+      // =========================================================================
+      // 17. FEATURE: DATA PACKET FLOW ON ARCHITECTURE & PROJECT CARDS
+      // =========================================================================
+      const initDataPacketFlow = () => {
+        const projectCards = document.querySelectorAll('.project-card');
+        projectCards.forEach((card) => {
+          card.addEventListener('mouseenter', () => {
+            SoundFX.playHover();
+          });
+        });
+
+        const simulatePacketBtn = document.getElementById('simulatePacketBtn');
+        if (simulatePacketBtn) {
+          let isSimulating = false;
+          simulatePacketBtn.addEventListener('click', () => {
+            if (isSimulating) return;
+            isSimulating = true;
+            simulatePacketBtn.disabled = true;
+            simulatePacketBtn.style.opacity = '0.6';
+            SoundFX.playClick();
+            showToast('Dispatching Automated Test Packets Across 4 Tiers...', '⚡');
+
+            const tiers = [
+              document.getElementById('archTier1'),
+              document.getElementById('archTier2'),
+              document.getElementById('archTier3'),
+              document.getElementById('archTier4')
+            ];
+
+            let step = 0;
+            const tierInterval = setInterval(() => {
+              tiers.forEach(t => t && t.classList.remove('active-tier'));
+              if (step < tiers.length) {
+                if (tiers[step]) {
+                  tiers[step].classList.add('active-tier');
+                  SoundFX.playKey();
+                }
+                step++;
+              } else {
+                clearInterval(tierInterval);
+                tiers.forEach(t => t && t.classList.remove('active-tier'));
+                isSimulating = false;
+                simulatePacketBtn.disabled = false;
+                simulatePacketBtn.style.opacity = '1';
+                SoundFX.playSuccess();
+                showToast('Signal Trace Verified: 4/4 Framework Tiers [PASS - 0 Defect Leakage]', '✓');
+                ConfettiEngine.burst(window.innerWidth / 2, window.innerHeight / 2, 25);
+              }
+            }, 420);
+          });
+        }
+      };
+
       initCandidateCardGenerator();
+      initYogaChampionModal();
+      initDataPacketFlow();
     };
 
     if (document.readyState === 'loading') {
