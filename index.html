@@ -1876,16 +1876,95 @@
       line-height: 1.4;
     }
 
+    .cred-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-top: 8px;
+    }
+
+    .cred-btn,
     .cred-link {
       font-family: var(--font-mono);
       font-size: 0.72rem;
-      color: var(--accent);
-      text-decoration: none;
       font-weight: 600;
+      letter-spacing: 0.02em;
+      color: var(--accent);
+      background: rgba(56, 189, 248, 0.08);
+      border: 1px solid rgba(56, 189, 248, 0.28);
+      border-radius: 6px;
+      padding: 6px 12px;
       display: inline-flex;
       align-items: center;
-      gap: 4px;
-      transition: opacity 0.2s;
+      gap: 6px;
+      text-decoration: none;
+      cursor: pointer;
+      outline: none;
+      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+      box-sizing: border-box;
+      line-height: 1.2;
+    }
+
+    .cred-btn:hover,
+    .cred-link:hover {
+      background: var(--accent);
+      color: #ffffff !important;
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 14px rgba(56, 189, 248, 0.35);
+    }
+
+    .cred-btn svg,
+    .cred-link svg {
+      width: 12px;
+      height: 12px;
+      stroke-width: 2.2;
+      flex-shrink: 0;
+      transition: transform 0.2s ease;
+    }
+
+    .cred-btn:hover svg,
+    .cred-link:hover svg {
+      transform: scale(1.12);
+    }
+
+    .cred-btn-outline {
+      background: transparent;
+      border-color: var(--border);
+      color: var(--text-muted);
+    }
+
+    .cred-btn-outline:hover {
+      background: var(--card-hover-bg, rgba(255, 255, 255, 0.08));
+      color: var(--color) !important;
+      border-color: var(--accent);
+    }
+
+    [data-theme="light"] .cred-btn,
+    [data-theme="light"] .cred-link {
+      background: rgba(37, 99, 235, 0.07);
+      border-color: rgba(37, 99, 235, 0.24);
+      color: #2563eb;
+    }
+
+    [data-theme="light"] .cred-btn:hover,
+    [data-theme="light"] .cred-link:hover {
+      background: #2563eb;
+      color: #ffffff !important;
+      border-color: #2563eb;
+    }
+
+    [data-theme="light"] .cred-btn-outline {
+      background: #ffffff;
+      border-color: var(--border);
+      color: var(--text-muted);
+    }
+
+    [data-theme="light"] .cred-btn-outline:hover {
+      background: rgba(37, 99, 235, 0.06);
+      color: #2563eb !important;
+      border-color: #2563eb;
     }
 
     /* Enterprise Automation Architecture Visualizer */
@@ -2421,6 +2500,406 @@
       height: 60vh;
       border: none;
       border-radius: 4px;
+    }
+
+    /* ==========================================================================
+       FEATURE: COMPACT LINKEDIN POST PREVIEW MODAL DIALOG
+       ========================================================================== */
+    .linkedin-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(9, 13, 22, 0.85);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      z-index: 100004;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      visibility: hidden;
+      transition: opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.28s ease;
+      touch-action: pan-y !important;
+      -webkit-overflow-scrolling: touch !important;
+      overscroll-behavior: contain !important;
+    }
+
+    .linkedin-modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+      visibility: visible;
+    }
+
+    .linkedin-modal-card {
+      width: 100%;
+      max-width: 580px;
+      max-height: 88vh;
+      background: var(--card-bg, #0d121e);
+      border: 1px solid rgba(10, 102, 194, 0.35);
+      border-radius: 16px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.65), 0 0 30px rgba(10, 102, 194, 0.2);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transform: scale(0.95) translateY(14px);
+      transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+      touch-action: pan-y !important;
+      -webkit-overflow-scrolling: touch !important;
+      overscroll-behavior: contain !important;
+    }
+
+    .linkedin-modal-overlay.active .linkedin-modal-card {
+      transform: scale(1) translateY(0);
+    }
+
+    [data-theme="light"] .linkedin-modal-card {
+      background: #ffffff;
+      border-color: rgba(10, 102, 194, 0.25);
+      box-shadow: 0 25px 60px rgba(15, 23, 42, 0.18), 0 0 25px rgba(10, 102, 194, 0.12);
+    }
+
+    .linkedin-modal-header {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      background: rgba(10, 102, 194, 0.04);
+      flex-shrink: 0;
+    }
+
+    .linkedin-modal-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .linkedin-modal-title {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--color);
+      line-height: 1.2;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .linkedin-modal-sub {
+      font-size: 0.68rem;
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .linkedin-modal-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .linkedin-external-btn {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 600;
+      color: #ffffff !important;
+      background: #0a66c2;
+      border: 1px solid #0a66c2;
+      border-radius: 6px;
+      padding: 6px 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .linkedin-external-btn:hover {
+      background: #004182;
+      border-color: #004182;
+      transform: translateY(-1px);
+    }
+
+    .linkedin-modal-body {
+      flex: 1 1 auto;
+      overflow-y: auto;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-height: calc(88vh - 65px);
+      background: rgba(0, 0, 0, 0.12);
+      touch-action: pan-y !important;
+      -webkit-overflow-scrolling: touch !important;
+    }
+
+    [data-theme="light"] .linkedin-modal-body {
+      background: #f1f5f9;
+    }
+
+    /* Native LinkedIn Post Card Design */
+    .linkedin-post-card {
+      width: 100%;
+      background: var(--card-bg, #0f172a);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      color: var(--color);
+      box-sizing: border-box;
+    }
+
+    [data-theme="light"] .linkedin-post-card {
+      background: #ffffff;
+      border-color: #e2e8f0;
+      box-shadow: 0 4px 20px rgba(15, 23, 42, 0.08);
+    }
+
+    .linkedin-author-row {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .linkedin-author-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--border);
+      flex-shrink: 0;
+    }
+
+    .linkedin-author-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .linkedin-author-name {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--color);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .linkedin-degree {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    .linkedin-author-headline {
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      line-height: 1.3;
+      margin-top: 2px;
+    }
+
+    .linkedin-post-time {
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 3px;
+    }
+
+    .linkedin-post-text {
+      font-size: 0.85rem;
+      line-height: 1.55;
+      color: var(--color);
+    }
+
+    .linkedin-post-text p {
+      margin: 6px 0 0 0;
+      color: var(--text-muted);
+    }
+
+    .linkedin-hashtags {
+      margin-top: 8px;
+      font-size: 0.78rem;
+      color: #0a66c2;
+      font-weight: 600;
+    }
+
+    .linkedin-post-media {
+      width: 100%;
+      background: rgba(0, 0, 0, 0.04);
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border);
+    }
+
+    .linkedin-award-img {
+      width: 100%;
+      max-height: 360px;
+      object-fit: contain;
+      display: block;
+      background: #ffffff;
+    }
+
+    .linkedin-reactions-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 10px;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .linkedin-reaction-icons {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .reaction-badge {
+      font-size: 0.85rem;
+      margin-right: -4px;
+    }
+
+    .reaction-count {
+      margin-left: 8px;
+      font-weight: 500;
+    }
+
+    .linkedin-view-feed-link {
+      color: #0a66c2;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 0.75rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    .linkedin-view-feed-link:hover {
+      text-decoration: underline;
+    }
+
+    .linkedin-actions-strip {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      gap: 6px;
+    }
+
+    .linkedin-strip-btn {
+      flex: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 8px;
+      border-radius: 6px;
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .linkedin-strip-btn:hover {
+      background: rgba(10, 102, 194, 0.08);
+      color: #0a66c2;
+    }
+
+    @media (max-width: 640px) {
+      .linkedin-modal-overlay {
+        padding: 0 !important;
+        align-items: flex-end !important;
+      }
+
+      .linkedin-modal-card {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: 100dvh !important;
+        max-height: 100dvh !important;
+        border-radius: 0 !important;
+        border: none !important;
+        margin: 0 !important;
+        display: flex !important;
+        flex-direction: column !important;
+      }
+
+      .linkedin-modal-header {
+        padding: calc(10px + env(safe-area-inset-top, 0px)) 14px 10px 14px !important;
+        gap: 8px !important;
+      }
+
+      .linkedin-modal-title {
+        font-size: 0.8rem !important;
+      }
+
+      .linkedin-modal-sub {
+        display: none !important;
+      }
+
+      .linkedin-external-btn {
+        padding: 4px 8px !important;
+        font-size: 0.62rem !important;
+        gap: 4px !important;
+      }
+
+      .linkedin-modal-body {
+        max-height: calc(100dvh - 56px - env(safe-area-inset-top, 0px)) !important;
+        padding: 10px 10px calc(14px + env(safe-area-inset-bottom, 0px)) 10px !important;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        touch-action: pan-y !important;
+      }
+
+      .linkedin-post-card {
+        padding: 12px 10px !important;
+        border-radius: 10px !important;
+        gap: 10px !important;
+      }
+
+      .linkedin-author-avatar {
+        width: 38px !important;
+        height: 38px !important;
+      }
+
+      .linkedin-author-name {
+        font-size: 0.85rem !important;
+      }
+
+      .linkedin-author-headline {
+        font-size: 0.65rem !important;
+      }
+
+      .linkedin-post-text {
+        font-size: 0.78rem !important;
+      }
+
+      .linkedin-award-img {
+        max-height: 220px !important;
+      }
+
+      .linkedin-actions-strip {
+        gap: 2px !important;
+      }
+
+      .linkedin-strip-btn {
+        padding: 6px 2px !important;
+        font-size: 0.66rem !important;
+        gap: 3px !important;
+      }
     }
 
     /* Raycast / Linear Style Command Palette (`Cmd + K`) */
@@ -3537,8 +4016,6 @@
     html.has-active-modal,
     body.has-active-modal {
       overflow: hidden !important;
-      height: 100% !important;
-      max-height: 100vh !important;
       overscroll-behavior: none !important;
     }
 
@@ -3558,6 +4035,7 @@
     .cmd-palette-overlay,
     .drawer-overlay,
     .lightbox-overlay,
+    .linkedin-modal-overlay,
     .studio-3d-overlay,
     .interactive-labs-modal-overlay,
     .resume-modal-overlay {
@@ -3570,6 +4048,7 @@
     .card-gen-modal-window,
     .resume-modal-window,
     .resume-paper,
+    .linkedin-modal-card,
     .interactive-labs-modal-window,
     .interview-modal-window,
     .yoga-modal-body,
@@ -6827,6 +7306,24 @@
         box-sizing: border-box !important;
       }
 
+      .cred-card {
+        padding: 18px 14px !important;
+        gap: 12px !important;
+      }
+
+      .cred-actions {
+        gap: 6px !important;
+        margin-top: 8px !important;
+      }
+
+      .cred-btn,
+      .cred-link {
+        font-size: 0.68rem !important;
+        padding: 5px 10px !important;
+        gap: 5px !important;
+        touch-action: manipulation;
+      }
+
       /* Hero Section Mobile Polish */
       .hero-grid {
         grid-template-columns: 1fr !important;
@@ -9236,8 +9733,9 @@
               <li>Architecting cross-platform automation suites using Page Object Models and Selenium.</li>
               <li>Implementing CI/CD pipeline quality gates and daily test execution schedules.</li>
               <li>Recognized for outstanding contributions and excellence in engineering delivery (<a
-                  href="https://lnkd.in/p/gU_8CW2w" target="_blank" rel="noopener noreferrer"
-                  style="color:var(--accent); font-weight:600; text-decoration:underline;">View LinkedIn Recognition
+                  href="https://lnkd.in/p/gU_8CW2w" target="_blank" rel="noopener noreferrer" class="open-linkedin-modal-btn"
+                  data-url="https://www.linkedin.com/embed/feed/update/urn:li:share:7486066096656007169" data-direct="https://lnkd.in/p/gU_8CW2w"
+                  style="color:var(--accent); font-weight:600; text-decoration:underline; cursor:pointer;">View LinkedIn Recognition
                   Post ↗</a>).</li>
             </ul>
           </div>
@@ -9416,9 +9914,20 @@
           <div>
             <div class="cred-name">Microsoft Certified Professional</div>
             <div class="cred-detail">Official Technical Credential</div>
-            <button type="button" class="cred-link open-lightbox-btn" data-type="pdf"
-              data-src="images/Microsoft_Certified_Professional_Certificate_0.pdf"
-              data-title="Microsoft Certified Professional Certificate">Preview Certificate (PDF) ↗</button>
+            <div class="cred-actions">
+              <button type="button" class="cred-btn open-lightbox-btn" data-type="pdf"
+                data-src="images/Microsoft_Certified_Professional_Certificate_0.pdf"
+                data-title="Microsoft Certified Professional Certificate">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                </svg>
+                <span>Preview Certificate (PDF)</span>
+                <span style="font-size:0.85em;">↗</span>
+              </button>
+            </div>
           </div>
         </div>
 
@@ -9439,13 +9948,27 @@
           <div>
             <div class="cred-name">Best Debutant Award</div>
             <div class="cred-detail">Wipro &amp; Hexaware Delivery Honors</div>
-            <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:2px;">
-              <button type="button" class="cred-link open-lightbox-btn" data-type="img"
-                data-src="images/Best%20Debutant%20Award.png" data-title="Best Debutant Recognition Award">Preview Award
-                ↗</button>
-              <span style="color:var(--border);">·</span>
-              <a href="https://lnkd.in/p/gU_8CW2w" target="_blank" rel="noopener noreferrer" class="cred-link">LinkedIn
-                Post ↗</a>
+            <div class="cred-actions">
+              <button type="button" class="cred-btn open-lightbox-btn" data-type="img"
+                data-src="images/Best%20Debutant%20Award.png" data-title="Best Debutant Recognition Award">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="8" r="7"></circle>
+                  <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+                </svg>
+                <span>Preview Award</span>
+                <span style="font-size:0.85em;">↗</span>
+              </button>
+              <button type="button" class="cred-btn cred-btn-outline open-linkedin-modal-btn"
+                data-url="https://www.linkedin.com/embed/feed/update/urn:li:share:7486066096656007169"
+                data-direct="https://lnkd.in/p/gU_8CW2w" title="Open LinkedIn Recognition Post in Modal">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                  <rect x="2" y="9" width="4" height="12"></rect>
+                  <circle cx="4" cy="4" r="2"></circle>
+                </svg>
+                <span>LinkedIn Post</span>
+                <span style="font-size:0.85em;">↗</span>
+              </button>
             </div>
           </div>
         </div>
@@ -9463,8 +9986,14 @@
           <div>
             <div class="cred-name">National Yoga Gold Medalist</div>
             <div class="cred-detail">Zonal, State &amp; National Champion · Mysore, Chikkamagaluru &amp; Doddaballapura</div>
-            <div class="cred-actions" style="margin-top:8px;">
-              <button type="button" class="cred-link open-yoga-trigger" id="openYogaModalBtn" title="View National Yoga Champion Gallery &amp; Journey">View Gallery &amp; Journey ↗</button>
+            <div class="cred-actions">
+              <button type="button" class="cred-btn open-yoga-trigger" id="openYogaModalBtn" title="View National Yoga Champion Gallery &amp; Journey">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                </svg>
+                <span>View Gallery &amp; Journey</span>
+                <span style="font-size:0.85em;">↗</span>
+              </button>
             </div>
           </div>
         </div>
@@ -9680,6 +10209,114 @@
       </div>
       <div class="lightbox-media-wrap" id="lightboxMediaWrap">
         <!-- Image or PDF iframe injected via JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Dedicated LinkedIn Post Preview Modal Dialog -->
+  <div class="linkedin-modal-overlay" id="linkedinPostModal" role="dialog" aria-modal="true" aria-label="LinkedIn Post Preview">
+    <div class="linkedin-modal-card">
+      <div class="linkedin-modal-header">
+        <div class="linkedin-modal-brand">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="#0a66c2">
+            <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.25c-.91 0-1.64.73-1.64 1.65 0 .91.73 1.64 1.64 1.64s1.64-.73 1.64-1.64c0-.92-.73-1.65-1.64-1.65Z"/>
+          </svg>
+          <div>
+            <div class="linkedin-modal-title">LinkedIn Recognition Post</div>
+            <div class="linkedin-modal-sub">Delivery Honors &amp; Best Debutant Award</div>
+          </div>
+        </div>
+        <div class="linkedin-modal-actions">
+          <a href="https://lnkd.in/p/gU_8CW2w" target="_blank" rel="noopener noreferrer" class="linkedin-external-btn" id="linkedinModalExternalLink" title="Open full post in new tab on LinkedIn">
+            <span>Open in LinkedIn</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" y1="14" x2="21" y2="3"></line>
+            </svg>
+          </a>
+          <button class="drawer-close-btn" id="linkedinModalCloseBtn" title="Close Modal [ESC]">✕ Close [ESC]</button>
+        </div>
+      </div>
+      <div class="linkedin-modal-body">
+        <div class="linkedin-post-card">
+          <!-- Author Info -->
+          <div class="linkedin-author-row">
+            <img src="images/IMG_2084.jpg" alt="Srivatsa Malali" class="linkedin-author-avatar" />
+            <div class="linkedin-author-info">
+              <div class="linkedin-author-name">
+                <span>Srivatsa Malali</span>
+                <span class="linkedin-degree">· 1st</span>
+              </div>
+              <div class="linkedin-author-headline">Senior QA Automation Engineer | Apple &amp; Citi Bank Frameworks | National Yoga Gold Medalist</div>
+              <div class="linkedin-post-time">
+                <span>Honors &amp; Recognition</span>
+                <span>·</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8zm1-13h-2v6l5.25 3.15.75-1.23-4.5-2.67z"/>
+                </svg>
+                <span>· Public</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Post Content -->
+          <div class="linkedin-post-text">
+            🏆 <strong>Best Debutant Award &amp; Engineering Delivery Recognition</strong>
+            <p>Thrilled and honored to be recognized with the Best Debutant Award for architecting enterprise test frameworks, accelerating regression cycles, and driving zero-defect quality deliverables. Immense gratitude to leadership and team for continuous collaboration!</p>
+            <div class="linkedin-hashtags">#QualityEngineering #TestAutomation #SDET #BestDebutant #Java #Selenium #Recognition</div>
+          </div>
+
+          <!-- Post Image / Media -->
+          <div class="linkedin-post-media">
+            <img src="images/Best%20Debutant%20Award.png" alt="Best Debutant Award & Recognition" class="linkedin-award-img" />
+          </div>
+
+          <!-- Reactions Bar -->
+          <div class="linkedin-reactions-bar">
+            <div class="linkedin-reaction-icons">
+              <span class="reaction-badge like-badge">👍</span>
+              <span class="reaction-badge clap-badge">👏</span>
+              <span class="reaction-badge heart-badge">❤️</span>
+              <span class="reaction-count">Honors Recognition</span>
+            </div>
+            <a href="https://lnkd.in/p/gU_8CW2w" target="_blank" rel="noopener noreferrer" class="linkedin-view-feed-link">
+              View on LinkedIn ↗
+            </a>
+          </div>
+
+          <!-- Action Buttons Bar -->
+          <div class="linkedin-actions-strip">
+            <a href="https://lnkd.in/p/gU_8CW2w" target="_blank" rel="noopener noreferrer" class="linkedin-strip-btn">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path>
+              </svg>
+              <span>Like</span>
+            </a>
+            <a href="https://lnkd.in/p/gU_8CW2w" target="_blank" rel="noopener noreferrer" class="linkedin-strip-btn">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+              </svg>
+              <span>Comment</span>
+            </a>
+            <a href="https://lnkd.in/p/gU_8CW2w" target="_blank" rel="noopener noreferrer" class="linkedin-strip-btn">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="17 1 21 5 17 9"></polyline>
+                <path d="M3 11V9a4 4 0 0 1 4-4h14"></path>
+                <polyline points="7 23 3 19 7 15"></polyline>
+                <path d="M21 13v2a4 4 0 0 1-4 4H3"></path>
+              </svg>
+              <span>Repost</span>
+            </a>
+            <a href="https://lnkd.in/p/gU_8CW2w" target="_blank" rel="noopener noreferrer" class="linkedin-strip-btn">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+              <span>Send</span>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -10955,20 +11592,26 @@
     // GLOBAL MODAL SCROLL LOCK & SCROLL CHAINING TRAP ENGINE
     // =========================================================================
     let activeModalCount = 0;
+    let savedScrollY = 0;
     const setScrollLock = (locked) => {
       if (locked) {
+        if (activeModalCount === 0) {
+          savedScrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || 0;
+          document.documentElement.classList.add('has-active-modal');
+          document.body.classList.add('has-active-modal');
+          document.body.style.overflow = 'hidden';
+        }
         activeModalCount++;
-        document.documentElement.classList.add('has-active-modal');
-        document.body.classList.add('has-active-modal');
-        document.documentElement.style.overflow = 'hidden';
-        document.body.style.overflow = 'hidden';
       } else {
         activeModalCount = Math.max(0, activeModalCount - 1);
         if (activeModalCount === 0) {
           document.documentElement.classList.remove('has-active-modal');
           document.body.classList.remove('has-active-modal');
-          document.documentElement.style.overflow = '';
           document.body.style.overflow = '';
+          document.documentElement.style.overflow = '';
+          if (typeof savedScrollY === 'number' && savedScrollY >= 0) {
+            window.scrollTo({ top: savedScrollY, behavior: 'instant' });
+          }
         }
       }
     };
@@ -12614,6 +13257,43 @@
         });
       }
 
+      // 6b. Dedicated LinkedIn Post Preview Modal Dialog
+      const linkedinPostModal = document.getElementById('linkedinPostModal');
+      const linkedinModalCloseBtn = document.getElementById('linkedinModalCloseBtn');
+      const linkedinModalExternalLink = document.getElementById('linkedinModalExternalLink');
+
+      const openLinkedInModal = (directUrl) => {
+        if (!linkedinPostModal) return;
+        SoundFX.playClick();
+        const finalDirect = directUrl || 'https://lnkd.in/p/gU_8CW2w';
+        if (linkedinModalExternalLink) linkedinModalExternalLink.href = finalDirect;
+        
+        linkedinPostModal.classList.add('active');
+        setScrollLock(true);
+      };
+
+      const closeLinkedInModal = () => {
+        if (!linkedinPostModal) return;
+        SoundFX.playClick();
+        linkedinPostModal.classList.remove('active');
+        setScrollLock(false);
+      };
+
+      document.querySelectorAll('.open-linkedin-modal-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const directUrl = btn.getAttribute('data-direct') || btn.getAttribute('href');
+          openLinkedInModal(directUrl);
+        });
+      });
+
+      if (linkedinModalCloseBtn) linkedinModalCloseBtn.addEventListener('click', closeLinkedInModal);
+      if (linkedinPostModal) {
+        linkedinPostModal.addEventListener('click', (e) => {
+          if (e.target === linkedinPostModal) closeLinkedInModal();
+        });
+      }
+
       // 7. Raycast / Linear Style Command Palette (`Cmd + K`)
       const cmdPaletteOverlay = document.getElementById('cmdPaletteOverlay');
       const cmdSearchInput = document.getElementById('cmdSearchInput');
@@ -12639,10 +13319,11 @@
         setScrollLock(false);
       };
 
+      if (cmdFloatingBtn) cmdFloatingBtn.addEventListener('click', openCmdPalette);
+
       const filterCmdItems = (query) => {
         const q = query.toLowerCase().trim();
-        const items = cmdItemList.querySelectorAll('.cmd-item');
-        items.forEach(item => {
+        document.querySelectorAll('.cmd-item').forEach(item => {
           const text = item.textContent.toLowerCase();
           item.style.display = text.includes(q) ? 'flex' : 'none';
         });
@@ -12665,6 +13346,7 @@
           closeCmdPalette();
           closeDrawer();
           closeLightbox();
+          closeLinkedInModal();
           closeResumeModal();
           closePlaygroundModal();
           if (typeof closeInterviewModal === 'function') closeInterviewModal();
