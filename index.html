@@ -1108,6 +1108,158 @@
       background: #22c55e;
     }
 
+    /* High-Tech Glowing Terminal Audit Button */
+    .terminal-audit-btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px 5px 9px;
+      background: linear-gradient(135deg, rgba(34, 197, 94, 0.18) 0%, rgba(16, 185, 129, 0.32) 100%);
+      border: 1px solid rgba(74, 222, 128, 0.45);
+      border-radius: 9999px;
+      color: #86efac;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      cursor: pointer;
+      overflow: hidden;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 0 12px rgba(34, 197, 94, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+      user-select: none;
+      -webkit-user-select: none;
+      outline: none;
+    }
+
+    .terminal-audit-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.28), transparent);
+      transition: left 0.6s ease;
+      pointer-events: none;
+    }
+
+    .terminal-audit-btn:hover::before {
+      left: 100%;
+    }
+
+    .terminal-audit-btn:hover {
+      background: linear-gradient(135deg, rgba(34, 197, 94, 0.28) 0%, rgba(16, 185, 129, 0.48) 100%);
+      border-color: rgba(74, 222, 128, 0.9);
+      color: #ffffff;
+      box-shadow: 0 0 20px rgba(34, 197, 94, 0.55), 0 2px 10px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+      transform: translateY(-1px);
+    }
+
+    .terminal-audit-btn:active {
+      transform: translateY(0) scale(0.97);
+      box-shadow: 0 0 8px rgba(34, 197, 94, 0.3);
+    }
+
+    .audit-btn-pulse {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 8px #22c55e, 0 0 12px #4ade80;
+      animation: auditDotPulse 1.8s infinite cubic-bezier(0.4, 0, 0.6, 1);
+      flex-shrink: 0;
+    }
+
+    @keyframes auditDotPulse {
+      0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+        box-shadow: 0 0 6px #22c55e;
+      }
+      50% {
+        opacity: 0.35;
+        transform: scale(0.75);
+        box-shadow: 0 0 2px #22c55e;
+      }
+    }
+
+    .audit-icon-play {
+      transition: transform 0.2s ease;
+      flex-shrink: 0;
+      color: #4ade80;
+    }
+
+    .terminal-audit-btn:hover .audit-icon-play {
+      transform: scale(1.15) translateX(1px);
+      color: #ffffff;
+    }
+
+    .audit-icon-spin {
+      display: none;
+      animation: auditSpin 0.9s linear infinite;
+      flex-shrink: 0;
+    }
+
+    @keyframes auditSpin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .audit-btn-text {
+      white-space: nowrap;
+    }
+
+    .audit-btn-badge {
+      font-size: 0.56rem;
+      font-weight: 800;
+      padding: 1px 5px;
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(74, 222, 128, 0.35);
+      border-radius: 4px;
+      color: #bbf7d0;
+      letter-spacing: 0.04em;
+      margin-left: 2px;
+      transition: all 0.2s ease;
+    }
+
+    .terminal-audit-btn:hover .audit-btn-badge {
+      background: rgba(0, 0, 0, 0.5);
+      border-color: rgba(74, 222, 128, 0.7);
+      color: #ffffff;
+    }
+
+    /* Running State */
+    .terminal-audit-btn.is-running {
+      background: linear-gradient(135deg, rgba(234, 179, 8, 0.22) 0%, rgba(245, 158, 11, 0.35) 100%) !important;
+      border-color: rgba(250, 204, 21, 0.8) !important;
+      color: #fef08a !important;
+      box-shadow: 0 0 16px rgba(234, 179, 8, 0.45) !important;
+      cursor: wait !important;
+    }
+
+    .terminal-audit-btn.is-running .audit-icon-play {
+      display: none !important;
+    }
+
+    .terminal-audit-btn.is-running .audit-icon-spin {
+      display: inline-block !important;
+      stroke: #fde047;
+    }
+
+    .terminal-audit-btn.is-running .audit-btn-pulse {
+      background: #eab308;
+      box-shadow: 0 0 8px #eab308;
+      animation: auditDotPulse 0.7s infinite ease-in-out;
+    }
+
+    .terminal-audit-btn.is-running .audit-btn-badge {
+      border-color: rgba(250, 204, 21, 0.5);
+      color: #fef08a;
+      background: rgba(0, 0, 0, 0.45);
+    }
+
     .terminal-logs {
       flex: 1 1 auto;
       min-height: 0;
@@ -8163,11 +8315,17 @@
               <div class="terminal-title">live_qa_test_simulation.sh</div>
               <div style="display:flex; align-items:center; gap:10px;">
                 <button id="runLiveAuditBtn" class="terminal-audit-btn"
-                  title="Run Automated QA Audit on this Portfolio">
-                  <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
+                  title="Run Live Automated QA Audit on this Portfolio" aria-label="Run Live Automated QA Audit">
+                  <span class="audit-btn-pulse"></span>
+                  <svg class="audit-icon-play" width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
                     <polygon points="5 3 19 12 5 21 5 3"></polygon>
                   </svg>
-                  <span>Run Audit</span>
+                  <svg class="audit-icon-spin" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                    <circle cx="12" cy="12" r="9" stroke-opacity="0.25"></circle>
+                    <path d="M12 3a9 9 0 0 1 9 9"></path>
+                  </svg>
+                  <span class="audit-btn-text">Run Audit</span>
+                  <span class="audit-btn-badge">LIVE DOM</span>
                 </button>
                 <div class="terminal-dots">
                   <div class="terminal-dot red"></div>
@@ -13608,7 +13766,11 @@ Feature: Srivatsa Malali Portfolio Verification
         SoundFX.playClick();
         if (runLiveAuditBtn) {
           runLiveAuditBtn.disabled = true;
-          runLiveAuditBtn.style.opacity = '0.6';
+          runLiveAuditBtn.classList.add('is-running');
+          const btnText = runLiveAuditBtn.querySelector('.audit-btn-text');
+          const btnBadge = runLiveAuditBtn.querySelector('.audit-btn-badge');
+          if (btnText) btnText.textContent = 'Auditing...';
+          if (btnBadge) btnBadge.textContent = 'SCANNING';
         }
 
         terminalLogs.innerHTML = "";
@@ -13634,7 +13796,11 @@ Feature: Srivatsa Malali Portfolio Verification
               isAuditRunning = false;
               if (runLiveAuditBtn) {
                 runLiveAuditBtn.disabled = false;
-                runLiveAuditBtn.style.opacity = '1';
+                runLiveAuditBtn.classList.remove('is-running');
+                const btnText = runLiveAuditBtn.querySelector('.audit-btn-text');
+                const btnBadge = runLiveAuditBtn.querySelector('.audit-btn-badge');
+                if (btnText) btnText.textContent = 'Run Audit';
+                if (btnBadge) btnBadge.textContent = 'LIVE DOM';
               }
             }, 600);
             return;
