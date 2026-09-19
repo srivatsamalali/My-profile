@@ -7644,32 +7644,46 @@
        ========================================================================== */
     .recruiter-action-dock {
       position: fixed;
-      bottom: 24px;
-      left: 50%;
-      transform: translateX(-50%);
+      bottom: 22px;
+      left: 0;
+      right: 0;
+      margin-left: auto;
+      margin-right: auto;
+      width: -webkit-max-content;
+      width: -moz-max-content;
+      width: max-content;
+      max-width: calc(100vw - 20px);
       z-index: 99990;
-      pointer-events: auto;
-      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), bottom 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+      display: flex;
+      justify-content: center;
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+      transition: bottom 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
     }
 
     .dock-pill-container {
       position: relative;
+      pointer-events: auto;
       display: inline-flex;
       align-items: center;
       gap: 3px;
       padding: 5px 6px;
-      background: rgba(15, 23, 42, 0.58);
-      backdrop-filter: blur(28px) saturate(210%) brightness(108%);
+      background: rgba(15, 23, 42, 0.65);
       -webkit-backdrop-filter: blur(28px) saturate(210%) brightness(108%);
-      border: 1px solid rgba(255, 255, 255, 0.22);
+      backdrop-filter: blur(28px) saturate(210%) brightness(108%);
+      border: 1px solid rgba(255, 255, 255, 0.25);
       border-radius: 9999px;
       box-shadow: 
-        0 20px 45px -8px rgba(0, 0, 0, 0.65),
-        0 4px 16px rgba(0, 0, 0, 0.35),
-        inset 0 1.5px 1.5px 0 rgba(255, 255, 255, 0.4),
+        0 18px 42px -6px rgba(0, 0, 0, 0.6),
+        0 4px 16px rgba(0, 0, 0, 0.3),
+        inset 0 1.5px 1.5px 0 rgba(255, 255, 255, 0.45),
         inset 0 -1.5px 1.5px 0 rgba(0, 0, 0, 0.35);
       user-select: none;
+      -webkit-user-select: none;
       overflow: visible;
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
     }
 
     /* Glossy top specular glass shine */
@@ -7677,29 +7691,29 @@
       content: '';
       position: absolute;
       top: 0;
-      left: 12%;
-      right: 12%;
+      left: 10%;
+      right: 10%;
       height: 48%;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0) 100%);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0) 100%);
       border-radius: 9999px 9999px 0 0;
       pointer-events: none;
       z-index: 0;
     }
 
     [data-theme="light"] .dock-pill-container {
-      background: rgba(255, 255, 255, 0.68);
-      backdrop-filter: blur(28px) saturate(210%) brightness(102%);
+      background: rgba(255, 255, 255, 0.76);
       -webkit-backdrop-filter: blur(28px) saturate(210%) brightness(102%);
-      border: 1px solid rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(28px) saturate(210%) brightness(102%);
+      border: 1.5px solid rgba(255, 255, 255, 0.95);
       box-shadow: 
-        0 18px 40px -6px rgba(15, 23, 42, 0.16),
-        0 4px 16px rgba(0, 0, 0, 0.05),
+        0 16px 38px -4px rgba(15, 23, 42, 0.14),
+        0 4px 14px rgba(0, 0, 0, 0.05),
         inset 0 2px 2px 0 rgba(255, 255, 255, 1),
         inset 0 -1px 1px 0 rgba(0, 0, 0, 0.04);
     }
 
     [data-theme="light"] .dock-pill-container::before {
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0) 100%);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0) 100%);
     }
 
     /* Sliding Liquid Glider Capsule (WhatsApp Style) */
@@ -7707,30 +7721,34 @@
       position: absolute;
       top: 0;
       left: 0;
-      width: 0;
-      height: 0;
+      width: 48px;
+      height: 40px;
       border-radius: 9999px;
       pointer-events: none;
       z-index: 1;
-      opacity: 0;
-      will-change: transform, width, height, opacity;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.12) 100%);
-      border: 1px solid rgba(255, 255, 255, 0.45);
+      opacity: 1;
+      will-change: transform, width, height;
+      -webkit-transition: -webkit-transform 0.44s cubic-bezier(0.34, 1.4, 0.64, 1), width 0.36s cubic-bezier(0.34, 1.4, 0.64, 1), height 0.36s ease;
+      transition: transform 0.44s cubic-bezier(0.34, 1.4, 0.64, 1), width 0.36s cubic-bezier(0.34, 1.4, 0.64, 1), height 0.36s ease;
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.14) 100%);
+      -webkit-backdrop-filter: blur(14px);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.48);
       box-shadow: 
         0 6px 18px -2px rgba(0, 0, 0, 0.45),
         0 2px 6px rgba(0, 0, 0, 0.25),
-        inset 0 1.5px 1.5px rgba(255, 255, 255, 0.65),
-        inset 0 -1px 1px rgba(0, 0, 0, 0.2);
+        inset 0 1.5px 1.5px rgba(255, 255, 255, 0.7);
     }
 
     [data-theme="light"] .dock-liquid-glider {
-      background: #ffffff;
-      border: 1px solid rgba(255, 255, 255, 0.95);
+      background: #ffffff !important;
+      border: 1px solid rgba(255, 255, 255, 1) !important;
       box-shadow: 
-        0 6px 18px -2px rgba(15, 23, 42, 0.18),
+        0 4px 14px -1px rgba(15, 23, 42, 0.16),
         0 2px 6px rgba(0, 0, 0, 0.08),
-        inset 0 2px 2px #ffffff,
-        inset 0 -1px 1px rgba(0, 0, 0, 0.03);
+        inset 0 1.5px 1.5px #ffffff !important;
     }
 
     .dock-badge-pulse {
@@ -7798,9 +7816,10 @@
       font-size: 0.76rem;
       font-weight: 600;
       cursor: pointer;
-      transition: color 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: color 0.2s ease;
       white-space: nowrap;
       user-select: none;
+      -webkit-user-select: none;
       -webkit-tap-highlight-color: transparent;
       outline: none;
     }
@@ -7811,12 +7830,10 @@
 
     .dock-action-btn:hover {
       color: #ffffff;
-      transform: translateY(-1px);
     }
 
     [data-theme="light"] .dock-action-btn:hover {
       color: #0f172a;
-      transform: translateY(-1px);
     }
 
     .dock-action-btn.active {
@@ -7834,20 +7851,22 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.25s ease;
+      -webkit-transition: -webkit-transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.2s ease;
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.2s ease;
     }
 
     .dock-action-btn.active .dock-icon {
-      transform: scale(1.22);
+      -webkit-transform: scale(1.2);
+      transform: scale(1.2);
       color: var(--accent);
     }
 
     [data-theme="light"] .dock-action-btn.active .dock-icon {
-      color: #0284c7;
+      color: #0284c7 !important;
     }
 
     .dock-action-btn .dock-label {
-      transition: color 0.25s ease;
+      transition: color 0.2s ease;
     }
 
     /* ==========================================================================
@@ -7933,7 +7952,6 @@
 
       .recruiter-action-dock {
         bottom: 18px;
-        max-width: calc(100vw - 160px);
       }
 
       .cmd-floating-btn {
@@ -7946,19 +7964,12 @@
 
     @media (max-width: 900px) {
       .recruiter-action-dock {
-        left: 50% !important;
-        transform: translateX(-50%) !important;
         bottom: calc(16px + env(safe-area-inset-bottom, 0px)) !important;
-        max-width: calc(100vw - 24px) !important;
-        width: auto !important;
-        display: flex !important;
-        justify-content: center !important;
       }
 
       .dock-pill-container {
         padding: 5px 6px !important;
         gap: 2px !important;
-        width: auto !important;
       }
 
       .dock-action-btn {
@@ -7983,8 +7994,6 @@
 
     @media (max-width: 600px) {
       .recruiter-action-dock {
-        left: 50% !important;
-        transform: translateX(-50%) !important;
         bottom: calc(14px + env(safe-area-inset-bottom, 0px)) !important;
         max-width: calc(100vw - 20px) !important;
       }
@@ -15970,32 +15979,44 @@ Feature: Srivatsa Malali Portfolio Verification
           btn.classList.toggle('active', btn === targetBtn);
         });
 
-        const containerRect = dockPillContainer.getBoundingClientRect();
-        const btnRect = targetBtn.getBoundingClientRect();
+        const left = targetBtn.offsetLeft;
+        const top = targetBtn.offsetTop;
+        const width = targetBtn.offsetWidth;
+        const height = targetBtn.offsetHeight;
 
-        const left = btnRect.left - containerRect.left;
-        const top = btnRect.top - containerRect.top;
-        const width = btnRect.width;
-        const height = btnRect.height;
+        if (width === 0 || height === 0) return;
 
         if (!animate) {
+          dockLiquidGlider.style.webkitTransition = 'none';
           dockLiquidGlider.style.transition = 'none';
         } else {
-          // Liquid spring easing (stretches & snaps smoothly like liquid mercury)
-          dockLiquidGlider.style.transition = 'transform 0.44s cubic-bezier(0.34, 1.4, 0.64, 1), width 0.36s cubic-bezier(0.34, 1.4, 0.64, 1), height 0.36s ease, opacity 0.2s ease';
+          dockLiquidGlider.style.webkitTransition = '-webkit-transform 0.42s cubic-bezier(0.34, 1.4, 0.64, 1), width 0.35s cubic-bezier(0.34, 1.4, 0.64, 1), height 0.35s ease';
+          dockLiquidGlider.style.transition = 'transform 0.42s cubic-bezier(0.34, 1.4, 0.64, 1), width 0.35s cubic-bezier(0.34, 1.4, 0.64, 1), height 0.35s ease';
         }
 
+        dockLiquidGlider.style.webkitTransform = `translate3d(${left}px, ${top}px, 0)`;
         dockLiquidGlider.style.transform = `translate3d(${left}px, ${top}px, 0)`;
         dockLiquidGlider.style.width = `${width}px`;
         dockLiquidGlider.style.height = `${height}px`;
         dockLiquidGlider.style.opacity = '1';
       };
 
-      // Recalculate on load and resize
-      setTimeout(() => updateLiquidGlider(activeDockBtn, false), 100);
-      window.addEventListener('resize', () => updateLiquidGlider(activeDockBtn, false));
-      window.addEventListener('load', () => updateLiquidGlider(activeDockBtn, false));
-      document.addEventListener('DOMContentLoaded', () => updateLiquidGlider(activeDockBtn, false));
+      const initGlider = () => {
+        if (!activeDockBtn) activeDockBtn = document.querySelector('.dock-action-btn.active') || document.getElementById('dockBtnApple') || dockButtons[0];
+        updateLiquidGlider(activeDockBtn, false);
+      };
+
+      initGlider();
+      setTimeout(initGlider, 60);
+      setTimeout(initGlider, 250);
+      setTimeout(initGlider, 600);
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(initGlider);
+      }
+      window.addEventListener('resize', initGlider);
+      window.addEventListener('orientationchange', () => setTimeout(initGlider, 100));
+      window.addEventListener('load', initGlider);
+      document.addEventListener('DOMContentLoaded', initGlider);
 
       const dockBtnApple = document.getElementById('dockBtnApple');
       const dockBtnCard = document.getElementById('dockBtnCard');
