@@ -7649,80 +7649,88 @@
       transform: translateX(-50%);
       z-index: 99990;
       pointer-events: auto;
-      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), bottom 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .dock-pill-container {
       position: relative;
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      gap: 4px;
-      padding: 5px 7px;
-      background: rgba(13, 17, 26, 0.76);
-      backdrop-filter: blur(28px) saturate(190%);
-      -webkit-backdrop-filter: blur(28px) saturate(190%);
-      border: 1px solid rgba(255, 255, 255, 0.12);
+      gap: 3px;
+      padding: 5px 6px;
+      background: rgba(15, 23, 42, 0.58);
+      backdrop-filter: blur(28px) saturate(210%) brightness(108%);
+      -webkit-backdrop-filter: blur(28px) saturate(210%) brightness(108%);
+      border: 1px solid rgba(255, 255, 255, 0.22);
       border-radius: 9999px;
       box-shadow: 
-        0 20px 50px -10px rgba(0, 0, 0, 0.75),
-        0 0 25px rgba(56, 189, 248, 0.12),
-        inset 0 1.5px 1px rgba(255, 255, 255, 0.22),
-        inset 0 -1px 1px rgba(0, 0, 0, 0.3);
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        0 20px 45px -8px rgba(0, 0, 0, 0.65),
+        0 4px 16px rgba(0, 0, 0, 0.35),
+        inset 0 1.5px 1.5px 0 rgba(255, 255, 255, 0.4),
+        inset 0 -1.5px 1.5px 0 rgba(0, 0, 0, 0.35);
       user-select: none;
       overflow: visible;
     }
 
+    /* Glossy top specular glass shine */
+    .dock-pill-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 12%;
+      right: 12%;
+      height: 48%;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0) 100%);
+      border-radius: 9999px 9999px 0 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
     [data-theme="light"] .dock-pill-container {
-      background: rgba(255, 255, 255, 0.78);
-      backdrop-filter: blur(28px) saturate(200%);
-      -webkit-backdrop-filter: blur(28px) saturate(200%);
-      border: 1px solid rgba(255, 255, 255, 0.88);
+      background: rgba(255, 255, 255, 0.68);
+      backdrop-filter: blur(28px) saturate(210%) brightness(102%);
+      -webkit-backdrop-filter: blur(28px) saturate(210%) brightness(102%);
+      border: 1px solid rgba(255, 255, 255, 0.95);
       box-shadow: 
-        0 18px 45px -10px rgba(15, 23, 42, 0.16),
-        0 4px 15px rgba(0, 0, 0, 0.04),
-        inset 0 2px 1.5px rgba(255, 255, 255, 1),
-        inset 0 -1px 1px rgba(0, 0, 0, 0.04);
+        0 18px 40px -6px rgba(15, 23, 42, 0.16),
+        0 4px 16px rgba(0, 0, 0, 0.05),
+        inset 0 2px 2px 0 rgba(255, 255, 255, 1),
+        inset 0 -1px 1px 0 rgba(0, 0, 0, 0.04);
+    }
+
+    [data-theme="light"] .dock-pill-container::before {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0) 100%);
     }
 
     /* Sliding Liquid Glider Capsule (WhatsApp Style) */
     .dock-liquid-glider {
       position: absolute;
-      top: 5px;
+      top: 0;
       left: 0;
-      height: calc(100% - 10px);
+      width: 0;
+      height: 0;
       border-radius: 9999px;
       pointer-events: none;
       z-index: 1;
       opacity: 0;
-      transform: scale(0.9);
-      transition: 
-        transform 0.42s cubic-bezier(0.175, 0.885, 0.32, 1.25),
-        width 0.38s cubic-bezier(0.22, 1, 0.36, 1.1),
-        opacity 0.25s ease;
-      will-change: transform, width;
-      background: rgba(255, 255, 255, 0.16);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.28);
+      will-change: transform, width, height, opacity;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.12) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.45);
       box-shadow: 
-        0 6px 20px rgba(0, 0, 0, 0.4),
-        inset 0 1.5px 1px rgba(255, 255, 255, 0.4),
+        0 6px 18px -2px rgba(0, 0, 0, 0.45),
+        0 2px 6px rgba(0, 0, 0, 0.25),
+        inset 0 1.5px 1.5px rgba(255, 255, 255, 0.65),
         inset 0 -1px 1px rgba(0, 0, 0, 0.2);
     }
 
     [data-theme="light"] .dock-liquid-glider {
       background: #ffffff;
-      border: 1px solid rgba(0, 0, 0, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.95);
       box-shadow: 
-        0 8px 24px -4px rgba(15, 23, 42, 0.16),
-        0 2px 6px rgba(0, 0, 0, 0.06),
-        inset 0 2px 1.5px rgba(255, 255, 255, 1),
+        0 6px 18px -2px rgba(15, 23, 42, 0.18),
+        0 2px 6px rgba(0, 0, 0, 0.08),
+        inset 0 2px 2px #ffffff,
         inset 0 -1px 1px rgba(0, 0, 0, 0.03);
-    }
-
-    .dock-liquid-glider.active {
-      opacity: 1;
     }
 
     .dock-badge-pulse {
@@ -7731,15 +7739,15 @@
       display: flex;
       align-items: center;
       gap: 6px;
-      padding: 5px 10px;
-      background: rgba(56, 189, 248, 0.1);
-      border: 1px solid rgba(56, 189, 248, 0.25);
-      border-radius: 20px;
+      padding: 6px 11px;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.28);
+      border-radius: 9999px;
     }
 
     [data-theme="light"] .dock-badge-pulse {
       background: rgba(37, 99, 235, 0.08);
-      border-color: rgba(37, 99, 235, 0.2);
+      border-color: rgba(37, 99, 235, 0.25);
     }
 
     .dock-badge-dot {
@@ -7747,18 +7755,18 @@
       height: 6px;
       border-radius: 50%;
       background: #22c55e;
-      box-shadow: 0 0 6px #22c55e;
+      box-shadow: 0 0 8px #22c55e;
       animation: pulseDockDot 2s infinite ease-in-out;
     }
 
     @keyframes pulseDockDot {
       0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.8); }
+      50% { opacity: 0.35; transform: scale(0.75); }
     }
 
     .dock-badge-text {
       font-family: var(--font-mono);
-      font-size: 0.62rem;
+      font-size: 0.64rem;
       font-weight: 700;
       letter-spacing: 0.06em;
       color: var(--accent);
@@ -7771,7 +7779,7 @@
       width: 1px;
       height: 20px;
       background: rgba(148, 163, 184, 0.25);
-      margin: 0 2px;
+      margin: 0 3px;
     }
 
     .dock-action-btn {
@@ -7779,14 +7787,15 @@
       z-index: 2;
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 6px;
-      padding: 7px 13px;
+      padding: 7px 14px;
       background: transparent;
       border: none;
       border-radius: 9999px;
       color: #94a3b8;
       font-family: var(--font-display);
-      font-size: 0.74rem;
+      font-size: 0.76rem;
       font-weight: 600;
       cursor: pointer;
       transition: color 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
@@ -7821,16 +7830,20 @@
     }
 
     .dock-action-btn .dock-icon {
-      font-size: 0.94rem;
+      font-size: 1rem;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), color 0.25s ease;
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.25s ease;
     }
 
     .dock-action-btn.active .dock-icon {
-      transform: scale(1.18);
+      transform: scale(1.22);
       color: var(--accent);
+    }
+
+    [data-theme="light"] .dock-action-btn.active .dock-icon {
+      color: #0284c7;
     }
 
     .dock-action-btn .dock-label {
@@ -7977,8 +7990,8 @@
       }
 
       .dock-pill-container {
-        padding: 4px 5px !important;
-        gap: 2px !important;
+        padding: 5px 6px !important;
+        gap: 3px !important;
       }
 
       .dock-action-btn .dock-label {
@@ -7986,14 +7999,14 @@
       }
 
       .dock-action-btn {
-        padding: 8px 11px !important;
-        min-width: 44px !important;
-        height: 40px !important;
+        padding: 8px 12px !important;
+        min-width: 46px !important;
+        height: 42px !important;
         justify-content: center !important;
       }
 
       .dock-action-btn .dock-icon {
-        font-size: 1.12rem !important;
+        font-size: 1.16rem !important;
       }
 
       .floating-chatbot-btn {
@@ -15947,7 +15960,7 @@ Feature: Srivatsa Malali Portfolio Verification
       const dockPillContainer = document.getElementById('dockPillContainer');
       const dockLiquidGlider = document.getElementById('dockLiquidGlider');
       const dockButtons = document.querySelectorAll('.dock-action-btn');
-      let activeDockBtn = document.querySelector('.dock-action-btn.active') || document.getElementById('dockBtnInterview');
+      let activeDockBtn = document.querySelector('.dock-action-btn.active') || document.getElementById('dockBtnApple') || dockButtons[0];
 
       const updateLiquidGlider = (targetBtn, animate = true) => {
         if (!targetBtn || !dockPillContainer || !dockLiquidGlider) return;
@@ -15957,22 +15970,32 @@ Feature: Srivatsa Malali Portfolio Verification
           btn.classList.toggle('active', btn === targetBtn);
         });
 
-        const left = targetBtn.offsetLeft;
-        const width = targetBtn.offsetWidth;
+        const containerRect = dockPillContainer.getBoundingClientRect();
+        const btnRect = targetBtn.getBoundingClientRect();
+
+        const left = btnRect.left - containerRect.left;
+        const top = btnRect.top - containerRect.top;
+        const width = btnRect.width;
+        const height = btnRect.height;
 
         if (!animate) {
           dockLiquidGlider.style.transition = 'none';
         } else {
-          dockLiquidGlider.style.transition = 'transform 0.42s cubic-bezier(0.175, 0.885, 0.32, 1.25), width 0.38s cubic-bezier(0.22, 1, 0.36, 1.1), opacity 0.25s ease';
+          // Liquid spring easing (stretches & snaps smoothly like liquid mercury)
+          dockLiquidGlider.style.transition = 'transform 0.44s cubic-bezier(0.34, 1.4, 0.64, 1), width 0.36s cubic-bezier(0.34, 1.4, 0.64, 1), height 0.36s ease, opacity 0.2s ease';
         }
 
-        dockLiquidGlider.style.transform = `translateX(${left}px)`;
+        dockLiquidGlider.style.transform = `translate3d(${left}px, ${top}px, 0)`;
         dockLiquidGlider.style.width = `${width}px`;
-        dockLiquidGlider.classList.add('active');
+        dockLiquidGlider.style.height = `${height}px`;
+        dockLiquidGlider.style.opacity = '1';
       };
 
-      setTimeout(() => updateLiquidGlider(activeDockBtn, false), 150);
+      // Recalculate on load and resize
+      setTimeout(() => updateLiquidGlider(activeDockBtn, false), 100);
       window.addEventListener('resize', () => updateLiquidGlider(activeDockBtn, false));
+      window.addEventListener('load', () => updateLiquidGlider(activeDockBtn, false));
+      document.addEventListener('DOMContentLoaded', () => updateLiquidGlider(activeDockBtn, false));
 
       const dockBtnApple = document.getElementById('dockBtnApple');
       const dockBtnCard = document.getElementById('dockBtnCard');
@@ -15984,14 +16007,16 @@ Feature: Srivatsa Malali Portfolio Verification
         dockBtnApple.addEventListener('click', () => {
           updateLiquidGlider(dockBtnApple, true);
           SoundFX.playClick();
-          const expSec = document.getElementById('experience');
-          if (expSec) {
-            expSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }
-          const appleNode = document.querySelector('.metro-station-node[data-station="tcs"]');
-          if (appleNode) {
-            setTimeout(() => appleNode.click(), 450);
-          }
+          setTimeout(() => {
+            const expSec = document.getElementById('experience');
+            if (expSec) {
+              expSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+            const appleNode = document.querySelector('.metro-station-node[data-station="tcs"]');
+            if (appleNode) {
+              setTimeout(() => appleNode.click(), 450);
+            }
+          }, 180);
           showToast('Navigated to TCS (Apple & Citi Engagements)', '');
         });
       }
@@ -16000,7 +16025,9 @@ Feature: Srivatsa Malali Portfolio Verification
         dockBtnCard.addEventListener('click', () => {
           updateLiquidGlider(dockBtnCard, true);
           SoundFX.playClick();
-          openPlaygroundModal('cardStudio');
+          setTimeout(() => {
+            openPlaygroundModal('cardStudio');
+          }, 220);
           showToast('Opening 3D FinTech Card Verifier & Luhn-10 Sandbox 💳', '🚀');
         });
       }
@@ -16009,7 +16036,9 @@ Feature: Srivatsa Malali Portfolio Verification
         dockBtnIDE.addEventListener('click', () => {
           updateLiquidGlider(dockBtnIDE, true);
           SoundFX.playClick();
-          openPlaygroundModal('playground');
+          setTimeout(() => {
+            openPlaygroundModal('playground');
+          }, 220);
           showToast('Opening Live Automation & Cucumber BDD IDE ⚡', '💻');
         });
       }
@@ -16017,6 +16046,7 @@ Feature: Srivatsa Malali Portfolio Verification
       if (dockBtnCardGen) {
         dockBtnCardGen.addEventListener('click', () => {
           updateLiquidGlider(dockBtnCardGen, true);
+          SoundFX.playClick();
         });
       }
 
@@ -16053,7 +16083,7 @@ Feature: Srivatsa Malali Portfolio Verification
       if (dockBtnInterview) {
         dockBtnInterview.addEventListener('click', () => {
           updateLiquidGlider(dockBtnInterview, true);
-          openInterviewModal();
+          setTimeout(openInterviewModal, 220);
           showToast('Schedule an Interview / Technical Sync 📅', '✨');
         });
       }
@@ -16332,7 +16362,11 @@ Feature: Srivatsa Malali Portfolio Verification
           SoundFX.playClick();
         };
 
-        if (openDockBtn) openDockBtn.addEventListener('click', openModal);
+        if (openDockBtn) {
+          openDockBtn.addEventListener('click', () => {
+            setTimeout(openModal, 220);
+          });
+        }
         if (closeBtn) closeBtn.addEventListener('click', closeModal);
         if (modal) {
           modal.addEventListener('click', (e) => {
