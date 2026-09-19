@@ -7669,16 +7669,15 @@
       align-items: center;
       gap: 3px;
       padding: 5px 6px;
-      background: rgba(15, 23, 42, 0.65);
-      -webkit-backdrop-filter: blur(28px) saturate(210%) brightness(108%);
-      backdrop-filter: blur(28px) saturate(210%) brightness(108%);
-      border: 1px solid rgba(255, 255, 255, 0.25);
+      background: rgba(15, 23, 42, 0.7);
+      -webkit-backdrop-filter: blur(20px) saturate(190%);
+      backdrop-filter: blur(20px) saturate(190%);
+      border: 1px solid rgba(255, 255, 255, 0.22);
       border-radius: 9999px;
       box-shadow: 
-        0 18px 42px -6px rgba(0, 0, 0, 0.6),
-        0 4px 16px rgba(0, 0, 0, 0.3),
-        inset 0 1.5px 1.5px 0 rgba(255, 255, 255, 0.45),
-        inset 0 -1.5px 1.5px 0 rgba(0, 0, 0, 0.35);
+        0 14px 36px -6px rgba(0, 0, 0, 0.55),
+        0 4px 14px rgba(0, 0, 0, 0.25),
+        inset 0 1px 1px 0 rgba(255, 255, 255, 0.35);
       user-select: none;
       -webkit-user-select: none;
       overflow: visible;
@@ -7686,34 +7685,15 @@
       transform: translateZ(0);
     }
 
-    /* Glossy top specular glass shine */
-    .dock-pill-container::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 10%;
-      right: 10%;
-      height: 48%;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0) 100%);
-      border-radius: 9999px 9999px 0 0;
-      pointer-events: none;
-      z-index: 0;
-    }
-
     [data-theme="light"] .dock-pill-container {
-      background: rgba(255, 255, 255, 0.76);
-      -webkit-backdrop-filter: blur(28px) saturate(210%) brightness(102%);
-      backdrop-filter: blur(28px) saturate(210%) brightness(102%);
+      background: rgba(255, 255, 255, 0.75);
+      -webkit-backdrop-filter: blur(20px) saturate(190%);
+      backdrop-filter: blur(20px) saturate(190%);
       border: 1.5px solid rgba(255, 255, 255, 0.95);
       box-shadow: 
-        0 16px 38px -4px rgba(15, 23, 42, 0.14),
-        0 4px 14px rgba(0, 0, 0, 0.05),
-        inset 0 2px 2px 0 rgba(255, 255, 255, 1),
-        inset 0 -1px 1px 0 rgba(0, 0, 0, 0.04);
-    }
-
-    [data-theme="light"] .dock-pill-container::before {
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0) 100%);
+        0 12px 32px -4px rgba(15, 23, 42, 0.12),
+        0 4px 12px rgba(0, 0, 0, 0.04),
+        inset 0 1.5px 1.5px 0 rgba(255, 255, 255, 1);
     }
 
     /* Sliding Liquid Glider Capsule (WhatsApp Style) */
@@ -7721,33 +7701,32 @@
       position: absolute;
       top: 0;
       left: 0;
-      width: 48px;
-      height: 40px;
+      width: 0;
+      height: 0;
       border-radius: 9999px;
       pointer-events: none;
       z-index: 1;
-      opacity: 1;
-      will-change: transform, width, height;
-      -webkit-transition: -webkit-transform 0.44s cubic-bezier(0.34, 1.4, 0.64, 1), width 0.36s cubic-bezier(0.34, 1.4, 0.64, 1), height 0.36s ease;
-      transition: transform 0.44s cubic-bezier(0.34, 1.4, 0.64, 1), width 0.36s cubic-bezier(0.34, 1.4, 0.64, 1), height 0.36s ease;
+      opacity: 0;
+      will-change: transform, width, height, opacity;
+      -webkit-transition: -webkit-transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), width 0.35s cubic-bezier(0.25, 1, 0.5, 1), height 0.35s ease, opacity 0.2s ease;
+      transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), width 0.35s cubic-bezier(0.25, 1, 0.5, 1), height 0.35s ease, opacity 0.2s ease;
       -webkit-transform: translate3d(0, 0, 0);
       transform: translate3d(0, 0, 0);
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.14) 100%);
-      -webkit-backdrop-filter: blur(14px);
-      backdrop-filter: blur(14px);
-      border: 1px solid rgba(255, 255, 255, 0.48);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.12) 100%);
+      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.45);
       box-shadow: 
-        0 6px 18px -2px rgba(0, 0, 0, 0.45),
-        0 2px 6px rgba(0, 0, 0, 0.25),
-        inset 0 1.5px 1.5px rgba(255, 255, 255, 0.7);
+        0 4px 14px -1px rgba(0, 0, 0, 0.35),
+        inset 0 1px 1px rgba(255, 255, 255, 0.6);
     }
 
     [data-theme="light"] .dock-liquid-glider {
       background: #ffffff !important;
-      border: 1px solid rgba(255, 255, 255, 1) !important;
+      border: 1px solid rgba(0, 0, 0, 0.06) !important;
       box-shadow: 
-        0 4px 14px -1px rgba(15, 23, 42, 0.16),
-        0 2px 6px rgba(0, 0, 0, 0.08),
+        0 4px 12px -2px rgba(15, 23, 42, 0.15),
+        0 2px 5px rgba(0, 0, 0, 0.06),
         inset 0 1.5px 1.5px #ffffff !important;
     }
 
@@ -11785,7 +11764,7 @@
       </div>
       <div class="dock-divider"></div>
 
-      <button type="button" class="dock-action-btn" id="dockBtnApple" data-dock="apple"
+      <button type="button" class="dock-action-btn active" id="dockBtnApple" data-dock="apple"
         title="Jump to Apple Case Study & Zero-Defect Architecture">
         <span class="dock-icon">
           <svg width="15" height="18" viewBox="0 0 814 1000" fill="currentColor"
@@ -11829,7 +11808,7 @@
         </span>
         <span class="dock-label">Snapshot</span>
       </button>
-      <button type="button" class="dock-action-btn active" id="dockBtnInterview" data-dock="interview"
+      <button type="button" class="dock-action-btn" id="dockBtnInterview" data-dock="interview"
         title="Schedule an Interview / Connect with Srivatsa">
         <span class="dock-icon">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -15964,12 +15943,20 @@ Feature: Srivatsa Malali Portfolio Verification
       }
 
       // =========================================================================
-      // 16. FEATURE: LIQUID GLASS RECRUITER DOCK WITH SMOOTH SLIDING GLIDER (WHATSAPP STYLE)
+      // 16. FEATURE: LIQUID GLASS RECRUITER DOCK WITH SMOOTH SLIDING GLIDER & SCROLL
       // =========================================================================
       const dockPillContainer = document.getElementById('dockPillContainer');
       const dockLiquidGlider = document.getElementById('dockLiquidGlider');
       const dockButtons = document.querySelectorAll('.dock-action-btn');
-      let activeDockBtn = document.querySelector('.dock-action-btn.active') || document.getElementById('dockBtnApple') || dockButtons[0];
+
+      const dockBtnApple = document.getElementById('dockBtnApple');
+      const dockBtnCard = document.getElementById('dockBtnCard');
+      const dockBtnIDE = document.getElementById('dockBtnIDE');
+      const dockBtnCardGen = document.getElementById('dockBtnCardGen');
+      const dockBtnInterview = document.getElementById('dockBtnInterview');
+
+      let activeDockBtn = document.querySelector('.dock-action-btn.active') || dockBtnApple || dockButtons[0];
+      let isProgrammaticScroll = false;
 
       const updateLiquidGlider = (targetBtn, animate = true) => {
         if (!targetBtn || !dockPillContainer || !dockLiquidGlider) return;
@@ -15990,8 +15977,8 @@ Feature: Srivatsa Malali Portfolio Verification
           dockLiquidGlider.style.webkitTransition = 'none';
           dockLiquidGlider.style.transition = 'none';
         } else {
-          dockLiquidGlider.style.webkitTransition = '-webkit-transform 0.42s cubic-bezier(0.34, 1.4, 0.64, 1), width 0.35s cubic-bezier(0.34, 1.4, 0.64, 1), height 0.35s ease';
-          dockLiquidGlider.style.transition = 'transform 0.42s cubic-bezier(0.34, 1.4, 0.64, 1), width 0.35s cubic-bezier(0.34, 1.4, 0.64, 1), height 0.35s ease';
+          dockLiquidGlider.style.webkitTransition = '-webkit-transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), width 0.35s cubic-bezier(0.25, 1, 0.5, 1), height 0.35s ease, opacity 0.2s ease';
+          dockLiquidGlider.style.transition = 'transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), width 0.35s cubic-bezier(0.25, 1, 0.5, 1), height 0.35s ease, opacity 0.2s ease';
         }
 
         dockLiquidGlider.style.webkitTransform = `translate3d(${left}px, ${top}px, 0)`;
@@ -16001,8 +15988,105 @@ Feature: Srivatsa Malali Portfolio Verification
         dockLiquidGlider.style.opacity = '1';
       };
 
+      const scrollToSectionSmooth = (sectionId) => {
+        const sec = document.getElementById(sectionId);
+        if (!sec) return;
+        isProgrammaticScroll = true;
+        const navHeight = 60;
+        const targetTop = sec.getBoundingClientRect().top + window.pageYOffset - navHeight;
+        window.scrollTo({
+          top: targetTop,
+          behavior: 'smooth'
+        });
+        setTimeout(() => {
+          isProgrammaticScroll = false;
+        }, 800);
+      };
+
+      if (dockBtnApple) {
+        dockBtnApple.addEventListener('click', (e) => {
+          e.preventDefault();
+          updateLiquidGlider(dockBtnApple, true);
+          SoundFX.playClick();
+          scrollToSectionSmooth('experience');
+          const appleNode = document.querySelector('.metro-station-node[data-station="tcs"]');
+          if (appleNode) {
+            setTimeout(() => appleNode.click(), 450);
+          }
+          showToast('Navigated to Apple & Citi Case Studies', '');
+        });
+      }
+
+      if (dockBtnCard) {
+        dockBtnCard.addEventListener('click', (e) => {
+          e.preventDefault();
+          updateLiquidGlider(dockBtnCard, true);
+          SoundFX.playClick();
+          scrollToSectionSmooth('skills');
+          showToast('Navigated to Skills & Architecture', '💳');
+        });
+      }
+
+      if (dockBtnIDE) {
+        dockBtnIDE.addEventListener('click', (e) => {
+          e.preventDefault();
+          updateLiquidGlider(dockBtnIDE, true);
+          SoundFX.playClick();
+          scrollToSectionSmooth('workflow');
+          showToast('Navigated to CI/CD Automation & IDE', '💻');
+        });
+      }
+
+      if (dockBtnCardGen) {
+        dockBtnCardGen.addEventListener('click', (e) => {
+          e.preventDefault();
+          updateLiquidGlider(dockBtnCardGen, true);
+          SoundFX.playClick();
+          scrollToSectionSmooth('certs');
+          showToast('Navigated to Credentials & Certifications', '🎓');
+        });
+      }
+
+      if (dockBtnInterview) {
+        dockBtnInterview.addEventListener('click', (e) => {
+          e.preventDefault();
+          updateLiquidGlider(dockBtnInterview, true);
+          SoundFX.playClick();
+          scrollToSectionSmooth('contact');
+          showToast('Navigated to Contact & Interview Sync', '📅');
+        });
+      }
+
+      // ScrollSpy: Glider follows page scroll smoothly
+      const dockSections = [
+        { id: 'experience', btn: dockBtnApple },
+        { id: 'skills', btn: dockBtnCard },
+        { id: 'workflow', btn: dockBtnIDE },
+        { id: 'certs', btn: dockBtnCardGen },
+        { id: 'contact', btn: dockBtnInterview }
+      ];
+
+      let scrollTimer = null;
+      window.addEventListener('scroll', () => {
+        if (isProgrammaticScroll) return;
+        if (scrollTimer) return;
+        scrollTimer = setTimeout(() => {
+          scrollTimer = null;
+          const scrollPos = window.pageYOffset + 250;
+          for (let i = dockSections.length - 1; i >= 0; i--) {
+            const secEl = document.getElementById(dockSections[i].id);
+            if (secEl && secEl.offsetTop <= scrollPos) {
+              if (activeDockBtn !== dockSections[i].btn) {
+                updateLiquidGlider(dockSections[i].btn, true);
+              }
+              break;
+            }
+          }
+        }, 70);
+      }, { passive: true });
+
       const initGlider = () => {
-        if (!activeDockBtn) activeDockBtn = document.querySelector('.dock-action-btn.active') || document.getElementById('dockBtnApple') || dockButtons[0];
+        if (!activeDockBtn) activeDockBtn = document.querySelector('.dock-action-btn.active') || dockBtnApple || dockButtons[0];
         updateLiquidGlider(activeDockBtn, false);
       };
 
@@ -16017,59 +16101,6 @@ Feature: Srivatsa Malali Portfolio Verification
       window.addEventListener('orientationchange', () => setTimeout(initGlider, 100));
       window.addEventListener('load', initGlider);
       document.addEventListener('DOMContentLoaded', initGlider);
-
-      const dockBtnApple = document.getElementById('dockBtnApple');
-      const dockBtnCard = document.getElementById('dockBtnCard');
-      const dockBtnIDE = document.getElementById('dockBtnIDE');
-      const dockBtnCardGen = document.getElementById('dockBtnCardGen');
-      const dockBtnInterview = document.getElementById('dockBtnInterview');
-
-      if (dockBtnApple) {
-        dockBtnApple.addEventListener('click', () => {
-          updateLiquidGlider(dockBtnApple, true);
-          SoundFX.playClick();
-          setTimeout(() => {
-            const expSec = document.getElementById('experience');
-            if (expSec) {
-              expSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-            const appleNode = document.querySelector('.metro-station-node[data-station="tcs"]');
-            if (appleNode) {
-              setTimeout(() => appleNode.click(), 450);
-            }
-          }, 180);
-          showToast('Navigated to TCS (Apple & Citi Engagements)', '');
-        });
-      }
-
-      if (dockBtnCard) {
-        dockBtnCard.addEventListener('click', () => {
-          updateLiquidGlider(dockBtnCard, true);
-          SoundFX.playClick();
-          setTimeout(() => {
-            openPlaygroundModal('cardStudio');
-          }, 220);
-          showToast('Opening 3D FinTech Card Verifier & Luhn-10 Sandbox 💳', '🚀');
-        });
-      }
-
-      if (dockBtnIDE) {
-        dockBtnIDE.addEventListener('click', () => {
-          updateLiquidGlider(dockBtnIDE, true);
-          SoundFX.playClick();
-          setTimeout(() => {
-            openPlaygroundModal('playground');
-          }, 220);
-          showToast('Opening Live Automation & Cucumber BDD IDE ⚡', '💻');
-        });
-      }
-
-      if (dockBtnCardGen) {
-        dockBtnCardGen.addEventListener('click', () => {
-          updateLiquidGlider(dockBtnCardGen, true);
-          SoundFX.playClick();
-        });
-      }
 
       // =========================================================================
       // 17. FEATURE: BOOK INTERVIEW & DYNAMIC GMEET MODAL CONTROLLER
