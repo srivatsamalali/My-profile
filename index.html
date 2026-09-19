@@ -6503,6 +6503,16 @@
       transform: translateY(0) scale(1);
     }
 
+    .floating-chatbot-window.active ~ .floating-chatbot-btn,
+    .floating-chatbot-btn.chatbot-open,
+    body.chatbot-open .floating-chatbot-btn,
+    .floating-chatbot-btn.hidden {
+      opacity: 0 !important;
+      pointer-events: none !important;
+      visibility: hidden !important;
+      transform: scale(0.4) translateY(20px) !important;
+    }
+
     .bot-header {
       background: #0f172a;
       padding: 12px 18px;
@@ -7261,11 +7271,28 @@
 
       .yoga-modal-body {
         grid-template-columns: 1fr !important;
-        overflow-y: auto !important;
+        display: flex !important;
+        flex-direction: column !important;
+        overflow-y: scroll !important;
         -webkit-overflow-scrolling: touch !important;
         touch-action: pan-y !important;
+        overscroll-behavior-y: contain !important;
         flex: 1 1 auto !important;
         max-height: calc(100dvh - 65px - env(safe-area-inset-top, 0px)) !important;
+        padding-bottom: calc(50px + env(safe-area-inset-bottom, 0px)) !important;
+      }
+
+      .yoga-sidebar-info {
+        overflow: visible !important;
+        height: auto !important;
+        max-height: none !important;
+        padding: 16px !important;
+      }
+
+      .yoga-pillars-list {
+        overflow: visible !important;
+        max-height: none !important;
+        padding-right: 0 !important;
       }
 
       /* Mobile Candidate Snapshot Engine Modal Optimization */
@@ -8687,26 +8714,22 @@
     }
 
     .yoga-photo-badge {
-      position: absolute;
-      bottom: 12px;
-      left: 12px;
-      right: 12px;
-      padding: 8px 14px;
+      width: 100%;
+      box-sizing: border-box;
+      padding: 10px 14px;
       background: rgba(10, 15, 26, 0.85);
-      backdrop-filter: blur(8px);
       border: 1px solid rgba(251, 191, 36, 0.3);
       border-radius: 8px;
       color: #fef08a;
       font-family: var(--font-mono);
-      font-size: 0.72rem;
+      font-size: 0.74rem;
       font-weight: 600;
       text-align: center;
-      pointer-events: none;
-      z-index: 2;
+      line-height: 1.4;
     }
 
     [data-theme="light"] .yoga-photo-badge {
-      background: rgba(255, 255, 255, 0.9);
+      background: #fef3c7;
       color: #78350f;
       border-color: rgba(217, 119, 6, 0.35);
     }
@@ -8981,20 +9004,39 @@
     @media (max-width: 850px) {
       .yoga-modal-body {
         grid-template-columns: 1fr;
-        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        overflow-y: scroll;
+        -webkit-overflow-scrolling: touch;
+        touch-action: pan-y;
+        overscroll-behavior-y: contain;
+      }
+
+      .yoga-sidebar-info {
+        overflow: visible;
+        height: auto;
+        max-height: none;
       }
 
       .yoga-pillars-list {
-        max-height: 220px;
+        overflow: visible;
+        max-height: none;
+        padding-right: 0;
       }
 
       .yoga-gallery-main {
         border-right: none;
         border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        flex-shrink: 0;
+      }
+
+      [data-theme="light"] .yoga-gallery-main {
+        border-bottom-color: rgba(0, 0, 0, 0.08);
       }
 
       .yoga-active-view-container {
         height: 280px;
+        touch-action: pan-y;
       }
     }
 
@@ -11538,7 +11580,6 @@
         <div class="yoga-gallery-main">
           <div class="yoga-active-view-container">
             <img src="images/yoga/yoga_competition_2017.jpg" alt="National Yoga Champion Performance" id="yogaActivePhoto" class="yoga-active-img" />
-            <div class="yoga-photo-badge" id="yogaPhotoBadge">2017 Inter-College Yoga Competition · Purna Dhanurasana (Full Bow Pose)</div>
             
             <!-- Prev/Next Controls -->
             <button type="button" class="yoga-nav-arrow yoga-nav-prev" id="yogaPrevBtn" title="Previous Photo [←]">
@@ -11549,6 +11590,9 @@
             </button>
             <div class="yoga-counter" id="yogaCounter">1 / 5</div>
           </div>
+
+          <!-- Clean Caption Box (Positioned below photo, completely unblocking poses) -->
+          <div class="yoga-photo-badge" id="yogaPhotoBadge">2017 Inter-College Yoga Competition · Purna Dhanurasana (Full Bow Pose)</div>
 
           <!-- Thumbnails Strip -->
           <div class="yoga-thumbs-strip" id="yogaThumbsStrip">
@@ -15621,12 +15665,16 @@ Feature: Srivatsa Malali Portfolio Verification
       const openChatbotWidget = () => {
         if (!aiChatbotWidget) return;
         aiChatbotWidget.classList.add('active');
+        if (floatingChatbotTrigger) floatingChatbotTrigger.classList.add('chatbot-open');
+        document.body.classList.add('chatbot-open');
         if (botUserQueryInput) setTimeout(() => botUserQueryInput.focus(), 200);
       };
 
       const closeChatbotWidget = () => {
         if (!aiChatbotWidget) return;
         aiChatbotWidget.classList.remove('active');
+        if (floatingChatbotTrigger) floatingChatbotTrigger.classList.remove('chatbot-open');
+        document.body.classList.remove('chatbot-open');
       };
 
       const toggleChatbotWidget = () => {
@@ -16532,6 +16580,31 @@ Feature: Srivatsa Malali Portfolio Verification
             updateYogaDisplay(idx);
           });
         });
+
+        // Touch swipe gestures for photo viewer (horizontal swipe flips photo, vertical swipe scrolls modal)
+        const yogaActiveContainer = document.querySelector('.yoga-active-view-container');
+        if (yogaActiveContainer) {
+          let touchStartX = 0;
+          let touchStartY = 0;
+          yogaActiveContainer.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+            touchStartY = e.changedTouches[0].screenY;
+          }, { passive: true });
+
+          yogaActiveContainer.addEventListener('touchend', (e) => {
+            const diffX = e.changedTouches[0].screenX - touchStartX;
+            const diffY = e.changedTouches[0].screenY - touchStartY;
+            if (Math.abs(diffX) > 40 && Math.abs(diffX) > Math.abs(diffY)) {
+              if (diffX < 0) {
+                SoundFX.playKey();
+                updateYogaDisplay(currentYogaIdx + 1);
+              } else {
+                SoundFX.playKey();
+                updateYogaDisplay(currentYogaIdx - 1);
+              }
+            }
+          }, { passive: true });
+        }
 
         // Keyboard Arrow & ESC support for Yoga Modal
         window.addEventListener('keydown', (e) => {
