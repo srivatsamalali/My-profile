@@ -9332,7 +9332,7 @@
   </header>
 
   <!-- Hero Section -->
-  <section class="hero-section">
+  <section class="hero-section" id="hero">
     <canvas id="heroMeshCanvas" class="hero-mesh-canvas"></canvas>
     <div class="container" style="position: relative; z-index: 2;">
       <div class="hero-grid">
@@ -11764,7 +11764,8 @@
       </div>
       <div class="dock-divider"></div>
 
-      <button type="button" class="dock-action-btn active" id="dockBtnApple" data-dock="apple"
+      <!-- Tab 1: Apple Case Study (Experience) -->
+      <button type="button" class="dock-action-btn" id="dockBtnApple" data-dock="apple"
         title="Jump to Apple Case Study & Zero-Defect Architecture">
         <span class="dock-icon">
           <svg width="15" height="18" viewBox="0 0 814 1000" fill="currentColor"
@@ -11775,16 +11776,32 @@
         </span>
         <span class="dock-label">Apple Case</span>
       </button>
+
+      <!-- Tab 2: Skills & FinTech Architecture -->
       <button type="button" class="dock-action-btn" id="dockBtnCard" data-dock="card"
-        title="Open 3D FinTech Card Verifier & Luhn Algorithm Sandbox">
+        title="Open Skills & 3D FinTech Architecture">
         <span class="dock-icon">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
             <line x1="1" y1="10" x2="23" y2="10"></line>
           </svg>
         </span>
-        <span class="dock-label">3D Card</span>
+        <span class="dock-label">Skills</span>
       </button>
+
+      <!-- Tab 3: CENTER HOME BUTTON -->
+      <button type="button" class="dock-action-btn active dock-btn-home" id="dockBtnHome" data-dock="home"
+        title="Home · Scroll to Top">
+        <span class="dock-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+          </svg>
+        </span>
+        <span class="dock-label">Home</span>
+      </button>
+
+      <!-- Tab 4: Live Automation & Cucumber BDD Code IDE -->
       <button type="button" class="dock-action-btn" id="dockBtnIDE" data-dock="ide"
         title="Open Live Automation & Cucumber BDD Code Playground">
         <span class="dock-icon">
@@ -11795,19 +11812,8 @@
         </span>
         <span class="dock-label">Code IDE</span>
       </button>
-      <button type="button" class="dock-action-btn" id="dockBtnCardGen" data-dock="cardgen"
-        title="Generate Personalized Executive Snapshot & PDF Card">
-        <span class="dock-icon">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <rect x="3" y="4" width="18" height="16" rx="2"></rect>
-            <circle cx="9" cy="10" r="2"></circle>
-            <line x1="15" y1="8" x2="17" y2="8"></line>
-            <line x1="15" y1="12" x2="17" y2="12"></line>
-            <line x1="7" y1="16" x2="17" y2="16"></line>
-          </svg>
-        </span>
-        <span class="dock-label">Snapshot</span>
-      </button>
+
+      <!-- Tab 5: Connect & Schedule Interview -->
       <button type="button" class="dock-action-btn" id="dockBtnInterview" data-dock="interview"
         title="Schedule an Interview / Connect with Srivatsa">
         <span class="dock-icon">
@@ -15951,13 +15957,24 @@ Feature: Srivatsa Malali Portfolio Verification
 
       const dockBtnApple = document.getElementById('dockBtnApple');
       const dockBtnCard = document.getElementById('dockBtnCard');
+      const dockBtnHome = document.getElementById('dockBtnHome');
       const dockBtnIDE = document.getElementById('dockBtnIDE');
-      const dockBtnCardGen = document.getElementById('dockBtnCardGen');
       const dockBtnInterview = document.getElementById('dockBtnInterview');
 
-      let activeDockBtn = document.querySelector('.dock-action-btn.active') || dockBtnApple || dockButtons[0];
+      let activeDockBtn = document.querySelector('.dock-action-btn.active') || dockBtnHome || dockButtons[0];
       let isProgrammaticScroll = false;
+      let prevGliderLeft = 0;
 
+      // Haptic Vibration Feedback for Mobile
+      const triggerHaptic = () => {
+        if (navigator.vibrate) {
+          try {
+            navigator.vibrate(12);
+          } catch(e) {}
+        }
+      };
+
+      // Smooth Glider Mover with Fluid Liquid Spring Physics
       const updateLiquidGlider = (targetBtn, animate = true) => {
         if (!targetBtn || !dockPillContainer || !dockLiquidGlider) return;
         activeDockBtn = targetBtn;
@@ -15973,96 +15990,144 @@ Feature: Srivatsa Malali Portfolio Verification
 
         if (width === 0 || height === 0) return;
 
+        const distance = Math.abs(left - prevGliderLeft);
+        prevGliderLeft = left;
+
         if (!animate) {
           dockLiquidGlider.style.webkitTransition = 'none';
           dockLiquidGlider.style.transition = 'none';
+          dockLiquidGlider.style.webkitTransform = `translate3d(${left}px, ${top}px, 0)`;
+          dockLiquidGlider.style.transform = `translate3d(${left}px, ${top}px, 0)`;
         } else {
-          dockLiquidGlider.style.webkitTransition = '-webkit-transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), width 0.35s cubic-bezier(0.25, 1, 0.5, 1), height 0.35s ease, opacity 0.2s ease';
-          dockLiquidGlider.style.transition = 'transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), width 0.35s cubic-bezier(0.25, 1, 0.5, 1), height 0.35s ease, opacity 0.2s ease';
+          // Dynamic liquid easing duration based on jump distance
+          const dur = distance > 120 ? '0.44s' : '0.36s';
+          dockLiquidGlider.style.webkitTransition = `-webkit-transform ${dur} cubic-bezier(0.25, 1.2, 0.4, 1), width 0.32s cubic-bezier(0.25, 1, 0.5, 1), height 0.32s ease, opacity 0.2s ease`;
+          dockLiquidGlider.style.transition = `transform ${dur} cubic-bezier(0.25, 1.2, 0.4, 1), width 0.32s cubic-bezier(0.25, 1, 0.5, 1), height 0.32s ease, opacity 0.2s ease`;
+          dockLiquidGlider.style.webkitTransform = `translate3d(${left}px, ${top}px, 0)`;
+          dockLiquidGlider.style.transform = `translate3d(${left}px, ${top}px, 0)`;
         }
 
-        dockLiquidGlider.style.webkitTransform = `translate3d(${left}px, ${top}px, 0)`;
-        dockLiquidGlider.style.transform = `translate3d(${left}px, ${top}px, 0)`;
         dockLiquidGlider.style.width = `${width}px`;
         dockLiquidGlider.style.height = `${height}px`;
         dockLiquidGlider.style.opacity = '1';
       };
 
-      const scrollToSectionSmooth = (sectionId) => {
-        const sec = document.getElementById(sectionId);
-        if (!sec) return;
+      // Universal 60fps Smooth Scroll Engine (Quintic Easing)
+      const smoothScrollToY = (targetY, duration = 480) => {
         isProgrammaticScroll = true;
-        const navHeight = 60;
-        const targetTop = sec.getBoundingClientRect().top + window.pageYOffset - navHeight;
-        window.scrollTo({
-          top: targetTop,
-          behavior: 'smooth'
-        });
-        setTimeout(() => {
+        const startY = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+        const distance = targetY - startY;
+
+        if (Math.abs(distance) < 5) {
           isProgrammaticScroll = false;
-        }, 800);
+          return;
+        }
+
+        const startTime = performance.now();
+        const easeOutQuint = (t) => 1 + (--t) * t * t * t * t;
+
+        const step = (currentTime) => {
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          const ease = easeOutQuint(progress);
+
+          window.scrollTo(0, Math.round(startY + distance * ease));
+
+          if (progress < 1) {
+            requestAnimationFrame(step);
+          } else {
+            window.scrollTo(0, targetY);
+            setTimeout(() => {
+              isProgrammaticScroll = false;
+            }, 60);
+          }
+        };
+
+        requestAnimationFrame(step);
       };
 
+      const scrollToSection = (sectionId) => {
+        if (!sectionId || sectionId === 'hero') {
+          smoothScrollToY(0);
+          return;
+        }
+        const sec = document.getElementById(sectionId);
+        if (!sec) return;
+        const navOffset = window.innerWidth <= 768 ? 65 : 85;
+        const targetY = Math.max(0, sec.getBoundingClientRect().top + window.pageYOffset - navOffset);
+        smoothScrollToY(targetY);
+      };
+
+      // Tab 1: Apple Case Study (Experience)
       if (dockBtnApple) {
         dockBtnApple.addEventListener('click', (e) => {
           e.preventDefault();
           updateLiquidGlider(dockBtnApple, true);
           SoundFX.playClick();
-          scrollToSectionSmooth('experience');
+          triggerHaptic();
+          scrollToSection('experience');
           const appleNode = document.querySelector('.metro-station-node[data-station="tcs"]');
           if (appleNode) {
             setTimeout(() => appleNode.click(), 450);
           }
-          showToast('Navigated to Apple & Citi Case Studies', '');
+          showToast('Navigated to Experience (Apple & Citi Engagements)', '');
         });
       }
 
+      // Tab 2: Skills & Architecture
       if (dockBtnCard) {
         dockBtnCard.addEventListener('click', (e) => {
           e.preventDefault();
           updateLiquidGlider(dockBtnCard, true);
           SoundFX.playClick();
-          scrollToSectionSmooth('skills');
-          showToast('Navigated to Skills & Architecture', '💳');
+          triggerHaptic();
+          scrollToSection('skills');
+          showToast('Navigated to Skills & Architecture', '⚡');
         });
       }
 
+      // Tab 3: CENTER HOME BUTTON (Hero Top)
+      if (dockBtnHome) {
+        dockBtnHome.addEventListener('click', (e) => {
+          e.preventDefault();
+          updateLiquidGlider(dockBtnHome, true);
+          SoundFX.playClick();
+          triggerHaptic();
+          scrollToSection('hero');
+          showToast('Home · Welcome to Srivatsa\'s Profile', '🏠');
+        });
+      }
+
+      // Tab 4: Live Automation & IDE Workflow
       if (dockBtnIDE) {
         dockBtnIDE.addEventListener('click', (e) => {
           e.preventDefault();
           updateLiquidGlider(dockBtnIDE, true);
           SoundFX.playClick();
-          scrollToSectionSmooth('workflow');
-          showToast('Navigated to CI/CD Automation & IDE', '💻');
+          triggerHaptic();
+          scrollToSection('workflow');
+          showToast('Navigated to CI/CD & Automation Workflow', '💻');
         });
       }
 
-      if (dockBtnCardGen) {
-        dockBtnCardGen.addEventListener('click', (e) => {
-          e.preventDefault();
-          updateLiquidGlider(dockBtnCardGen, true);
-          SoundFX.playClick();
-          scrollToSectionSmooth('certs');
-          showToast('Navigated to Credentials & Certifications', '🎓');
-        });
-      }
-
+      // Tab 5: Contact & Schedule Interview
       if (dockBtnInterview) {
         dockBtnInterview.addEventListener('click', (e) => {
           e.preventDefault();
           updateLiquidGlider(dockBtnInterview, true);
           SoundFX.playClick();
-          scrollToSectionSmooth('contact');
-          showToast('Navigated to Contact & Interview Sync', '📅');
+          triggerHaptic();
+          scrollToSection('contact');
+          showToast('Navigated to Contact & Schedule Sync', '📅');
         });
       }
 
-      // ScrollSpy: Glider follows page scroll smoothly
+      // ScrollSpy: Glider tracks scroll position continuously
       const dockSections = [
+        { id: 'hero', btn: dockBtnHome },
         { id: 'experience', btn: dockBtnApple },
         { id: 'skills', btn: dockBtnCard },
         { id: 'workflow', btn: dockBtnIDE },
-        { id: 'certs', btn: dockBtnCardGen },
         { id: 'contact', btn: dockBtnInterview }
       ];
 
@@ -16072,21 +16137,33 @@ Feature: Srivatsa Malali Portfolio Verification
         if (scrollTimer) return;
         scrollTimer = setTimeout(() => {
           scrollTimer = null;
-          const scrollPos = window.pageYOffset + 250;
+          const scrollPos = window.pageYOffset;
+
+          // If near top, home button is active
+          if (scrollPos < 350) {
+            if (activeDockBtn !== dockBtnHome && dockBtnHome) {
+              updateLiquidGlider(dockBtnHome, true);
+            }
+            return;
+          }
+
+          // Otherwise find closest matching section
+          const checkPos = scrollPos + 260;
           for (let i = dockSections.length - 1; i >= 0; i--) {
+            if (dockSections[i].id === 'hero') continue;
             const secEl = document.getElementById(dockSections[i].id);
-            if (secEl && secEl.offsetTop <= scrollPos) {
-              if (activeDockBtn !== dockSections[i].btn) {
+            if (secEl && secEl.offsetTop <= checkPos) {
+              if (activeDockBtn !== dockSections[i].btn && dockSections[i].btn) {
                 updateLiquidGlider(dockSections[i].btn, true);
               }
               break;
             }
           }
-        }, 70);
+        }, 65);
       }, { passive: true });
 
       const initGlider = () => {
-        if (!activeDockBtn) activeDockBtn = document.querySelector('.dock-action-btn.active') || dockBtnApple || dockButtons[0];
+        if (!activeDockBtn) activeDockBtn = document.querySelector('.dock-action-btn.active') || dockBtnHome || dockButtons[0];
         updateLiquidGlider(activeDockBtn, false);
       };
 
