@@ -11777,13 +11777,14 @@
         <span class="dock-label">Apple Case</span>
       </button>
 
-      <!-- Tab 2: Skills & FinTech Architecture -->
-      <button type="button" class="dock-action-btn" id="dockBtnCard" data-dock="card"
-        title="Open Skills & 3D FinTech Architecture">
+      <!-- Tab 2: Skills & Framework Architecture -->
+      <button type="button" class="dock-action-btn" id="dockBtnSkills" data-dock="skills"
+        title="View Technical Skills & Framework Architecture">
         <span class="dock-icon">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
-            <line x1="1" y1="10" x2="23" y2="10"></line>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+            <polyline points="2 17 12 22 22 17"></polyline>
+            <polyline points="2 12 12 17 22 12"></polyline>
           </svg>
         </span>
         <span class="dock-label">Skills</span>
@@ -15956,7 +15957,7 @@ Feature: Srivatsa Malali Portfolio Verification
       const dockButtons = document.querySelectorAll('.dock-action-btn');
 
       const dockBtnApple = document.getElementById('dockBtnApple');
-      const dockBtnCard = document.getElementById('dockBtnCard');
+      const dockBtnSkills = document.getElementById('dockBtnSkills');
       const dockBtnHome = document.getElementById('dockBtnHome');
       const dockBtnIDE = document.getElementById('dockBtnIDE');
       const dockBtnInterview = document.getElementById('dockBtnInterview');
@@ -16074,15 +16075,15 @@ Feature: Srivatsa Malali Portfolio Verification
         });
       }
 
-      // Tab 2: Skills & Architecture
-      if (dockBtnCard) {
-        dockBtnCard.addEventListener('click', (e) => {
+      // Tab 2: Skills & Architecture (Scrolls to #skills)
+      if (dockBtnSkills) {
+        dockBtnSkills.addEventListener('click', (e) => {
           e.preventDefault();
-          updateLiquidGlider(dockBtnCard, true);
+          updateLiquidGlider(dockBtnSkills, true);
           SoundFX.playClick();
           triggerHaptic();
           scrollToSection('skills');
-          showToast('Navigated to Skills & Architecture', '⚡');
+          showToast('Navigated to Technical Skills & Architecture', '⚡');
         });
       }
 
@@ -16098,37 +16099,39 @@ Feature: Srivatsa Malali Portfolio Verification
         });
       }
 
-      // Tab 4: Live Automation & IDE Workflow
+      // Tab 4: Live Cucumber BDD & Automation IDE (Opens IDE Modal Directly)
       if (dockBtnIDE) {
         dockBtnIDE.addEventListener('click', (e) => {
           e.preventDefault();
           updateLiquidGlider(dockBtnIDE, true);
           SoundFX.playClick();
           triggerHaptic();
-          scrollToSection('workflow');
-          showToast('Navigated to CI/CD & Automation Workflow', '💻');
+          if (typeof openPlaygroundModal === 'function') {
+            openPlaygroundModal('playground');
+          }
+          showToast('Opening Live Automation & Cucumber BDD IDE ⚡', '💻');
         });
       }
 
-      // Tab 5: Contact & Schedule Interview
+      // Tab 5: Schedule Interview (Opens Interview Modal Directly Without Page Scrolling)
       if (dockBtnInterview) {
         dockBtnInterview.addEventListener('click', (e) => {
           e.preventDefault();
           updateLiquidGlider(dockBtnInterview, true);
           SoundFX.playClick();
           triggerHaptic();
-          scrollToSection('contact');
-          showToast('Navigated to Contact & Schedule Sync', '📅');
+          if (typeof openInterviewModal === 'function') {
+            openInterviewModal();
+          }
+          showToast('Schedule an Interview / Technical Sync 📅', '✨');
         });
       }
 
-      // ScrollSpy: Glider tracks scroll position continuously
+      // ScrollSpy: Glider tracks scroll position across main sections
       const dockSections = [
         { id: 'hero', btn: dockBtnHome },
         { id: 'experience', btn: dockBtnApple },
-        { id: 'skills', btn: dockBtnCard },
-        { id: 'workflow', btn: dockBtnIDE },
-        { id: 'contact', btn: dockBtnInterview }
+        { id: 'skills', btn: dockBtnSkills }
       ];
 
       let scrollTimer = null;
@@ -16147,7 +16150,7 @@ Feature: Srivatsa Malali Portfolio Verification
             return;
           }
 
-          // Otherwise find closest matching section
+          // Check if user is in skills or experience sections
           const checkPos = scrollPos + 260;
           for (let i = dockSections.length - 1; i >= 0; i--) {
             if (dockSections[i].id === 'hero') continue;
