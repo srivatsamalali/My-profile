@@ -911,11 +911,71 @@
       height: 100%;
       pointer-events: none;
       z-index: 0;
-      opacity: 0.65;
+      opacity: 0.85;
     }
 
     [data-theme="dark"] .hero-mesh-canvas {
-      opacity: 0.8;
+      opacity: 0.95;
+    }
+
+    /* =========================================================================
+       GYROSCOPIC SPATIAL TILES & SPECULAR GLARE
+       ========================================================================= */
+    .blueprint-card,
+    .project-card,
+    .skill-card,
+    .cred-card,
+    .exp-inner-card,
+    .metric-card,
+    .workflow-card,
+    .arch-visualizer-card,
+    .stat-badge-card,
+    .qa-terminal,
+    .exec-metric-card,
+    .interactive-tier-card,
+    .contact-card-glass,
+    .hero-info-card {
+      position: relative;
+      transform-style: preserve-3d;
+      will-change: transform;
+      transition: box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+
+    /* Ambient specular glass glare that shifts with Gyroscope / Mouse */
+    .blueprint-card::after,
+    .project-card::after,
+    .skill-card::after,
+    .cred-card::after,
+    .exp-inner-card::after,
+    .metric-card::after,
+    .workflow-card::after,
+    .arch-visualizer-card::after,
+    .stat-badge-card::after,
+    .contact-card-glass::after,
+    .hero-info-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      pointer-events: none;
+      background: radial-gradient(circle at var(--gyro-x, 50%) var(--gyro-y, 50%), rgba(255, 255, 255, 0.16) 0%, transparent 60%);
+      opacity: var(--gyro-opacity, 0.4);
+      transition: opacity 0.3s ease;
+      z-index: 3;
+    }
+
+    [data-theme="light"] .blueprint-card::after,
+    [data-theme="light"] .project-card::after,
+    [data-theme="light"] .skill-card::after,
+    [data-theme="light"] .cred-card::after,
+    [data-theme="light"] .exp-inner-card::after,
+    [data-theme="light"] .metric-card::after,
+    [data-theme="light"] .workflow-card::after,
+    [data-theme="light"] .arch-visualizer-card::after,
+    [data-theme="light"] .stat-badge-card::after,
+    [data-theme="light"] .contact-card-glass::after,
+    [data-theme="light"] .hero-info-card::after {
+      background: radial-gradient(circle at var(--gyro-x, 50%) var(--gyro-y, 50%), rgba(255, 255, 255, 0.55) 0%, transparent 60%);
     }
 
     @media (max-width: 600px) {
@@ -3014,31 +3074,43 @@
       transform: translateY(-2px);
     }
 
-    /* Toast Notification */
+    /* Non-Intrusive Dynamic Island Top Toast Notification */
     .toast-msg {
       position: fixed;
-      bottom: 28px;
+      top: max(18px, env(safe-area-inset-top, 18px));
       left: 50%;
-      transform: translateX(-50%) translateY(100px);
-      background: #0f172a;
+      transform: translateX(-50%) translateY(-50px) scale(0.92);
+      background: rgba(15, 23, 42, 0.88);
+      -webkit-backdrop-filter: blur(24px) saturate(190%);
+      backdrop-filter: blur(24px) saturate(190%);
       color: #ffffff;
-      font-family: var(--font-mono);
-      font-size: 0.78rem;
-      padding: 10px 22px;
-      border-radius: 30px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
+      font-family: var(--font-mono, monospace);
+      font-size: 0.76rem;
+      font-weight: 500;
+      padding: 8px 18px;
+      border-radius: 9999px;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      box-shadow: 0 10px 30px -4px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.1);
       z-index: 1000000;
       opacity: 0;
-      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
       display: flex;
       align-items: center;
       gap: 8px;
       pointer-events: none;
+      white-space: nowrap;
+      max-width: calc(100vw - 32px);
+    }
+
+    [data-theme="light"] .toast-msg {
+      background: rgba(255, 255, 255, 0.92);
+      color: #0f172a;
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      box-shadow: 0 10px 30px -4px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.05);
     }
 
     .toast-msg.show {
-      transform: translateX(-50%) translateY(0);
+      transform: translateX(-50%) translateY(0) scale(1);
       opacity: 1;
     }
 
@@ -12085,27 +12157,25 @@
     // =========================================================================
     // GLOBAL MODAL SCROLL LOCK & SCROLL CHAINING TRAP ENGINE
     // =========================================================================
-    let activeModalCount = 0;
     let savedScrollY = 0;
     const setScrollLock = (locked) => {
       if (locked) {
-        if (activeModalCount === 0) {
-          savedScrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || 0;
-          document.documentElement.classList.add('has-active-modal');
-          document.body.classList.add('has-active-modal');
-          document.body.style.overflow = 'hidden';
+        if (!document.body.classList.contains('has-active-modal')) {
+          savedScrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
         }
-        activeModalCount++;
+        document.documentElement.classList.add('has-active-modal');
+        document.body.classList.add('has-active-modal');
+        document.body.style.overflow = 'hidden';
       } else {
-        activeModalCount = Math.max(0, activeModalCount - 1);
-        if (activeModalCount === 0) {
+        // Query any remaining active modal overlays
+        const anyActiveModal = document.querySelector(
+          '.interview-modal-overlay.active, .card-gen-modal-overlay.active, .yoga-modal-overlay.active, .interactive-labs-modal-overlay.active, .cmd-palette-overlay.active, .resume-modal-overlay.active, .drawer-overlay.active, .lightbox-overlay.active, .linkedin-modal-overlay.active, .studio-3d-overlay.active, .mobile-menu-drawer.active'
+        );
+        if (!anyActiveModal) {
           document.documentElement.classList.remove('has-active-modal');
           document.body.classList.remove('has-active-modal');
           document.body.style.overflow = '';
           document.documentElement.style.overflow = '';
-          if (typeof savedScrollY === 'number' && savedScrollY >= 0) {
-            window.scrollTo({ top: savedScrollY, behavior: 'instant' });
-          }
         }
       }
     };
@@ -13094,7 +13164,7 @@
         clearTimeout(toastTimer);
         toastTimer = setTimeout(() => {
           toastMsg.classList.remove('show');
-        }, 2800);
+        }, 1800);
       };
 
       // =========================================================================
@@ -13366,58 +13436,127 @@
       });
 
       // =========================================================================
-      // 2. INTERACTIVE 3D TILT & SPOTLIGHT ON BLUEPRINT & ACTION CARDS
+      // 2. UNIVERSAL GYROSCOPIC 3D SPATIAL TILT & SPECULAR GLARE ENGINE (EVERYWHERE)
       // =========================================================================
-      const blueprintCards = document.querySelectorAll('.blueprint-card, .qa-terminal');
-      blueprintCards.forEach(card => {
-        let cardRaf = null;
-        let cardHover = false;
-        let cRotX = 0, cRotY = 0;
-        let tRotX = 0, tRotY = 0;
+      const gyroscopicTiles = document.querySelectorAll(
+        '.blueprint-card, .project-card, .skill-card, .cred-card, .exp-inner-card, .metric-card, .workflow-card, .arch-visualizer-card, .stat-badge-card, .qa-terminal, .exec-metric-card, .interactive-tier-card, .contact-card-glass, .stat-pill, .hero-info-card'
+      );
 
-        const updateCardTilt = () => {
-          if (!cardHover) {
-            cRotX += (0 - cRotX) * 0.1;
-            cRotY += (0 - cRotY) * 0.1;
-            card.style.transform = `perspective(1200px) rotateX(${cRotX.toFixed(2)}deg) rotateY(${cRotY.toFixed(2)}deg) translateY(0) scale3d(1, 1, 1)`;
-            if (Math.abs(cRotX) > 0.05 || Math.abs(cRotY) > 0.05) {
-              cardRaf = requestAnimationFrame(updateCardTilt);
-            } else {
-              card.style.transform = '';
-              cardRaf = null;
+      let gyroX = 0, gyroY = 0;
+      let targetGyroX = 0, targetGyroY = 0;
+      let isGyroActive = false;
+      let isMobileDevice = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+      // Desktop: Mouse Tilt per card
+      if (!isMobileDevice) {
+        gyroscopicTiles.forEach(card => {
+          let cardRaf = null;
+          let cardHover = false;
+          let cRotX = 0, cRotY = 0;
+          let tRotX = 0, tRotY = 0;
+
+          const updateCardTilt = () => {
+            if (!cardHover) {
+              cRotX += (0 - cRotX) * 0.1;
+              cRotY += (0 - cRotY) * 0.1;
+              card.style.transform = `perspective(1000px) rotateX(${cRotX.toFixed(2)}deg) rotateY(${cRotY.toFixed(2)}deg) scale3d(1, 1, 1)`;
+              card.style.setProperty('--gyro-opacity', '0.2');
+              if (Math.abs(cRotX) > 0.05 || Math.abs(cRotY) > 0.05) {
+                cardRaf = requestAnimationFrame(updateCardTilt);
+              } else {
+                card.style.transform = '';
+                cardRaf = null;
+              }
+              return;
             }
-            return;
-          }
 
-          cRotX += (tRotX - cRotX) * 0.15;
-          cRotY += (tRotY - cRotY) * 0.15;
-          card.style.transform = `perspective(1200px) rotateX(${cRotX.toFixed(2)}deg) rotateY(${cRotY.toFixed(2)}deg) translateY(-4px) scale3d(1.012, 1.012, 1.012)`;
-          cardRaf = requestAnimationFrame(updateCardTilt);
+            cRotX += (tRotX - cRotX) * 0.14;
+            cRotY += (tRotY - cRotY) * 0.14;
+            card.style.transform = `perspective(1000px) rotateX(${cRotX.toFixed(2)}deg) rotateY(${cRotY.toFixed(2)}deg) translateY(-4px) scale3d(1.018, 1.018, 1.018)`;
+            card.style.setProperty('--gyro-opacity', '0.65');
+            cardRaf = requestAnimationFrame(updateCardTilt);
+          };
+
+          card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const pctX = (x / rect.width) * 100;
+            const pctY = (y / rect.height) * 100;
+            card.style.setProperty('--gyro-x', `${pctX}%`);
+            card.style.setProperty('--gyro-y', `${pctY}%`);
+            card.style.setProperty('--mouse-x', `${x}px`);
+            card.style.setProperty('--mouse-y', `${y}px`);
+
+            const normX = (x / rect.width) - 0.5;
+            const normY = (y / rect.height) - 0.5;
+            tRotX = -normY * 8;
+            tRotY = normX * 8;
+            cardHover = true;
+            if (!cardRaf) cardRaf = requestAnimationFrame(updateCardTilt);
+          });
+
+          card.addEventListener('mouseleave', () => {
+            cardHover = false;
+            if (!cardRaf) cardRaf = requestAnimationFrame(updateCardTilt);
+          });
+        });
+      } else {
+        // Mobile: DeviceOrientation Gyroscope Physics
+        const handleDeviceOrientation = (e) => {
+          if (e.gamma === null || e.beta === null) return;
+          isGyroActive = true;
+          // Gamma: Left to Right (-45 to 45 deg)
+          const clampedGamma = Math.max(-35, Math.min(35, e.gamma));
+          // Beta: Front to Back (20 to 60 deg typical holding angle)
+          const adjustedBeta = Math.max(-25, Math.min(25, e.beta - 40));
+
+          targetGyroY = (clampedGamma / 35) * 10; // Max 10deg rotateY
+          targetGyroX = -(adjustedBeta / 25) * 8;  // Max 8deg rotateX
         };
 
-        card.addEventListener('mousemove', (e) => {
-          const rect = card.getBoundingClientRect();
-          const x = e.clientX - rect.left;
-          const y = e.clientY - rect.top;
-          card.style.setProperty('--mouse-x', `${x}px`);
-          card.style.setProperty('--mouse-y', `${y}px`);
+        window.addEventListener('deviceorientation', handleDeviceOrientation, { passive: true });
 
-          const normX = (x / rect.width) - 0.5;
-          const normY = (y / rect.height) - 0.5;
-          tRotX = -normY * 6; // subtle max 3deg
-          tRotY = normX * 6;
-          cardHover = true;
-          if (!cardRaf) cardRaf = requestAnimationFrame(updateCardTilt);
-        });
+        // iOS 13+ Permission activation on first tap
+        const requestGyroPermission = () => {
+          if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
+            DeviceOrientationEvent.requestPermission().then(permissionState => {
+              if (permissionState === 'granted') {
+                window.addEventListener('deviceorientation', handleDeviceOrientation, { passive: true });
+              }
+            }).catch(() => {});
+          }
+          window.removeEventListener('touchstart', requestGyroPermission);
+        };
+        window.addEventListener('touchstart', requestGyroPermission, { passive: true });
 
-        card.addEventListener('mouseleave', () => {
-          cardHover = false;
-          if (!cardRaf) cardRaf = requestAnimationFrame(updateCardTilt);
-        });
-      });
+        // Smooth Gyroscope Render Loop for Mobile
+        const renderMobileGyro = () => {
+          if (isGyroActive) {
+            gyroX += (targetGyroX - gyroX) * 0.12;
+            gyroY += (targetGyroY - gyroY) * 0.12;
+
+            const glarePctX = 50 + (gyroY / 10) * 40;
+            const glarePctY = 50 - (gyroX / 8) * 40;
+
+            gyroscopicTiles.forEach(card => {
+              const rect = card.getBoundingClientRect();
+              // Only tilt tiles currently visible in the viewport
+              if (rect.top < window.innerHeight + 50 && rect.bottom > -50) {
+                card.style.transform = `perspective(800px) rotateX(${gyroX.toFixed(2)}deg) rotateY(${gyroY.toFixed(2)}deg)`;
+                card.style.setProperty('--gyro-x', `${glarePctX.toFixed(1)}%`);
+                card.style.setProperty('--gyro-y', `${glarePctY.toFixed(1)}%`);
+                card.style.setProperty('--gyro-opacity', '0.5');
+              }
+            });
+          }
+          requestAnimationFrame(renderMobileGyro);
+        };
+        requestAnimationFrame(renderMobileGyro);
+      }
 
       // =========================================================================
-      // 3. INTERACTIVE 3D HERO CONSTELLATION & PARTICLE MESH CANVAS
+      // 3. DYNAMIC AURORA MESH & NEURAL CONSTELLATION CANVAS ENGINE
       // =========================================================================
       const heroCanvas = document.getElementById('heroMeshCanvas');
       if (heroCanvas) {
@@ -13425,47 +13564,124 @@
         let width = 0;
         let height = 0;
         let particles = [];
-        let heroMouse = { x: -1000, y: -1000, radius: 140 };
+        let dataPulses = [];
+        let auroraTime = 0;
+        let heroMouse = { x: -1000, y: -1000, radius: 150 };
 
-        let lastHeroSecWidth = 0;
+        const getAccentThemeColors = () => {
+          const isDark = document.documentElement.getAttribute('data-theme') !== 'light';
+          const accentName = document.documentElement.getAttribute('data-accent') || 'cyan';
+          
+          let primaryRgb = '56, 189, 248'; // Cyan
+          let secondaryRgb = '99, 102, 241'; // Indigo
+          
+          if (accentName === 'gold') {
+            primaryRgb = '251, 191, 36';
+            secondaryRgb = '245, 158, 11';
+          } else if (accentName === 'emerald') {
+            primaryRgb = '16, 185, 129';
+            secondaryRgb = '52, 211, 153';
+          } else if (accentName === 'violet') {
+            primaryRgb = '168, 85, 247';
+            secondaryRgb = '192, 132, 252';
+          }
+
+          return { isDark, primaryRgb, secondaryRgb };
+        };
+
         const resizeCanvas = () => {
           const heroSec = heroCanvas.closest('.hero-section') || heroCanvas.parentElement;
           if (!heroSec) return;
-          const newWidth = heroSec.clientWidth;
-          if (width && newWidth === lastHeroSecWidth) return;
-          lastHeroSecWidth = newWidth;
-          width = heroCanvas.width = heroSec.clientWidth;
-          height = heroCanvas.height = heroSec.clientHeight;
+          const dpr = Math.min(window.devicePixelRatio || 1, 2);
+          width = heroSec.clientWidth;
+          height = heroSec.clientHeight;
+          heroCanvas.width = width * dpr;
+          heroCanvas.height = height * dpr;
+          ctx.scale(dpr, dpr);
           initParticles();
         };
 
         const initParticles = () => {
           particles = [];
-          const count = Math.min(65, Math.floor((width * height) / 14000));
+          dataPulses = [];
+          const count = Math.min(55, Math.max(25, Math.floor((width * height) / 16000)));
           for (let i = 0; i < count; i++) {
             particles.push({
               x: Math.random() * width,
               y: Math.random() * height,
-              vx: (Math.random() - 0.5) * 0.6,
-              vy: (Math.random() - 0.5) * 0.6,
+              vx: (Math.random() - 0.5) * 0.45,
+              vy: (Math.random() - 0.5) * 0.45,
               radius: Math.random() * 2 + 1.2,
-              baseRadius: Math.random() * 2 + 1.2
+              baseRadius: Math.random() * 2 + 1.2,
+              pulseSpeed: Math.random() * 0.04 + 0.02,
+              pulsePhase: Math.random() * Math.PI * 2
             });
           }
         };
 
-        const drawMesh = () => {
-          ctx.clearRect(0, 0, width, height);
-          const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-          const nodeColor = isDark ? 'rgba(96, 165, 250, ' : 'rgba(37, 99, 235, ';
-          const lineColor = isDark ? 'rgba(59, 130, 246, ' : 'rgba(37, 99, 235, ';
+        const drawAuroraPlumes = (colors) => {
+          auroraTime += 0.008;
+          const isDark = colors.isDark;
+          const baseAlpha = isDark ? 0.18 : 0.09;
 
-          // Update & Draw Particles
+          // Aurora Plume 1: Flowing Volumetric Wave
+          const grad1 = ctx.createRadialGradient(
+            width * 0.35 + Math.sin(auroraTime * 0.7) * (width * 0.2),
+            height * 0.35 + Math.cos(auroraTime * 0.5) * (height * 0.15),
+            10,
+            width * 0.35,
+            height * 0.35,
+            Math.max(width, height) * 0.65
+          );
+          grad1.addColorStop(0, `rgba(${colors.primaryRgb}, ${baseAlpha * 1.5})`);
+          grad1.addColorStop(0.5, `rgba(${colors.secondaryRgb}, ${baseAlpha * 0.8})`);
+          grad1.addColorStop(1, 'rgba(0, 0, 0, 0)');
+
+          ctx.fillStyle = grad1;
+          ctx.fillRect(0, 0, width, height);
+
+          // Aurora Plume 2: Harmonic Counter Wave
+          const grad2 = ctx.createRadialGradient(
+            width * 0.75 + Math.cos(auroraTime * 0.6) * (width * 0.18),
+            height * 0.65 + Math.sin(auroraTime * 0.8) * (height * 0.18),
+            10,
+            width * 0.75,
+            height * 0.65,
+            Math.max(width, height) * 0.55
+          );
+          grad2.addColorStop(0, `rgba(${colors.secondaryRgb}, ${baseAlpha * 1.2})`);
+          grad2.addColorStop(0.6, `rgba(${colors.primaryRgb}, ${baseAlpha * 0.5})`);
+          grad2.addColorStop(1, 'rgba(0, 0, 0, 0)');
+
+          ctx.fillStyle = grad2;
+          ctx.fillRect(0, 0, width, height);
+        };
+
+        const drawConstellation = (colors) => {
+          const isDark = colors.isDark;
+          const nodeColor = `rgba(${colors.primaryRgb}, `;
+          const lineColor = `rgba(${colors.secondaryRgb}, `;
+
+          // Occasionally spawn a quantum data pulse
+          if (Math.random() < 0.035 && dataPulses.length < 8 && particles.length > 2) {
+            const p1 = particles[Math.floor(Math.random() * particles.length)];
+            let p2 = particles[Math.floor(Math.random() * particles.length)];
+            if (p1 !== p2) {
+              dataPulses.push({
+                x: p1.x, y: p1.y,
+                targetX: p2.x, targetY: p2.y,
+                progress: 0,
+                speed: 0.02 + Math.random() * 0.03
+              });
+            }
+          }
+
+          // Update & Draw Particles (Neural Nodes)
           for (let i = 0; i < particles.length; i++) {
             const p = particles[i];
-
             p.x += p.vx;
             p.y += p.vy;
+            p.pulsePhase += p.pulseSpeed;
 
             // Screen wrap
             if (p.x < 0) p.x = width;
@@ -13473,7 +13689,7 @@
             if (p.y < 0) p.y = height;
             if (p.y > height) p.y = 0;
 
-            // Interactive Mouse Repulsion / Attraction
+            // Interactive Mouse Gravity
             const dx = heroMouse.x - p.x;
             const dy = heroMouse.y - p.y;
             const dist = Math.sqrt(dx * dx + dy * dy);
@@ -13481,26 +13697,35 @@
               const force = (heroMouse.radius - dist) / heroMouse.radius;
               p.x -= (dx / dist) * force * 3;
               p.y -= (dy / dist) * force * 3;
-              p.radius = p.baseRadius * 1.6;
+              p.radius = p.baseRadius * 1.8;
             } else {
-              p.radius += (p.baseRadius - p.radius) * 0.1;
+              p.radius += (p.baseRadius - p.radius) * 0.08;
             }
 
-            // Draw Node
+            // Pulse breathing
+            const dynamicRadius = Math.max(1, p.radius + Math.sin(p.pulsePhase) * 0.8);
+
+            // Halo glow
             ctx.beginPath();
-            ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-            ctx.fillStyle = `${nodeColor}0.7)`;
+            ctx.arc(p.x, p.y, dynamicRadius * 2.8, 0, Math.PI * 2);
+            ctx.fillStyle = `${nodeColor}${isDark ? '0.12)' : '0.08)'}`;
             ctx.fill();
 
-            // Connect nearby nodes
+            // Core node
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, dynamicRadius, 0, Math.PI * 2);
+            ctx.fillStyle = `${nodeColor}${isDark ? '0.85)' : '0.7)'}`;
+            ctx.fill();
+
+            // Connect nearby neural nodes (Laser Synapses)
             for (let j = i + 1; j < particles.length; j++) {
               const p2 = particles[j];
               const cdx = p.x - p2.x;
               const cdy = p.y - p2.y;
               const cdist = Math.sqrt(cdx * cdx + cdy * cdy);
 
-              if (cdist < 110) {
-                const alpha = (1 - cdist / 110) * 0.28;
+              if (cdist < 125) {
+                const alpha = (1 - cdist / 125) * (isDark ? 0.32 : 0.22);
                 ctx.beginPath();
                 ctx.moveTo(p.x, p.y);
                 ctx.lineTo(p2.x, p2.y);
@@ -13510,19 +13735,45 @@
               }
             }
 
-            // Connect to mouse
+            // Connect to mouse cursor
             if (dist < heroMouse.radius) {
-              const mouseAlpha = (1 - dist / heroMouse.radius) * 0.55;
+              const mouseAlpha = (1 - dist / heroMouse.radius) * (isDark ? 0.6 : 0.45);
               ctx.beginPath();
               ctx.moveTo(p.x, p.y);
               ctx.lineTo(heroMouse.x, heroMouse.y);
-              ctx.strokeStyle = `${lineColor}${mouseAlpha})`;
-              ctx.lineWidth = 1.2;
+              ctx.strokeStyle = `${nodeColor}${mouseAlpha})`;
+              ctx.lineWidth = 1.3;
               ctx.stroke();
             }
           }
 
-          requestAnimationFrame(drawMesh);
+          // Draw Travelling Quantum Data Pulses
+          for (let k = dataPulses.length - 1; k >= 0; k--) {
+            const dp = dataPulses[k];
+            dp.progress += dp.speed;
+            if (dp.progress >= 1) {
+              dataPulses.splice(k, 1);
+              continue;
+            }
+            const curX = dp.x + (dp.targetX - dp.x) * dp.progress;
+            const curY = dp.y + (dp.targetY - dp.y) * dp.progress;
+
+            ctx.beginPath();
+            ctx.arc(curX, curY, 2.4, 0, Math.PI * 2);
+            ctx.fillStyle = '#ffffff';
+            ctx.shadowColor = `rgba(${colors.primaryRgb}, 1)`;
+            ctx.shadowBlur = 8;
+            ctx.fill();
+            ctx.shadowBlur = 0;
+          }
+        };
+
+        const renderAuroraEngine = () => {
+          ctx.clearRect(0, 0, width, height);
+          const colors = getAccentThemeColors();
+          drawAuroraPlumes(colors);
+          drawConstellation(colors);
+          requestAnimationFrame(renderAuroraEngine);
         };
 
         const heroSec = heroCanvas.closest('.hero-section');
@@ -13536,11 +13787,19 @@
             heroMouse.x = -1000;
             heroMouse.y = -1000;
           });
+          // Tap/Touch ripple support
+          heroSec.addEventListener('touchmove', (e) => {
+            if (e.touches.length > 0) {
+              const rect = heroCanvas.getBoundingClientRect();
+              heroMouse.x = e.touches[0].clientX - rect.left;
+              heroMouse.y = e.touches[0].clientY - rect.top;
+            }
+          }, { passive: true });
         }
 
         window.addEventListener('resize', resizeCanvas);
         resizeCanvas();
-        requestAnimationFrame(drawMesh);
+        requestAnimationFrame(renderAuroraEngine);
       }
 
       // 2. Precision Coordinates & DOM Locator HUD
@@ -15676,8 +15935,6 @@ Feature: Srivatsa Malali Portfolio Verification
           if (flightTechPills) {
             flightTechPills.innerHTML = data.tech.map(t => `<span class="flight-pill">${t}</span>`).join('');
           }
-
-          showToast(`Station Selected: ${node.querySelector('.station-name').textContent}`, '✈️');
         });
       });
 
@@ -16071,7 +16328,6 @@ Feature: Srivatsa Malali Portfolio Verification
           if (appleNode) {
             setTimeout(() => appleNode.click(), 450);
           }
-          showToast('Navigated to Experience (Apple & Citi Engagements)', '');
         });
       }
 
@@ -16083,7 +16339,6 @@ Feature: Srivatsa Malali Portfolio Verification
           SoundFX.playClick();
           triggerHaptic();
           scrollToSection('skills');
-          showToast('Navigated to Technical Skills & Architecture', '⚡');
         });
       }
 
@@ -16095,7 +16350,6 @@ Feature: Srivatsa Malali Portfolio Verification
           SoundFX.playClick();
           triggerHaptic();
           scrollToSection('hero');
-          showToast('Home · Welcome to Srivatsa\'s Profile', '🏠');
         });
       }
 
@@ -16109,7 +16363,6 @@ Feature: Srivatsa Malali Portfolio Verification
           if (typeof openPlaygroundModal === 'function') {
             openPlaygroundModal('playground');
           }
-          showToast('Opening Live Automation & Cucumber BDD IDE ⚡', '💻');
         });
       }
 
@@ -16123,7 +16376,6 @@ Feature: Srivatsa Malali Portfolio Verification
           if (typeof openInterviewModal === 'function') {
             openInterviewModal();
           }
-          showToast('Schedule an Interview / Technical Sync 📅', '✨');
         });
       }
 
@@ -16185,11 +16437,30 @@ Feature: Srivatsa Malali Portfolio Verification
       // =========================================================================
       // 17. FEATURE: BOOK INTERVIEW & DYNAMIC GMEET MODAL CONTROLLER
       // =========================================================================
-      const interviewModalOverlay = document.getElementById('interviewModalOverlay');
-      const closeInterviewModalBtn = document.getElementById('closeInterviewModalBtn');
+      const syncDockGliderWithScroll = () => {
+        const scrollPos = window.pageYOffset;
+        if (scrollPos < 350) {
+          if (dockBtnHome) updateLiquidGlider(dockBtnHome, true);
+          return;
+        }
+        const checkPos = scrollPos + 260;
+        let matched = false;
+        for (let i = dockSections.length - 1; i >= 0; i--) {
+          if (dockSections[i].id === 'hero') continue;
+          const secEl = document.getElementById(dockSections[i].id);
+          if (secEl && secEl.offsetTop <= checkPos) {
+            if (dockSections[i].btn) updateLiquidGlider(dockSections[i].btn, true);
+            matched = true;
+            break;
+          }
+        }
+        if (!matched && dockBtnHome) {
+          updateLiquidGlider(dockBtnHome, true);
+        }
+      };
 
       const openInterviewModal = () => {
-        if (!interviewModalOverlay) return;
+        if (!interviewModalOverlay || interviewModalOverlay.classList.contains('active')) return;
         interviewModalOverlay.classList.add('active');
         setScrollLock(true);
         SoundFX.playClick();
@@ -16200,7 +16471,11 @@ Feature: Srivatsa Malali Portfolio Verification
         interviewModalOverlay.classList.remove('active');
         setScrollLock(false);
         SoundFX.playClick();
+        setTimeout(syncDockGliderWithScroll, 50);
       };
+
+      window.openInterviewModal = openInterviewModal;
+      window.closeInterviewModal = closeInterviewModal;
 
       if (closeInterviewModalBtn) {
         closeInterviewModalBtn.addEventListener('click', closeInterviewModal);
@@ -16209,14 +16484,6 @@ Feature: Srivatsa Malali Portfolio Verification
       if (interviewModalOverlay) {
         interviewModalOverlay.addEventListener('click', (e) => {
           if (e.target === interviewModalOverlay) closeInterviewModal();
-        });
-      }
-
-      if (dockBtnInterview) {
-        dockBtnInterview.addEventListener('click', () => {
-          updateLiquidGlider(dockBtnInterview, true);
-          setTimeout(openInterviewModal, 220);
-          showToast('Schedule an Interview / Technical Sync 📅', '✨');
         });
       }
 
