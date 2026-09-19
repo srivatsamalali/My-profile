@@ -4680,13 +4680,24 @@
       }
     }
 
-    /* Complete Print Optimization */
+    /* ==========================================================================
+       UNIFIED PRINT STYLESHEET (Executive Resume Brief & Candidate Card)
+       ========================================================================== */
     @media print {
-      body {
-        background: #ffffff !important;
-        color: #000000 !important;
+      @page {
+        margin: 12mm 15mm;
+        size: auto;
       }
 
+      html, body {
+        background: #ffffff !important;
+        color: #0f172a !important;
+        font-size: 11pt !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      /* Hide noisy interactive elements, canvas, backgrounds, and fixed navbars */
       body::before,
       .intro-overlay,
       .screen-flash,
@@ -4710,29 +4721,105 @@
       .toast-msg,
       .drawer-overlay,
       .lightbox-overlay,
-      .cmd-palette-overlay {
+      .cmd-palette-overlay,
+      .yoga-modal-overlay,
+      .interactive-labs-modal-overlay,
+      .interview-modal-overlay,
+      .linkedin-modal-overlay,
+      .studio-3d-overlay,
+      .mobile-menu-drawer,
+      .custom-cursor-dot,
+      .custom-cursor-ring,
+      .theme-palette-picker,
+      .resume-actions-bar,
+      .card-gen-actions-bar,
+      .card-gen-controls-pane,
+      .card-gen-header,
+      .card-gen-segmented-nav {
         display: none !important;
       }
 
+      /* Candidate Card Studio Print (when Card Generator is active) */
+      .card-gen-modal-overlay.active {
+        display: block !important;
+        position: static !important;
+        background: transparent !important;
+        padding: 0 !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+      }
+
+      .card-gen-modal-overlay.active .card-gen-modal-window {
+        border: none !important;
+        box-shadow: none !important;
+        background: transparent !important;
+        padding: 0 !important;
+        max-width: 100% !important;
+      }
+
+      .card-gen-modal-overlay.active #printCandidateCardTarget {
+        position: relative !important;
+        left: auto !important;
+        top: auto !important;
+        transform: none !important;
+        margin: 20px auto !important;
+        width: 100% !important;
+        max-width: 650px !important;
+        display: block !important;
+        background: #ffffff !important;
+        color: #0f172a !important;
+        box-shadow: none !important;
+        border: 2px solid #0f172a !important;
+        visibility: visible !important;
+      }
+
+      .card-gen-modal-overlay.active #printCandidateCardTarget * {
+        visibility: visible !important;
+      }
+
+      /* Executive Resume Brief Print */
       .resume-modal-overlay {
         display: block !important;
         position: static !important;
         background: transparent !important;
         padding: 0 !important;
         opacity: 1 !important;
+        visibility: visible !important;
       }
 
       .resume-paper {
         max-width: 100% !important;
+        width: 100% !important;
         box-shadow: none !important;
         padding: 0 !important;
-        color: #000000 !important;
+        margin: 0 !important;
+        color: #0f172a !important;
         background: transparent !important;
         border: none !important;
+        visibility: visible !important;
       }
 
-      .resume-actions-bar {
-        display: none !important;
+      .resume-paper * {
+        visibility: visible !important;
+      }
+
+      .resume-paper h1,
+      .resume-paper h2,
+      .resume-paper h3,
+      .resume-paper strong {
+        color: #0f172a !important;
+      }
+
+      .resume-paper p,
+      .resume-paper span,
+      .resume-paper div,
+      .resume-paper li {
+        color: #334155 !important;
+      }
+
+      .resume-paper a {
+        color: #0f172a !important;
+        text-decoration: underline !important;
       }
     }
 
@@ -8668,31 +8755,6 @@
       box-shadow: 0 6px 22px rgba(37, 99, 235, 0.45);
     }
 
-    /* Print Clean Stylesheet */
-    @media print {
-      body * {
-        visibility: hidden !important;
-      }
-
-      #printCandidateCardTarget,
-      #printCandidateCardTarget * {
-        visibility: visible !important;
-      }
-
-      #printCandidateCardTarget {
-        position: fixed !important;
-        left: 50% !important;
-        top: 40px !important;
-        transform: translateX(-50%) !important;
-        width: 100% !important;
-        max-width: 650px !important;
-        display: block !important;
-        background: #fff !important;
-        color: #000 !important;
-        box-shadow: none !important;
-        border: 2px solid #0f172a !important;
-      }
-    }
     /* ==========================================================================
        FEATURE: NATIONAL YOGA CHAMPION SHOWCASE MODAL
        ========================================================================== */
