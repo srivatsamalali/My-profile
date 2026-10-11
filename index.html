@@ -3931,6 +3931,112 @@
       gap: 10px;
     }
 
+    /* Dedicated Modal Sound Toggle Button & Close Button (Light & Dark Theme) */
+    #modalSoundFxToggleBtn {
+      height: 32px;
+      padding: 0 12px;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      background: rgba(30, 41, 59, 0.8);
+      border: 1px solid rgba(148, 163, 184, 0.28);
+      color: #f8fafc;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+    }
+
+    #modalSoundFxToggleBtn svg {
+      width: 13px;
+      height: 13px;
+      color: #38bdf8;
+      stroke: #38bdf8;
+      flex-shrink: 0;
+      transition: all 0.2s ease;
+    }
+
+    #modalSoundFxToggleBtn:hover {
+      background: rgba(56, 189, 248, 0.2);
+      border-color: #38bdf8;
+      color: #ffffff;
+      transform: translateY(-1px);
+      box-shadow: 0 2px 10px rgba(56, 189, 248, 0.3);
+    }
+
+    #modalSoundFxToggleBtn.muted {
+      background: rgba(15, 23, 42, 0.55);
+      border-color: rgba(148, 163, 184, 0.2);
+      color: #94a3b8;
+    }
+
+    #modalSoundFxToggleBtn.muted svg {
+      color: #f87171;
+      stroke: #f87171;
+    }
+
+    /* Light Theme: Ultra-crisp, high-contrast, perfectly visible */
+    [data-theme="light"] #modalSoundFxToggleBtn {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      color: #0f172a !important;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05);
+    }
+
+    [data-theme="light"] #modalSoundFxToggleBtn svg {
+      color: var(--accent);
+      stroke: var(--accent);
+    }
+
+    [data-theme="light"] #modalSoundFxToggleBtn:hover {
+      background: #eff6ff;
+      border-color: var(--accent);
+      color: var(--accent) !important;
+      transform: translateY(-1px);
+      box-shadow: 0 2px 8px rgba(37, 99, 235, 0.16);
+    }
+
+    [data-theme="light"] #modalSoundFxToggleBtn.muted {
+      background: #f8fafc;
+      border-color: #e2e8f0;
+      color: #64748b !important;
+      box-shadow: none;
+    }
+
+    [data-theme="light"] #modalSoundFxToggleBtn.muted svg {
+      color: #dc2626;
+      stroke: #dc2626;
+    }
+
+    /* Harmonize the adjacent Close button in the modal header */
+    .interactive-labs-ctrls .drawer-close-btn {
+      height: 32px;
+      min-width: 32px;
+      padding: 0 10px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      line-height: 1;
+    }
+
+    [data-theme="light"] .interactive-labs-ctrls .drawer-close-btn {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      color: #0f172a;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05);
+    }
+
+    [data-theme="light"] .interactive-labs-ctrls .drawer-close-btn:hover {
+      background: #fef2f2;
+      border-color: #ef4444;
+      color: #dc2626;
+    }
+
     .interactive-labs-body {
       padding: 20px;
       overflow-y: auto;
@@ -5506,6 +5612,25 @@
       border-color: var(--accent);
       color: #ffffff;
       box-shadow: 0 0 12px var(--accent);
+    }
+
+    [data-theme="light"] .studio-ctrl-btn {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      color: #0f172a;
+    }
+
+    [data-theme="light"] .studio-ctrl-btn:hover {
+      background: #eff6ff;
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    [data-theme="light"] .studio-ctrl-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #ffffff;
+      box-shadow: 0 0 12px rgba(37, 99, 235, 0.35);
     }
 
     .lighting-theme-cyan .studio-model-front {
@@ -11286,7 +11411,7 @@
 
           <!-- Right Modal Controls -->
           <div class="interactive-labs-ctrls">
-            <button type="button" class="studio-ctrl-btn" id="modalSoundFxToggleBtn" title="Toggle Lab Sound FX">
+            <button type="button" class="studio-ctrl-btn" id="modalSoundFxToggleBtn" title="Toggle Lab Sound FX" aria-label="Toggle Lab Sound FX">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                 id="modalSoundIconOn">
                 <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
@@ -11298,9 +11423,9 @@
                 <line x1="23" y1="9" x2="17" y2="15"></line>
                 <line x1="17" y1="9" x2="23" y2="15"></line>
               </svg>
-              <span id="modalSoundFxLabel">SFX</span>
+              <span id="modalSoundFxLabel">Audio ON</span>
             </button>
-            <button type="button" class="drawer-close-btn" id="closeInteractiveModalBtn" title="Close Sandbox (ESC)">
+            <button type="button" class="drawer-close-btn" id="closeInteractiveModalBtn" title="Close Sandbox (ESC)" aria-label="Close Sandbox">
               ✕
             </button>
           </div>
@@ -12532,21 +12657,36 @@
     const updateSoundFxUI = (muted) => {
       if (soundToggleBtn) {
         soundToggleBtn.classList.toggle('muted', muted);
+        soundToggleBtn.title = muted ? 'Unmute Sound FX' : 'Mute Sound FX';
         if (soundOnIcon) soundOnIcon.style.display = muted ? 'none' : 'block';
         if (soundOffIcon) soundOffIcon.style.display = muted ? 'block' : 'none';
         if (soundToggleLabel) soundToggleLabel.textContent = muted ? 'Muted' : 'SFX';
       }
       if (modalSoundFxToggleBtn) {
         modalSoundFxToggleBtn.classList.toggle('muted', muted);
+        modalSoundFxToggleBtn.title = muted ? 'Unmute Lab Sound FX' : 'Mute Lab Sound FX';
+        modalSoundFxToggleBtn.setAttribute('aria-label', muted ? 'Unmute Lab Sound FX' : 'Mute Lab Sound FX');
         if (modalSoundIconOn) modalSoundIconOn.style.display = muted ? 'none' : 'block';
         if (modalSoundIconOff) modalSoundIconOff.style.display = muted ? 'block' : 'none';
-        if (modalSoundFxLabel) modalSoundFxLabel.textContent = muted ? 'Muted' : 'Audio ON';
+        if (modalSoundFxLabel) modalSoundFxLabel.textContent = muted ? 'Audio Muted' : 'Audio ON';
       }
     };
 
+    updateSoundFxUI(SoundFX.isMuted());
+
     if (soundToggleBtn) {
-      updateSoundFxUI(SoundFX.isMuted());
       soundToggleBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const muted = SoundFX.toggleMute();
+        updateSoundFxUI(muted);
+        if (typeof showToast === 'function') {
+          showToast(muted ? 'Sound FX Muted' : 'Sound FX Activated (Synthesizer ON)', muted ? '🔇' : '🔊');
+        }
+      });
+    }
+
+    if (modalSoundFxToggleBtn) {
+      modalSoundFxToggleBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         const muted = SoundFX.toggleMute();
         updateSoundFxUI(muted);
