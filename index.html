@@ -7,7 +7,7 @@
     content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, interactive-widget=resizes-content" />
   <title>Srivatsa Malali — Senior QA Automation Engineer</title>
   <meta name="description"
-    content="Senior QA Automation Engineer with 5.5+ years experience architecting Java, Selenium, Cucumber BDD, and Rest Assured test frameworks for Apple, Citi Bank, and Air Canada." />
+    content="Senior QA Automation Engineer with 6+ years experience architecting Java, Selenium, Cucumber BDD, and Rest Assured test frameworks for Apple, Citi Bank, and Air Canada." />
   <meta name="keywords"
     content="Srivatsa Malali, Senior QA Automation Engineer, Selenium, Java, Cucumber BDD, Rest Assured, TestNG, Jenkins CI/CD, Bangalore" />
   <meta name="author" content="Srivatsa Malali" />
@@ -16,7 +16,7 @@
   <meta property="og:type" content="profile" />
   <meta property="og:title" content="Srivatsa Malali — Senior QA Automation Engineer" />
   <meta property="og:description"
-    content="Explore the portfolio of Srivatsa Malali: 5.5+ years architecting enterprise test frameworks, CI/CD pipelines, and zero-defect launch suites." />
+    content="Explore the portfolio of Srivatsa Malali: 6+ years architecting enterprise test frameworks, CI/CD pipelines, and zero-defect launch suites." />
   <meta property="og:image" content="images/IMG_2084.jpg" />
   <meta property="og:url" content="https://srivatsamalali.github.io/" />
 
@@ -3899,6 +3899,7 @@
       display: flex;
       align-items: center;
       gap: 12px;
+      min-width: 0;
     }
 
     .portal-window-dots {
@@ -4074,31 +4075,79 @@
 
     @media (max-width: 640px) {
       .portal-modal-overlay {
-        padding: env(safe-area-inset-top, 8px) 8px env(safe-area-inset-bottom, 8px) 8px;
+        padding: 0;
+        align-items: stretch;
       }
       .portal-modal-window {
-        width: 100%;
-        height: 94vh;
-        max-height: none;
-        border-radius: 10px;
+        width: 100vw;
+        max-width: 100vw;
+        height: 100%;
+        height: 100dvh;
+        max-height: 100dvh;
+        border-radius: 0;
+        border: none;
+        box-shadow: none;
       }
       .portal-modal-header {
-        padding: 8px 12px;
-        min-height: 40px;
+        padding: max(10px, env(safe-area-inset-top, 10px)) 12px 10px 12px;
+        min-height: 50px;
+        gap: 8px;
+        box-sizing: border-box;
+        width: 100%;
+      }
+      .portal-window-dots {
+        display: none !important;
+      }
+      .portal-modal-badge {
+        display: none !important;
+      }
+      .portal-modal-header-left {
+        min-width: 0;
+        flex: 1;
+        overflow: hidden;
+      }
+      .portal-modal-title-group {
+        min-width: 0;
+        overflow: hidden;
       }
       .portal-modal-title {
-        font-size: 0.72rem;
+        font-size: 0.8rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
       .portal-modal-address-bar {
-        display: none;
+        display: none !important;
+      }
+      .portal-modal-actions {
+        flex-shrink: 0;
+        gap: 6px;
+        margin-left: auto;
       }
       .portal-action-btn {
-        padding: 4px 8px;
-        font-size: 0.65rem;
+        padding: 6px 10px;
+        font-size: 0.7rem;
+        white-space: nowrap;
       }
       .portal-close-btn {
-        padding: 4px 8px;
-        font-size: 0.95rem;
+        min-width: 36px;
+        height: 36px;
+        padding: 0;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(239, 68, 68, 0.16);
+        color: #ef4444;
+        border: 1px solid rgba(239, 68, 68, 0.35);
+        border-radius: 6px;
+        font-size: 1.1rem;
+        font-weight: 700;
+        cursor: pointer;
+        line-height: 1;
+      }
+      .portal-close-btn:active {
+        background: #ef4444;
+        color: #ffffff;
       }
       .portal-modal-body iframe {
         -webkit-overflow-scrolling: touch;
@@ -4106,7 +4155,7 @@
     }
 
     @media (max-width: 380px) {
-      .portal-modal-badge {
+      .portal-action-btn span {
         display: none;
       }
     }
@@ -10336,7 +10385,7 @@
                         </svg>
                       </div>
                       <div class="avatar-back-title">YOGA CHAMP</div>
-                      <div class="avatar-back-sub">5.5+ YRS QA</div>
+                      <div class="avatar-back-sub">6+ YRS QA</div>
                     </div>
                   </div>
                 </div>
@@ -10350,7 +10399,7 @@
           </div>
           <h1 class="hero-title">Shaping <strong>Quality</strong> Building <strong>Reliability</strong></h1>
           <p class="hero-desc">
-            Yoga National Champion. Over 5.5 years of expertise engineering test frameworks (Java, Selenium, Cucumber
+            Yoga National Champion. Over 6+ years of expertise engineering test frameworks (Java, Selenium, Cucumber
             BDD, Rest Assured) across Apple, Citi Bank, and Air Canada ecosystems.
           </p>
           <div class="hero-actions">
@@ -11355,7 +11404,7 @@
 
         <div class="metric-card blueprint-card bounce-target bounce-pop d-10"
           data-locator="css=#metrics .metric-card:nth-of-type(4)">
-          <div class="metric-value count-up" data-target="5.5" data-decimals="1" data-suffix="+">0</div>
+          <div class="metric-value count-up" data-target="6" data-suffix="+">0</div>
           <div class="metric-label">Years Experience</div>
         </div>
       </div>
@@ -11849,7 +11898,7 @@
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
           </svg>
-          <span>5.5+ Yrs Enterprise QA</span>
+          <span>6+ Yrs Enterprise QA</span>
         </div>
       </div>
     </div>
@@ -12258,7 +12307,7 @@
           <h1 style="font-size:1.8rem; font-weight:700; margin:0 0 4px 0; text-transform:uppercase;">Srivatsa Malali
           </h1>
           <div style="font-family:var(--font-mono); font-size:0.85rem; color:var(--accent); font-weight:600;">Senior
-            Test Automation Engineer (5.5+ Years)</div>
+            Test Automation Engineer (6+ Years)</div>
           <div style="font-size:0.8rem; color:var(--text-muted); margin-top:4px;">Bangalore, Karnataka, India · Open for
             Senior QA Roles</div>
         </div>
@@ -12277,7 +12326,7 @@
           style="font-family:var(--font-mono); font-size:0.82rem; text-transform:uppercase; letter-spacing:0.08em; border-bottom:1px solid var(--border); padding-bottom:4px; margin-bottom:8px;">
           Executive Summary</h3>
         <p style="font-size:0.86rem; line-height:1.6; color:var(--text-muted); margin:0;">
-          Senior Test Automation Engineer with 5.5+ years of extensive experience designing and deploying scalable
+          Senior Test Automation Engineer with 6+ years of extensive experience designing and deploying scalable
           automated testing frameworks (Java, Selenium WebDriver, Cucumber BDD, Rest Assured, TestNG) across tier-1
           enterprise platforms including Apple Online Store, Citi Bank Flexcube Payments, and Air Canada Reservation
           Operations. Recognized with multiple "Best Performer", "Best Debutant", and Wipro delivery honors.
@@ -12385,7 +12434,7 @@
             <span class="portal-modal-badge">
               <span class="portal-badge-pulse"></span> LIVE PREVIEW
             </span>
-            <span class="portal-modal-title">Bhakti – Web Portal Showcase</span>
+            <span class="portal-modal-title">🕉️ Bhakti – Web Portal</span>
           </div>
         </div>
         <div class="portal-modal-address-bar">
@@ -12403,7 +12452,7 @@
               <polyline points="7 7 17 7 17 17"></polyline>
             </svg>
           </a>
-          <button type="button" class="portal-close-btn" id="portalCloseBtn" title="Close Window [ESC]">✕</button>
+          <button type="button" class="portal-close-btn" id="portalCloseBtn" title="Close Window [ESC]" aria-label="Close Web Portal Modal">✕</button>
         </div>
       </div>
       <div class="portal-modal-body">
@@ -12582,7 +12631,7 @@
               <!-- Core Metrics Scorecard -->
               <div class="exec-card-metrics-grid">
                 <div class="exec-metric-cell">
-                  <span class="exec-metric-val">5.5+</span>
+                  <span class="exec-metric-val">6+</span>
                   <span class="exec-metric-lbl">Yrs Exp</span>
                 </div>
                 <div class="exec-metric-cell">
@@ -12950,7 +12999,7 @@
     <div class="bot-chat-stream" id="botChatStream">
       <div class="chat-bubble bot-msg">
         <div class="bot-bubble-content">
-          👋 Hi! I'm <strong>Srivatsa's AI Assistant</strong>, loaded with 5.5+ years of verified SDET experience across
+          👋 Hi! I'm <strong>Srivatsa's AI Assistant</strong>, loaded with 6+ years of verified SDET experience across
           Apple, Citi Bank, and Air Canada.
           <br><br>
           Select a question below or type your own to generate instant, tailored insights:
@@ -13179,7 +13228,7 @@
     // Passive wheel boundary trap to completely prevent background rubberbanding & scrolling
     window.addEventListener('wheel', (e) => {
       if (!document.body.classList.contains('has-active-modal')) return;
-      const scrollable = e.target.closest('.yoga-pillars-list, .yoga-modal-body, .drawer-content, .interview-modal-window, .interview-modal-body, .card-gen-controls, .card-gen-body-split, .interactive-labs-body, .interactive-labs-modal-window, .bot-chat-stream, .cmd-item-list, .resume-modal-window, .resume-paper, .card-editor-panel');
+      const scrollable = e.target.closest('.yoga-pillars-list, .yoga-modal-body, .drawer-content, .interview-modal-window, .interview-modal-body, .card-gen-controls, .card-gen-body-split, .interactive-labs-body, .interactive-labs-modal-window, .bot-chat-stream, .cmd-item-list, .resume-modal-window, .resume-paper, .card-editor-panel, .portal-modal-window, .portal-modal-body');
       if (!scrollable) {
         e.preventDefault();
       } else {
@@ -13451,7 +13500,7 @@
         "SR. QA AUTOMATION ENGINEER",
         "JAVA · SELENIUM · CUCUMBER BDD",
         "REST ASSURED · API AUTOMATION",
-        "5.5+ YRS · APPLE & AIR CANADA",
+        "6+ YRS · APPLE & AIR CANADA",
         "TESTNG · JUNIT · BDD TEST RIGS",
         "CI/CD · JENKINS · MAVEN · GIT",
         "PERFORMANCE & LOAD TESTING",
@@ -16135,7 +16184,7 @@ Feature: Srivatsa Malali Portfolio Verification
         if (reason) {
           body += `\n\nDetails: "${reason}"`;
         } else {
-          body += `\n\nI came across your portfolio (5.5+ yrs in Apple, Citi & Air Canada QA frameworks) and would love to connect and discuss opportunities with you.`;
+          body += `\n\nI came across your portfolio (6+ yrs in Apple, Citi & Air Canada QA frameworks) and would love to connect and discuss opportunities with you.`;
         }
 
         const signoff = `\n\nLooking forward to speaking with you!`;
@@ -17311,7 +17360,7 @@ public void verifyFundTransferApi(PaymentRequest payload) {
 
       const botAIPlaybookEngine = {
         hire: [
-          "Why hire Srivatsa as Lead SDET? 🚀 Srivatsa brings 5.5+ years of verified enterprise automation experience spanning Wipro, Apple Online Store, Citi Bank Flexcube Payments, and Air Canada. Having automated 680+ mission-critical scenarios and eliminated 240+ defective builds before production releases, he delivers measurable quality velocity, Shift-Left test practices, and zero-defect launch track records.",
+          "Why hire Srivatsa as Lead SDET? 🚀 Srivatsa brings 6+ years of verified enterprise automation experience spanning Wipro, Apple Online Store, Citi Bank Flexcube Payments, and Air Canada. Having automated 680+ mission-critical scenarios and eliminated 240+ defective builds before production releases, he delivers measurable quality velocity, Shift-Left test practices, and zero-defect launch track records.",
           "Looking for a proven QA Automation Lead? 💡 Srivatsa is a Java 17, Selenium 4, and Cucumber BDD specialist with a proven track record of delivering 100% automated regression coverage for multi-region architectures. Honored with 'Best Debutant' and 3 consecutive 'Best Performer' accolades, he builds self-healing, maintainable CI/CD automation pipelines."
         ],
         flakiness: [
@@ -17347,7 +17396,7 @@ public void verifyFundTransferApi(PaymentRequest payload) {
           "🤝 <strong>Direct Channels to Connect:</strong><br><br>• <strong>WhatsApp & Call:</strong> <a href=\"https://wa.me/917019885349\" target=\"_blank\" style=\"color:var(--accent); text-decoration:underline; font-weight:600;\">+91 70198 85349</a><br>• <strong>Email:</strong> <a href=\"mailto:srivatsa.a.malali@gmail.com\" style=\"color:var(--accent); text-decoration:underline;\">srivatsa.a.malali@gmail.com</a><br>• <strong>LinkedIn:</strong> <a href=\"https://www.linkedin.com/in/srivatsamalali\" target=\"_blank\" style=\"color:var(--accent); text-decoration:underline;\">linkedin.com/in/srivatsamalali</a><br>• <strong>Live App (Google Play):</strong> <a href=\"https://play.google.com/store/apps/details?id=com.bhakti.devotional\" target=\"_blank\" style=\"color:var(--accent); text-decoration:underline; font-weight:600;\">Bhakti – Devotional Audio App</a> (<a href=\"https://srivatsamalali.github.io/bhakti/home.html\" target=\"_blank\" style=\"color:var(--accent); text-decoration:underline;\">Web Showcase</a>)<br>• <strong>Working Project:</strong> Aston Recruitment (Cloud infrastructure migration in progress)"
         ],
         resume: [
-          "📄 <strong>Srivatsa's Official Resume:</strong><br><br>Srivatsa's comprehensive 5.5+ years SDET resume with complete client metrics, framework architectures, and certifications is available right here:<br><br><button type=\"button\" onclick=\"window.openResumeModal && window.openResumeModal()\" style=\"padding:7px 16px; background:var(--accent); color:#ffffff; border:none; border-radius:6px; font-weight:600; cursor:pointer; font-size:0.8rem; box-shadow:0 3px 10px rgba(0,0,0,0.2);\">📄 Open Resume PDF ↗</button>"
+          "📄 <strong>Srivatsa's Official Resume:</strong><br><br>Srivatsa's comprehensive 6+ years SDET resume with complete client metrics, framework architectures, and certifications is available right here:<br><br><button type=\"button\" onclick=\"window.openResumeModal && window.openResumeModal()\" style=\"padding:7px 16px; background:var(--accent); color:#ffffff; border:none; border-radius:6px; font-weight:600; cursor:pointer; font-size:0.8rem; box-shadow:0 3px 10px rgba(0,0,0,0.2);\">📄 Open Resume PDF ↗</button>"
         ],
         location: [
           "📍 <strong>Location & Work Preferences:</strong><br><br>• <strong>Current Base:</strong> Bangalore, Karnataka, India<br>• <strong>Hometown:</strong> Kadur, Chikmagalur, Karnataka<br>• <strong>Work Mode:</strong> Open to <strong>On-site (Bangalore)</strong>, <strong>Hybrid</strong>, and <strong>Remote</strong> opportunities with top product & enterprise engineering teams."
@@ -17356,10 +17405,10 @@ public void verifyFundTransferApi(PaymentRequest payload) {
           "⏱️ <strong>Notice Period & Availability:</strong><br><br>Srivatsa is actively exploring <strong>Lead SDET / Senior QA Automation Engineer</strong> roles.<br><br>His notice period is standard / negotiable depending on organizational requirements. Message him on WhatsApp at <a href=\"https://wa.me/917019885349\" target=\"_blank\" style=\"color:var(--accent); text-decoration:underline;\">+91 70198 85349</a> to discuss onboarding timelines."
         ],
         salary: [
-          "💼 <strong>Compensation & Package:</strong><br><br>Srivatsa is open to competitive, industry-aligned compensation commensurate with 5.5+ years of verified Senior QA Automation / SDET leadership.<br><br>To discuss specific compensation numbers and role alignment, connect directly via <a href=\"mailto:srivatsa.a.malali@gmail.com\" style=\"color:var(--accent); text-decoration:underline;\">srivatsa.a.malali@gmail.com</a> or WhatsApp at <a href=\"https://wa.me/917019885349\" target=\"_blank\" style=\"color:var(--accent); text-decoration:underline;\">+91 70198 85349</a>."
+          "💼 <strong>Compensation & Package:</strong><br><br>Srivatsa is open to competitive, industry-aligned compensation commensurate with 6+ years of verified Senior QA Automation / SDET leadership.<br><br>To discuss specific compensation numbers and role alignment, connect directly via <a href=\"mailto:srivatsa.a.malali@gmail.com\" style=\"color:var(--accent); text-decoration:underline;\">srivatsa.a.malali@gmail.com</a> or WhatsApp at <a href=\"https://wa.me/917019885349\" target=\"_blank\" style=\"color:var(--accent); text-decoration:underline;\">+91 70198 85349</a>."
         ],
         experience: [
-          "🏆 <strong>5.5+ Years of QA Engineering Experience:</strong><br><br>• <strong>Tata Consultancy Services (2 Years):</strong> Apple Online Store multi-region validation (5 regions, 0 defect leaks) & Citi Bank core banking Rest Assured API contracts.<br>• <strong>Wipro Technologies (2 Years):** Banking automation, parallel TestNG grids, and defect triage.<br>• <strong>Hexaware Technologies (1.5+ Years):** Air Canada airline reservation system automation.<br><br>Total delivered: 680+ automated scenarios and 240+ defective builds intercepted before production."
+          "🏆 <strong>6+ Years of QA Engineering Experience:</strong><br><br>• <strong>Tata Consultancy Services (3 Years):</strong> Apple Online Store multi-region validation (5 regions, 0 defect leaks) & Citi Bank core banking Rest Assured API contracts.<br>• <strong>Wipro Technologies (1+ Year):</strong> Banking automation, parallel TestNG grids, and defect triage.<br>• <strong>Hexaware Technologies (2 Years):</strong> Air Canada airline reservation system automation.<br><br>Total delivered: 680+ automated scenarios and 240+ defective builds intercepted before production."
         ],
         skills: [
           "⚙️ <strong>Technical Skills & Core Stack:</strong><br><br>• <strong>Languages:</strong> Java (8/11/17), JavaScript, SQL<br>• <strong>UI Automation:</strong> Selenium WebDriver 4, Page Object Model (POM), Cucumber BDD<br>• <strong>API Testing:</strong> Rest Assured, Postman, Jackson POJO, Swagger<br>• <strong>CI/CD & DevOps:</strong> Jenkins Pipelines, Docker, Maven, Git/GitHub<br>• <strong>Reporting:</strong> ExtentReports, Log4j2, Slack/Teams webhooks<br>• <strong>Mobile / Browser:</strong> Appium, BrowserStack cross-browser testing."
@@ -17371,7 +17420,7 @@ public void verifyFundTransferApi(PaymentRequest payload) {
           "📅 <strong>Book an Interview with Srivatsa:</strong><br><br>You can coordinate a discussion directly through any of these channels:<br><br>• <strong>WhatsApp:</strong> <a href=\"https://wa.me/917019885349\" target=\"_blank\" style=\"color:var(--accent); text-decoration:underline;\">+91 70198 85349</a><br>• <strong>Email:</strong> <a href=\"mailto:srivatsa.a.malali@gmail.com\" style=\"color:var(--accent); text-decoration:underline;\">srivatsa.a.malali@gmail.com</a><br><br><button type=\"button\" onclick=\"window.openInterviewModal && window.openInterviewModal()\" style=\"padding:7px 16px; background:var(--accent); color:#ffffff; border:none; border-radius:6px; font-weight:600; cursor:pointer; font-size:0.8rem; box-shadow:0 3px 10px rgba(0,0,0,0.2);\">📅 Open Interview Scheduler ↗</button>"
         ],
         greetings: [
-          "👋 <strong>Hello! I am Srivatsa AI · SDET Playbook.</strong><br><br>I can provide instant details on Srivatsa's:<br>• <strong>Direct Contact:</strong> Phone (+91 70198 85349), WhatsApp, Email<br>• <strong>Career:</strong> 5.5+ years experience at Apple, Citi Bank, and Wipro<br>• <strong>Code Samples:</strong> Java 17 POM, Rest Assured API contracts<br>• <strong>Interview Prep:</strong> Generate 5 technical interview questions<br><br>What would you like to explore?"
+          "👋 <strong>Hello! I am Srivatsa AI · SDET Playbook.</strong><br><br>I can provide instant details on Srivatsa's:<br>• <strong>Direct Contact:</strong> Phone (+91 70198 85349), WhatsApp, Email<br>• <strong>Career:</strong> 6+ years experience at Apple, Citi Bank, and Wipro<br>• <strong>Code Samples:</strong> Java 17 POM, Rest Assured API contracts<br>• <strong>Interview Prep:</strong> Generate 5 technical interview questions<br><br>What would you like to explore?"
         ],
         'code-pom': [
           `💻 <strong>Java 17 Page Object Model & ThreadLocal Driver Blueprint:</strong><br><br>Here is how Srivatsa guarantees thread safety in parallel grid execution:<div class="chat-code-block">${pomCodeSnippet}</div>`
@@ -17640,7 +17689,7 @@ public void verifyFundTransferApi(PaymentRequest payload) {
         }
 
         // Context-aware helpful fallback for unmapped queries
-        return `💡 Regarding <strong>"${queryText}"</strong>:<br><br>Srivatsa is a <strong>Senior QA Automation Engineer / Lead SDET</strong> with 5.5+ years of enterprise experience across Apple, Citi Bank, and Air Canada, specializing in Java 17, Selenium 4, Cucumber BDD, and Rest Assured.<br><br>For specific details or custom technical inquiries, you can reach him directly:<br>• <strong>WhatsApp:</strong> <a href=\"https://wa.me/917019885349\" target=\"_blank\" style=\"color:var(--accent); text-decoration:underline; font-weight:600;\">+91 70198 85349</a><br>• <strong>Email:</strong> <a href=\"mailto:srivatsa.a.malali@gmail.com\" style=\"color:var(--accent); text-decoration:underline;\">srivatsa.a.malali@gmail.com</a><br>• <strong>LinkedIn:</strong> <a href=\"https://www.linkedin.com/in/srivatsamalali\" target=\"_blank\" style=\"color:var(--accent); text-decoration:underline;\">linkedin.com/in/srivatsamalali</a>`;
+        return `💡 Regarding <strong>"${queryText}"</strong>:<br><br>Srivatsa is a <strong>Senior QA Automation Engineer / Lead SDET</strong> with 6+ years of enterprise experience across Apple, Citi Bank, and Air Canada, specializing in Java 17, Selenium 4, Cucumber BDD, and Rest Assured.<br><br>For specific details or custom technical inquiries, you can reach him directly:<br>• <strong>WhatsApp:</strong> <a href=\"https://wa.me/917019885349\" target=\"_blank\" style=\"color:var(--accent); text-decoration:underline; font-weight:600;\">+91 70198 85349</a><br>• <strong>Email:</strong> <a href=\"mailto:srivatsa.a.malali@gmail.com\" style=\"color:var(--accent); text-decoration:underline;\">srivatsa.a.malali@gmail.com</a><br>• <strong>LinkedIn:</strong> <a href=\"https://www.linkedin.com/in/srivatsamalali\" target=\"_blank\" style=\"color:var(--accent); text-decoration:underline;\">linkedin.com/in/srivatsamalali</a>`;
       };
 
       const regenerateBotAnswer = (topicKey, existingBubble) => {
@@ -18443,7 +18492,7 @@ public void verifyFundTransferApi(PaymentRequest payload) {
             const text = `📋 CANDIDATE EXECUTIVE PROFILE: SRIVATSA MALALI\n` +
               `Target Role: ${role}\n` +
               `Prepared For: ${comp}\n` +
-              `Experience: 5.5+ Years | Enterprise QA Automation & SDET\n` +
+              `Experience: 6+ Years | Enterprise QA Automation & SDET\n` +
               `Companies: Apple (Retail POS), Citi Bank (Cards & Wealth), Air Canada\n` +
               `Tech Stack: Java, Selenium WebDriver, Cucumber BDD, Rest Assured API, Jenkins CI/CD\n` +
               `Portfolio: https://srivatsamalali.github.io/\n` +
@@ -18593,7 +18642,7 @@ public void verifyFundTransferApi(PaymentRequest payload) {
             ctx.stroke();
 
             const metrics = [
-              { val: '5.5+ YRS', lbl: 'EXPERIENCE' },
+              { val: '6+ YRS', lbl: 'EXPERIENCE' },
               { val: '40+ SUITES', lbl: 'FRAMEWORKS' },
               { val: '0 LEAKS', lbl: 'DEFECT DEFENSE' },
               { val: '99.8%', lbl: 'PASS RATE' }
