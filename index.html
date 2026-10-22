@@ -40,7 +40,8 @@
     "url": "https://srivatsamalali.github.io/",
     "sameAs": [
       "https://www.linkedin.com/in/srivatsamalali",
-      "https://astonrecruitment.in/"
+      "https://play.google.com/store/apps/details?id=com.bhakti.devotional",
+      "https://srivatsamalali.github.io/bhakti/home.html"
     ],
     "alumniOf": {
       "@type": "EducationalOrganization",
@@ -1525,12 +1526,184 @@
       }
     }
 
+    /* Compact Working Project Mini-Tile */
+    .working-project-mini-tile {
+      margin-top: 24px;
+      padding: 12px 20px;
+      border-radius: 8px;
+      border: 1px dashed rgba(245, 158, 11, 0.35);
+      background: rgba(245, 158, 11, 0.03);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      transition: all 0.25s ease;
+      box-sizing: border-box;
+    }
+
+    .working-project-mini-tile:hover {
+      border-color: rgba(245, 158, 11, 0.55);
+      background: rgba(245, 158, 11, 0.06);
+    }
+
+    .mini-tile-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .mini-tile-badge {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: #f59e0b;
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      padding: 3px 8px;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+
+    .mini-tile-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #f59e0b;
+      box-shadow: 0 0 6px #f59e0b;
+    }
+
+    .mini-tile-info {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .mini-tile-title {
+      font-size: 0.86rem;
+      font-weight: 700;
+      color: var(--color);
+      letter-spacing: -0.01em;
+    }
+
+    .mini-tile-sep {
+      color: var(--border);
+      font-size: 0.8rem;
+    }
+
+    .mini-tile-desc {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .mini-tile-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .mini-tile-offline-notice {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      opacity: 0.85;
+      white-space: nowrap;
+    }
+
+    .mini-tile-btn {
+      padding: 6px 14px !important;
+      font-size: 0.72rem !important;
+      border-radius: 6px !important;
+      min-height: auto !important;
+    }
+
+    @media (max-width: 768px) {
+      .working-project-mini-tile {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 12px 14px;
+      }
+      .mini-tile-right {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .mini-tile-left {
+        gap: 8px;
+      }
+      .mini-tile-desc {
+        font-size: 0.74rem;
+        line-height: 1.4;
+      }
+    }
+
     .project-card {
       padding: 40px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       min-height: 280px;
+    }
+
+    @media (max-width: 768px) {
+      .project-card {
+        padding: 24px 20px;
+        min-height: auto;
+      }
+
+      .project-title {
+        font-size: 1.15rem;
+        margin-bottom: 10px;
+      }
+
+      .project-desc {
+        font-size: 0.84rem;
+        margin-bottom: 16px;
+      }
+
+      .project-actions {
+        gap: 8px;
+        padding-top: 14px;
+      }
+
+      .project-drawer-btn,
+      .project-link-btn {
+        padding: 8px 14px;
+        font-size: 0.72rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .project-card {
+        padding: 20px 16px;
+      }
+
+      .project-actions .project-link-btn {
+        flex: 1 1 calc(50% - 4px);
+        min-width: 120px;
+        padding: 8px 10px;
+        font-size: 0.7rem;
+        justify-content: center;
+      }
+
+      .project-actions .project-drawer-btn {
+        flex: 1 1 100%;
+        justify-content: center;
+      }
     }
 
     .project-meta {
@@ -2424,6 +2597,13 @@
 
     .drawer-overlay.active .drawer-content {
       transform: translateX(0);
+    }
+
+    @media (max-width: 640px) {
+      .drawer-content {
+        padding: 24px 18px env(safe-area-inset-bottom, 24px) 18px;
+        gap: 18px;
+      }
     }
 
     .drawer-close-btn {
@@ -3653,6 +3833,282 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
+    }
+
+    /* ==========================================================================
+       WEB PORTAL LIVE PREVIEW POPUP MODAL DIALOG
+       ========================================================================== */
+    .portal-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(8, 10, 18, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 100004;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      opacity: 0;
+      transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      overscroll-behavior: contain;
+    }
+
+    .portal-modal-overlay.active {
+      display: flex;
+      opacity: 1;
+    }
+
+    .portal-modal-window {
+      width: 100%;
+      max-width: 960px;
+      height: 84vh;
+      max-height: 760px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.05);
+      transform: scale(0.96) translateY(12px);
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .portal-modal-overlay.active .portal-modal-window {
+      transform: scale(1) translateY(0);
+    }
+
+    .portal-modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 16px;
+      background: rgba(15, 23, 42, 0.75);
+      border-bottom: 1px solid var(--border);
+      font-family: var(--font-mono);
+      min-height: 46px;
+    }
+
+    [data-theme="light"] .portal-modal-header {
+      background: #f1f5f9;
+    }
+
+    .portal-modal-header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .portal-window-dots {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .portal-dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      display: inline-block;
+      cursor: pointer;
+    }
+
+    .portal-dot.red { background: #ef4444; }
+    .portal-dot.yellow { background: #eab308; }
+    .portal-dot.green { background: #22c55e; }
+
+    .portal-modal-title-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .portal-modal-badge {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: #22c55e;
+      background: rgba(34, 197, 94, 0.12);
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      padding: 2px 7px;
+      border-radius: 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .portal-badge-pulse {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 6px #22c55e;
+    }
+
+    .portal-modal-title {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--color);
+      white-space: nowrap;
+    }
+
+    .portal-modal-address-bar {
+      flex: 1;
+      max-width: 380px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid var(--border);
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    [data-theme="light"] .portal-modal-address-bar {
+      background: #ffffff;
+    }
+
+    .portal-address-url {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .portal-modal-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .portal-action-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 5px;
+      background: var(--accent-muted);
+      color: var(--accent);
+      border: 1px solid var(--border);
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .portal-action-btn:hover {
+      background: var(--accent);
+      color: #ffffff;
+    }
+
+    .portal-close-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 1rem;
+      cursor: pointer;
+      padding: 4px 8px;
+      border-radius: 4px;
+      line-height: 1;
+      transition: all 0.2s ease;
+    }
+
+    .portal-close-btn:hover {
+      background: rgba(239, 68, 68, 0.15);
+      color: #ef4444;
+    }
+
+    .portal-modal-body {
+      flex: 1;
+      position: relative;
+      background: #0b0f19;
+      display: flex;
+    }
+
+    .portal-modal-body iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    .portal-iframe-loader {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      background: var(--bg);
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      z-index: 1;
+      transition: opacity 0.25s ease;
+    }
+
+    .portal-iframe-loader.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .portal-spinner {
+      width: 28px;
+      height: 28px;
+      border: 3px solid rgba(56, 189, 248, 0.15);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: portalSpin 0.75s linear infinite;
+    }
+
+    @keyframes portalSpin {
+      to { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 640px) {
+      .portal-modal-overlay {
+        padding: env(safe-area-inset-top, 8px) 8px env(safe-area-inset-bottom, 8px) 8px;
+      }
+      .portal-modal-window {
+        width: 100%;
+        height: 94vh;
+        max-height: none;
+        border-radius: 10px;
+      }
+      .portal-modal-header {
+        padding: 8px 12px;
+        min-height: 40px;
+      }
+      .portal-modal-title {
+        font-size: 0.72rem;
+      }
+      .portal-modal-address-bar {
+        display: none;
+      }
+      .portal-action-btn {
+        padding: 4px 8px;
+        font-size: 0.65rem;
+      }
+      .portal-close-btn {
+        padding: 4px 8px;
+        font-size: 0.95rem;
+      }
+      .portal-modal-body iframe {
+        -webkit-overflow-scrolling: touch;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .portal-modal-badge {
+        display: none;
+      }
     }
 
     /* ==========================================================================
@@ -9979,35 +10435,48 @@
       </div>
 
       <div class="projects-grid">
-        <!-- Project 1 -->
+        <!-- Project 1: Bhakti Devotional Mobile App -->
         <div class="project-card blueprint-card bounce-target bounce-pop d-4"
           data-locator="css=.project-card:nth-of-type(1)">
           <div class="card-packet-beam"></div>
           <div>
-            <div class="project-meta" style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
-              <span class="client-logo-pill" style="padding:3px 8px; font-weight:700; font-size:0.75rem;">
-                <span
-                  style="display:inline-flex; align-items:center; justify-content:center; width:16px; height:16px; border-radius:3px; background:#2563eb; color:#ffffff; font-size:10px; font-weight:900;">A</span>
-                <span>Aston Recruitment</span>
+            <div class="project-meta" style="display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:8px; flex-wrap:wrap;">
+              <div style="display:flex; align-items:center; gap:8px;">
+                <span class="client-logo-pill" style="padding:3px 8px; font-weight:700; font-size:0.75rem;">
+                  <span class="logo-img-badge" style="height:18px; padding:1px 4px; display:inline-flex; align-items:center;">
+                    <img src="images/bhakti_logo.png" alt="Bhakti Logo" class="brand-logo-img"
+                      style="height:14px; width:auto; border-radius:2px;" />
+                  </span>
+                  <span>Bhakti</span>
+                </span>
+                <span style="font-family:var(--font-mono); font-size:0.7rem; color:var(--text-muted);">Flutter Mobile App</span>
+              </div>
+              <span class="status-badge-live"
+                style="display:inline-flex; align-items:center; gap:5px; padding:3px 9px; border-radius:12px; background:rgba(34, 197, 94, 0.12); border:1px solid rgba(34, 197, 94, 0.35); font-family:var(--font-mono); font-size:0.68rem; font-weight:700; color:#22c55e; text-transform:uppercase; letter-spacing:0.04em;">
+                <span style="display:inline-block; width:6px; height:6px; border-radius:50%; background:#22c55e; box-shadow:0 0 6px #22c55e;"></span>
+                Live on Google Play
               </span>
-              <span style="font-family:var(--font-mono); font-size:0.7rem; color:var(--text-muted);">Production Web
-                Solution</span>
             </div>
-            <h3 class="project-title">Full Recruitment Platform</h3>
-            <p class="project-desc">Led technical design, repository workflows, and execution to construct a
-              high-performance web recruitment platform for client matching and candidate management.</p>
+            <h3 class="project-title">Bhakti – Divine Music & Devotional Audio</h3>
+            <p class="project-desc">Architected and published a production cross-platform spiritual audio application featuring lock-screen audio playback, 5 sacred Indic languages, zero-sign-in instant access, offline caching, and Firebase cloud distribution.</p>
           </div>
           <div class="project-actions">
-            <a href="https://astonrecruitment.in/" target="_blank" rel="noopener noreferrer" class="project-link-btn">
-              <span>Visit Platform</span>
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
-                stroke-linecap="round" stroke-linejoin="round">
-                <line x1="7" y1="17" x2="17" y2="7"></line>
-                <polyline points="7 7 17 7 17 17"></polyline>
+            <a href="https://play.google.com/store/apps/details?id=com.bhakti.devotional" target="_blank" rel="noopener noreferrer" class="project-link-btn" style="background:#0f172a; color:#38bdf8; border-color:#38bdf8;">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M3.609 1.814L13.793 12 3.61 22.186c-.365-.333-.61-.83-.61-1.428V3.242c0-.598.245-1.095.61-1.428zm11.234 11.236l2.368 2.368-12.01 6.84 9.642-9.208zm0-2.099L5.201 1.743l12.01 6.84-2.368 2.368zm1.05 1.05l3.882 2.213c.693.395.693 1.039 0 1.434l-3.882 2.213-2.122-2.122 2.122-2.122z"/>
               </svg>
+              <span>Google Play</span>
             </a>
-            <button class="project-drawer-btn" data-drawer="aston">
-              <span>Case Study Specs</span>
+            <button type="button" class="project-link-btn" id="openWebPortalBtn" title="Open Bhakti Web Portal Preview">
+              <span>Web Portal</span>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                <line x1="8" y1="21" x2="16" y2="21"></line>
+                <line x1="12" y1="17" x2="12" y2="21"></line>
+              </svg>
+            </button>
+            <button class="project-drawer-btn" data-drawer="bhakti">
+              <span>App Specs</span>
               <span class="btn-arrow">→</span>
             </button>
           </div>
@@ -10096,6 +10565,36 @@
             </button>
           </div>
         </div>
+      </div>
+
+      <!-- Compact Working Project Mini-Tile (Aston Recruitment) -->
+      <div class="working-project-mini-tile bounce-target bounce-pop d-6" data-locator="css=.working-project-mini-tile">
+        <div class="mini-tile-left">
+          <span class="mini-tile-badge">
+            <span class="mini-tile-dot"></span>
+            WORKING PROJECT
+          </span>
+          <div class="mini-tile-info">
+            <span class="mini-tile-title">Aston Recruitment Platform</span>
+            <span class="mini-tile-sep">·</span>
+            <span class="mini-tile-desc">Cloud migration in progress (AWS hosting downtime)</span>
+          </div>
+        </div>
+        <div class="mini-tile-right">
+          <span class="mini-tile-offline-notice" title="Production site temporarily offline for AWS migration">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="12"></line>
+              <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+            <span>Site Offline</span>
+          </span>
+          <button class="project-drawer-btn mini-tile-btn" data-drawer="aston" title="View Case Study Specs">
+            <span>Case Study</span>
+            <span class="btn-arrow">→</span>
+          </button>
+        </div>
+      </div>
       </div>
     </div>
   </section>
@@ -11872,6 +12371,51 @@
     </div>
   </div>
 
+  <!-- Web Portal Preview Modal Window -->
+  <div class="portal-modal-overlay" id="portalModalOverlay" role="dialog" aria-modal="true" aria-label="Web Portal Preview">
+    <div class="portal-modal-window">
+      <div class="portal-modal-header">
+        <div class="portal-modal-header-left">
+          <div class="portal-window-dots">
+            <span class="portal-dot red" id="portalDotCloseBtn" title="Close Window [ESC]"></span>
+            <span class="portal-dot yellow"></span>
+            <span class="portal-dot green"></span>
+          </div>
+          <div class="portal-modal-title-group">
+            <span class="portal-modal-badge">
+              <span class="portal-badge-pulse"></span> LIVE PREVIEW
+            </span>
+            <span class="portal-modal-title">Bhakti – Web Portal Showcase</span>
+          </div>
+        </div>
+        <div class="portal-modal-address-bar">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
+          <span class="portal-address-url">https://srivatsamalali.github.io/bhakti/home.html</span>
+        </div>
+        <div class="portal-modal-actions">
+          <a href="https://srivatsamalali.github.io/bhakti/home.html" target="_blank" rel="noopener noreferrer" class="portal-action-btn" title="Open in New Tab">
+            <span>New Tab</span>
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </a>
+          <button type="button" class="portal-close-btn" id="portalCloseBtn" title="Close Window [ESC]">✕</button>
+        </div>
+      </div>
+      <div class="portal-modal-body">
+        <div class="portal-iframe-loader" id="portalIframeLoader">
+          <div class="portal-spinner"></div>
+          <span>Loading Bhakti Portal...</span>
+        </div>
+        <iframe id="portalIframe" src="" title="Bhakti Web Portal" frameborder="0" loading="lazy" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
+      </div>
+    </div>
+  </div>
+
   <!-- Command Palette Modal -->
   <div class="cmd-palette-overlay" id="cmdPaletteOverlay">
     <div class="cmd-palette-box">
@@ -12416,6 +12960,10 @@
 
     <!-- Preset Quick Prompt Chips -->
     <div class="bot-prompt-chips" id="botPromptChips">
+      <button type="button" class="prompt-chip-btn" data-question="bhakti" style="display:inline-flex; align-items:center; gap:5px;">
+        <span style="font-size:12px;">🕉️</span>
+        <span>Bhakti Devotional App</span>
+      </button>
       <button type="button" class="prompt-chip-btn" data-question="hire" style="display:inline-flex; align-items:center; gap:5px;">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
         <span>Why hire Srivatsa as Lead SDET?</span>
@@ -12617,7 +13165,7 @@
       } else {
         // Query any remaining active modal overlays
         const anyActiveModal = document.querySelector(
-          '.interview-modal-overlay.active, .card-gen-modal-overlay.active, .yoga-modal-overlay.active, .interactive-labs-modal-overlay.active, .cmd-palette-overlay.active, .resume-modal-overlay.active, .drawer-overlay.active, .lightbox-overlay.active, .linkedin-modal-overlay.active, .studio-3d-overlay.active, .mobile-menu-drawer.active'
+          '.portal-modal-overlay.active, .interview-modal-overlay.active, .card-gen-modal-overlay.active, .yoga-modal-overlay.active, .interactive-labs-modal-overlay.active, .cmd-palette-overlay.active, .resume-modal-overlay.active, .drawer-overlay.active, .lightbox-overlay.active, .linkedin-modal-overlay.active, .studio-3d-overlay.active, .mobile-menu-drawer.active'
         );
         if (!anyActiveModal) {
           document.documentElement.classList.remove('has-active-modal');
@@ -14308,18 +14856,37 @@
       const drawerCloseBtn = document.getElementById('drawerCloseBtn');
 
       const projectData = {
+        bhakti: {
+          title: "Bhakti – Devotional Audio & Hindu Panchanga",
+          meta: "Production Mobile Application · Live on Google Play",
+          playStoreUrl: "https://play.google.com/store/apps/details?id=com.bhakti.devotional",
+          liveUrl: "https://srivatsamalali.github.io/bhakti/home.html",
+          liveUrlLabel: "Visit Web Showcase",
+          overview: "Architected and published Bhakti, a cross-platform Flutter application bringing sacred Hindu stotras, sahasranamam, chalisa, bhajans, and Vedic panchanga to spiritual listeners worldwide. Features persistent lock-screen background controls, 5-language runtime localization, zero-sign-in instant access, offline audio caching, and real-time Firestore content delivery.",
+          tech: ["Flutter & Dart", "JustAudio Background Service", "Firebase Firestore & Storage", "Google AdMob", "GitHub Actions CI/CD", "SharedPreferences", "Provider State Management"],
+          responsibilities: [
+            "Architected background audio playback engine using JustAudio & JustAudioBackground with persistent lock-screen media controls, variable playback speed (0.75x–2.0x), and sleep timer.",
+            "Engineered full 5-language localization system (Kannada, English, Hindi, Tamil, Malayalam) with zero hardcoded strings and dynamic runtime locale switching.",
+            "Implemented frictionless zero-sign-in instant playback architecture with local persistence for favorites, listening history, and offline audio caching.",
+            "Built in-app administrator portal with real-time Firebase Firestore & Cloud Storage synchronization for seamless over-the-air devotional content delivery.",
+            "Configured automated GitHub Actions CI/CD pipeline for semantic version increments (+1 patch, +1 build) and automated production release AAB compilation."
+          ],
+          results: "Published and live on Google Play Store (v1.0.32+), 99.9% crash-free sessions, 5 Indic language coverage, and zero authentication drop-off."
+        },
         aston: {
           title: "Aston Recruitment Platform",
-          meta: "Production Web Platform · Leisure Venture",
-          liveUrl: "https://astonrecruitment.in/",
-          overview: "Architected and delivered the end-to-end recruitment matching engine and candidate onboarding platform for Aston Recruitment.",
-          tech: ["TypeScript", "Next.js / React", "REST APIs", "Automated QA Rigs", "Responsive CSS", "Vercel CI/CD"],
+          meta: "Working Project · AWS Infrastructure Migration",
+          liveUrl: "",
+          statusNote: "The live production website is temporarily offline due to AWS cloud infrastructure issues. The platform is currently designated as an active working project undergoing cloud architecture re-engineering and migration.",
+          overview: "Architected and delivered the end-to-end recruitment matching engine and candidate onboarding platform for Aston Recruitment. Currently designated as an active working project undergoing cloud infrastructure re-architecture and AWS migration following server downtime.",
+          tech: ["TypeScript", "Next.js / React", "REST APIs", "AWS Cloud Infrastructure", "Automated QA Rigs", "Responsive CSS", "Vercel / AWS"],
           responsibilities: [
             "Constructed modern responsive frontend architecture with ultra-fast page load times.",
             "Designed clean client-talent matching workflows with automated form verification.",
-            "Established CI/CD deployment pipelines on Vercel ensuring continuous delivery with zero downtime."
+            "Established CI/CD deployment pipelines on Vercel ensuring continuous delivery with zero downtime.",
+            "Currently leading infrastructure re-architecture and AWS migration to ensure resilient cloud hosting and zero single-point failure."
           ],
-          results: "100% responsive coverage, 98+ Google Lighthouse performance score, and live production workflows."
+          results: "100% responsive coverage, 98+ Google Lighthouse performance score, and verified recruitment matching engine; cloud re-deployment in active progress."
         },
         apple: {
           title: "Apple Online Store Automation",
@@ -14365,8 +14932,27 @@
         SoundFX.playClick();
 
         let liveLinkHtml = '';
+        if (proj.playStoreUrl) {
+          liveLinkHtml += `<a href="${proj.playStoreUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="margin-top:10px; margin-right:10px; display:inline-flex; align-items:center; gap:6px;"><span>Get on Google Play</span> ↗</a>`;
+        }
         if (proj.liveUrl) {
-          liveLinkHtml = `<a href="${proj.liveUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="margin-top:10px; display:inline-flex;">Visit Live Site ↗</a>`;
+          if (projKey === 'bhakti') {
+            liveLinkHtml += `<button type="button" class="btn btn-primary" onclick="window.openWebPortalModal && window.openWebPortalModal()" style="margin-top:10px; display:inline-flex; align-items:center; gap:6px; cursor:pointer;"><span>Preview Web Portal</span> ↗</button>`;
+          } else {
+            liveLinkHtml += `<a href="${proj.liveUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="margin-top:10px; display:inline-flex; align-items:center; gap:6px;"><span>${proj.liveUrlLabel || 'Visit Live Site'}</span> ↗</a>`;
+          }
+        }
+
+        let statusHtml = '';
+        if (proj.statusNote) {
+          statusHtml = `
+            <div style="padding:12px 16px; margin-bottom:16px; border-radius:8px; background:rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3); font-size:0.85rem; color:#f59e0b; line-height:1.5;">
+              <strong style="display:flex; align-items:center; gap:6px; margin-bottom:4px;">
+                <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#f59e0b;"></span>
+                Infrastructure Status Notice
+              </strong>
+              ${proj.statusNote}
+            </div>`;
         }
 
         drawerBody.innerHTML = `
@@ -14374,6 +14960,8 @@
             <div class="drawer-meta-pill">${proj.meta}</div>
             <h2 class="drawer-title">${proj.title}</h2>
           </div>
+
+          ${statusHtml}
 
           <div>
             <div class="drawer-section-title">Project Overview</div>
@@ -14565,6 +15153,7 @@
           closeLinkedInModal();
           closeResumeModal();
           closePlaygroundModal();
+          if (typeof closeWebPortalModal === 'function') closeWebPortalModal();
           if (typeof closeInterviewModal === 'function') closeInterviewModal();
           if (typeof closeChatbotWidget === 'function') closeChatbotWidget();
         }
@@ -15698,6 +16287,63 @@ Feature: Srivatsa Malali Portfolio Verification
         });
       }
 
+      // Web Portal Live Preview Popup Modal Logic
+      const portalModalOverlay = document.getElementById('portalModalOverlay');
+      const portalIframe = document.getElementById('portalIframe');
+      const portalIframeLoader = document.getElementById('portalIframeLoader');
+      const portalCloseBtn = document.getElementById('portalCloseBtn');
+      const portalDotCloseBtn = document.getElementById('portalDotCloseBtn');
+      const openWebPortalBtn = document.getElementById('openWebPortalBtn');
+
+      const openWebPortalModal = () => {
+        if (!portalModalOverlay || !portalIframe) return;
+        SoundFX.playClick();
+        const portalUrl = 'https://srivatsamalali.github.io/bhakti/home.html';
+        if (portalIframe.src !== portalUrl) {
+          if (portalIframeLoader) portalIframeLoader.classList.remove('hidden');
+          portalIframe.src = portalUrl;
+          portalIframe.onload = () => {
+            if (portalIframeLoader) portalIframeLoader.classList.add('hidden');
+          };
+        }
+        portalModalOverlay.classList.add('active');
+        setScrollLock(true);
+      };
+
+      const closeWebPortalModal = () => {
+        if (!portalModalOverlay) return;
+        SoundFX.playClick();
+        portalModalOverlay.classList.remove('active');
+        setScrollLock(false);
+      };
+
+      window.openWebPortalModal = openWebPortalModal;
+      window.closeWebPortalModal = closeWebPortalModal;
+
+      if (openWebPortalBtn) {
+        openWebPortalBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          openWebPortalModal();
+        });
+      }
+
+      document.querySelectorAll('.open-web-portal-trigger').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          openWebPortalModal();
+        });
+      });
+
+      if (portalCloseBtn) portalCloseBtn.addEventListener('click', closeWebPortalModal);
+      if (portalDotCloseBtn) portalDotCloseBtn.addEventListener('click', closeWebPortalModal);
+      if (portalModalOverlay) {
+        portalModalOverlay.addEventListener('click', (e) => {
+          if (e.target === portalModalOverlay) closeWebPortalModal();
+        });
+      }
+
       const executeCmdAction = (action) => {
         closeCmdPalette();
         switch (action) {
@@ -15808,9 +16454,15 @@ Feature: Srivatsa Malali Portfolio Verification
         },
         {
           selector: '#work .project-card:nth-of-type(1)',
-          name: 'ASTON_RECRUITMENT_WORKFLOW',
-          log: "Assert.assertEquals(astonLink.getHref(), 'https://astonrecruitment.in/');",
+          name: 'BHAKTI_DEVOTIONAL_PLAYSTORE',
+          log: "Assert.assertEquals(playStoreLink.getHref(), 'https://play.google.com/store/apps/details?id=com.bhakti.devotional');",
           time: 18
+        },
+        {
+          selector: '.working-project-mini-tile',
+          name: 'ASTON_WORKING_PROJECT_MONITOR',
+          log: "Assert.assertTrue(astonMiniTile.getText().contains('WORKING PROJECT')); // AWS Migration Track",
+          time: 15
         },
         {
           selector: '#pipeline .pipeline-card:nth-of-type(1)',
@@ -16666,9 +17318,12 @@ public void verifyFundTransferApi(PaymentRequest payload) {
           "Eliminating flakiness 🛡️ is rooted in architectural discipline: Srivatsa rejects brittle Thread.sleep() delays in favor of dynamic FluentWaits and custom ExpectedConditions. By pairing data-isolated JSON/Excel fixtures with resilient ARIA locators, he maintains a 99.8% test pipeline pass rate.",
           "Flaky tests kill developer trust. ⚡ Srivatsa's anti-flakiness strategy implements custom TestNG retry listeners with automated DOM screenshot captures, headless containerized grid workers, and atomic test data generation, preventing false-positive alerts across nightly Jenkins regressions."
         ],
+        bhakti: [
+          "🕉️ <strong>Bhakti – Divine Music & Devotional Audio App:</strong><br><br>Srivatsa architected and published <strong>Bhakti</strong> on the Google Play Store!<br><br>• <strong>Core Architecture:</strong> Flutter &amp; Dart, JustAudio background engine with lock-screen notification media controls, variable playback speed (0.75x–2.0x), and sleep timer.<br>• <strong>Features:</strong> 5 sacred Indic languages (Kannada, English, Hindi, Tamil, Malayalam) with zero hardcoded strings, frictionless 0-login local caching, and an in-app admin dashboard syncing live songs to Firebase Firestore &amp; Storage.<br>• <strong>CI/CD:</strong> GitHub Actions pipeline automating version increments and release AAB bundles.<br><br>👉 <a href=\"https://play.google.com/store/apps/details?id=com.bhakti.devotional\" target=\"_blank\" style=\"color:var(--accent); text-decoration:underline; font-weight:600;\">Open on Google Play Store ↗</a><br>🌐 <a href=\"https://srivatsamalali.github.io/bhakti/home.html\" target=\"_blank\" style=\"color:var(--accent); text-decoration:underline;\">Visit Official Web Showcase ↗</a>"
+        ],
         'apple-citi': [
-          "Enterprise Delivery at Apple & Citi Bank 🍎💳: At Apple, Srivatsa engineered multi-region regression suites covering e-commerce checkouts across 5 global regions with 0 defect leaks. At Citi Bank, he verified core banking integrity, validating Rest Assured API contracts and backend SQL transactions for daily wire transfer rails.",
-          "High-Stakes Enterprise Experience 🌐: For Apple Online Store, Srivatsa led automated checkout validation for major international product launches. At Citi Bank, he automated complex Flexcube banking transactions, ensuring AML compliance and strict payload contract assertion across distributed microservices."
+          "Enterprise Delivery & Independent Products 🍎💳📱: At Apple, Srivatsa engineered multi-region regression suites covering e-commerce checkouts across 5 global regions with 0 defect leaks. At Citi Bank, he verified core banking integrity with Rest Assured API contracts and database assertions. Independently, he architected and launched Bhakti on Google Play Store (Flutter & Firebase), while his Aston Recruitment platform is currently an active working project undergoing AWS migration.",
+          "High-Stakes Enterprise Experience 🌐: For Apple Online Store, Srivatsa led automated checkout validation for major international product launches. At Citi Bank, he automated complex Flexcube banking transactions. He also published Bhakti (devotional mobile audio app live on Google Play) and maintains Aston Recruitment as an active working project transitioning cloud infrastructure."
         ],
         'apple-story': [
           "🍎 <strong>STAR Story: Apple Store Worldwide Product Launches</strong><br><br>• <strong>Situation:</strong> Apple required zero-defect automated checkout validation across 5 international regions during simultaneous global product launches under high traffic.<br>• <strong>Task:</strong> Architect a bulletproof regression harness to ensure payment gateway, currency localization, and cart states never failed.<br>• <strong>Action:</strong> Engineered modular Page Object suites with dynamic ARIA locators, parallel Selenium Grid runners, and automated region-switching fixtures.<br>• <strong>Result:</strong> Zero defect leakage into production across 4 major international launch cycles."
@@ -16689,7 +17344,7 @@ public void verifyFundTransferApi(PaymentRequest payload) {
           "✉️ <strong>Srivatsa's Email Address:</strong><br><br>You can reach him directly at <a href=\"mailto:srivatsa.a.malali@gmail.com\" style=\"color:var(--accent); text-decoration:underline; font-weight:600;\">srivatsa.a.malali@gmail.com</a>.<br><br>He responds quickly to recruitment inquiries, interview scheduling, and architectural discussions."
         ],
         contact: [
-          "🤝 <strong>Direct Channels to Connect:</strong><br><br>• <strong>WhatsApp & Call:</strong> <a href=\"https://wa.me/917019885349\" target=\"_blank\" style=\"color:var(--accent); text-decoration:underline; font-weight:600;\">+91 70198 85349</a><br>• <strong>Email:</strong> <a href=\"mailto:srivatsa.a.malali@gmail.com\" style=\"color:var(--accent); text-decoration:underline;\">srivatsa.a.malali@gmail.com</a><br>• <strong>LinkedIn:</strong> <a href=\"https://www.linkedin.com/in/srivatsamalali\" target=\"_blank\" style=\"color:var(--accent); text-decoration:underline;\">linkedin.com/in/srivatsamalali</a><br>• <strong>Live Project:</strong> <a href=\"https://astonrecruitment.in/\" target=\"_blank\" style=\"color:var(--accent); text-decoration:underline;\">astonrecruitment.in</a>"
+          "🤝 <strong>Direct Channels to Connect:</strong><br><br>• <strong>WhatsApp & Call:</strong> <a href=\"https://wa.me/917019885349\" target=\"_blank\" style=\"color:var(--accent); text-decoration:underline; font-weight:600;\">+91 70198 85349</a><br>• <strong>Email:</strong> <a href=\"mailto:srivatsa.a.malali@gmail.com\" style=\"color:var(--accent); text-decoration:underline;\">srivatsa.a.malali@gmail.com</a><br>• <strong>LinkedIn:</strong> <a href=\"https://www.linkedin.com/in/srivatsamalali\" target=\"_blank\" style=\"color:var(--accent); text-decoration:underline;\">linkedin.com/in/srivatsamalali</a><br>• <strong>Live App (Google Play):</strong> <a href=\"https://play.google.com/store/apps/details?id=com.bhakti.devotional\" target=\"_blank\" style=\"color:var(--accent); text-decoration:underline; font-weight:600;\">Bhakti – Devotional Audio App</a> (<a href=\"https://srivatsamalali.github.io/bhakti/home.html\" target=\"_blank\" style=\"color:var(--accent); text-decoration:underline;\">Web Showcase</a>)<br>• <strong>Working Project:</strong> Aston Recruitment (Cloud infrastructure migration in progress)"
         ],
         resume: [
           "📄 <strong>Srivatsa's Official Resume:</strong><br><br>Srivatsa's comprehensive 5.5+ years SDET resume with complete client metrics, framework architectures, and certifications is available right here:<br><br><button type=\"button\" onclick=\"window.openResumeModal && window.openResumeModal()\" style=\"padding:7px 16px; background:var(--accent); color:#ffffff; border:none; border-radius:6px; font-weight:600; cursor:pointer; font-size:0.8rem; box-shadow:0 3px 10px rgba(0,0,0,0.2);\">📄 Open Resume PDF ↗</button>"
@@ -16751,6 +17406,11 @@ public void verifyFundTransferApi(PaymentRequest payload) {
           { text: "📞 Contact Srivatsa", query: "Srivatsa's phone number" },
           { text: "⚙️ Core Tech Stack", query: "What is his tech stack?" },
           { text: "🏆 5 Interview Questions", query: "Generate 5 interview questions for Srivatsa" }
+        ],
+        bhakti: [
+          { text: "📲 Open Google Play", query: "Show me the Google Play Store link for Bhakti" },
+          { text: "🌐 View Web Showcase", query: "Show me the Bhakti web showcase" },
+          { text: "⚙️ Core Tech Stack", query: "What is his tech stack?" }
         ],
         hire: [
           { text: "🏆 5 Interview Questions", query: "Generate 5 technical interview questions for Srivatsa" },
@@ -17063,6 +17723,8 @@ public void verifyFundTransferApi(PaymentRequest payload) {
           topicKey = 'skills';
         } else if (fuzzyMatch(lower, ['year', 'how long', 'career', 'history', 'experience'])) {
           topicKey = 'experience';
+        } else if (fuzzyMatch(lower, ['bhakti', 'devotional', 'flutter', 'playstore', 'play store', 'songs', 'stotra', 'panchanga'])) {
+          topicKey = 'bhakti';
         } else if (fuzzyMatch(lower, ['apple', 'citi', 'citibank', 'air canada', 'aston', 'wipro', 'tcs', 'hexaware'])) {
           topicKey = 'apple-citi';
         } else if (fuzzyMatch(lower, ['flak', 'wait', 'retry', 'stable', 'stability', 'sleep', 'fail'])) {
